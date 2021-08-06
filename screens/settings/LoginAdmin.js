@@ -1,10 +1,10 @@
 import React, {useEffect} from "react";
 import {Box, Text, Button, Heading, Center, Container, Flex} from "native-base";
 import {connect} from "react-redux";
-import productsDuck from "../redux/ducks/productsDuck";
-import MainLayout from "../layouts/MainLayout";
+import productsDuck from "../../redux/ducks/productsDuck";
+import MainLayout from "../../layouts/MainLayout";
 
-const HomeScreen = ({productsDuck, navigation}) => {
+const LoginAdmin = ({productsDuck}) => {
 
     useEffect(() => {
         console.log(productsDuck)
@@ -17,13 +17,12 @@ const HomeScreen = ({productsDuck, navigation}) => {
                 <Center>
                     <Box>
                         <Heading style={{color:'black', marginTop:'30%'}} size="lg" mb={3}>
-                            Elige la prueba que deseas responder
+                            Login
                         </Heading>
                     </Box>
                 </Center>
-                <Button size={'lg'} style={{marginBottom:20}} onPress={() => navigation.navigate('LoginAdmin')}>ECCO</Button>
 
-                <Button size={'lg'} onPress={() => console.log("hello world")}>NOM 035</Button>
+                <Button size={'lg'} onPress={() => console.log("hello world")}>ingresar</Button>
             </Flex>
         </MainLayout>
     )
@@ -35,4 +34,4 @@ const mapState = (state) => {
     }
 }
 
-export default connect(mapState)(HomeScreen);
+export default connect(mapState)(LoginAdmin);
