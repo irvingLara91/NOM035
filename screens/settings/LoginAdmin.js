@@ -1,29 +1,102 @@
-import React, {useEffect} from "react";
-import {Box, Text, Button, Heading, Center, Container, Flex} from "native-base";
+import React, {useEffect, useState} from "react";
+import {Box, Text,Input,Stack,  Button, Heading, Center, HStack, Flex, ScrollView, useToast} from "native-base";
 import {connect} from "react-redux";
-import productsDuck from "../../redux/ducks/productsDuck";
 import MainLayout from "../../layouts/MainLayout";
+import config from "../../config"
 
-const LoginAdmin = ({productsDuck}) => {
+const LoginAdmin = ({navigation}) => {
 
-    useEffect(() => {
-        console.log(productsDuck)
-    }, [])
+    const [userName, setUserName] = useState("")
+    const [password, setPassword] = useState("")
+    const [loading, setLoading] = useState(false)
+    const toast = useToast()
+
+    const validateAdmin=()=>{
+        const {USER_ADMIN, USER_PASSWORD_ADMIN} = config;
+        console.log(USER_ADMIN, USER_PASSWORD_ADMIN)
+        setLoading(true)
+
+        if(!userName || !password) {
+            toast.show({
+                title: "Ingresa la información solicitada",
+            })
+            setLoading(false)
+            return false
+        }
+
+        if(USER_ADMIN===userName && USER_PASSWORD_ADMIN===password){
+            setTimeout(
+                () => {
+                    navigation.navigate('HomeConfig')
+                    setLoading(false)
+                },
+                2000
+            );
+        }else{
+            toast.show({
+                title: "Las credenciales son inválidas",
+            })
+            setLoading(false)
+        }
+
+    }
+
 
     return (
 
         <MainLayout>
+            <ScrollView
+                height={'100%'}
+                style={{height:'100%'}}>
             <Flex direction={'column'}>
                 <Center>
                     <Box>
                         <Heading style={{color:'black', marginTop:'30%'}} size="lg" mb={3}>
-                            Login
+                            Acceso a configuración
                         </Heading>
                     </Box>
                 </Center>
 
-                <Button size={'lg'} onPress={() => console.log("hello world")}>ingresar</Button>
+
+
+
+                        <Center>
+                            <Input
+                                w="80%"
+                                size={'2xl'}
+                                mx={3}
+                                value={userName}
+                                onChangeText={(text)=> setUserName(text)}
+                                style={{marginBottom:10, color:'gray'}}
+                                placeholder="Usuario"
+                            />
+
+
+                            <Box style={{height:10}}></Box>
+                            <Input
+                                w="80%"
+                                size={'2xl'}
+                                value={password}
+                                onChangeText={(text)=> setPassword(text)}
+                                type={'password'}
+                                style={{marginBottom:10, color:'gray'}}
+                                placeholder="Contraseña"
+                            />
+
+                            <HStack>
+                                <Button size={'lg'} isDisabled={loading} colorScheme={'gray'} style={{marginRight:10}} loading={loading} onPress={()=> navigation.navigate('Home')}>Regresar</Button>
+                                <Button size={'lg'} isLoading={loading} onPress={validateAdmin}>Ingresar</Button>
+                            </HStack>
+
+
+
+                        </Center>
+
+
+
+
             </Flex>
+            </ScrollView>
         </MainLayout>
     )
 }

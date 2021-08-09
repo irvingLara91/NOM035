@@ -1,18 +1,26 @@
-import React, {useEffect} from "react";
-import {Box, Text, Button, Heading, Center, Container, Flex} from "native-base";
+import React, {useEffect, useState} from "react";
+import {Box, Text, Button, Heading, Center, Container, Flex, Modal} from "native-base";
 import {connect} from "react-redux";
 import productsDuck from "../redux/ducks/productsDuck";
 import MainLayout from "../layouts/MainLayout";
+import config from "../config"
 
 const HomeScreen = ({productsDuck, navigation}) => {
 
+    const [showModal, setShowModal] = useState(false)
+
+
     useEffect(() => {
         console.log(productsDuck)
+        console.log(config)
     }, [])
+
+
 
     return (
 
         <MainLayout>
+
             <Flex direction={'column'}>
                 <Center>
                     <Box>

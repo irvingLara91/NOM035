@@ -6,6 +6,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from "@react-navigation/native";
 import HomeScreen from "./screens/HomeScreen";
 import LoginAdmin from "./screens/settings/LoginAdmin";
+import HomeSettings from "./screens/settings/HomeSettings";
 import {Provider} from "react-redux";
 import { Ionicons } from '@expo/vector-icons';
 import {store} from "./redux/store";
@@ -42,6 +43,11 @@ export default function App({iconSettings}) {
 
                         }
                     } component={LoginAdmin}/>
+                    <Stack.Screen name="HomeConfig" options={
+                        {
+                            title:'Configuración general',
+                        }
+                    } component={HomeSettings}/>
                 </Stack.Navigator>
             </NavigationContainer>
         </NativeBaseProvider>

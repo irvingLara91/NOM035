@@ -13,7 +13,7 @@ export const theme = extendTheme({
                 md: { fontSize: '16px' },
                 sm: { fontSize: '12px' },
             },
-        },
+        }
     },
     fontConfig: {
         Roboto: {
