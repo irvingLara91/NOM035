@@ -67,7 +67,7 @@ const LoginAdmin = ({navigation}) => {
                                 mx={3}
                                 value={userName}
                                 onChangeText={(text)=> setUserName(text)}
-                                style={{marginBottom:10, color:'gray'}}
+                                style={{marginBottom:10}}
                                 placeholder="Usuario"
                             />
 
@@ -79,7 +79,7 @@ const LoginAdmin = ({navigation}) => {
                                 value={password}
                                 onChangeText={(text)=> setPassword(text)}
                                 type={'password'}
-                                style={{marginBottom:10, color:'gray'}}
+                                style={{marginBottom:10}}
                                 placeholder="Contraseña"
                             />
 

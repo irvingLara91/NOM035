@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import productsDuck from "../redux/ducks/productsDuck";
 import MainLayout from "../layouts/MainLayout";
 import config from "../config"
+import {storeData, retrieveData} from '../helpers/storage'
 
 const HomeScreen = ({productsDuck, navigation}) => {
 
@@ -11,10 +12,21 @@ const HomeScreen = ({productsDuck, navigation}) => {
 
 
     useEffect(() => {
-        console.log(productsDuck)
         console.log(config)
+        setInitialFakeData()
     }, [])
 
+
+    let setInitialFakeData =()=>{
+        let dataUser = {
+            data: [
+                {user: 'gaspar.dzul@hiumanlab.com', password: 'root', nombre:'Gaspar', apellido:'Dzul'},
+                {user: 'alex.dzul@hiumanlab.com', password: 'alex', nombre:'Alex', apellido:'Dzul'},
+                {user: 'thelma.gamboa@hiumanlab.com', password: 'thelma', nombre:'Thelma', apellido:'Gamboa'},
+            ]
+        }
+        storeData('users',dataUser)
+    }
 
 
     return (
@@ -29,9 +41,9 @@ const HomeScreen = ({productsDuck, navigation}) => {
                         </Heading>
                     </Box>
                 </Center>
-                <Button size={'lg'} style={{marginBottom:20}} onPress={() => navigation.navigate('LoginAdmin')}>ECCO</Button>
+                <Button size={'lg'} style={{marginBottom:20}}>ECCO</Button>
 
-                <Button size={'lg'} onPress={() => console.log("hello world")}>NOM 035</Button>
+                <Button size={'lg'} onPress={() => navigation.navigate('loginUser')}>NOM 035</Button>
             </Flex>
         </MainLayout>
     )
