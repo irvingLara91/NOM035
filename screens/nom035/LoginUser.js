@@ -3,13 +3,15 @@ import {Box, Text,Input,Stack,  Button, Heading, Center, HStack, Flex, ScrollVie
 import {connect} from "react-redux";
 import MainLayout from "../../layouts/MainLayout";
 import config from "../../config"
+import _ from 'lodash'
 import {retrieveData} from "../../helpers/storage"
 
 const LoginUser = ({navigation}) => {
 
-    const [userName, setUserName] = useState("")
-    const [password, setPassword] = useState("")
+    const [userName, setUserName] = useState("gaspar.dzul@hiumanlab.com")
+    const [password, setPassword] = useState("root")
     const [loading, setLoading] = useState(false)
+    const [users, setUsers] = useState([])
     const toast = useToast()
 
     useEffect(()=>{
@@ -21,12 +23,19 @@ const LoginUser = ({navigation}) => {
     const getUsers=async()=>{
         let val = await retrieveData('users')
         console.log(val)
+        if(val)
+        setUsers(val.data)
     }
 
-    const validateAdmin=()=>{
-        const {USER_ADMIN, USER_PASSWORD_ADMIN} = config;
-        console.log(USER_ADMIN, USER_PASSWORD_ADMIN)
+    const validateUser=()=>{
+        console.log('users')
+
         setLoading(true)
+
+
+
+
+        console.log('users',users)
 
         if(!userName || !password) {
             toast.show({
@@ -36,14 +45,17 @@ const LoginUser = ({navigation}) => {
             return false
         }
 
-        if(USER_ADMIN===userName && USER_PASSWORD_ADMIN===password){
-            setTimeout(
-                () => {
-                    navigation.navigate('HomeConfig')
-                    setLoading(false)
-                },
-                2000
-            );
+
+        let isUser = _.find(users,{'password':password,'user':userName})
+        console.log('isuser',isUser)
+        if(isUser){
+            //existe el usuario en el arreglo de usuarios
+            setLoading(false)
+            toast.show({
+                title:`Bienvenido ${isUser.nombre} ${isUser.apellido}` ,
+            })
+            navigation.navigate('AssessmentNom035')
+
         }else{
             toast.show({
                 title: "Las credenciales son inválidas",
@@ -94,7 +106,7 @@ const LoginUser = ({navigation}) => {
 
                         <HStack>
                             <Button size={'lg'} isDisabled={loading} colorScheme={'gray'} style={{marginRight:10}} loading={loading} onPress={()=> navigation.navigate('Home')}>Regresar</Button>
-                            <Button size={'lg'} isLoading={loading} onPress={validateAdmin}>Ingresar</Button>
+                            <Button size={'lg'} isLoading={loading} onPress={validateUser}>Ingresar</Button>
                         </HStack>
 
 

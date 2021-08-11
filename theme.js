@@ -7,19 +7,18 @@ export const theme = extendTheme({
         },
         Text: {
             defaultProps: { size: 'lg' },
+            baseStyle:{color:'gray'},
             sizes: {
                 xl: { fontSize: '64px' },
                 lg: { fontSize: '32px' },
                 md: { fontSize: '16px' },
                 sm: { fontSize: '12px' },
+                xll:{fontSize:'100px'}
             },
         }
     },
     colors: {
         primary: {
-            50: '#E3F2F9',
-            100: '#C5E4F3',
-            200: '#A2D4EC',
             300: '#7AC1E4',
             400: '#47A9DA',
             500: '#0088CC',

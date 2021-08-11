@@ -1,0 +1,100 @@
+{"encuesta":
+  [
+    {
+      "titulo":"Para responder las preguntas siguientes considere las condiciones de su centro de trabajo, así como la cantidad y ritmo de trabajo.",
+      "preguntas":
+      [
+        {"pregunta":"Mi trabajo me exige hacer mucho esfuerzo físico","tipo":"4asc","categorias":{"categoria":"Ambiente de trabajo","dominio":"Condiciones en el ambiente de trabajo","dimension":"Condiciones deficientes e insalubres"}},
+        {"pregunta":"Me preocupa sufrir un accidente en mi trabajo","tipo":"4asc","categorias":{"categoria":"Ambiente de trabajo","dominio":"Condiciones en el ambiente de trabajo","dimension":"Condiciones peligrosas e inseguras"}},
+        {"pregunta":"Considero que las actividades que realizo son peligrosas","tipo":"4asc","categorias":{"categoria":"Ambiente de trabajo","dominio":"Condiciones en el ambiente de trabajo","dimension":"Trabajos peligrosos"}},
+        {"pregunta":"Por la cantidad de trabajo que tengo debo quedarme tiempo adicional a mi turno","tipo":"4asc","categorias":{"categoria":"Factores propios de la actividad","dominio":"Carga de trabajo","dimension":"Cargas cuantitativas"}},
+        {"pregunta":"Por la cantidad de trabajo que tengo debo trabajar sin parar","tipo":"4asc","categorias":{"categoria":"Factores propios de la actividad","dominio":"Carga de trabajo","dimension":"Ritmos de trabajo acelerado"}},
+        {"pregunta":"Considero que es necesario mantener un ritmo de trabajo acelerado","tipo":"4asc","categorias":{"categoria":"Factores propios de la actividad","dominio":"Carga de trabajo","dimension":"Ritmos de trabajo acelerado"}},
+        {"pregunta":"Mi trabajo exige que esté muy concentrado","tipo":"4asc","categorias":{"categoria":"Factores propios de la actividad","dominio":"Carga de trabajo","dimension":"Carga mental"}},
+        {"pregunta":"Mi trabajo requiere que memorice mucha información","tipo":"4asc","categorias":{"categoria":"Factores propios de la actividad","dominio":"Carga de trabajo","dimension":"Carga mental"}},
+        {"pregunta":"Mi trabajo exige que atienda varios asuntos al mismo tiempo","tipo":"4asc","categorias":{"categoria":"Factores propios de la actividad","dominio":"Carga de trabajo","dimension":"Cargas cuantitativas"}}
+      ]
+    },
+    {
+      "titulo":"Las preguntas siguientes están relacionadas con las actividades que realiza en su trabajo y las responsabilidades que tiene.",
+      "preguntas":
+      [
+        {"pregunta":"En mi trabajo soy responsable de cosas de mucho valor","tipo":"4asc","categorias":{"categoria":"Factores propios de la actividad","dominio":"Carga de trabajo","dimension":"Cargas de alta responsabilidad"}},
+        {"pregunta":"Respondo ante mi jefe por los resultados de toda mi área de trabajo","tipo":"4asc","categorias":{"categoria":"Factores propios de la actividad","dominio":"Carga de trabajo","dimension":"Cargas de alta responsabilidad"}},
+        {"pregunta":"En mi trabajo me dan órdenes contradictorias","tipo":"4asc","categorias":{"categoria":"Factores propios de la actividad","dominio":"Carga de trabajo","dimension":"Cargas contradictorias o inconsistentes"}},
+        {"pregunta":"Considero que en mi trabajo me piden hacer cosas innecesarias","tipo":"4asc","categorias":{"categoria":"Factores propios de la actividad","dominio":"Carga de trabajo","dimension":"Cargas contradictorias o inconsistentes"}}
+      ]
+    }, 
+    {
+      "titulo":"Las preguntas siguientes están relacionadas con el tiempo destinado a su trabajo y sus responsabilidades familiares.",
+      "preguntas":
+      [
+        {"pregunta":"Trabajo horas extras más de tres veces a la semana","tipo":"4asc","categorias":{"categoria":"Organización del tiempo de trabajo","dominio":"Jornada de trabajo","dimension":"Jornadas de trabajo extensas"}},
+        {"pregunta":"Mi trabajo me exige laborar en días de descanso, festivos o fines de semana","tipo":"4asc","categorias":{"categoria":"Organización del tiempo de trabajo","dominio":"Jornada de trabajo","dimension":"Jornadas de trabajo extensas"}},
+        {"pregunta":"Considero que el tiempo en el trabajo es mucho y perjudica mis actividades familiares o personales","tipo":"4asc","categorias":{"categoria":"Organización del tiempo de trabajo","dominio":"Interferencia en la relación trabajo-familia","dimension":"Influencia del trabajo fuera del centro laboral"}},
+        {"pregunta":"Pienso en las actividades familiares o personales cuando estoy en mi trabajo","tipo":"4asc","categorias":{"categoria":"Organización del tiempo de trabajo","dominio":"Interferencia en la relación trabajo-familia","dimension":"Influencia de las responsabilidades familiares"}}
+      ]
+    }, 
+    {
+      "titulo":"Las preguntas siguientes están relacionadas con las decisiones que puede tomar en su trabajo.",
+      "preguntas":
+      [
+        {"pregunta":"Mi trabajo permite que desarrolle nuevas habilidades","tipo":"4desc","categorias":{"categoria":"Factores propios de la actividad","dominio":"Falta de control sobre el trabajo","dimension":"Limitada o nula posibilidad de desarrollo"}},
+        {"pregunta":"En mi trabajo puedo aspirar a un mejor puesto","tipo":"4desc","categorias":{"categoria":"Factores propios de la actividad","dominio":"Falta de control sobre el trabajo","dimension":"Limitada o nula posibilidad de desarrollo"}},
+        {"pregunta":"Durante mi jornada de trabajo puedo tomar pausas cuando las necesito","tipo":"4desc","categorias":{"categoria":"Factores propios de la actividad","dominio":"Falta de control sobre el trabajo","dimension":"Falta de control y autonomía sobre el trabajo"}},
+        {"pregunta":"Puedo decidir la velocidad a la que realizo mis actividades en mi trabajo","tipo":"4desc","categorias":{"categoria":"Factores propios de la actividad","dominio":"Falta de control sobre el trabajo","dimension":"Falta de control y autonomía sobre el trabajo"}},
+        {"pregunta":"Puedo cambiar el orden de las actividades que realizo en mi trabajo","tipo":"4desc","categorias":{"categoria":"Factores propios de la actividad","dominio":"Falta de control sobre el trabajo","dimension":"Falta de control y autonomía sobre el trabajo"}}
+      ]
+    }, 
+    {
+      "titulo":"Las preguntas siguientes están relacionadas con la capacitación e información que recibe sobre su trabajo.",
+      "preguntas":
+      [
+        {"pregunta":"Me informan con claridad cuáles son mis funciones","tipo":"4desc","categorias":{"categoria":"Liderazgo y relaciones en el trabajo","dominio":"Liderazgo","dimension":"Escasa claridad de funciones"}},
+        {"pregunta":"Me explican claramente los resultados que debo obtener en mi trabajo","tipo":"4desc","categorias":{"categoria":"Liderazgo y relaciones en el trabajo","dominio":"Liderazgo","dimension":"Escasa claridad de funciones"}},
+        {"pregunta":"Me informan con quién puedo resolver problemas o asuntos de trabajo","tipo":"4desc","categorias":{"categoria":"Liderazgo y relaciones en el trabajo","dominio":"Liderazgo","dimension":"Escasa claridad de funciones"}},
+        {"pregunta":"Me permiten asistir a capacitaciones relacionadas con mi trabajo","tipo":"4desc","categorias":{"categoria":"Factores propios de la actividad","dominio":"Falta de control sobre el trabajo","dimension":"Limitada o inexistente capacitación"}},
+        {"pregunta":"Recibo capacitación útil para hacer mi trabajo","tipo":"4desc","categorias":{"categoria":"Factores propios de la actividad","dominio":"Falta de control sobre el trabajo","dimension":"Limitada o inexistente capacitación"}}
+      ]
+    }, 
+    {
+      "titulo":"Las preguntas siguientes se refieren a las relaciones con sus compañeros de trabajo y su jefe.",
+      "preguntas":
+      [
+        {"pregunta":"Mi jefe tiene en cuenta mis puntos de vista y opiniones","tipo":"4desc","categorias":{"categoria":"Liderazgo y relaciones en el trabajo","dominio":"Liderazgo","dimension":"Características del liderazgo"}},
+        {"pregunta":"Mi jefe ayuda a solucionar los problemas que se presentan en el trabajo","tipo":"4desc","categorias":{"categoria":"Liderazgo y relaciones en el trabajo","dominio":"Liderazgo","dimension":"Características del liderazgo"}},
+        {"pregunta":"Puedo confiar en mis compañeros de trabajo","tipo":"4desc","categorias":{"categoria":"Liderazgo y relaciones en el trabajo","dominio":"Relaciones en el trabajo","dimension":"Relaciones sociales en el trabajo"}},
+        {"pregunta":"Cuando tenemos que realizar trabajo de equipo los compañeros colaboran","tipo":"4desc","categorias":{"categoria":"Liderazgo y relaciones en el trabajo","dominio":"Relaciones en el trabajo","dimension":"Relaciones sociales en el trabajo"}},
+        {"pregunta":"Mis compañeros de trabajo me ayudan cuando tengo dificultades","tipo":"4desc","categorias":{"categoria":"Liderazgo y relaciones en el trabajo","dominio":"Relaciones en el trabajo","dimension":"Relaciones sociales en el trabajo"}},
+        {"pregunta":"En mi trabajo puedo expresarme libremente sin interrupciones","tipo":"4desc","categorias":{"categoria":"Liderazgo y relaciones en el trabajo","dominio":"Violencia","dimension":"Violencia laboral"}},
+        {"pregunta":"Recibo críticas constantes a mi persona y/o trabajo","tipo":"4asc","categorias":{"categoria":"Liderazgo y relaciones en el trabajo","dominio":"Violencia","dimension":"Violencia laboral"}},
+        {"pregunta":"Recibo burlas, calumnias, difamaciones, humillaciones o ridiculizaciones","tipo":"4asc","categorias":{"categoria":"Liderazgo y relaciones en el trabajo","dominio":"Violencia","dimension":"Violencia laboral"}},
+        {"pregunta":"Se ignora mi presencia o se me excluye de las reuniones de trabajo y en la toma de decisiones","tipo":"4asc","categorias":{"categoria":"Liderazgo y relaciones en el trabajo","dominio":"Violencia","dimension":"Violencia laboral"}},
+        {"pregunta":"Se manipulan las situaciones de trabajo para hacerme parecer un mal trabajador","tipo":"4asc","categorias":{"categoria":"Liderazgo y relaciones en el trabajo","dominio":"Violencia","dimension":"Violencia laboral"}},
+        {"pregunta":"Se ignoran mis éxitos laborales y se atribuyen a otros trabajadores","tipo":"4asc","categorias":{"categoria":"Liderazgo y relaciones en el trabajo","dominio":"Violencia","dimension":"Violencia laboral"}},
+        {"pregunta":"Me bloquean o impiden las oportunidades que tengo para obtener ascenso o mejora en mi trabajo","tipo":"4asc","categorias":{"categoria":"Liderazgo y relaciones en el trabajo","dominio":"Violencia","dimension":"Violencia laboral"}},
+        {"pregunta":"He presenciado actos de violencia en mi centro de trabajo","tipo":"4asc","categorias":{"categoria":"Liderazgo y relaciones en el trabajo","dominio":"Violencia","dimension":"Violencia laboral"}}
+      ]
+    }, 
+    {
+      "titulo":"Las preguntas siguientes están relacionadas con la atención a clientes y usuarios.",
+      "preguntas":
+      [
+        {"pregunta":"En mi trabajo debo brindar servicio a clientes o usuarios:","tipo":"sino","categorias":{}},
+        {"pregunta":"Atiendo clientes o usuarios muy enojados","tipo":"4asc","categorias":{"categoria":"Factores propios de la actividad","dominio":"Carga de trabajo","dimension":"Cargas psicológicas emocionales"}},
+        {"pregunta":"Mi trabajo me exige atender personas muy necesitadas de ayuda o enfermas","tipo":"4asc","categorias":{"categoria":"Factores propios de la actividad","dominio":"Carga de trabajo","dimension":"Cargas psicológicas emocionales"}},
+        {"pregunta":"Para hacer mi trabajo debo demostrar sentimientos distintos a los míos","tipo":"4asc","categorias":{"categoria":"Factores propios de la actividad","dominio":"Carga de trabajo","dimension":"Cargas psicológicas emocionales"}}
+      ]
+    }, 
+    {
+      "titulo":"Las siguientes preguntas están relacionadas con las actitudes de los trabajadores que supervisa.",
+      "preguntas":
+      [
+        {"pregunta":"Soy jefe de otros trabajadores:","tipo":"sino","categorias":{}},
+        {"pregunta":"Comunican tarde los asuntos de trabajo","tipo":"4asc","categorias":{"categoria":"Liderazgo y relaciones en el trabajo","dominio":"Relaciones en el trabajo","dimension":"Deficiente relación con los colaboradores que supervisa"}},
+        {"pregunta":"Dificultan el logro de los resultados del trabajo","tipo":"4asc","categorias":{"categoria":"Liderazgo y relaciones en el trabajo","dominio":"Relaciones en el trabajo","dimension":"Deficiente relación con los colaboradores que supervisa"}},
+        {"pregunta":"Ignoran las sugerencias para mejorar su trabajo","tipo":"4asc","categorias":{"categoria":"Liderazgo y relaciones en el trabajo","dominio":"Relaciones en el trabajo","dimension":"Deficiente relación con los colaboradores que supervisa"}}
+      ]
+    }
+  ]
+}

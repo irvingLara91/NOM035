@@ -12,6 +12,7 @@ import {Provider} from "react-redux";
 import { Ionicons } from '@expo/vector-icons';
 import {store} from "./redux/store";
 import * as Font from 'expo-font';
+import AssessmentNom035 from "./screens/nom035/AssessmentNom035";
 
 
 const Stack = createStackNavigator();
@@ -56,6 +57,11 @@ export default function App({iconSettings}) {
                             title:'Acceso',
                         }
                     } component={LoginUser}/>
+                    <Stack.Screen name="AssessmentNom035" options={
+                        {
+                            title:'Nom035',
+                        }
+                    } component={AssessmentNom035}/>
                 </Stack.Navigator>
             </NavigationContainer>
         </NativeBaseProvider>
