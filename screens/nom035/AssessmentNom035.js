@@ -9,54 +9,54 @@ import QuestionYesNo from "../../components/QuestionYesNo";
 import _nomv1 from '../nom035/estructura/nom035_ref1v2.json'
 import _nomv2 from '../nom035/estructura/nom035_ref2.json'
 import _nomv3 from '../nom035/estructura/nom035_ref3.json'
+import AssessmentComponent from "../../components/AssessmentComponent";
+import {initResponseNom035, responseQuestion} from "../../redux/ducks/nom035Duck";
 
-const AssessmentNom035 = ({navigation}) => {
+const AssessmentNom035 = ({navigation, initResponseNom035, nom035, responseQuestion}) => {
 
     const [userName, setUserName] = useState("")
     const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
     const [users, setUsers] = useState([])
     const [currentPage, setCurrentPage] = useState(0)
+    const [currentAssessment, setCurrentAssessment] = useState(0)
+    const [assessment, setAssessment] = useState(null)
+    let configAssessment = [1,3]
 
-    let numQuestion = 0
-    let numSection = 0
-    const [apply, setApply] = useState({
-        empresa: '',
-        idParticipante:'',
-        idPeriodo:'',
-        respuestas:[
-            {
-                cuestionario:1,
-                respuestas:"000000000000000000000"
-            },
-            {
-                cuestionario:2,
-                respuestas:"01234012340123401234012340123401234012340123401234012340123401234012340123"
-            }
-        ]
-    })
+
     const toast = useToast()
 
     useEffect(()=>{
-
+        processAssessment()
     },[])
 
-    const prev=()=>{
-        let sections = _nomv1.encuesta.length-1
-        if(currentPage!=0 ){
-            setCurrentPage(
-                currentPage-1)
-        }
+    const processAssessment=()=>{
+        let array_questions = []
+        let globalarray = []
+
+        // tomamos de la configuracion cuales encuestas se van a contestar por los usuarios
+        configAssessment.forEach((encuesta,i) => {
+            if(encuesta===1){
+                globalarray.push({encuesta:i+1, vref:1, preguntas:_nomv1.encuesta}) // vref representa el tiupo de nom si es el 1 el 2 o el 3
+            }
+
+            if(encuesta===2) {
+                globalarray.push({encuesta:i+1, vref:2, preguntas:_nomv2.encuesta})
+            }
+
+            if(encuesta===3){
+                globalarray.push({encuesta:i+1, vref:3, preguntas:_nomv3.encuesta})
+            }
+        })
+
+        setAssessment(globalarray)
+        initResponseNom035(globalarray)
+        //responseQuestion(0,2,1) // de la encuetsa 1, cambiar el valor de la posicion 2 por el valor 1
+        // deberemos recorrer globalarray
 
     }
 
-    const next=()=>{
-        console.log(currentPage, _nomv1.encuesta.length)
-        let sections = _nomv1.encuesta.length-1
-        if(currentPage<sections){
-            setCurrentPage(currentPage+1)
-        }
-    }
+
 
     return (
         <MainLayout>
@@ -64,7 +64,19 @@ const AssessmentNom035 = ({navigation}) => {
                 height={'100%'}
                 style={{height:'100%'}}>
                 <Flex direction={'column'}>
-                        {
+                    <Text>
+                        {JSON.stringify(nom035)}
+                    </Text>
+
+                    {
+                        assessment?
+                            <AssessmentComponent  assment={assessment}/>
+                        :null
+                    }
+
+
+
+                        {/*
                             _nomv1.encuesta.map((item, i)=>{
                                 return <Box>
 
@@ -90,7 +102,7 @@ const AssessmentNom035 = ({navigation}) => {
 
                                 </Box>
                             })
-                        }
+                       */ }
 
 
 
@@ -104,8 +116,11 @@ const AssessmentNom035 = ({navigation}) => {
 
 const mapState = (state) => {
     return {
-        productsDuck: state.productsDuck
+        nom035: state.nom035
     }
 }
 
-export default connect(mapState)(AssessmentNom035);
+export default connect(mapState,{
+    initResponseNom035,
+    responseQuestion
+})(AssessmentNom035,);

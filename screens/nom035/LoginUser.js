@@ -29,6 +29,8 @@ const LoginUser = ({navigation}) => {
 
     const validateUser=()=>{
         console.log('users')
+        navigation.navigate('AssessmentNom035')
+        return true
 
         setLoading(true)
 

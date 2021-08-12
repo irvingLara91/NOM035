@@ -1,55 +1,25 @@
 {"encuesta":
   [
-    {
-      "titulo":"¿Ha presenciado o sufrido alguna vez, <b>durante o con motivo del trabajo</b> un acontecimiento como los siguientes:",
-      "preguntas":
-      [
-        {"pregunta":"Accidente que tenga como consecuencia la muerte, la pérdida de un miembro o una lesión grave?", "tipo":"sino"},
-        {"pregunta":"Asaltos?", "tipo":"sino"},
-        {"pregunta":"Actos violentos que derivaron en lesiones graves?", "tipo":"sino"},
-        {"pregunta":"Secuestro?", "tipo":"sino"},
-        {"pregunta":"Amenazas?", "tipo":"sino"},
-        {"pregunta":"Cualquier otro que ponga en riesgo su vida o salud, y/o la de otras personas?", "tipo":"sino"}
-      ]
-    },
-    {
-      "titulo":"Recuerdos persistentes sobre el acontecimiento (<b>durante el último mes</b>):",
-      "preguntas":
-      [
-        {"pregunta":"¿Ha tenido recuerdos recurrentes sobre el acontecimiento que le provocan malestares?","tipo":"sino"},
-        {"pregunta":"¿Ha tenido sueños de carácter recurrente sobre el acontecimiento, que le producen malestar?","tipo":"sino"}
-      ]
-    },
-    {
-      "titulo":"Esfuerzo por evitar circunstancias parecidas o asociadas al acontecimiento (<b>durante el último mes</b>):",
-      "preguntas":
-      [
-        {"pregunta":"¿Se ha esforzado por evitar todo tipo de sentimientos, conversaciones o situaciones que le puedan recordar el acontecimiento?","tipo":"sino"},
-        {"pregunta":"¿Se ha esforzado por evitar todo tipo de actividades, lugares o personas que motivan recuerdos del acontecimiento?","tipo":"sino"},
-        {"pregunta":"¿Ha tenido dificultad para recordar alguna parte importante del evento?","tipo":"sino"},
-        {"pregunta":"¿Ha disminuido su interés en sus actividades cotidianas?","tipo":"sino"},
-        {"pregunta":"¿Se ha sentido usted alejado o distante de los demás?","tipo":"sino"},
-        {"pregunta":"¿Ha notado que tiene dificultad para expresar sus sentimientos?","tipo":"sino"},
-        {"pregunta":"¿Ha tenido la impresión de que su vida se va a acortar, que va a morir antes que otras personas o que tiene un futuro limitado?","tipo":"sino"}
-      ]
-    },
-    {
-      "titulo":"Afectación (<b>durante el último mes</b>):",
-      "preguntas":
-      [
-        {"pregunta":"¿Ha tenido usted dificultades para dormir?","tipo":"sino"},
-        {"pregunta":"¿Ha estado particularmente irritable o le han dado arranques de coraje?","tipo":"sino"},
-        {"pregunta":"¿Ha tenido dificultad para concentrarse?","tipo":"sino"},
-        {"pregunta":"¿Ha estado nervioso o constantemente en alerta?","tipo":"sino"},
-        {"pregunta":"¿Se ha sobresaltado fácilmente por cualquier cosa?","tipo":"sino"}
-      ]
-    },
-    {
-      "titulo":"Información personal (opcional):",
-      "preguntas":
-      [
-        {"pregunta":"¿Quieres compartir tu nombre? Proporcionarnos tu nombre nos ayudaría a poder brindarte apoyo","tipo":"nombre"}
-      ]
-    }
+    {"section":1,"titulo":"¿Ha presenciado o sufrido alguna vez, durante o con motivo del trabajo un acontecimiento como los siguientes:", "ref":1,"pregunta":"Accidente que tenga como consecuencia la muerte, la pérdida de un miembro o una lesión grave?", "tipo":"sino"},
+    {"section":1, "titulo":"¿Ha presenciado o sufrido alguna vez, durante o con motivo del trabajo un acontecimiento como los siguientes:","ref":1,"pregunta":"Asaltos?", "tipo":"sino"},
+    {"section":1, "titulo":"¿Ha presenciado o sufrido alguna vez, durante o con motivo del trabajo un acontecimiento como los siguientes:","ref":1,"pregunta":"Actos violentos que derivaron en lesiones graves?", "tipo":"sino"},
+    {"section":1,"titulo":"¿Ha presenciado o sufrido alguna vez, durante o con motivo del trabajo un acontecimiento como los siguientes:","ref":1,"pregunta":"Secuestro?", "tipo":"sino"},
+    {"section":1, "titulo":"¿Ha presenciado o sufrido alguna vez, durante o con motivo del trabajo un acontecimiento como los siguientes:","ref":1,"pregunta":"Amenazas?", "tipo":"sino"},
+    {"section":1, "titulo":"¿Ha presenciado o sufrido alguna vez, durante o con motivo del trabajo un acontecimiento como los siguientes:","ref":1,"pregunta":"Cualquier otro que ponga en riesgo su vida o salud, y/o la de otras personas?", "tipo":"sino"},
+    {"section":2, "ref":1,"titulo":"¿Ha presenciado o sufrido alguna vez, durante o con motivo del trabajo un acontecimiento como los siguientes:","pregunta":"¿Ha tenido recuerdos recurrentes sobre el acontecimiento que le provocan malestares?","tipo":"sino"},
+    {"section":2, "ref":1,"titulo":"¿Ha presenciado o sufrido alguna vez, durante o con motivo del trabajo un acontecimiento como los siguientes:","pregunta":"¿Ha tenido sueños de carácter recurrente sobre el acontecimiento, que le producen malestar?","tipo":"sino"},
+    {"section":3, "ref":1,"titulo":"Esfuerzo por evitar circunstancias parecidas o asociadas al acontecimiento (durante el último mes):","pregunta":"¿Se ha esforzado por evitar todo tipo de sentimientos, conversaciones o situaciones que le puedan recordar el acontecimiento?","tipo":"sino"},
+    {"section":3, "ref":1,"titulo":"Esfuerzo por evitar circunstancias parecidas o asociadas al acontecimiento (durante el último mes):","pregunta":"¿Se ha esforzado por evitar todo tipo de actividades, lugares o personas que motivan recuerdos del acontecimiento?","tipo":"sino"},
+    {"section":3, "ref":1,"titulo":"Esfuerzo por evitar circunstancias parecidas o asociadas al acontecimiento (durante el último mes):","pregunta":"¿Ha tenido dificultad para recordar alguna parte importante del evento?","tipo":"sino"},
+    {"section":3, "ref":1,"titulo":"Esfuerzo por evitar circunstancias parecidas o asociadas al acontecimiento (durante el último mes):","pregunta":"¿Ha disminuido su interés en sus actividades cotidianas?","tipo":"sino"},
+    {"section":3, "ref":1,"titulo":"Esfuerzo por evitar circunstancias parecidas o asociadas al acontecimiento (durante el último mes):","pregunta":"¿Se ha sentido usted alejado o distante de los demás?","tipo":"sino"},
+    {"section":3, "ref":1,"titulo":"Esfuerzo por evitar circunstancias parecidas o asociadas al acontecimiento (durante el último mes):","pregunta":"¿Ha notado que tiene dificultad para expresar sus sentimientos?","tipo":"sino"},
+    {"section":3, "ref":1,"titulo":"Esfuerzo por evitar circunstancias parecidas o asociadas al acontecimiento (durante el último mes):","pregunta":"¿Ha tenido la impresión de que su vida se va a acortar, que va a morir antes que otras personas o que tiene un futuro limitado?","tipo":"sino"},
+    {"section":4, "titulo":"Afectación (durante el último mes):","ref":1,"pregunta":"¿Ha tenido usted dificultades para dormir?","tipo":"sino"},
+    {"section":4, "titulo":"Afectación (durante el último mes):", "ref":1,"pregunta":"¿Ha estado particularmente irritable o le han dado arranques de coraje?","tipo":"sino"},
+    {"section":4, "titulo":"Afectación (durante el último mes):","ref":1,"pregunta":"¿Ha tenido dificultad para concentrarse?","tipo":"sino"},
+    {"section":4, "titulo":"Afectación (durante el último mes):","ref":1,"pregunta":"¿Ha estado nervioso o constantemente en alerta?","tipo":"sino"},
+    {"section":4, "titulo":"Afectación (durante el último mes):","ref":1,"pregunta":"¿Se ha sobresaltado fácilmente por cualquier cosa?","tipo":"sino"},
+    {"section":5, "titulo":"Información personal (opcional):","ref":1,"pregunta":"¿Quieres compartir tu nombre? Proporcionarnos tu nombre nos ayudaría a poder brindarte apoyo","tipo":"nombre"}
   ]
 }

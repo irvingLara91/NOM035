@@ -6,7 +6,7 @@ import config from "../config"
 import _ from 'lodash'
 import {retrieveData} from "../helpers/storage"
 
-const QuestionYesNo = ({navigation, title='ejemplo', index=0}) => {
+const QuestionYesNo = ({navigation, title='ejemplo', index=0, question=null}) => {
 
     const [response,setResponse] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -19,6 +19,10 @@ const QuestionYesNo = ({navigation, title='ejemplo', index=0}) => {
 
     return (
             <Center>
+                {
+                    index!==0 || <Text>{question.titulo} {question.section}</Text>
+                }
+
                 <Text fontSize="md" style={{fontSize:20, padding:20,color:'#2d4479', width:'100%'}}>#{index} {title}</Text>
                 <HStack style={{paddingLeft:30, paddingRight:30}}>
                     <Button size={'lg'} colorScheme={response===1?'blue':'gray'} style={{marginRight:20,width:'50%'}} isLoading={loading} onPress={()=>setValue(1)}>Si</Button>
