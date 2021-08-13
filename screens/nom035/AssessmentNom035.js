@@ -5,7 +5,6 @@ import MainLayout from "../../layouts/MainLayout";
 import config from "../../config"
 import _ from 'lodash'
 import {retrieveData} from "../../helpers/storage"
-import QuestionYesNo from "../../components/QuestionYesNo";
 import _nomv1 from '../nom035/estructura/nom035_ref1v2.json'
 import _nomv2 from '../nom035/estructura/nom035_ref2.json'
 import _nomv3 from '../nom035/estructura/nom035_ref3.json'

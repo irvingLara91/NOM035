@@ -45,12 +45,12 @@ export let initResponseNom035 = (cuestionarios) => {
 }
 
 
-export let responseQuestion=(cuestionario=0,indexResponse=0,value)=>{ // value es el que se pondría en esa posicion, y cuestionario debería ser la posicion
+export let responseQuestion=(cuestionario=1,indexResponse=0,value)=>{ // value es el que se pondría en esa posicion, y cuestionario debería ser la posicion
     return async (dispatch, getState) => {
         let nom035response = getState().nom035.respuestaNom035
-        let responses = getState().nom035.respuestaNom035[cuestionario].respuestas.split('')
+        let responses = getState().nom035.respuestaNom035[cuestionario-1].respuestas.split('')
         responses[indexResponse] = value;
-        nom035response[cuestionario].respuestas = responses.join('')
+        nom035response[cuestionario-1].respuestas = responses.join('')
         dispatch({type: INIT_RESPONSES, payload:nom035response });
     };
 }

@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {Box, Text,Input,Stack,  Button, Heading, Center, HStack, Flex, ScrollView, useToast} from "native-base";
 import {connect} from "react-redux";
-import QuestionYesNo from "../../components/QuestionYesNo";
+import QuestionComponent from "../../components/QuestionComponent";
+import {responseQuestion} from "../../redux/ducks/nom035Duck";
 
-const SectionComponent = ({navigation, index=0, vref=null, encuesta=null, numEncuesta=1, nom035}) => {
+const SectionComponent = ({navigation, index=0, vref=null, encuesta=null, numEncuesta=1, nom035, responseQuestion}) => {
 
 
     const [validate1Section, setValidate1Section] = useState(false)
@@ -23,16 +24,21 @@ const SectionComponent = ({navigation, index=0, vref=null, encuesta=null, numEnc
         }
     },[currentSection])
 
+    const onSetValueQuestion =(question_index,value)=>{
+        console.log(numEncuesta, question_index,value)
+        responseQuestion(numEncuesta, question_index, value)
+    }
+
     return (
-        <Center>
+        <Box style={{width:'100%'}}>
             <Text fontSize="md" style={{fontSize:20, padding:20,color:'#2d4479', width:'100%'}}>#{index}</Text>
             <Text>vref: {vref}</Text>
             {
                 encuesta.preguntas.map((question,i)=>{
-                    return  <QuestionYesNo question={question} title={question.pregunta} index={i}/>
+                    return  <QuestionComponent onSetValueQuestion={onSetValueQuestion} question={question} title={question.pregunta} index={i}/>
                 })
             }
-        </Center>
+        </Box>
     )
 }
 
@@ -42,4 +48,6 @@ const mapState =(state)=> {
     }
 }
 
-export default connect(mapState)(SectionComponent);
+export default connect(mapState,{
+    responseQuestion
+})(SectionComponent);

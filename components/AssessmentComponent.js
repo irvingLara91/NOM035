@@ -5,7 +5,6 @@ import MainLayout from "../layouts/MainLayout";
 import config from "../config"
 import _ from 'lodash'
 import {retrieveData} from "../helpers/storage"
-import QuestionYesNo from "./QuestionYesNo";
 import SectionComponent from "../screens/nom035/SectionComponent";
 
 const AssessmentComponent = ({navigation, title='ejemplo',assment=null}) => {
@@ -18,6 +17,7 @@ const AssessmentComponent = ({navigation, title='ejemplo',assment=null}) => {
     useEffect(()=>{
         if(assessment){
             setAssessment(assment)
+            setCurrentAssessment(1)
             processAssessment()
         }
     },[assessment])
@@ -36,11 +36,25 @@ const AssessmentComponent = ({navigation, title='ejemplo',assment=null}) => {
         setQuestions(q)
     }
 
+    const reiniciarPreguntas=()=>{
+            setCurrentAssessment(2);
+
+    }
+
+
     return (
        assessment?assessment.map((encuesta,i)=>{
             return  <Box>
-                <Text>{encuesta.vref}</Text>
-                <SectionComponent encuesta={encuesta} key={i} index={i} numEncuesta={encuesta.encuesta} vref={encuesta.vref}/>
+                {
+                   currentAssessment===i+1?<Box>
+                       <SectionComponent  encuesta={encuesta} key={i} index={i} numEncuesta={encuesta.encuesta} vref={encuesta.vref}/>
+                       {
+                          assessment.length>1&&i!==1? <Button size={'lg'}  style={{width:'50%'}} onPress={()=>reiniciarPreguntas()}>Continuar</Button>:null
+                       }
+                    </Box>
+                    :null
+                }
+
                </Box>
            }):null
     )
