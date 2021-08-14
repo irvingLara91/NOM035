@@ -47,7 +47,7 @@ const AssessmentComponent = ({navigation, title='ejemplo',assment=null}) => {
             return  <Box>
                 {
                    currentAssessment===i+1?<Box>
-                       <SectionComponent  encuesta={encuesta} key={i} index={i} numEncuesta={encuesta.encuesta} vref={encuesta.vref}/>
+                       <SectionComponent  currentAssessment={currentAssessment} encuesta={encuesta} key={i} index={i} numEncuesta={encuesta.encuesta} vref={encuesta.vref}/>
                        {
                           assessment.length>1&&i!==1? <Button size={'lg'}  style={{width:'50%'}} onPress={()=>reiniciarPreguntas()}>Continuar</Button>:null
                        }

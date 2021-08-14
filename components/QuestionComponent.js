@@ -20,25 +20,25 @@ const QuestionComponent = ({navigation, title='ejemplo', index=0, question=null,
 
     return (
             <Box>
-                {
-                    index!==0 || <Text>{question.titulo} {question.section}</Text>
-                }
+
+               <Text>{question.titulo} {question.section}</Text>
+
 
                 <Text fontSize="md" style={{fontSize:20, padding:20,color:'#2d4479', width:'100%'}}>#{index} {title}</Text>
                 {
                     question.tipo==='sino'?<HStack style={{paddingLeft:30, paddingRight:30}}>
-                        <Button size={'lg'} colorScheme={response===1?'blue':'gray'} style={{marginRight:20,width:'50%'}} isLoading={loading} onPress={()=>setValue(1)}>Si</Button>
-                        <Button size={'lg'} colorScheme={response===0?'blue':'gray'} isLoading={loading} style={{width:'50%'}} onPress={()=>setValue(0)}>No</Button>
+                        <Button size={'lg'}  style={{marginRight:20,width:'50%'}} isLoading={loading} onPress={()=>setValue(1)}>Si</Button>
+                        <Button size={'lg'}  isLoading={loading} style={{width:'50%'}} onPress={()=>setValue(0)}>No</Button>
                     </HStack>:null
                 }
 
                 {
                     question.tipo==='4asc' || question.tipo==='4desc'? <VStack style={{paddingLeft:30, paddingRight:30}}>
-                        <Button size={'lg'} colorScheme={response===(question.tipo==='4desc'?0:4)?'blue':'gray'} style={{marginBottom:20,width:'50%'}} isLoading={loading} onPress={()=>setValue(question.tipo==='4desc'?0:4)}>Siempre</Button>
-                        <Button size={'lg'} colorScheme={response===(question.tipo==='4desc'?1:3)?'blue':'gray'} isLoading={loading} style={{marginBottom:20,width:'50%'}} onPress={()=>setValue(question.tipo==='4desc'?1:3)}>Casi siempre</Button>
-                        <Button size={'lg'} colorScheme={response===(question.tipo==='4desc'?2:2)?'blue':'gray'} isLoading={loading} style={{marginBottom:20,width:'50%'}} onPress={()=>setValue(question.tipo==='4desc'?2:2)}>Algunas veces</Button>
-                        <Button size={'lg'} colorScheme={response===(question.tipo==='4desc'?3:1)?'blue':'gray'} isLoading={loading} style={{marginBottom:20,width:'50%'}} onPress={()=>setValue(question.tipo==='4desc'?3:1)}>Casi nunca</Button>
-                        <Button size={'lg'} colorScheme={response===(question.tipo==='4desc'?4:0)?'blue':'gray'} isLoading={loading} style={{marginBottom:20,width:'50%'}} onPress={()=>setValue(question.tipo==='4desc'?4:0)}>Nunca</Button>
+                        <Button size={'lg'}  style={{marginBottom:20,width:'50%'}} isLoading={loading} onPress={()=>setValue(question.tipo==='4desc'?0:4)}>Siempre</Button>
+                        <Button size={'lg'}  isLoading={loading} style={{marginBottom:20,width:'50%'}} onPress={()=>setValue(question.tipo==='4desc'?1:3)}>Casi siempre</Button>
+                        <Button size={'lg'}  isLoading={loading} style={{marginBottom:20,width:'50%'}} onPress={()=>setValue(question.tipo==='4desc'?2:2)}>Algunas veces</Button>
+                        <Button size={'lg'}  isLoading={loading} style={{marginBottom:20,width:'50%'}} onPress={()=>setValue(question.tipo==='4desc'?3:1)}>Casi nunca</Button>
+                        <Button size={'lg'}  isLoading={loading} style={{marginBottom:20,width:'50%'}} onPress={()=>setValue(question.tipo==='4desc'?4:0)}>Nunca</Button>
                     </VStack>:null
                 }
 

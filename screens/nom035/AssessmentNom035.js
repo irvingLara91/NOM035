@@ -63,9 +63,7 @@ const AssessmentNom035 = ({navigation, initResponseNom035, nom035, responseQuest
                 height={'100%'}
                 style={{height:'100%'}}>
                 <Flex direction={'column'}>
-                    <Text>
-                        {JSON.stringify(nom035)}
-                    </Text>
+
 
                     {
                         assessment?
@@ -75,35 +73,10 @@ const AssessmentNom035 = ({navigation, initResponseNom035, nom035, responseQuest
 
 
 
-                        {/*
-                            _nomv1.encuesta.map((item, i)=>{
-                                return <Box>
 
-                                    {
-                                        i===currentPage?<>
-                                            <Box style={{backgroundColor:'#2d4479', width:'100%',marginBottom:20,padding:20}}>
-                                            <Text style={{fontSize:25,color:'white'}}>{item.titulo}</Text>
-                                        </Box>
-
-                                            {
-                                                item.preguntas.map((q,j)=>{
-                                                    numQuestion++
-                                                    return <QuestionYesNo index={numQuestion} title={q.pregunta}/>
-                                                })
-                                            }
-
-                                            <HStack style={{paddingLeft:30, paddingRight:30, marginTop:20,float:'right',width:'100%'}}>
-                                                <Button size={'lg'} style={{marginRight:20}} onPress={prev}>Anterior</Button>
-                                                <Button size={'lg'} onPress={next}>Siguiente</Button>
-                                            </HStack>
-                                        </>:null
-                                    }
-
-                                </Box>
-                            })
-                       */ }
-
-
+                    <Text style={{fontSize:18}}>
+                        {JSON.stringify(nom035)}
+                    </Text>
 
 
 
