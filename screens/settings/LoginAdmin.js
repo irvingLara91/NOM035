@@ -6,8 +6,8 @@ import config from "../../config"
 
 const LoginAdmin = ({navigation}) => {
 
-    const [userName, setUserName] = useState("admin")
-    const [password, setPassword] = useState("admin")
+    const [userName, setUserName] = useState("")
+    const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
     const toast = useToast()
 

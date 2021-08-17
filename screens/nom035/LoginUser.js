@@ -10,8 +10,8 @@ let logo = require('../../assets/logoa.png')
 
 const LoginUser = ({navigation}) => {
 
-    const [userName, setUserName] = useState("gaspar.dzul@hiumanlab.com")
-    const [password, setPassword] = useState("root")
+    const [userName, setUserName] = useState("")
+    const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
     const [users, setUsers] = useState([])
     const toast = useToast()
