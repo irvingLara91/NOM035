@@ -24,23 +24,12 @@ const LoginUser = ({navigation}) => {
 
     const getUsers=async()=>{
         let val = await retrieveData('users')
-        console.log(val)
+        console.log('valor de users',val)
         if(val)
-        setUsers(val.data)
+        setUsers(val)
     }
 
     const validateUser=()=>{
-
-
-
-
-        //setLoading(true)
-
-
-
-
-        console.log('users',users)
-
         if(!userName || !password) {
             toast.show({
                 title: "Ingresa la información solicitada",
@@ -49,32 +38,17 @@ const LoginUser = ({navigation}) => {
             return false
         }
 
-        if(userName==='gaspar.dzul@hiumanlab.com' && password==='root'){
-            console.log('users')
-            navigation.navigate('SociodemographicPage')
-            return true
-        }
 
-        if(userName==='alex.dzul@hiumanlab.com' && password==='alex'){
-            console.log('users')
-            navigation.navigate('SociodemographicPage')
-            return true
-        }
-
-        toast.show({
-            title: "Las credenciales son inválidas",
-        })
-        return false
-
-
-
-
-
-
-        let isUser = _.find(users,{'password':password,'user':userName})
-        console.log('isuser',isUser)
+        let isUser = _.find(users,{'username':userName})
         if(isUser){
             //existe el usuario en el arreglo de usuarios
+            let pass = isUser.password.toString()
+            if(pass.toString()!==password){
+                toast.show({
+                    title: "Las credenciales son inválidas",
+                })
+                return
+            }
             setLoading(false)
             toast.show({
                 title:`Bienvenido ${isUser.nombre} ${isUser.apellido}` ,

@@ -24,7 +24,7 @@ const UsersUpdate = () => {
     useEffect(()=>{
         getUsers();
     },[]);
-    
+
     const pickDocument = async () => {
         try {
             const temppath = await DocumentPicker.getDocumentAsync({ type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', copyToCacheDirectory: false });
@@ -75,15 +75,16 @@ const UsersUpdate = () => {
                     <Button size={'lg'} style={{marginTop:20}} onPress={() => pickDocument()}>Cargar archivo .xlsx</Button>
                 </Center>
                 {
-                    datatable ? 
-                    datatable.lenght > 0 ?
+                    datatable ?
+                    datatable.length > 0 ?
                     <ScrollView style={{ maxHeight: '60%', marginTop:40, borderBottomColor: '#707070', borderWidth: 1, fontSize: 14 }}>
+                        <Text style={styles.titleHeaderTable}>Num de personas: {datatable.length}</Text>
                         <View style={{ display: 'flex', flexDirection: 'row', borderBottomColor: '#707070', borderWidth: 1, fontSize: 14 }}>
                             <View style={{ width: 60, paddingLeft: 10, paddingRight: 10, borderRightWidth: 1, borderColor: '#707070' }}>
-                                <Text fontSize={22} textAlign="center">id</Text> 
+                                <Text fontSize={22} textAlign="center">id</Text>
                             </View>
                             <View style={{ paddingLeft: 10, paddingRight: 10 }}>
-                                <Text fontSize={22} textAlign="center">username</Text> 
+                                <Text fontSize={22} textAlign="center">username</Text>
                             </View>
                         </View>
                         <FlatList
@@ -91,16 +92,16 @@ const UsersUpdate = () => {
                             renderItem={({ item }) => (
                                 <View style={{ display: 'flex', flexDirection: 'row', borderBottomColor: '#707070', borderWidth: 1, fontSize: 14 }}>
                                     <View style={{ width: 60, paddingLeft: 10, paddingRight: 10, borderRightWidth: 1, borderColor: '#707070' }}>
-                                        <Text fontSize={18} textAlign="center">{item.idParticipante}</Text> 
+                                        <Text fontSize={18} textAlign="center">{item.idParticipante}</Text>
                                     </View>
                                     <View style={{ color: "#000000", paddingLeft: 10, paddingRight: 10, }}>
-                                        <Text fontSize={18} textAlign="center">{item.username}</Text> 
+                                        <Text fontSize={18} textAlign="center">{item.username}</Text>
                                     </View>
                                 </View>
                             )}
                             keyExtractor={(item) => item.idParticipante }
                             />
-                    </ScrollView> : <Text py={40} pyfontSize={22} textAlign="center">No existen usuarios</Text>   
+                    </ScrollView> : <Text py={40} pyfontSize={22} textAlign="center">No existen usuarios</Text>
                     : <Text py={40} fontSize={22} textAlign="center">No existen usuarios</Text>
                     }
             </View>
@@ -108,5 +109,14 @@ const UsersUpdate = () => {
     )
 
 }
+
+const styles={
+    titleHeaderTable:{
+        fontSize:16,
+        textAlign:'center'
+    }
+}
+
+
 
 export default UsersUpdate;
