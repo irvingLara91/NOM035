@@ -30,7 +30,7 @@ const LoginAdmin = ({navigation}) => {
                     navigation.navigate('HomeConfig')
                     setLoading(false)
                 },
-                2000
+                500
             );
         }else{
             toast.show({

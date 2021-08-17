@@ -28,11 +28,11 @@ const LoginUser = ({navigation}) => {
     }
 
     const validateUser=()=>{
-        console.log('users')
-        navigation.navigate('AssessmentNom035')
-        return true
 
-        setLoading(true)
+
+
+
+        //setLoading(true)
 
 
 
@@ -46,6 +46,27 @@ const LoginUser = ({navigation}) => {
             setLoading(false)
             return false
         }
+
+        if(userName==='gaspar.dzul@hiumanlab.com' && password==='root'){
+            console.log('users')
+            navigation.navigate('AssessmentNom035')
+            return true
+        }
+
+        if(userName==='alex.dzul@hiumanlab.com' && password==='alex'){
+            console.log('users')
+            navigation.navigate('AssessmentNom035')
+            return true
+        }
+
+        toast.show({
+            title: "Las credenciales son inválidas",
+        })
+        return false
+
+
+
+
 
 
         let isUser = _.find(users,{'password':password,'user':userName})

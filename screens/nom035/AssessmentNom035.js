@@ -20,7 +20,7 @@ const AssessmentNom035 = ({navigation, initResponseNom035, nom035, responseQuest
     const [currentPage, setCurrentPage] = useState(0)
     const [currentAssessment, setCurrentAssessment] = useState(0)
     const [assessment, setAssessment] = useState(null)
-    let configAssessment = [1,3]
+    let configAssessment = [1,2]
 
 
     const toast = useToast()
@@ -74,7 +74,7 @@ const AssessmentNom035 = ({navigation, initResponseNom035, nom035, responseQuest
 
 
 
-                    <Text style={{fontSize:18}}>
+                    <Text style={{fontSize:18, marginTop:50}}>
                         {JSON.stringify(nom035)}
                     </Text>
 

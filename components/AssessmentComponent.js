@@ -5,6 +5,7 @@ import MainLayout from "../layouts/MainLayout";
 import config from "../config"
 import _ from 'lodash'
 import {retrieveData} from "../helpers/storage"
+import {Alert} from 'react-native'
 import SectionComponent from "../screens/nom035/SectionComponent";
 
 const AssessmentComponent = ({navigation, title='ejemplo',assment=null}) => {
@@ -36,9 +37,25 @@ const AssessmentComponent = ({navigation, title='ejemplo',assment=null}) => {
         setQuestions(q)
     }
 
+
     const reiniciarPreguntas=()=>{
             setCurrentAssessment(2);
+    }
 
+    const onNextAssessment=()=>{
+        if(assessment.length>1){
+            if(currentAssessment===2){
+                Alert.alert('Gracias por haber contestado la encuesta!')
+                navigation.goBack(null)
+            }else{
+                setCurrentAssessment(2); // de este nos sirve para cuando es el tipo de assessment 1 y no contesta
+
+            }
+            // algun si en la primera sección entonces saltamos  al siguiente assessment
+        }else{
+            Alert.alert('Gracias por haber contestado la encuesta!')
+            navigation.goBack(null)
+        }
     }
 
 
@@ -47,7 +64,14 @@ const AssessmentComponent = ({navigation, title='ejemplo',assment=null}) => {
             return  <Box>
                 {
                    currentAssessment===i+1?<Box>
-                       <SectionComponent  currentAssessment={currentAssessment} encuesta={encuesta} key={i} index={i} numEncuesta={encuesta.encuesta} vref={encuesta.vref}/>
+                       {
+                           <SectionComponent onNextAssessment={onNextAssessment}
+                                             currentAssessment={currentAssessment}
+                                             encuesta={encuesta}
+                                             key={i} index={i}
+                                             numEncuesta={encuesta.encuesta}
+                                             vref={encuesta.vref}/>
+                       }
                        {
                           assessment.length>1&&i!==1? <Button size={'lg'}  style={{width:'50%'}} onPress={()=>reiniciarPreguntas()}>Continuar</Button>:null
                        }
