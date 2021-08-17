@@ -14,6 +14,8 @@ import {store} from "./redux/store";
 import * as Font from 'expo-font';
 import AssessmentNom035 from "./screens/nom035/AssessmentNom035";
 import UsersUpdate from "./screens/settings/UsersUpdate";
+import SociodemographicPage from "./screens/nom035/SociodemographicPage";
+let logo = require('./assets/logoa.png')
 
 
 const Stack = createStackNavigator();
@@ -55,7 +57,7 @@ export default function App({iconSettings}) {
                     } component={HomeSettings}/>
                     <Stack.Screen name="loginUser" options={
                         {
-                            title:'Acceso',
+                            title:'Acceso'
                         }
                     } component={LoginUser}/>
                     <Stack.Screen name="AssessmentNom035" options={
@@ -68,6 +70,11 @@ export default function App({iconSettings}) {
                             title:'actualizar usuarios',
                         }
                     } component={UsersUpdate}/>
+                    <Stack.Screen name="SociodemographicPage" options={
+                        {
+                            title:'Datos sociodemográficos',
+                        }
+                    } component={SociodemographicPage}/>
                 </Stack.Navigator>
             </NavigationContainer>
         </NativeBaseProvider>

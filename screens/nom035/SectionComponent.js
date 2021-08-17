@@ -29,7 +29,7 @@ const SectionComponent = ({navigation, index=0, vref=null, encuesta=null, numEnc
 
     const onSetValueQuestion =(question_index,value, section)=>{
         try{
-            if(question_index+1<=numQuestions){
+            if(question_index+1<numQuestions){
                 console.log(numEncuesta, question_index,value)
                 responseQuestion(numEncuesta, question_index, value)
                 setCurrentQuestion(currentQuestion+1)

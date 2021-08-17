@@ -15,7 +15,7 @@ const QuestionComponent = ({navigation, title='ejemplo', index=0, question=null,
 
     const setValue=(val)=>{
         setResponse(val)
-        onSetValueQuestion(index+1, val, question.section)
+        onSetValueQuestion(index, val, question.section)
     }
 
     return (
@@ -24,7 +24,7 @@ const QuestionComponent = ({navigation, title='ejemplo', index=0, question=null,
                <Text style={{backgroundColor:'#2d4479',color:'white',padding:10}}>{question.titulo}</Text>
 
 
-                <Text fontSize="md" style={{fontSize:30, padding:20,color:'#2d4479', width:'100%'}}>{title} </Text>
+                <Text fontSize="md" style={{fontSize:30, padding:20,color:'#2d4479', width:'100%'}}>{title}</Text>
                 {
                     question.tipo==='sino'?<HStack style={{paddingLeft:30, paddingRight:30}}>
                         <Button size={'lg'}  style={{marginRight:20,width:'50%'}} isLoading={loading} onPress={()=>setValue(1)}>Si</Button>

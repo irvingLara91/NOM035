@@ -5,6 +5,8 @@ import MainLayout from "../../layouts/MainLayout";
 import config from "../../config"
 import _ from 'lodash'
 import {retrieveData} from "../../helpers/storage"
+import {Image} from 'react-native'
+let logo = require('../../assets/logoa.png')
 
 const LoginUser = ({navigation}) => {
 
@@ -49,13 +51,13 @@ const LoginUser = ({navigation}) => {
 
         if(userName==='gaspar.dzul@hiumanlab.com' && password==='root'){
             console.log('users')
-            navigation.navigate('AssessmentNom035')
+            navigation.navigate('SociodemographicPage')
             return true
         }
 
         if(userName==='alex.dzul@hiumanlab.com' && password==='alex'){
             console.log('users')
-            navigation.navigate('AssessmentNom035')
+            navigation.navigate('SociodemographicPage')
             return true
         }
 
@@ -77,7 +79,7 @@ const LoginUser = ({navigation}) => {
             toast.show({
                 title:`Bienvenido ${isUser.nombre} ${isUser.apellido}` ,
             })
-            navigation.navigate('AssessmentNom035')
+            navigation.navigate('SociodemographicPage')
 
         }else{
             toast.show({
@@ -90,7 +92,6 @@ const LoginUser = ({navigation}) => {
 
 
     return (
-
         <MainLayout>
             <ScrollView
                 height={'100%'}
