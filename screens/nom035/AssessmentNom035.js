@@ -67,16 +67,11 @@ const AssessmentNom035 = ({navigation, initResponseNom035, nom035, responseQuest
 
                     {
                         assessment?
-                            <AssessmentComponent  assment={assessment}/>
+                            <AssessmentComponent navigation={navigation} assment={assessment}/>
                         :null
                     }
 
 
-
-
-                    <Text style={{fontSize:18, marginTop:50}}>
-                        {JSON.stringify(nom035)}
-                    </Text>
 
 
 

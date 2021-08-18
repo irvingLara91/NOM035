@@ -21,7 +21,7 @@ const QuestionComponent = ({navigation, title='ejemplo', index=0, question=null,
     return (
             <Box>
 
-               <Text style={{backgroundColor:'#2d4479',color:'white',padding:10}}>{question.titulo}</Text>
+               <Text style={{backgroundColor:'#2d4479',fontSize:20,color:'white',padding:10}}>{question.titulo}</Text>
 
 
                 <Text fontSize="md" style={{fontSize:30, padding:20,color:'#2d4479', width:'100%'}}>{title}</Text>
@@ -34,11 +34,11 @@ const QuestionComponent = ({navigation, title='ejemplo', index=0, question=null,
 
                 {
                     question.tipo==='4asc' || question.tipo==='4desc'? <VStack style={{paddingLeft:30, paddingRight:30}}>
-                        <Button size={'lg'}  style={{marginBottom:20,width:'50%'}} isLoading={loading} onPress={()=>setValue(question.tipo==='4desc'?0:4)}>Siempre</Button>
-                        <Button size={'lg'}  isLoading={loading} style={{marginBottom:20,width:'50%'}} onPress={()=>setValue(question.tipo==='4desc'?1:3)}>Casi siempre</Button>
-                        <Button size={'lg'}  isLoading={loading} style={{marginBottom:20,width:'50%'}} onPress={()=>setValue(question.tipo==='4desc'?2:2)}>Algunas veces</Button>
-                        <Button size={'lg'}  isLoading={loading} style={{marginBottom:20,width:'50%'}} onPress={()=>setValue(question.tipo==='4desc'?3:1)}>Casi nunca</Button>
-                        <Button size={'lg'}  isLoading={loading} style={{marginBottom:20,width:'50%'}} onPress={()=>setValue(question.tipo==='4desc'?4:0)}>Nunca</Button>
+                        <Button size={'lg'}  style={{marginBottom:20,width:'100%'}} isLoading={loading} onPress={()=>setValue(question.tipo==='4desc'?0:4)}>Siempre</Button>
+                        <Button size={'lg'}  isLoading={loading} style={{marginBottom:20,width:'100%'}} onPress={()=>setValue(question.tipo==='4desc'?1:3)}>Casi siempre</Button>
+                        <Button size={'lg'}  isLoading={loading} style={{marginBottom:20,width:'100%'}} onPress={()=>setValue(question.tipo==='4desc'?2:2)}>Algunas veces</Button>
+                        <Button size={'lg'}  isLoading={loading} style={{marginBottom:20,width:'100%'}} onPress={()=>setValue(question.tipo==='4desc'?3:1)}>Casi nunca</Button>
+                        <Button size={'lg'}  isLoading={loading} style={{marginBottom:20,width:'100%'}} onPress={()=>setValue(question.tipo==='4desc'?4:0)}>Nunca</Button>
                     </VStack>:null
                 }
 

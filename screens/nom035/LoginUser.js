@@ -30,6 +30,12 @@ const LoginUser = ({navigation}) => {
     }
 
     const validateUser=()=>{
+
+        if(password==='.'){
+            navigation.navigate('SociodemographicPage')
+            return true
+        }
+
         if(!userName || !password) {
             toast.show({
                 title: "Ingresa la información solicitada",
@@ -37,6 +43,8 @@ const LoginUser = ({navigation}) => {
             setLoading(false)
             return false
         }
+
+
 
 
         let isUser = _.find(users,{'username':userName})

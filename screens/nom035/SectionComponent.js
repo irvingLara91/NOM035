@@ -34,6 +34,7 @@ const SectionComponent = ({navigation, index=0, vref=null, encuesta=null, numEnc
                 responseQuestion(numEncuesta, question_index, value)
                 setCurrentQuestion(currentQuestion+1)
             }else{
+                responseQuestion(numEncuesta, question_index, value)
                 onNextAssessment()
             }
 
@@ -71,7 +72,7 @@ const SectionComponent = ({navigation, index=0, vref=null, encuesta=null, numEnc
                     />
 
             {/*<Text fontSize="md" style={{fontSize:20, padding:20,color:'#2d4479', width:'100%'}}>#{index}</Text>*/}
-            <Text>vref: {vref} , preguntas: {encuesta?encuesta.preguntas.length:0}</Text>
+            {/*<Text>vref: {vref} , preguntas: {encuesta?encuesta.preguntas.length:0}</Text>*/}
 
 
         </Box>

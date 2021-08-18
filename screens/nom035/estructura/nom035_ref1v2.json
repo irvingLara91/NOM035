@@ -19,7 +19,6 @@
     {"section":4, "titulo":"Afectación (durante el último mes):", "ref":1,"pregunta":"¿Ha estado particularmente irritable o le han dado arranques de coraje?","tipo":"sino"},
     {"section":4, "titulo":"Afectación (durante el último mes):","ref":1,"pregunta":"¿Ha tenido dificultad para concentrarse?","tipo":"sino"},
     {"section":4, "titulo":"Afectación (durante el último mes):","ref":1,"pregunta":"¿Ha estado nervioso o constantemente en alerta?","tipo":"sino"},
-    {"section":4, "titulo":"Afectación (durante el último mes):","ref":1,"pregunta":"¿Se ha sobresaltado fácilmente por cualquier cosa?","tipo":"sino"},
-    {"section":5, "titulo":"Información personal (opcional):","ref":1,"pregunta":"¿Quieres compartir tu nombre? Proporcionarnos tu nombre nos ayudaría a poder brindarte apoyo","tipo":"nombre"}
+    {"section":4, "titulo":"Afectación (durante el último mes):","ref":1,"pregunta":"¿Se ha sobresaltado fácilmente por cualquier cosa?","tipo":"sino"}
   ]
 }
