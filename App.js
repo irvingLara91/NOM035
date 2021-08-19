@@ -67,7 +67,7 @@ export default function App({iconSettings}) {
                     } component={AssessmentNom035}/>
                     <Stack.Screen name="UsersUpdate" options={
                         {
-                            title:'actualizar usuarios',
+                            title:'Actualizar usuarios',
                         }
                     } component={UsersUpdate}/>
                     <Stack.Screen name="SociodemographicPage" options={

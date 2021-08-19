@@ -48,10 +48,8 @@ const AssessmentComponent = ({navigation, title='ejemplo',assment=null}) => {
     const onNextAssessment=()=>{
         if(assessment.length>1){
             if(currentAssessment===2){
-
                 Alert.alert('Gracias por haber contestado la encuesta!')
                 navigation.navigate('Home')
-
             }else{
                 setCurrentAssessment(2); // de este nos sirve para cuando es el tipo de assessment 1 y no contesta
             }

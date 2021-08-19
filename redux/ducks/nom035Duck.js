@@ -1,5 +1,12 @@
 const initialData = {
-    respuestaNom035: []
+    respuestaNom035: [],
+    respuesta:{
+        empresa:'9a4be0d5-367b-4a79-9111-2f724e9c582d',
+        idPeriodo:456,
+        idParticipante:34,
+        respuestasSociodemograficos:[],
+        respuestasOpinion:[]
+    }
 }
 
 const INIT_RESPONSES = 'INIT_RESPONSES';

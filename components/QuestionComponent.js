@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from "react";
-import {Box, Text,Input,Stack,  Button, Heading, Center, HStack, VStack, Flex, ScrollView, useToast} from "native-base";
+import {Box, Text,Input,Stack, Button, Heading, Center, HStack, VStack, Flex, ScrollView, useToast} from "native-base";
 import {connect} from "react-redux";
 import MainLayout from "../layouts/MainLayout";
 import config from "../config"
 import _ from 'lodash'
 import {retrieveData} from "../helpers/storage"
 
-const QuestionComponent = ({navigation, title='ejemplo', index=0, question=null, onSetValueQuestion}) => {
+const QuestionComponent = ({navigation, title='ejemplo', index=0, question=null, onSetValueQuestion,modeDev=false}) => {
 
     const [response,setResponse] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -20,17 +20,18 @@ const QuestionComponent = ({navigation, title='ejemplo', index=0, question=null,
 
     return (
             <Box>
+               <Text style={{backgroundColor:'#2d4479',fontSize:20,color:'white',padding:10}}>{question.titulo} {modeDev?`Section:${question.section}`:''}</Text>
+                <Center>
+                    <Text fontSize="md" style={{fontSize:30,color:'#2d4479', width:'100%', textAlign:'justify',marginTop:20, marginBottom:20}}>{title} {modeDev?index:''}</Text>
+                    {
+                        question.tipo==='sino'?<HStack style={{paddingLeft:10, paddingRight:10}}>
+                            <Button size={'lg'}  style={{marginRight:20,width:'50%'}} isLoading={loading} onPress={()=>setValue(1)}>Si</Button>
+                            <Button size={'lg'}  isLoading={loading} style={{width:'50%'}} onPress={()=>setValue(0)}>No</Button>
+                        </HStack>:null
+                    }
 
-               <Text style={{backgroundColor:'#2d4479',fontSize:20,color:'white',padding:10}}>{question.titulo}</Text>
 
-
-                <Text fontSize="md" style={{fontSize:30, padding:20,color:'#2d4479', width:'100%'}}>{title}</Text>
-                {
-                    question.tipo==='sino'?<HStack style={{paddingLeft:30, paddingRight:30}}>
-                        <Button size={'lg'}  style={{marginRight:20,width:'50%'}} isLoading={loading} onPress={()=>setValue(1)}>Si</Button>
-                        <Button size={'lg'}  isLoading={loading} style={{width:'50%'}} onPress={()=>setValue(0)}>No</Button>
-                    </HStack>:null
-                }
+                </Center>
 
                 {
                     question.tipo==='4asc' || question.tipo==='4desc'? <VStack style={{paddingLeft:30, paddingRight:30}}>
@@ -41,7 +42,6 @@ const QuestionComponent = ({navigation, title='ejemplo', index=0, question=null,
                         <Button size={'lg'}  isLoading={loading} style={{marginBottom:20,width:'100%'}} onPress={()=>setValue(question.tipo==='4desc'?4:0)}>Nunca</Button>
                     </VStack>:null
                 }
-
             </Box>
     )
 }
