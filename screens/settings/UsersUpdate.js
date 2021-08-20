@@ -13,7 +13,7 @@ const UsersUpdate = () => {
     const [datatable, setDatatable] = useState(null);
 
     const getUsers = async () =>{
-        let users = await retrieveData("users");
+        let users = await retrieveData("userslist");
         if ( users && users.length > 0  ) {
             setDatatable(users);
         } 
@@ -47,10 +47,10 @@ const UsersUpdate = () => {
                 if ( datatable && datatable.length > 0 ){
                     let tempArray = _.difference(datatable, repeated);
                     let newArray = _.orderBy([...tempArray, ...data], ['idParticipante'], ['asc']);
-                    storeData("users", newArray );
+                    storeData("userslist", newArray );
                 } else {
                     let newArray = _.orderBy(data, ['idParticipante'], ['asc']);
-                    storeData("users", newArray );
+                    storeData("userslist", newArray );
                 }
             });
             return true;

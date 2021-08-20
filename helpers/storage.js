@@ -28,3 +28,17 @@ export const retrieveData = async (key)=>{
         // Error retrieving data
     }
 }
+
+export const removeData = async (key) => {
+    try {
+      await AsyncStorage.removeItem(key);
+      return true
+    } catch (error) {
+        return null
+    }
+}
+
+export const validURL = (string) => {
+    var res = string.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+    return (res !== null)
+}

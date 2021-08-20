@@ -23,7 +23,7 @@ const LoginUser = ({navigation}) => {
 
 
     const getUsers=async()=>{
-        let val = await retrieveData('users')
+        let val = await retrieveData('userslist')
         console.log('valor de users',val)
         if(val)
         setUsers(val)

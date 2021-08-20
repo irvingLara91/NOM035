@@ -5,22 +5,30 @@ import * as DocumentPicker from 'expo-document-picker';
 import * as FileSystem from 'expo-file-system';
 import _ from 'lodash';
 import MainLayout from "../../layouts/MainLayout";
-import { storeData, retrieveData } from "../../helpers/storage";
+import { storeData, retrieveData, validURL } from "../../helpers/storage";
 
 const KhorConfig = () => {
 
-    const [datastate, setDatasatate] = useState(null);
+    const [datastate, setDatastate] = useState(null);
+    const [inputstate, setInputstate] = useState('');
 
     const getConfig = async () =>{
         let storeConfig = await retrieveData("config");
         if ( storeConfig ) {
-            setDatasatate(storeConfig);
-            console.log(storeConfig);
+            setDatastate(storeConfig);
+        } 
+    }
+
+    const getKhorUrl = async () =>{
+        let storeUrl = await retrieveData("khorurl");
+        if ( storeUrl ) {
+            setInputstate(storeUrl);
         } 
     }
 
     useEffect(()=>{
         getConfig();
+        getKhorUrl();
     },[]);
 
     const pickDocument = async () => {
@@ -39,7 +47,7 @@ const KhorConfig = () => {
     }
 
     const saveConfig = ( data ) => {
-        if (data.hasOwnProperty('empresa') && data.hasOwnProperty('cuestionarios') && data.hasOwnProperty('Sociodemograficos') && data.hasOwnProperty('preguntasOpinion')){
+        if ( data.hasOwnProperty('empresa') && data.hasOwnProperty('cuestionarios') ){
             storeData("config", data );
             return true;
         } else {
@@ -47,8 +55,8 @@ const KhorConfig = () => {
         }
     }
 
-    const saveUrl = () => {
-        console.log("Hola humano :3");
+    const inputSubmit = () => {
+        validURL(inputstate) && storeData("khorurl", inputstate) ? Alert.alert("URL guardada") : Alert.alert("Por favor, escriba una url válida");
     }
 
     return (
@@ -59,17 +67,19 @@ const KhorConfig = () => {
                     <Heading style={{ color:'black', textAlign:'center' }} size="lg" mb={3}>
                         Configuración KHOR
                     </Heading>
+                    <Text style={ styles.label }>Instancia KHOR</Text>
                     <Box style={{ display: 'flex', flexDirection: 'row' }}>
                         <TextInput
                         style={styles.input}
-                        placeholder="https://demo.khor.mx/"
-                        placeholderTextColor="#000000"
+                        placeholder={"https://demo.khor.mx/"}
+                        placeholderTextColor="#c1c1c1"
                         autoCapitalize="none"
-                        keyboardType="default"
                         underlineColorAndroid={"transparent"}
+                        value={ inputstate }
+                        onChangeText={ text => setInputstate(text)}
                         />
                     </Box>
-                    <Button size={'lg'} style={{ marginTop: 16, width: '60%' }} onPress={() => saveUrl()}>Guardar</Button>
+                    <Button size={'lg'} style={{ marginTop: 16, width: '60%' }} onPress={() => inputSubmit()}>Guardar</Button>
                 </View>               
                 <View style={ styles.sectionTwo } flex={1}>
                     {
@@ -78,13 +88,22 @@ const KhorConfig = () => {
                             <Text style={ styles.titulo }> Empresa: </Text>
                             <Text style={ styles.dato }> {datastate.empresa} </Text>
                             <Text style={ styles.titulo }> Cuestionarios: </Text>
-                            <Text style={ styles.dato }> 1, 3 </Text>
-                            <Text style={ styles.titulo }> Sociodemograficos: </Text>
-                            <Text style={ styles.dato }> 2 </Text>
-                            <Text style={ styles.titulo }> preguntasOpinion: </Text>
-                            <Text style={ styles.dato }> 3 </Text>
+                            <Text style={ styles.dato }> {_.join(datastate.cuestionarios, ', ')} </Text>
+                            { datastate.Sociodemograficos && (
+                            <>
+                                <Text style={ styles.titulo }> Sociodemograficos: </Text>
+                                <Text style={ styles.dato }> { Object.keys(datastate.Sociodemograficos[0]).length } </Text>
+                            </>
+                            )}
+                            {
+                               datastate.preguntasOpinion && (
+                            <>
+                                <Text style={ styles.titulo }> preguntasOpinion: </Text>
+                                <Text style={ styles.dato }> { Object.keys(datastate.preguntasOpinion[0]).length } </Text>
+                            </>
+                            )}
                         </ScrollView> 
-                    : <Text py={20} fontSize={22} textAlign="center">Carga una configuración</Text>
+                    : <Text py={20} fontSize={16} textAlign="center">Carga una configuración inicial</Text>
                     } 
                 </View>
                 <Box style={{ display: 'flex', alignItems: 'center' }} my={4}>
@@ -114,12 +133,20 @@ const styles = StyleSheet.create({
     sectionTwo: {
         padding: 16,           
         width: '100%',
+        minHeight: 200,
         display: 'flex',
         flexDirection: 'column',
         borderRadius: 10, 
         borderColor: '#053e65', 
         borderWidth: 1,
         backgroundColor: '#bfdff5'        
+    },
+    label: {
+        marginBottom: 4,
+        paddingLeft: 4,
+        width: '100%',
+        fontSize: 16,
+        textAlign: 'left',
     },
     input: {
         width: '100%',
