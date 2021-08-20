@@ -99,7 +99,7 @@ const KhorConfig = () => {
                                datastate.preguntasOpinion && (
                             <>
                                 <Text style={ styles.titulo }> preguntasOpinion: </Text>
-                                <Text style={ styles.dato }> { Object.keys(datastate.preguntasOpinion[0]).length } </Text>
+                                <Text style={ styles.dato }> { datastate.preguntasOpinion.length } </Text>
                             </>
                             )}
                         </ScrollView> 
