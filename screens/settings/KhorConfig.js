@@ -92,7 +92,8 @@ const KhorConfig = () => {
                             { datastate.Sociodemograficos && (
                             <>
                                 <Text style={ styles.titulo }> Sociodemograficos: </Text>
-                                <Text style={ styles.dato }> { Object.keys(datastate.Sociodemograficos[0]).length } </Text>
+                                <Text style={ styles.dato }> { (datastate.Sociodemograficos).length } </Text>
+                                {/* Duda de cual es* { Object.keys(datastate.Sociodemograficos[0]).length } */}
                             </>
                             )}
                             {
