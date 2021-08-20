@@ -34,7 +34,7 @@ const UsersUpdate = () => {
             const wsname = await wb.SheetNames[0];
             const ws = await wb.Sheets[wsname];
             let usersdata = await XLSX.utils.sheet_to_json(ws, {header:"1", blankrows: false});
-            await saveUsers( usersdata ) ? ( Alert.alert("Carga exitosa") ): Alert.alert("Error");
+            await saveUsers( usersdata ) ? ( Alert.alert("Carga exitosa") ): Alert.alert("Error en la carga del archivo");
             getUsers();
         } catch (error){
             console.log(error)
@@ -56,6 +56,7 @@ const UsersUpdate = () => {
             return true;
         } catch (error) {
             console.log(error);
+            return false;
         }
     }
 
@@ -64,9 +65,9 @@ const UsersUpdate = () => {
             if( users.hasOwnProperty('idParticipante') && users.hasOwnProperty('username') && users.hasOwnProperty('password') ) {
                 if ( datatable && datatable.length > 0 ){
                     let userExist = _.find( datatable, {'idParticipante': users.idParticipante} )
-                    userExist ? resolve(userExist) : resolve({});
+                    userExist ? resolve(userExist) : resolve();
                 } else {
-                    resolve({});
+                    resolve();
                 }
             } else {
                 reject(false);

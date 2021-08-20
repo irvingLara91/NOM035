@@ -26,8 +26,8 @@ const HomeSettings = ({navigation}) => {
 
                     <Center>
                         <VStack>
-                            <Button size={'lg'} style={style.butonMain} colorScheme={'gray'} onPress={() => navigation.navigate('UsersUpdate')}  loading={loading}>Acualizar BD de usuarios</Button>
-                            <Button size={'lg'} style={style.butonMain} colorScheme={'gray'}  loading={loading}>Configuración khor</Button>
+                            <Button size={'lg'} style={style.butonMain} colorScheme={'gray'} onPress={() => navigation.navigate('UsersUpdate')} loading={loading}>Acualizar BD de usuarios</Button>
+                            <Button size={'lg'} style={style.butonMain} colorScheme={'gray'} onPress={() => navigation.navigate('KhorConfig')} loading={loading}>Configuración khor</Button>
                             <Button size={'lg'} style={style.butonMain} colorScheme={'gray'}  loading={loading}>Enviar respuestas</Button>
                         </VStack>
                     </Center>

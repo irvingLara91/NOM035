@@ -14,6 +14,7 @@ import {store} from "./redux/store";
 import * as Font from 'expo-font';
 import AssessmentNom035 from "./screens/nom035/AssessmentNom035";
 import UsersUpdate from "./screens/settings/UsersUpdate";
+import KhorConfig from "./screens/settings/KhorConfig";
 import SociodemographicPage from "./screens/nom035/SociodemographicPage";
 let logo = require('./assets/logoa.png')
 
@@ -67,9 +68,14 @@ export default function App({iconSettings}) {
                     } component={AssessmentNom035}/>
                     <Stack.Screen name="UsersUpdate" options={
                         {
-                            title:'actualizar usuarios',
+                            title:'Actualizar usuarios',
                         }
                     } component={UsersUpdate}/>
+                    <Stack.Screen name="KhorConfig" options={
+                        {
+                            title:'Configuración KHOR',
+                        }
+                    } component={KhorConfig}/>
                     <Stack.Screen name="SociodemographicPage" options={
                         {
                             title:'Datos sociodemográficos',
