@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import MainLayout from "../../layouts/MainLayout";
 import config from "../../config"
 import _ from 'lodash'
-import {retrieveData} from "../../helpers/storage"
+import {retrieveData, storeData} from "../../helpers/storage"
 import {Image} from 'react-native'
 let logo = require('../../assets/logoa.png')
 
@@ -29,9 +29,10 @@ const LoginUser = ({navigation}) => {
         setUsers(val)
     }
 
-    const validateUser=()=>{
+    const validateUser=async()=>{
 
         if(password==='.'){
+            await storeData('devmode',{dev:true})
             navigation.navigate('SociodemographicPage')
             return true
         }
@@ -58,6 +59,7 @@ const LoginUser = ({navigation}) => {
                 return
             }
             setLoading(false)
+            await storeData('devmode',{dev:false})
             toast.show({
                 title:`Bienvenido ${isUser.nombre} ${isUser.apellido}` ,
             })

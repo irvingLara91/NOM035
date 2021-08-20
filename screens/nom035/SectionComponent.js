@@ -4,6 +4,7 @@ import {Alert} from 'react-native'
 import {connect} from "react-redux";
 import QuestionComponent from "../../components/QuestionComponent";
 import {responseQuestion} from "../../redux/ducks/nom035Duck";
+import {retrieveData, storeData} from "../../helpers/storage"
 import _ from 'lodash'
 
 const SectionComponent = ({navigation, index=0, vref=null, encuesta=null, numEncuesta=1, nom035, responseQuestion, currentAssessment=1, onNextAssessment}) => {
@@ -13,6 +14,7 @@ const SectionComponent = ({navigation, index=0, vref=null, encuesta=null, numEnc
     const [currentSection, setCurrentSection] = useState(1)
     const [currentQuestion, setCurrentQuestion] = useState(0)
     const [numQuestions, setNumQuestions] = useState(0)
+    const [modeDev, setModeDev] = useState(false)
     const [hasYesSection1vref1, setHasYesSection1vref1] = useState(false) // este nos va a indicar si la seccion1 tiene al menos un yes y si no es así entonces lo saltará a la siguiente encuesta
     const toast = useToast()
 
@@ -24,7 +26,22 @@ const SectionComponent = ({navigation, index=0, vref=null, encuesta=null, numEnc
         if(encuesta){
             setNumQuestions(encuesta.preguntas.length)
         }
+
+       getModeDev()
     },[])
+
+    const getModeDev =async ()=>{
+        try{
+            let dev = await retrieveData('devmode')
+            console.log(dev)
+            if(dev){
+                setModeDev(dev.dev)
+            }
+            return dev
+        }catch (e){
+            return null
+        }
+    }
 
 
     const onSetValueQuestion =(question_index,value, section)=>{
@@ -45,6 +62,37 @@ const SectionComponent = ({navigation, index=0, vref=null, encuesta=null, numEnc
         if(vref===1){
             validateNOQuestioninVref1(question_index,value, section)
         }
+
+        if(vref===2 && (question_index===40 || question_index===44)){
+            validateNoSectionsinVref2(question_index,value, section)
+        }
+
+        if(vref===3 && (question_index===64 || question_index===69) ){
+            validateNoSectionsinVref3(question_index,value, section)
+        }
+
+    }
+
+    const validateNoSectionsinVref2=(question_index,value, section)=>{
+        if(question_index===40 && value===0){ // si la pregunta es un SINO y la respuesta es No entonces saltamos la sección
+           setCurrentQuestion(44)
+        }
+
+        if(question_index===44 && value===0){ // si la pregunta es un SINO y la respuesta es No entonces saltamos la sección
+            onNextAssessment() // lo forzamos al sig encuesta o finalizarla
+        }
+
+    }
+
+    const validateNoSectionsinVref3=(question_index,value, section)=>{
+        if(question_index===64 && value===0){ // si la pregunta es un SINO y la respuesta es No entonces saltamos la sección
+           setCurrentQuestion(69)
+        }
+
+        if(question_index===69 && value===0){ // si la pregunta es un SINO y la respuesta es No entonces saltamos la sección
+            onNextAssessment() // lo forzamos al sig encuesta o finalizarla
+        }
+
     }
 
     const validateNOQuestioninVref1=(question_index, value,section)=>{
@@ -66,13 +114,19 @@ const SectionComponent = ({navigation, index=0, vref=null, encuesta=null, numEnc
 
                 <QuestionComponent
                     onSetValueQuestion={onSetValueQuestion}
+                    modeDev={modeDev}
                     question={encuesta.preguntas.length>=currentQuestion?encuesta.preguntas[currentQuestion]:0}
                     title={encuesta.preguntas.length>=currentQuestion?_.get(encuesta.preguntas[currentQuestion], 'pregunta',''):0}
                     index={currentQuestion}
                     />
 
-            {/*<Text fontSize="md" style={{fontSize:20, padding:20,color:'#2d4479', width:'100%'}}>#{index}</Text>*/}
-            {/*<Text>vref: {vref} , preguntas: {encuesta?encuesta.preguntas.length:0}</Text>*/}
+                    {
+                        modeDev?<Box>
+                            <Text>vref: {vref} , preguntas: {encuesta?encuesta.preguntas.length:0}</Text>
+                            <Text style={{fontSize:20}}>{JSON.stringify(nom035)}</Text>
+                        </Box>:null
+                    }
+
 
 
         </Box>
