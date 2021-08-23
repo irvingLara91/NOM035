@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import {Box, Text,Input,Stack,  Button, Heading, Center, VStack, Flex, ScrollView, useToast} from "native-base";
+import React, {useState} from "react";
+import {Box,Button, Heading, Center, VStack, Flex, ScrollView, useToast} from "native-base";
 import {connect} from "react-redux";
 import MainLayout from "../../layouts/MainLayout";
 import config from "../../config"
@@ -28,7 +28,7 @@ const HomeSettings = ({navigation}) => {
                         <VStack>
                             <Button size={'lg'} style={style.butonMain} colorScheme={'gray'} onPress={() => navigation.navigate('UsersUpdate')} loading={loading}>Acualizar BD de usuarios</Button>
                             <Button size={'lg'} style={style.butonMain} colorScheme={'gray'} onPress={() => navigation.navigate('KhorConfig')} loading={loading}>Configuración khor</Button>
-                            <Button size={'lg'} style={style.butonMain} colorScheme={'gray'}  loading={loading}>Enviar respuestas</Button>
+                            <Button size={'lg'} style={style.butonMain} colorScheme={'gray'} onPress={() => navigation.navigate('SendScreen')} loading={loading}>Enviar respuestas</Button>
                         </VStack>
                     </Center>
                 </Flex>

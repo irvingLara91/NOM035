@@ -4,18 +4,19 @@ import {NativeBaseProvider, Box, Text, Button} from 'native-base';
 import {theme} from "./theme";
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from "@react-navigation/native";
-import HomeScreen from "./screens/HomeScreen";
-import LoginAdmin from "./screens/settings/LoginAdmin";
-import LoginUser from "./screens/nom035/LoginUser";
-import HomeSettings from "./screens/settings/HomeSettings";
-import {Provider} from "react-redux";
+import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import {store} from "./redux/store";
-import * as Font from 'expo-font';
+import {Provider} from "react-redux";
+import HomeScreen from "./screens/HomeScreen";
+import LoginUser from "./screens/nom035/LoginUser";
 import AssessmentNom035 from "./screens/nom035/AssessmentNom035";
+import SociodemographicPage from "./screens/nom035/SociodemographicPage";
+import LoginAdmin from "./screens/settings/LoginAdmin";
+import HomeSettings from "./screens/settings/HomeSettings";
 import UsersUpdate from "./screens/settings/UsersUpdate";
 import KhorConfig from "./screens/settings/KhorConfig";
-import SociodemographicPage from "./screens/nom035/SociodemographicPage";
+import SendScreen from "./screens/settings/SendScreen";
 let logo = require('./assets/logoa.png')
 
 
@@ -76,6 +77,11 @@ export default function App({iconSettings}) {
                             title:'Configuración KHOR',
                         }
                     } component={KhorConfig}/>
+                    <Stack.Screen name="SendScreen" options={
+                        {
+                            title:'Enviar respuestas a KHOR',
+                        }
+                    } component={SendScreen}/>
                     <Stack.Screen name="SociodemographicPage" options={
                         {
                             title:'Datos sociodemográficos',

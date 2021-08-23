@@ -25,17 +25,17 @@ const UsersUpdate = () => {
 
     const pickDocument = async () => {
         try {
-            const temppath = await DocumentPicker.getDocumentAsync({ type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', copyToCacheDirectory: false });
+            const tempPath = await DocumentPicker.getDocumentAsync({ type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', copyToCacheDirectory: false });
             const filename = new Date().getTime() + '.xlsx';
-            const newpath = await FileSystem.documentDirectory + filename;
-            await FileSystem.copyAsync({ from: temppath.uri, to: newpath });
-            const b64 = await FileSystem.readAsStringAsync( newpath, {encoding: FileSystem.EncodingType.Base64} );
+            const newPath = FileSystem.documentDirectory + filename;
+            await FileSystem.copyAsync({ from: tempPath.uri, to: newPath });
+            const b64 = await FileSystem.readAsStringAsync( newPath, {encoding: FileSystem.EncodingType.Base64} );
             const wb = await XLSX.read( b64 , {type:'base64'});
-            const wsname = await wb.SheetNames[0];
-            const ws = await wb.Sheets[wsname];
-            let usersdata = await XLSX.utils.sheet_to_json(ws, {header:"1", blankrows: false});
-            await saveUsers( usersdata ) ? ( Alert.alert("Carga exitosa") ): Alert.alert("Error en la carga del archivo");
-            getUsers();
+            const wsName = wb.SheetNames[0];
+            const ws = await wb.Sheets[wsName];
+            let usersData = XLSX.utils.sheet_to_json(ws, {header:'1', blankrows: false});
+            await saveUsers( usersData ) ? Alert.alert("Carga exitosa") : Alert.alert("Error en la carga del archivo");
+            await getUsers();
         } catch (error){
             console.log(error)
         }
@@ -86,7 +86,7 @@ const UsersUpdate = () => {
                     </Box>
                     <Button size={'lg'} style={{marginTop:20}} onPress={() => pickDocument()}>Cargar archivo .xlsx</Button>
                 </Center>
-                { 
+                {
                 datatable && datatable.length > 0 ?
                 <ScrollView flex={1}>
                     <Text style={styles.titleHeaderTable}> Número de personas: {datatable.length} </Text>
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     }, 
     titleHeaderTable:{
         fontSize: 18,
-        fontWeight: "bold",
+        fontWeight: 'bold',
         textAlign:'center',
         paddingVertical: 4,
         borderColor: '#707070', 

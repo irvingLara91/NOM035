@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Alert, StyleSheet, Image, TextInput, } from 'react-native';
-import { Box, Button, Heading, Center, FlatList, Text, View, ScrollView } from "native-base";
+import { Box, Button, Heading, Text, View, ScrollView } from "native-base";
 import * as DocumentPicker from 'expo-document-picker';
 import * as FileSystem from 'expo-file-system';
 import _ from 'lodash';
@@ -12,7 +12,7 @@ const KhorConfig = () => {
     const [datastate, setDatastate] = useState(null);
     const [inputstate, setInputstate] = useState('');
 
-    const getConfig = async () =>{
+    const getConfig = async () => {
         let storeConfig = await retrieveData("config");
         if ( storeConfig ) {
             setDatastate(storeConfig);
@@ -33,22 +33,22 @@ const KhorConfig = () => {
 
     const pickDocument = async () => {
         try {
-            const temppath = await DocumentPicker.getDocumentAsync({ type: 'application/json', copyToCacheDirectory: false });
+            const tempPath = await DocumentPicker.getDocumentAsync({ type: 'application/json', copyToCacheDirectory: false });
             const filename = new Date().getTime() + '.json';
-            const newpath = await FileSystem.documentDirectory + filename;
-            await FileSystem.copyAsync({ from: temppath.uri, to: newpath });
-            const configData = await FileSystem.readAsStringAsync( newpath );
+            const newPath = FileSystem.documentDirectory + filename;
+            await FileSystem.copyAsync({ from: tempPath.uri, to: newPath });
+            const configData = await FileSystem.readAsStringAsync( newPath );
             let jsonData = JSON.parse(configData)
             await saveConfig( jsonData ) ? ( Alert.alert("Carga exitosa") ): Alert.alert("Error en la carga del archivo");
-            getConfig();
+            await getConfig();
         } catch (error){
             console.log(error)
         }
     }
 
-    const saveConfig = ( data ) => {
+    const saveConfig = async( data ) => {
         if ( data.hasOwnProperty('empresa') && data.hasOwnProperty('cuestionarios') ){
-            storeData("config", data );
+            await storeData("config", data );
             return true;
         } else {
             return false;
@@ -93,7 +93,6 @@ const KhorConfig = () => {
                             <>
                                 <Text style={ styles.titulo }> Sociodemograficos: </Text>
                                 <Text style={ styles.dato }> { (datastate.Sociodemograficos).length } </Text>
-                                {/* Duda de cual es* { Object.keys(datastate.Sociodemograficos[0]).length } */}
                             </>
                             )}
                             {
