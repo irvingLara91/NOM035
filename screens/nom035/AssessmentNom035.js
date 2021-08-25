@@ -11,7 +11,7 @@ import _nomv3 from '../nom035/estructura/nom035_ref3.json'
 import AssessmentComponent from "../../components/AssessmentComponent";
 import {initResponseNom035, responseQuestion} from "../../redux/ducks/nom035Duck";
 
-const AssessmentNom035 = ({navigation, initResponseNom035, nom035, responseQuestion}) => {
+const AssessmentNom035 = ({navigation, initResponseNom035, nom035, responseQuestion,config}) => {
 
     const [userName, setUserName] = useState("")
     const [password, setPassword] = useState("")
@@ -21,6 +21,12 @@ const AssessmentNom035 = ({navigation, initResponseNom035, nom035, responseQuest
     const [currentAssessment, setCurrentAssessment] = useState(0)
     const [assessment, setAssessment] = useState(null)
     let configAssessment = [1,3]
+
+
+    useEffect(()=>{
+        console.log("config:::",config.config.cuestionarios)
+        configAssessment = config.config.cuestionarios
+    },[config])
 
 
     const toast = useToast()
@@ -83,7 +89,8 @@ const AssessmentNom035 = ({navigation, initResponseNom035, nom035, responseQuest
 
 const mapState = (state) => {
     return {
-        nom035: state.nom035
+        nom035: state.nom035,
+        config:state.config,
     }
 }
 

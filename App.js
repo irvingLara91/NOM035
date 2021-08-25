@@ -6,7 +6,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from "@react-navigation/native";
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
-import {store} from "./redux/store";
 import {Provider} from "react-redux";
 import HomeScreen from "./screens/HomeScreen";
 import LoginUser from "./screens/nom035/LoginUser";
@@ -19,6 +18,8 @@ import KhorConfig from "./screens/settings/KhorConfig";
 import SendScreen from "./screens/settings/SendScreen";
 let logo = require('./assets/logoa.png')
 
+import generateStore from './redux/store';
+const store = generateStore();
 
 const Stack = createStackNavigator();
 console.disableYellowBox = true;

@@ -6,8 +6,10 @@ import * as FileSystem from 'expo-file-system';
 import _ from 'lodash';
 import MainLayout from "../../layouts/MainLayout";
 import { storeData, retrieveData, validURL } from "../../helpers/storage";
+import {connect} from "react-redux";
+import {saveConfigAction} from "../../redux/ducks/configDuck";
 
-const KhorConfig = () => {
+const KhorConfig = (props) => {
 
     const [datastate, setDatastate] = useState(null);
     const [inputstate, setInputstate] = useState('');
@@ -16,7 +18,8 @@ const KhorConfig = () => {
         let storeConfig = await retrieveData("config");
         if ( storeConfig ) {
             setDatastate(storeConfig);
-        } 
+        }
+
     }
 
     const getKhorUrl = async () =>{
@@ -49,6 +52,7 @@ const KhorConfig = () => {
     const saveConfig = async( data ) => {
         if ( data.hasOwnProperty('empresa') && data.hasOwnProperty('cuestionarios') ){
             await storeData("config", data );
+            await props.saveConfigAction(data)
             return true;
         } else {
             return false;
@@ -167,6 +171,9 @@ const styles = StyleSheet.create({
     }
 })
 
-
-
-export default KhorConfig;
+const mapState = (state) => {
+    return {
+        config:state.config,
+    }
+}
+export default connect(mapState,{saveConfigAction})(KhorConfig);
