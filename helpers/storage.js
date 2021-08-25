@@ -16,7 +16,7 @@ export const storeData = async (key, value)=>{
 }
 
 
-export const retrieveData = async (key)=>{
+export const  retrieveData = async (key)=>{
     try {
         const value = await AsyncStorage.getItem(key);
         if (value !== null) {

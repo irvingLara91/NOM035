@@ -8,7 +8,7 @@ import {retrieveData, storeData} from "../../helpers/storage"
 import {Image} from 'react-native'
 let logo = require('../../assets/logoa.png')
 
-const LoginUser = ({navigation}) => {
+const LoginUser = ({navigation,savedResponses}) => {
 
     const [userName, setUserName] = useState("")
     const [password, setPassword] = useState("")
@@ -18,6 +18,10 @@ const LoginUser = ({navigation}) => {
 
     useEffect(()=>{
         getUsers()
+    },[])
+
+    useEffect(()=>{
+        console.log(":::irvingLara::",savedResponses)
     },[])
 
 
@@ -33,7 +37,14 @@ const LoginUser = ({navigation}) => {
 
         if(password==='.'){
             await storeData('devmode',{dev:true})
-            navigation.navigate('SociodemographicPage')
+            await storeData('user',{
+                "apellido": "Lara",
+                "idParticipante": "U9",
+                "nombre": "Irving",
+                "password": 123,
+                "username": "ilara9",
+            })
+            navigation.navigate('AssessmentNom035')
             return true
         }
 
@@ -63,7 +74,8 @@ const LoginUser = ({navigation}) => {
             toast.show({
                 title:`Bienvenido ${isUser.nombre} ${isUser.apellido}` ,
             })
-            navigation.navigate('SociodemographicPage')
+            await storeData('user',isUser)
+            await navigation.navigate('AssessmentNom035')
 
         }else{
             toast.show({
@@ -132,7 +144,8 @@ const LoginUser = ({navigation}) => {
 
 const mapState = (state) => {
     return {
-        productsDuck: state.productsDuck
+        productsDuck: state.productsDuck,
+        savedResponses:state.savedResponses
     }
 }
 

@@ -20,20 +20,30 @@ const AssessmentNom035 = ({navigation, initResponseNom035, nom035, responseQuest
     const [currentPage, setCurrentPage] = useState(0)
     const [currentAssessment, setCurrentAssessment] = useState(0)
     const [assessment, setAssessment] = useState(null)
-    let configAssessment = [1,3]
-
-
-    useEffect(()=>{
-        console.log("config:::",config.config.cuestionarios)
-        configAssessment = config.config.cuestionarios
-    },[config])
-
+    let configAssessment = null
+    let idPeriodo = null
+    let Empresa = null
+    let idParticipante = null
 
     const toast = useToast()
 
+
+    const getUser = async () => {
+        let storeUser = await retrieveData("user");
+        if ( storeUser ) {
+            configAssessment = config.config.cuestionarios
+            Empresa = config.config.empresa
+            idPeriodo = config.config.idPeriodo
+            idParticipante= storeUser.idParticipante
+            if (configAssessment && Empresa && idPeriodo,idParticipante){
+                processAssessment()
+            }
+        }
+    }
+
     useEffect(()=>{
-        processAssessment()
-    },[])
+        getUser()
+    },[config,Empresa,idPeriodo,idParticipante])
 
     const processAssessment=()=>{
         let array_questions = []
@@ -55,7 +65,7 @@ const AssessmentNom035 = ({navigation, initResponseNom035, nom035, responseQuest
         })
 
         setAssessment(globalarray)
-        initResponseNom035(globalarray)
+        initResponseNom035(globalarray,Empresa,idPeriodo,idParticipante)
         //responseQuestion(0,2,1) // de la encuetsa 1, cambiar el valor de la posicion 2 por el valor 1
         // deberemos recorrer globalarray
 

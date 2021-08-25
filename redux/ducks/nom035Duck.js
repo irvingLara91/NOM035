@@ -4,6 +4,7 @@ const initialData = {
         empresa:'9a4be0d5-367b-4a79-9111-2f724e9c582d',
         idPeriodo:456,
         idParticipante:34,
+        respuestas:[],
         respuestasSociodemograficos:[],
         respuestasOpinion:[]
     }
@@ -17,13 +18,20 @@ const ERROR_SERVER = 'ERROR_SERVER';
 const nom035Duck = (state = initialData, action) => {
     switch (action.type) {
         case INIT_RESPONSES:
-            return {...state, respuestaNom035:action.payload}
+            return {...state, respuestaNom035:action.payload.respuestas,
+                respuesta:{empresa: action.payload.empresa,
+                    idPeriodo:action.payload.idPeriodo,
+                    idParticipante:action.payload.idParticipante,
+                    respuestas:action.payload.respuestas,
+                    respuestasSociodemograficos:[],
+                    respuestasOpinion:[]
+                    }}
         default:
             return state
     }
 }
 
-export let initResponseNom035 = (cuestionarios) => {
+export let initResponseNom035 = (cuestionarios,empresa,idPeriodo,idParticipante) => {
     let respuestas = [] // es  la configuracion del assessment que puede ser [1,2] , [2], [3], etc
 
     cuestionarios.map((cuestionario,i)=>{
@@ -46,8 +54,16 @@ export let initResponseNom035 = (cuestionarios) => {
         }],
 
     */
+
+    let data ={
+        respuestas:respuestas,
+        empresa:empresa,
+        idPeriodo:idPeriodo,
+        idParticipante:idParticipante
+    }
+
     return async (dispatch, getState) => {
-        dispatch({type: INIT_RESPONSES, payload:respuestas });
+        dispatch({type: INIT_RESPONSES, payload:data});
     };
 }
 
@@ -55,11 +71,31 @@ export let initResponseNom035 = (cuestionarios) => {
 export let responseQuestion=(cuestionario=1,indexResponse=0,value)=>{ // value es el que se pondría en esa posicion, y cuestionario debería ser la posicion
     return async (dispatch, getState) => {
         let nom035response = getState().nom035.respuestaNom035
+        let nom035Data = getState().nom035.respuesta
+
         let responses = getState().nom035.respuestaNom035[cuestionario-1].respuestas.split('')
         responses[indexResponse] = value;
         nom035response[cuestionario-1].respuestas = responses.join('')
-        dispatch({type: INIT_RESPONSES, payload:nom035response });
+
+        let data ={
+            respuestas:nom035response,
+            empresa:nom035Data.empresa,
+            idPeriodo:nom035Data.idPeriodo,
+            idParticipante:nom035Data.idParticipante
+        }
+        return async (dispatch, getState) => {
+            dispatch({type: INIT_RESPONSES, payload:data});
+        };
     };
+}
+
+export let getResponse=()=>{
+    return async (dispatch, getState)=>{
+        let nom035response = getState().nom035
+
+
+    }
+
 }
 
 

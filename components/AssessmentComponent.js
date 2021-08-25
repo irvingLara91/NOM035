@@ -8,8 +8,9 @@ import {retrieveData} from "../helpers/storage"
 import {Alert} from 'react-native'
 import { CommonActions } from '@react-navigation/native';
 import SectionComponent from "../screens/nom035/SectionComponent";
+import {savedResponsesAction} from "../redux/ducks/responsesDuck";
 
-const AssessmentComponent = ({navigation, title='ejemplo',assment=null}) => {
+const AssessmentComponent = ({navigation, title='ejemplo',assment=null,nom035,savedResponsesAction,savedResponses}) => {
 
     const [currentAssessment, setCurrentAssessment] = useState(0)
     const [assessment, setAssessment] = useState(assment)
@@ -49,13 +50,16 @@ const AssessmentComponent = ({navigation, title='ejemplo',assment=null}) => {
         if(assessment.length>1){
             if(currentAssessment===2){
                 Alert.alert('Gracias por haber contestado la encuesta!')
+                nom035.respuesta.send = false
+                savedResponsesAction(nom035.respuesta)
                 navigation.navigate('Home')
             }else{
                 setCurrentAssessment(2); // de este nos sirve para cuando es el tipo de assessment 1 y no contesta
             }
             // algun si en la primera sección entonces saltamos  al siguiente assessment
         }else{
-
+            nom035.respuesta.send = false
+            savedResponsesAction(nom035.respuesta)
             Alert.alert('Gracias por haber contestado la encuesta!')
             navigation.navigate('Home')
         }
@@ -89,8 +93,9 @@ const AssessmentComponent = ({navigation, title='ejemplo',assment=null}) => {
 
 const mapState = (state) => {
     return {
-        nom035: state.nom035
+        nom035: state.nom035,
+        savedResponses:state.savedResponses
     }
 }
 
-export default connect(mapState)(AssessmentComponent);
+export default connect(mapState,{savedResponsesAction})(AssessmentComponent);
