@@ -9,12 +9,14 @@ import {Alert} from 'react-native'
 import { CommonActions } from '@react-navigation/native';
 import SectionComponent from "../screens/nom035/SectionComponent";
 import {savedResponsesAction} from "../redux/ducks/responsesDuck";
+import GenericModal from "./Modals/GenericModal";
 
-const AssessmentComponent = ({navigation, title='ejemplo',assment=null,nom035,savedResponsesAction,savedResponses}) => {
+const AssessmentComponent = ({navigation, title='ejemplo',assment=null,nom035,savedResponsesAction,app}) => {
 
     const [currentAssessment, setCurrentAssessment] = useState(0)
     const [assessment, setAssessment] = useState(assment)
     const [questions,setQuestions] = useState([])
+    const [visible,setVisible] = useState(false)
 
 
     useEffect(()=>{
@@ -45,23 +47,27 @@ const AssessmentComponent = ({navigation, title='ejemplo',assment=null,nom035,sa
     }
 
 
+    const closeModal=()=>{
+        setVisible(false)
+        navigation.navigate('Home')
+    }
 
     const onNextAssessment=()=>{
         if(assessment.length>1){
             if(currentAssessment===2){
-                Alert.alert('Gracias por haber contestado la encuesta!')
+                setVisible(true)
+                //Alert.alert('Gracias por haber contestado la encuesta!')
                 nom035.respuesta.send = false
                 savedResponsesAction(nom035.respuesta)
-                navigation.navigate('Home')
             }else{
                 setCurrentAssessment(2); // de este nos sirve para cuando es el tipo de assessment 1 y no contesta
             }
             // algun si en la primera sección entonces saltamos  al siguiente assessment
         }else{
+            setVisible(true)
             nom035.respuesta.send = false
             savedResponsesAction(nom035.respuesta)
-            Alert.alert('Gracias por haber contestado la encuesta!')
-            navigation.navigate('Home')
+            //Alert.alert('Gracias por haber contestado la encuesta!')
         }
     }
 
@@ -79,13 +85,16 @@ const AssessmentComponent = ({navigation, title='ejemplo',assment=null,nom035,sa
                                              numEncuesta={encuesta.encuesta}
                                              vref={encuesta.vref}/>
                        }
+                           {
+                               visible &&
+                               <GenericModal app={app} visible={visible} setVisible={closeModal} isError={false} title={''} text={'Gracias por haber contestado la encuesta!'}/>
+                           }
                        {
                           //assessment.length>1&&i!==1? <Button size={'lg'}  style={{width:'50%'}} onPress={()=>reiniciarPreguntas()}>Continuar</Button>:null
                        }
                     </Box>
                     :null
                 }
-
                </Box>
            }):null
     )
@@ -93,6 +102,7 @@ const AssessmentComponent = ({navigation, title='ejemplo',assment=null,nom035,sa
 
 const mapState = (state) => {
     return {
+        app:state.app,
         nom035: state.nom035,
         savedResponses:state.savedResponses
     }

@@ -4,11 +4,13 @@ import nom035Duck from "./ducks/nom035Duck";
 import configReducer,{getConfigAction} from "./ducks/configDuck";
 import responsesReducer ,{getSavedResponsesAction} from "./ducks/responsesDuck";
 import sendingDuck, {getResponsesAction} from "./ducks/sendingDuck";
+import appReducer from './ducks/appDuck'
 
 
 const rootReducer = combineReducers({
+    app:appReducer,
     nom035: nom035Duck,
-    config: configReducer,
+    config:configReducer,
     savedResponses:responsesReducer,
     sending: sendingDuck
 })

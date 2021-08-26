@@ -1,15 +1,13 @@
 import React, {useEffect, useState} from "react";
-import {Box, Text, Button, Heading, Center, Container, Flex, Modal} from "native-base";
+import {Box, Button, Center, Flex, Heading} from "native-base";
 import {connect} from "react-redux";
-import productsDuck from "../redux/ducks/productsDuck";
 import MainLayout from "../layouts/MainLayout";
 import config from "../config"
 import {storeData, retrieveData} from '../helpers/storage'
+import {View,Text} from "react-native";
 
-const HomeScreen = ({productsDuck, navigation}) => {
-
+const HomeScreen = ({productsDuck, navigation,app}) => {
     const [showModal, setShowModal] = useState(false)
-
 
     useEffect(() => {
         console.log(config)
@@ -32,18 +30,27 @@ const HomeScreen = ({productsDuck, navigation}) => {
     return (
 
         <MainLayout>
-
-            <Flex direction={'column'}>
-                <Center>
+            <Flex direction={'column'} style={{paddingHorizontal:10, flex:1}}>
+                <Center flex={.5}>
                     <Box>
                         <Heading style={{color:'black', marginTop:'30%'}} size="lg" mb={3}>
                             Elige la prueba que deseas responder
                         </Heading>
                     </Box>
                 </Center>
-                <Button size={'lg'} style={{marginBottom:20}}>ECCO</Button>
+                <Button
+                    /*Cambiar colores del botón */
+                    _light={{ bg: app.color,  _text: { color: app.fontColor }}}
+                    _pressed={{ bg: app.colorHover,  _text: { color: app.fontColor }}}
+                    /***fin***/
+                    size={'lg'}  style={{marginBottom:20}}>ECCO</Button>
 
-                <Button size={'lg'} onPress={() => navigation.navigate('loginUser')}>NOM 035</Button>
+                <Button size={'lg'}
+                    /*Cambiar colores del botón */
+                        _light={{ bg: app.color,  _text: { color: app.fontColor }}}
+                        _pressed={{ bg: app.colorHover,  _text: { color: app.fontColor }}}
+                    /***fin***/
+                        onPress={() => navigation.navigate('loginUser')}>NOM 035</Button>
             </Flex>
         </MainLayout>
     )
@@ -51,6 +58,7 @@ const HomeScreen = ({productsDuck, navigation}) => {
 
 const mapState = (state) => {
     return {
+        app:state.app,
         productsDuck: state.productsDuck
     }
 }
