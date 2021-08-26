@@ -1,32 +1,44 @@
 import React, { useState, useEffect } from "react";
-import { Alert, StyleSheet, Image, ActivityIndicator, Text } from 'react-native';
+import { StyleSheet, Image, ActivityIndicator, Text } from 'react-native';
 import { Box, Button, Heading, View, ScrollView } from "native-base";
 import _ from 'lodash';
 import { AntDesign } from '@expo/vector-icons'; 
 import MainLayout from "../../layouts/MainLayout";
-import { storeData, retrieveData, validURL } from "../../helpers/storage";
+import {connect} from "react-redux";
+import {getResponsesAction, updateResponsesAction, initProcess} from "../../redux/ducks/sendingDuck";
 
-const SendScreen = () => {
+const SendScreen = ({sending, getResponsesAction, updateResponsesAction, initProcess}) => {
+    
+    const [toSend, setToSend] = useState([]); // No cambia a menos que se detenga el envio o se complete
+    const [sent, setSent] = useState([]); // Contador que me dice los que faltan por enviar
+    const [boton, setBoton] = useState('Iniciar envío de respuestas');
+    const [errores, setErrores] = useState([]) // Array de errores
+    const [estado, setEstado] = useState(0);
+    const [fetching, setFetching] = useState(false)
 
-    const [state, setState] = useState({
-        estado: 0,
-        boton: 'Iniciar envío de respuestas'
-    });
+    useEffect(()=>{
+       if (sending?.respuestas.length > 0) {
+           let respSent = _.filter(sending.respuestas, ['send', true]);
+           respSent?.length > 0 && setSent(respSent); 
+        }
+        setErrores(sending.errores);
+        setEstado(sending.estado);
+        setFetching(sending.fetching);
+        sending.estado === 0 && setBoton("Iniciar envío de respuestas");
+        sending.estado === 1 && setBoton("Cancelar");
+        sending.estado === 2 && setBoton("Aceptar");
 
-    const { estado, boton } = state;
+        console.log(sending.respuestas)
 
-    const handleSyncing = () => {
-        setState({
-            estado: 1,
-            boton: 'Cancelar'
-        });
-        setTimeout(() => {
-            setState({
-                estado: 2,
-                boton: 'Aceptar'
-            }) 
-        }, 3000)
-    }
+    },[sending]) 
+
+    useEffect(()=>{
+        getResponsesAction();
+        if (sending?.respuestas.length > 0) {
+            let respTosend = _.filter(sending.respuestas, ['send', false]);
+            respTosend?.length > 0 && setToSend(respTosend);
+        }
+    }, [])
 
     return (
         <MainLayout>
@@ -38,19 +50,27 @@ const SendScreen = () => {
                     </Heading>
                 </View>               
                 <View style={ styles.sectionSquare } flex={1}>
-                    <Text style={ styles.titulo }>Respuestas pendientes por sincronizar</Text>
+                    <Text style={ styles.titulo }> Respuestas pendientes por sincronizar</Text>
+                    {
+                        estado !== 0 && errores.length > 0 && <Text style={ styles.errores }> Envíos fallidos: {errores.length} </Text>
+                    }
                     <Box style={ styles.indicador } flex={1}>
-                        <Text style={ styles.contador}>230/230</Text>
+                        <Box style={ styles.contadorBox }>
+                            { 
+                             estado !== 0 && <Text style={ styles.contador}>{sent.length}/</Text>
+                            }
+                            <Text style={ styles.contador}>{toSend.length}</Text> 
+                        </Box>
                         {
-                            estado == 1 && <ActivityIndicator size={60} color="#75bb89" /> 
+                            estado === 1 && <ActivityIndicator size={60} color="#75bb89" />
                         }
                         {
-                            estado == 2 && <AntDesign name="checkcircle" size={54} color="#75bb89" />
+                            estado === 2 && <AntDesign name="checkcircle" size={54} color="#75bb89" />
                         }
                     </Box>
                 </View>
                 <Box style={ styles.sectionBoton }>
-                    <Button size={'lg'} style={{ width: '90%' }} onPress={ () => handleSyncing() }>{boton}</Button>
+                    <Button size={'lg'} style={{ width: '90%' }} onPress={ () => updateResponsesAction(estado) } disabled={fetching}><Text style={ styles.botonText }>{boton}</Text></Button>
                 </Box>
             </View>
         </MainLayout>
@@ -75,14 +95,15 @@ const styles = StyleSheet.create({
         borderRadius: 10           
     },
     sectionSquare: {
-        padding: 18,           
+        padding: 20,         
         width: '90%',
-        maxHeight: 280,
+        maxHeight: 600,
         display: 'flex',
         flexDirection: 'column',
         borderRadius: 10, 
         borderColor: '#053e65', 
         borderWidth: 1,
+        backgroundColor: '#bfdff5',   
     },
     indicador: {
         width: '100%',
@@ -91,14 +112,28 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     titulo: {
-        fontSize: 18,
+        fontSize: 32,
+        marginBottom: 10,
         fontWeight: '500',
         textAlign: 'center',
-        color: '#707070'
+        color: '#053e65'
+    },
+    errores: {
+        fontSize: 20,
+        fontWeight: '500',
+        textAlign: 'center',
+        color: '#e45a60'
+    },
+    contadorBox: {
+        marginVertical: 20,
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     contador: {
-        marginVertical: 20,
-        fontSize: 50,
+        marginBottom: 20,
+        fontSize: 68,
         fontWeight: 'bold',
         textAlign: 'center',
         color: '#000000'
@@ -109,9 +144,23 @@ const styles = StyleSheet.create({
         display: 'flex', 
         alignItems: 'center', 
         justifyContent: 'center'
+    },
+    botonText: {
+        fontSize: 18,
+        fontWeight: '500',
+        textAlign: 'center',
+        color: '#000000'
     }
 })
 
+const mapState = (state) => {
+    return {
+        sending: state.sending,
+    }
+}
 
-
-export default SendScreen;
+export default connect(mapState,{
+    getResponsesAction,
+    updateResponsesAction,
+    initProcess,
+})(SendScreen);
