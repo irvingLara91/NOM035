@@ -35,7 +35,7 @@ const AssessmentNom035 = ({navigation, initResponseNom035, nom035, responseQuest
             Empresa = config.config.empresa
             idPeriodo = config.config.idPeriodo
             idParticipante= storeUser.idParticipante
-            if (configAssessment && Empresa && idPeriodo,idParticipante){
+            if (configAssessment && Empresa && idPeriodo && idParticipante){
                 processAssessment()
             }
         }

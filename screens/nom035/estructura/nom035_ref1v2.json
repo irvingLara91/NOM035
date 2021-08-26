@@ -1,6 +1,6 @@
 {"encuesta":
   [
-    {"section":1,"titulo":"¿Ha presenciado o sufrido alguna vez, durante o con motivo del trabajo un acontecimiento como los siguientes:", "ref":1,"pregunta":"Accidente que tenga como consecuencia la muerte, la pérdida de un miembro o una lesión grave?", "tipo":"sino"},
+    {"section":1,"titulo":"¿Ha presenciado o sufrido alguna vez, durante o con <b>motivo del trabajo</b> un acontecimiento como los siguientes:", "ref":1,"pregunta":"Accidente que tenga como consecuencia la muerte, la pérdida de un miembro o una lesión grave?", "tipo":"sino"},
     {"section":1, "titulo":"¿Ha presenciado o sufrido alguna vez, durante o con motivo del trabajo un acontecimiento como los siguientes:","ref":1,"pregunta":"Asaltos?", "tipo":"sino"},
     {"section":1, "titulo":"¿Ha presenciado o sufrido alguna vez, durante o con motivo del trabajo un acontecimiento como los siguientes:","ref":1,"pregunta":"Actos violentos que derivaron en lesiones graves?", "tipo":"sino"},
     {"section":1,"titulo":"¿Ha presenciado o sufrido alguna vez, durante o con motivo del trabajo un acontecimiento como los siguientes:","ref":1,"pregunta":"Secuestro?", "tipo":"sino"},
