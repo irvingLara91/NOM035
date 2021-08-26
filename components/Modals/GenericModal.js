@@ -3,7 +3,7 @@ import {
     View, Modal,
     StyleSheet,
     Text,
-    Dimensions, TouchableOpacity,
+    Dimensions, TouchableOpacity, Image,
 } from "react-native";
 
 const {width, height} = Dimensions.get('window');
@@ -20,23 +20,23 @@ const GenericModal =({visible, setVisible, title = '', text, isError = true,app}
         >
             <View style={styles.centeredView}>
                 <View style={[styles.modalView,{backgroundColor:app.color}]}>
-                    <View style={{flex: 0, alignItems: 'center', justifyContent: 'center', marginBottom: 50}}>
+                    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                         {isError ?
                             <MaterialIcons name="cancel" size={50} color={app.secondaryColor} />
                             :
-                            <AntDesign name="checkcircle" size={50} color={app.secondaryColor} />
+                            <Image style={{tintColor:app.secondaryColor,height:width/6,width:width/6}}  source={require('../../assets/success_icon.png')}/>
                         }
                     </View>
                     {
                         title !=='' &&
-                        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', marginBottom: 50}}>
+                        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                         <Text style={[styles.modalTitle,{color:'white'}]}>{title}</Text>
                         </View>
                     }
-                    <View style={{flex: 0, alignItems: 'center', justifyContent: 'center', marginBottom: 50}}>
+                    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                     <Text style={[styles.modalText, {marginBottom: 20,color:'white'}]}>{text}</Text>
                     </View>
-                    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', marginBottom: 50}}>
+                    <View style={{flex: 0, alignItems: 'center', justifyContent: 'center'}}>
 
                     <TouchableOpacity style={[styles.fbBtn,{backgroundColor:app.secondaryColor}]} onPress={() => {
                         setVisible()
@@ -95,8 +95,8 @@ const styles = StyleSheet.create({
         //elevation: 2
     },
     modalText: {
-        marginBottom: 15,
         textAlign: "center",
+        fontSize: 16,
 
     },
     modalTitle: {

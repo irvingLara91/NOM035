@@ -86,8 +86,8 @@ const AssessmentComponent = ({navigation, title='ejemplo',assment=null,nom035,sa
                                              vref={encuesta.vref}/>
                        }
                            {
-                               true &&
-                               <GenericModal app={app} visible={true} setVisible={closeModal} isError={false} title={''} text={'Gracias por haber contestado la encuesta!'}/>
+                               visible &&
+                               <GenericModal app={app} visible={visible} setVisible={closeModal} isError={false} title={''} text={'Gracias por haber contestado la encuesta!'}/>
                            }
                        {
                           //assessment.length>1&&i!==1? <Button size={'lg'}  style={{width:'50%'}} onPress={()=>reiniciarPreguntas()}>Continuar</Button>:null

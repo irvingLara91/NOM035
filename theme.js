@@ -1,4 +1,5 @@
 import {extendTheme} from "native-base";
+import {store} from './redux/store'
 
 export const theme = extendTheme({
     components: {
@@ -30,9 +31,6 @@ export const theme = extendTheme({
         amber: {
             400: '#d97706',
         },
-    },
-    config: {
-        initialColorMode: 'dark',
     },
     fonts: {
         heading: 'Roboto',

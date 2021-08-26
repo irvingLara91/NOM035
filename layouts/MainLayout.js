@@ -1,5 +1,6 @@
 import React, {useEffect} from "react";
 import {Box, Text, Button, Heading, Center, Container, VStack} from "native-base";
+import {View} from "react-native";
 
 const MainLayout = (props) => {
 
