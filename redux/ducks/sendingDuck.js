@@ -7,9 +7,11 @@ const initialData = {
     errores: [],
     estado: 0, /* detenido 0, enviando 1, completado 2*/
     fetching: false, 
+    config: null,
 }
 
 const LOAD_RESPONSES = 'LOAD_RESPONSES';
+const LOAD_CONFIG = 'LOAD_CONFIG';
 const SAVE_RESPONSES_INIT = 'SAVE_RESPONSES_INIT';
 const SAVE_RESPONSES_END = 'SAVE_RESPONSES_END';
 const CREATE_RESPONSES_ERROR = 'LOAD_RESPONSES_ERROR';
@@ -19,6 +21,8 @@ const sendingDuck = (state = initialData, action) => {
     switch (action.type) {
         case LOAD_RESPONSES:
             return {...state, respuestas: action.payload}
+        case LOAD_CONFIG:
+            return {...state, config: action.payload}
         case SAVE_RESPONSES_INIT:
             return {...state, fetching: true}
         case SAVE_RESPONSES_END:
@@ -32,6 +36,7 @@ const sendingDuck = (state = initialData, action) => {
     }
 }
 
+
 /* ACTIONS */
 export const getResponsesAction = () => {
     return async (dispatch, getState) => {
@@ -44,12 +49,24 @@ export const getResponsesAction = () => {
     };
 }
 
+export const getConfigAction = () => {
+    return async (dispatch, getState) => {
+        try {
+            let getConfig = await retrieveData("khorurl");
+            getConfig && dispatch({type: LOAD_CONFIG, payload: getConfig});
+            console.log("CONFIGGGGG",getConfig);
+        } catch (error) {
+            //Error
+        }
+    };
+}
+
 export const savedResponsesAction = () => {
     return async (dispatch, getState) => {
         dispatch({type: SAVE_RESPONSES_INIT})
         try {
             let responses = getState().sending.respuestas;
-            console.log("OLDSTORAGE::", responses);
+            // console.log("OLDSTORAGE::", responses);
             //Filtrar las que quedaron el false y guardarlas en el AsyncStorage (reemplaza arreglo)
             // console.log("NEWSTORAGE::", newStorage);
             //newStorage?.length && await storeData('savedResponses',savedResponses);
@@ -92,7 +109,7 @@ export const initProcess = () => {
                         }, 1000*index);
                     }
                     // axios.post('/send', item).then( response => {
-                    //     console.log(response);
+                    //     //console.log(response);
                     // })
                     //   .catch( error => {
                     //     console.log(error);
@@ -114,21 +131,21 @@ export const initProcess2 = () => {
             let currentState = getState().sending.estado;
             responses.map( (item, index) => {
                 if ( !item.send && currentState === 1 ){
-                    if (true){
-                        setTimeout(() => {
-                            dispatch(updateResponse(index)); //Cambia el send a true
-                        }, 1000*index);
-                    }else{
-                        setTimeout(() => {
-                            dispatch(deleteResponse(item, index));  //Cambia el send a true y cambia el objeto a errores
-                        }, 1000*index);
-                    }
-                    // axios.post('/send', item).then( response => {
-                    //     console.log(response);
-                    // })
-                    //   .catch( error => {
-                    //     console.log(error);
-                    // });
+                    // if (true){
+                    //     setTimeout(() => {
+                    //         dispatch(updateResponse(index)); //Cambia el send a true
+                    //     }, 1000*index);
+                    // }else{
+                    //     setTimeout(() => {
+                    //         dispatch(deleteResponse(item, index));  //Cambia el send a true y cambia el objeto a errores
+                    //     }, 1000*index);
+                    // }
+                    axios.post('/send', item).then( response => {
+                        console.log(response);
+                    })
+                      .catch( error => {
+                        console.log(error);
+                    });
                 }
             })
             dispatch(savedResponsesAction()) && dispatch(completeProcess()); 

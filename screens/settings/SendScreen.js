@@ -5,9 +5,9 @@ import _ from 'lodash';
 import { AntDesign } from '@expo/vector-icons'; 
 import MainLayout from "../../layouts/MainLayout";
 import {connect} from "react-redux";
-import {getResponsesAction, updateResponsesAction, initProcess} from "../../redux/ducks/sendingDuck";
+import {getResponsesAction, updateResponsesAction, getConfigAction } from "../../redux/ducks/sendingDuck";
 
-const SendScreen = ({sending, getResponsesAction, updateResponsesAction, initProcess}) => {
+const SendScreen = ({sending, getResponsesAction, updateResponsesAction, getConfigAction}) => {
     
     const [toSend, setToSend] = useState([]); // No cambia a menos que se detenga el envio o se complete
     const [sent, setSent] = useState([]); // Contador que me dice los que faltan por enviar
@@ -34,6 +34,7 @@ const SendScreen = ({sending, getResponsesAction, updateResponsesAction, initPro
 
     useEffect(()=>{
         getResponsesAction();
+        getConfigAction();
         if (sending?.respuestas.length > 0) {
             let respTosend = _.filter(sending.respuestas, ['send', false]);
             respTosend?.length > 0 && setToSend(respTosend);
@@ -162,5 +163,5 @@ const mapState = (state) => {
 export default connect(mapState,{
     getResponsesAction,
     updateResponsesAction,
-    initProcess,
+    getConfigAction,
 })(SendScreen);
