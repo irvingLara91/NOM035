@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Alert, StyleSheet, Image, TextInput, } from 'react-native';
-import { Box, Button, Heading, Text, View, ScrollView } from "native-base";
+import {Alert, StyleSheet, Text, Image, TextInput, Dimensions,} from 'react-native';
+import { Box, Button, Heading, View, ScrollView } from "native-base";
 import * as DocumentPicker from 'expo-document-picker';
 import * as FileSystem from 'expo-file-system';
 import _ from 'lodash';
@@ -8,6 +8,9 @@ import MainLayout from "../../layouts/MainLayout";
 import { storeData, retrieveData, validURL } from "../../helpers/storage";
 import {connect} from "react-redux";
 import {saveConfigAction} from "../../redux/ducks/configDuck";
+import {textSizeRender} from "../../utils/utils";
+import {store} from "../../redux/store";
+const {width, height} = Dimensions.get('window')
 
 const KhorConfig = (props) => {
 
@@ -67,11 +70,13 @@ const KhorConfig = (props) => {
         <MainLayout>
             <View style={ styles.container }>
                 <View style={ styles.sectionOne }>
-                    <Image style={{ width: 200, resizeMode: "contain", }} source={require("../../assets/logokhor.png")} />
-                    <Heading style={{ color:'black', textAlign:'center' }} size="lg" mb={3}>
-                        Configuración KHOR
-                    </Heading>
-                    <Text style={ styles.label }>Instancia KHOR</Text>
+                    <Text style={{fontFamily:'Poligon_Regular',marginBottom:0, color:props.app.color,fontSize:textSizeRender(4), textAlign:'center' }} size="lg" mb={3}>
+                        Configuración
+                    </Text>
+                    <Image style={{ width: width*.35, height:width*.15, resizeMode: "contain", }} source={require("../../assets/logokhor.png")} />
+                    <Text style={{fontFamily:'Poligon_Bold',marginBottom:5, color:props.app.color,fontSize:textSizeRender(4), textAlign:'center' }} size="lg" mb={3}>
+                        Instancia KHOR
+                    </Text>
                     <Box style={{ display: 'flex', flexDirection: 'row' }}>
                         <TextInput
                         style={styles.input}
@@ -83,7 +88,11 @@ const KhorConfig = (props) => {
                         onChangeText={ text => setInputstate(text)}
                         />
                     </Box>
-                    <Button size={'lg'} style={{ marginTop: 16, width: '60%' }} onPress={() => inputSubmit()}>Guardar</Button>
+                    <Button size={'lg'}
+                            _light={{bg: props.app.secondaryColor, _text: {color: props.app.color ,fontSize:textSizeRender(3.5),
+                                    fontFamily:'Poligon_Bold'}}}
+                            _pressed={{bg:props.app.secondaryColorHover, _text: {color: props.app.color}}}
+                            style={{ marginTop: 16, width: '60%' }} onPress={() => inputSubmit()}>Guardar</Button>
                 </View>               
                 <View style={ styles.sectionTwo } flex={1}>
                     {
@@ -100,11 +109,18 @@ const KhorConfig = (props) => {
                             </>
                             )}
                         </ScrollView> 
-                    : <Text py={20} fontSize={16} textAlign="center">Carga una configuración inicial</Text>
+                    :
+                        <Text style={{fontFamily:'Poligon_Bold',marginBottom:0, color:props.app.color,fontSize:textSizeRender(4), textAlign:'center' }} size="lg" mb={3}>
+                            Carga una configuración inicial</Text>
                     } 
                 </View>
                 <Box style={{ display: 'flex', alignItems: 'center' }} my={4}>
-                    <Button size={'lg'} style={{ width: '90%' }} onPress={() => pickDocument()}>Cargar configuración</Button>
+                    <Button size={'lg'}
+                            _light={{bg: props.app.secondaryColor, _text: {color: props.app.color ,fontSize:textSizeRender(3.5),
+                                    fontFamily:'Poligon_Bold'}}}
+                            _pressed={{bg:props.app.secondaryColorHover, _text: {color: props.app.color}}}
+                            style={{width:'90%'}}
+                            onPress={() => pickDocument()}>Cargar configuración</Button>
                 </Box>
             </View>
         </MainLayout>
@@ -113,13 +129,16 @@ const KhorConfig = (props) => {
 }
 
 const styles = StyleSheet.create({
-    container: { 
+    container: {
+        backgroundColor:'white',
         width: '100%',
-        height: '98%',
+        height: '100%',
         display: 'flex',
         flexDirection: 'column',
+        paddingHorizontal:40,
     }, 
     sectionOne: {
+        marginTop:20,
         paddingBottom: 20,
         width: '100%',
         display: 'flex',
@@ -133,10 +152,8 @@ const styles = StyleSheet.create({
         minHeight: 200,
         display: 'flex',
         flexDirection: 'column',
-        borderRadius: 10, 
-        borderColor: '#053e65', 
-        borderWidth: 1,
-        backgroundColor: '#bfdff5'        
+        borderRadius: 10,
+        backgroundColor: '#DFE0EA'
     },
     label: {
         marginBottom: 4,
@@ -146,26 +163,36 @@ const styles = StyleSheet.create({
         textAlign: 'left',
     },
     input: {
-        width: '100%',
-        fontSize: 16,
-        borderWidth: 1,
-        padding: 10,
-        borderRadius: 10,
+        marginTop: 8,
+        marginBottom: 8,
+        alignItems: 'center',
+        paddingHorizontal: 15,
+        width: "100%",
+        height: 54,
+        fontSize:textSizeRender(3.5),
+        fontFamily:'Poligon_Regular',
+        color: store.getState().app.color,
+        borderColor: store.getState().app.color,
+        borderWidth: 2,
+        backgroundColor: "white",
+        borderRadius: 10
     },
     titulo: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        textAlign: 'center',
+        fontSize: textSizeRender(4.5),
+        textAlign: 'justify',
+        fontFamily:'Poligon_Bold',
     },
     dato: {
-        fontSize: 16,
+        fontSize: textSizeRender(3.1),
         marginBottom: 20,
-        textAlign: 'center'
+        fontFamily:'Poligon_Regular',
+        textAlign: 'justify',
     }
 })
 
 const mapState = (state) => {
     return {
+        app:state.app,
         config:state.config,
     }
 }
