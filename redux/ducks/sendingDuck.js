@@ -1,28 +1,28 @@
 import axios from "axios";
 import _ from 'lodash';
-import {storeData, retrieveData} from "../../helpers/storage";
+import {storeData, retrieveData, asyncForEach, joinURL } from "../../helpers/storage";
 
 const initialData = {
     respuestas: [],
     errores: [],
-    estado: 0, /* detenido 0, enviando 1, completado 2*/
+    estado: 0, /* detenido 0, enviando 1, completado 2 */
     fetching: false, 
-    config: null,
+    url: null,
 }
 
-const LOAD_RESPONSES = 'LOAD_RESPONSES';
-const LOAD_CONFIG = 'LOAD_CONFIG';
+const LOAD_URL = 'LOAD_URL';
+const UPDATE_RESPONSES = 'UPDATE_RESPONSES';
 const SAVE_RESPONSES_INIT = 'SAVE_RESPONSES_INIT';
 const SAVE_RESPONSES_END = 'SAVE_RESPONSES_END';
-const CREATE_RESPONSES_ERROR = 'LOAD_RESPONSES_ERROR';
+const CREATE_RESPONSES_ERROR = 'CREATE_RESPONSES_ERROR';
 const PROCESS_STATE = 'PROCESS_STATE';
 
 const sendingDuck = (state = initialData, action) => {
     switch (action.type) {
-        case LOAD_RESPONSES:
-            return {...state, respuestas: action.payload}
-        case LOAD_CONFIG:
-            return {...state, config: action.payload}
+        case UPDATE_RESPONSES:
+            return {...state, respuestas: action.payload, fetching: false}
+        case LOAD_URL:
+            return {...state, url: action.payload}
         case SAVE_RESPONSES_INIT:
             return {...state, fetching: true}
         case SAVE_RESPONSES_END:
@@ -36,123 +36,96 @@ const sendingDuck = (state = initialData, action) => {
     }
 }
 
-
 /* ACTIONS */
 export const getResponsesAction = () => {
     return async (dispatch, getState) => {
+        dispatch({type: SAVE_RESPONSES_INIT})
         try {
             let getResponses = await retrieveData("savedResponses");
-            getResponses && dispatch({type: LOAD_RESPONSES, payload: getResponses});
+            getResponses && dispatch({type: UPDATE_RESPONSES, payload: getResponses});
         } catch (error) {
             //Error
+            dispatch({type: SAVE_RESPONSES_END})
         }
     };
 }
 
-export const getConfigAction = () => {
+export const getUrlAction = () => {
     return async (dispatch, getState) => {
         try {
             let getConfig = await retrieveData("khorurl");
-            getConfig && dispatch({type: LOAD_CONFIG, payload: getConfig});
-            console.log("CONFIGGGGG",getConfig);
+            getConfig && dispatch({type: LOAD_URL, payload: getConfig});
         } catch (error) {
             //Error
         }
     };
 }
 
-export const savedResponsesAction = () => {
+export const savedResponsesAction = () => { //Hay que habla a esta funcion siempre para no perder el avance
     return async (dispatch, getState) => {
-        dispatch({type: SAVE_RESPONSES_INIT})
         try {
             let responses = getState().sending.respuestas;
-            // console.log("OLDSTORAGE::", responses);
-            //Filtrar las que quedaron el false y guardarlas en el AsyncStorage (reemplaza arreglo)
-            // console.log("NEWSTORAGE::", newStorage);
-            //newStorage?.length && await storeData('savedResponses',savedResponses);
-            dispatch({type: SAVE_RESPONSES_END});
+            const newStorage = _.filter(responses, ['send', false]);
+            console.log("NEWSTORAGE::", newStorage.length);
+            //Guardarlas en el AsyncStorage.
+            //newStorage?.length && await storeData('savedResponses', newStorage);
         } catch (error) {
-            dispatch({type: SAVE_RESPONSES_END});
             console.log(error);
         }
     }
 }
 
+/**/
 export const updateResponsesAction = (current) => {
     return async (dispatch, getState) => {
+        let existChanges = _.filter(getState().sending.respuestas, ['send', false]).length;
         try {
-            current === 0 && dispatch(startProcess()) && dispatch(initProcess());
-            current === 1 && dispatch(stopProcess()) && dispatch(savedResponsesAction());
-            current === 2 && dispatch(stopProcess()) && dispatch(savedResponsesAction()); 
+            current === 0 && existChanges > 0 && dispatch(startProcess()) && dispatch(initProcess());
+            current === 1 && dispatch(stopProcess());
+            current === 2 && dispatch(stopProcess()); 
         } catch (error) {
             //Error
         }
     };
 }
 
-
 /*EVENT*/
 export const initProcess = () => {
     return async(dispatch, getState) => {
         try {
+            const waitFor = (ms) => new Promise(r => setTimeout(r, ms));
             let responses = getState().sending.respuestas;
             let currentState = getState().sending.estado;
-            responses.map( (item, index) => {
-                if ( !item.send && currentState === 1 ){
+            let urlApi = await joinURL(getState().sending.url, 'nom035'); 
+            console.log(urlApi);
+            await asyncForEach(responses, async (item, index, array) => {
+                await waitFor(50);
+                if ( !item.send ){ 
+                    console.log(index);
+                    /*
+                    Cancelar evento
+                    Pushear los mensajes de error errores :D 
+                    */
                     if (true){
-                        setTimeout(() => {
-                            dispatch(updateResponse(index)); //Cambia el send a true
-                        }, 1000*index);
-                    }else{
-                        setTimeout(() => {
-                            dispatch(deleteResponse(item, index));  //Cambia el send a true y cambia el objeto a errores
-                        }, 1000*index);
+                        await dispatch(updateResponse(index)); 
+                    } else {
+                        await dispatch(deleteResponse(item, index));
                     }
-                    // axios.post('/send', item).then( response => {
-                    //     //console.log(response);
-                    // })
-                    //   .catch( error => {
+                    // axios.post(urlKhor, responses).then( response => {
+                    //     console.log(response);
+                    // }).catch( error => {
                     //     console.log(error);
                     // });
+                    array.length == index + 1 && dispatch(completeProcess()); 
+                } else {
+                    // await dispatch(deleteResponse(item, index));  
                 }
-            })
-            dispatch(savedResponsesAction()) && dispatch(completeProcess()); 
+                dispatch(savedResponsesAction());
+            });
+            console.log("done");
         } catch (error) {
             console.log(error)
         }
-
-    }
-}
-
-export const initProcess2 = () => {
-    return async(dispatch, getState) => {
-        try {
-            let responses = getState().sending.respuestas;
-            let currentState = getState().sending.estado;
-            responses.map( (item, index) => {
-                if ( !item.send && currentState === 1 ){
-                    // if (true){
-                    //     setTimeout(() => {
-                    //         dispatch(updateResponse(index)); //Cambia el send a true
-                    //     }, 1000*index);
-                    // }else{
-                    //     setTimeout(() => {
-                    //         dispatch(deleteResponse(item, index));  //Cambia el send a true y cambia el objeto a errores
-                    //     }, 1000*index);
-                    // }
-                    axios.post('/send', item).then( response => {
-                        console.log(response);
-                    })
-                      .catch( error => {
-                        console.log(error);
-                    });
-                }
-            })
-            dispatch(savedResponsesAction()) && dispatch(completeProcess()); 
-        } catch (error) {
-            console.log(error)
-        }
-
     }
 }
 
@@ -160,7 +133,7 @@ export const updateResponse = (index) => {
     return async (dispatch, getState) => {
         let respuestas= getState().sending.respuestas;
         respuestas[index].send = true;
-        dispatch({ type: LOAD_RESPONSES, payload:respuestas });
+        dispatch({ type: UPDATE_RESPONSES, payload:respuestas });
     };
 }
 
@@ -169,7 +142,7 @@ export const deleteResponse = (item, index) => {
         try {
             let respuestas= getState().sending.respuestas;
             respuestas[index].send = true;
-            dispatch({ type: LOAD_RESPONSES, payload:respuestas });
+            dispatch({ type: UPDATE_RESPONSES, payload:respuestas });
             dispatch({ type: CREATE_RESPONSES_ERROR, payload:item });
         } catch (error) {
             //Error        

@@ -93,17 +93,10 @@ const KhorConfig = (props) => {
                             <Text style={ styles.dato }> {datastate.empresa} </Text>
                             <Text style={ styles.titulo }> Cuestionarios: </Text>
                             <Text style={ styles.dato }> {_.join(datastate.cuestionarios, ', ')} </Text>
-                            { datastate.Sociodemograficos && (
+                            { datastate.idPeriodo && (
                             <>
-                                <Text style={ styles.titulo }> Sociodemograficos: </Text>
-                                <Text style={ styles.dato }> { (datastate.Sociodemograficos).length } </Text>
-                            </>
-                            )}
-                            {
-                               datastate.preguntasOpinion && (
-                            <>
-                                <Text style={ styles.titulo }> preguntasOpinion: </Text>
-                                <Text style={ styles.dato }> { datastate.preguntasOpinion.length } </Text>
+                                <Text style={ styles.titulo }>Periodo:</Text>
+                                <Text style={ styles.dato }>{datastate.idPeriodo}</Text>
                             </>
                             )}
                         </ScrollView> 

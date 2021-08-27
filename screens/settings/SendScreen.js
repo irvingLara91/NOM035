@@ -4,42 +4,44 @@ import { Box, Button, Heading, View, ScrollView } from "native-base";
 import _ from 'lodash';
 import { AntDesign } from '@expo/vector-icons'; 
 import MainLayout from "../../layouts/MainLayout";
-import {connect} from "react-redux";
-import {getResponsesAction, updateResponsesAction, getConfigAction } from "../../redux/ducks/sendingDuck";
+import { retrieveData } from "../../helpers/storage";
+import { connect } from "react-redux";
+import { getResponsesAction, getUrlAction, updateResponsesAction } from "../../redux/ducks/sendingDuck";
 
-const SendScreen = ({sending, getResponsesAction, updateResponsesAction, getConfigAction}) => {
+const SendScreen = ({sending, getResponsesAction, getUrlAction, updateResponsesAction}) => {
     
-    const [toSend, setToSend] = useState([]); // No cambia a menos que se detenga el envio o se complete
-    const [sent, setSent] = useState([]); // Contador que me dice los que faltan por enviar
+    const [responses, setResponses] = useState([]) // Guardados
+    const [tosend, setToSend] = useState([]); // Por enviar
+    const [sent, setSent] = useState([]); // Enviados
     const [boton, setBoton] = useState('Iniciar envío de respuestas');
     const [errores, setErrores] = useState([]) // Array de errores
-    const [estado, setEstado] = useState(0);
-    const [fetching, setFetching] = useState(false)
+    const [fetching, setFetching] = useState(false); //bloquear boton en proceso end 
+    const [estado, setEstado] = useState(0); // Estado del envío - detenido 0, enviando 1, completado 2
 
     useEffect(()=>{
-       if (sending?.respuestas.length > 0) {
-           let respSent = _.filter(sending.respuestas, ['send', true]);
-           respSent?.length > 0 && setSent(respSent); 
+        if (sending) {
+            setSent( _.filter(sending.respuestas, ['send', true]) ); 
+            setToSend( _.filter(sending.respuestas, ['send', false]));
+            setErrores(sending.errores);
+            setEstado(sending.estado);
+            console.log('estado::', estado)
+            setFetching(sending.fetching);
+            sending.estado === 0 && setBoton("Iniciar envío de respuestas");
+            sending.estado === 1 && setBoton("Cancelar");
+            sending.estado === 2 && setBoton("Aceptar");
         }
-        setErrores(sending.errores);
-        setEstado(sending.estado);
-        setFetching(sending.fetching);
-        sending.estado === 0 && setBoton("Iniciar envío de respuestas");
-        sending.estado === 1 && setBoton("Cancelar");
-        sending.estado === 2 && setBoton("Aceptar");
-
-        console.log(sending.respuestas)
-
     },[sending]) 
-
+    
     useEffect(()=>{
+        getInitialResponses();
+        getUrlAction();
         getResponsesAction();
-        getConfigAction();
-        if (sending?.respuestas.length > 0) {
-            let respTosend = _.filter(sending.respuestas, ['send', false]);
-            respTosend?.length > 0 && setToSend(respTosend);
-        }
     }, [])
+
+    const getInitialResponses = async () =>{
+        let respTemp = await retrieveData("savedResponses");
+        respTemp?.length > 0 &&  setResponses( _.filter( respTemp, ['send', false]) ); 
+    }
 
     return (
         <MainLayout>
@@ -51,16 +53,22 @@ const SendScreen = ({sending, getResponsesAction, updateResponsesAction, getConf
                     </Heading>
                 </View>               
                 <View style={ styles.sectionSquare } flex={1}>
-                    <Text style={ styles.titulo }> Respuestas pendientes por sincronizar</Text>
+                    <Text style={ styles.titulo }>{tosend.length} Respuestas pendientes por sincronizar</Text>
                     {
                         estado !== 0 && errores.length > 0 && <Text style={ styles.errores }> Envíos fallidos: {errores.length} </Text>
                     }
                     <Box style={ styles.indicador } flex={1}>
                         <Box style={ styles.contadorBox }>
-                            { 
-                             estado !== 0 && <Text style={ styles.contador}>{sent.length}/</Text>
-                            }
-                            <Text style={ styles.contador}>{toSend.length}</Text> 
+                        { 
+                            estado !== 0 && 
+                            <> 
+                            <Text style={styles.contador}>{sent.length}/</Text>
+                            <Text style={styles.contador}>{responses.length}</Text> 
+                            </> 
+                        }
+                        {
+                            estado === 0 && <Text style={styles.contador}>{tosend.length}</Text> 
+                        }
                         </Box>
                         {
                             estado === 1 && <ActivityIndicator size={60} color="#75bb89" />
@@ -162,6 +170,6 @@ const mapState = (state) => {
 
 export default connect(mapState,{
     getResponsesAction,
+    getUrlAction,
     updateResponsesAction,
-    getConfigAction,
 })(SendScreen);
