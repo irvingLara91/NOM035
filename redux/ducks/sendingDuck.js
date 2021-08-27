@@ -61,7 +61,7 @@ export const getUrlAction = () => {
     };
 }
 
-export const savedResponsesAction = () => { //Hay que habla a esta funcion siempre para no perder el avance
+export const savedResponsesAction = () => { 
     return async (dispatch, getState) => {
         try {
             let responses = getState().sending.respuestas;
@@ -90,10 +90,11 @@ export const updateResponsesAction = (current) => {
 }
 
 /*EVENT*/
+const waitFor = (ms) => new Promise(r => setTimeout(r, ms));
+
 export const initProcess = () => {
     return async(dispatch, getState) => {
         try {
-            const waitFor = (ms) => new Promise(r => setTimeout(r, ms));
             let responses = getState().sending.respuestas;
             let currentState = getState().sending.estado;
             let urlApi = await joinURL(getState().sending.url, 'nom035'); 
@@ -118,10 +119,11 @@ export const initProcess = () => {
                     // });
                     array.length == index + 1 && dispatch(completeProcess()); 
                 } else {
-                    // await dispatch(deleteResponse(item, index));  
+                    await dispatch(deleteResponse(item, index));  
                 }
                 dispatch(savedResponsesAction());
             });
+            dispatch(savedResponsesAction());
             console.log("done");
         } catch (error) {
             console.log(error)
@@ -156,7 +158,6 @@ export const startProcess = () => {
         payload: 1
     })
 }
-
 
 export const stopProcess = () => {
     return ({
