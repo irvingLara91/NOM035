@@ -3,8 +3,14 @@ import {Box, Text,Input,Stack,  Button, Heading, Center, HStack, Flex, ScrollVie
 import {connect} from "react-redux";
 import MainLayout from "../../layouts/MainLayout";
 import config from "../../config"
+import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scrollview";
+import {Dimensions, Image, StyleSheet, TextInput, View} from "react-native";
+import {textSizeRender} from "../../utils/utils";
+import {store} from "../../redux/store";
 
-const LoginAdmin = ({navigation}) => {
+const {width, height} = Dimensions.get('window')
+
+const LoginAdmin = ({navigation,app}) => {
 
     const [userName, setUserName] = useState("")
     const [password, setPassword] = useState("")
@@ -45,64 +51,107 @@ const LoginAdmin = ({navigation}) => {
     return (
 
         <MainLayout>
-            <ScrollView
-                height={'100%'}
-                style={{height:'100%'}}>
-            <Flex direction={'column'}>
-                <Center>
-                    <Box>
-                        <Heading style={{color:'black', marginTop:'30%'}} size="lg" mb={3}>
-                            Acceso a configuración
-                        </Heading>
-                    </Box>
-                </Center>
-
-
-
-
-                        <Center>
-                            <Input
-                                w="80%"
-                                size={'2xl'}
-                                mx={3}
-                                value={userName}
-                                onChangeText={(text)=> setUserName(text)}
-                                style={{marginBottom:10}}
+            <KeyboardAwareScrollView
+                extraScrollHeight={80}
+                enableOnAndroid={true}
+                keyboardShouldPersistTaps='handled'>
+                <View style={{width: width, height: height,backgroundColor:'white'}}>
+                    <View style={{width: width, alignSelf: 'center', flex: 1}}>
+                        <Image style={{width: width, height: '100%', alignSelf: 'center'}}
+                               source={require('./../../assets/logo_khor.jpeg')}/>
+                    </View>
+                    <View style={{
+                        width: '100%',
+                        flex: 1,
+                        alignSelf:'center',
+                        alignItems: 'center',
+                    }}>
+                        <View style={{width: '100%', alignSelf: 'center', paddingHorizontal: 55}}>
+                            <View style={{alignSelf: 'center', paddingVertical: 40, paddingHorizontal: 40}}>
+                                <Text style={{
+                                    fontFamily: 'Poligon_Regular',
+                                    color: 'black',
+                                    textAlign: 'center',
+                                    fontSize: textSizeRender(5)
+                                }}>Acceso a configuración</Text>
+                            </View>
+                            <TextInput
+                                style={styles.input}
                                 placeholder="Usuario"
+                                placeholderTextColor={app.color}
+                                autoCapitalize="none"
+                                value={userName}
+                                onChangeText={(text) => setUserName(text)}
+                                keyboardType="email-address"
+                                underlineColorAndroid={'transparent'}
                             />
 
-
-                            <Box style={{height:10}}></Box>
-                            <Input
-                                w="80%"
-                                size={'2xl'}
-                                value={password}
-                                onChangeText={(text)=> setPassword(text)}
-                                type={'password'}
-                                style={{marginBottom:10}}
+                            <TextInput
+                                style={styles.input}
                                 placeholder="Contraseña"
+                                placeholderTextColor={app.color}
+                                autoCapitalize="none"
+                                secureTextEntry={true}
+                                value={password}
+                                onChangeText={(text) => setPassword(text)}
+                                keyboardType="default"
+                                underlineColorAndroid={'transparent'}
                             />
 
-                            <HStack>
-                                <Button size={'lg'} isDisabled={loading} colorScheme={'gray'} style={{marginRight:10}} loading={loading} onPress={()=> navigation.navigate('Home')}>Regresar</Button>
-                                <Button size={'lg'} isLoading={loading} onPress={validateAdmin}>Ingresar</Button>
-                            </HStack>
+                            <View style={{flexDirection:'row',width:'100%',marginTop:10}}>
+                                <Button size={'lg'}
+                                        _light={{
+                                            bg: app.secondaryColor, _text: {
+                                                color: app.color, fontSize: textSizeRender(3.5),
+                                                fontFamily: 'Poligon_Bold'
+                                            }
+                                        }}
+                                        _pressed={{bg: app.secondaryColorHover, _text: {color: app.color}}}
+                                        style={{flex:1,borderRadius: 12,marginRight: 10}}
+                                        isDisabled={loading}
+                                        loading={loading} onPress={() => navigation.navigate('Home')}>Regresar</Button>
+                                <Button
+                                    _light={{
+                                        bg: app.color, _text: {
+                                            color: app.fontColor, fontSize: textSizeRender(3.5),
+                                            fontFamily: 'Poligon_Bold'
+                                        }
+                                    }}
+                                    _pressed={{bg: app.colorHover, _text: {color: app.fontColor}}}
+                                    style={{flex:1,borderRadius: 12}}
+                                    size={'lg'} isLoading={loading} onPress={validateAdmin}>Ingresar</Button>
 
+                            </View>
 
-
-                        </Center>
-
-
-
-
-            </Flex>
-            </ScrollView>
+                        </View>
+                    </View>
+                </View>
+            </KeyboardAwareScrollView>
         </MainLayout>
     )
 }
+const styles = StyleSheet.create({
+        input: {
+            marginTop: 8,
+            marginBottom: 8,
+            alignItems: 'center',
+            paddingHorizontal: 15,
+            width: "100%",
+            height: 54,
+            fontSize:textSizeRender(3.5),
+            fontFamily:'Poligon_Regular',
+            color: store.getState().app.color,
+            borderColor: store.getState().app.color,
+            borderWidth: 2,
+            backgroundColor: "white",
+            borderRadius: 10
+        },
+    }
+);
 
 const mapState = (state) => {
     return {
+        app:state.app,
         productsDuck: state.productsDuck
     }
 }

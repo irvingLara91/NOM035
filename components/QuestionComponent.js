@@ -14,12 +14,14 @@ import {
     useToast
 } from "native-base";
 import {connect} from "react-redux";
-import {TouchableOpacity} from 'react-native'
+import {Dimensions, TouchableOpacity} from 'react-native'
 import MainLayout from "../layouts/MainLayout";
 import config from "../config"
 import _ from 'lodash'
 import {retrieveData} from "../helpers/storage"
+const {width, height} = Dimensions.get('window')
 
+import RenderHtml from 'react-native-render-html';
 const QuestionComponent = ({
                                navigation,
                                title = 'ejemplo',
@@ -39,9 +41,20 @@ const QuestionComponent = ({
         setResponse(val)
         onSetValueQuestion(index, val, question.section)
     }
+    const source = {
+        html: `
+<p style='text-align:center;'>
+  Hello World!
+</p>`
+    };
 
     return (
         <Box>
+
+            <RenderHtml
+                contentWidth={width}
+                source={{html:question.titulo}}
+            />
             <Text style={{
                 backgroundColor: '#2d4479',
                 fontSize: 20,

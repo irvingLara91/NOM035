@@ -23,6 +23,7 @@ import * as SplashScreen from "expo-splash-screen";
 let logo = require('./assets/logoa.png')
 
 import generateStore from './redux/store';
+import {textSizeRender} from "./utils/utils";
 
 const store = generateStore();
 
@@ -89,7 +90,8 @@ export default function App({iconSettings}) {
                                     },
                                     headerTintColor: store.getState().app.secondaryColor,
                                     headerTitleStyle: {
-                                        fontWeight: 'bold',
+                                        fontFamily:'Poligon_Regular',
+                                        fontSize: textSizeRender(3.5)
                                     },
                                 })
                             } component={HomeScreen}/>
@@ -101,19 +103,21 @@ export default function App({iconSettings}) {
                                               },
                                               headerTintColor: store.getState().app.secondaryColor,
                                               headerTitleStyle: {
-                                                  fontWeight: 'bold',
+                                                  fontFamily:'Poligon_Regular',
+                                                  fontSize: textSizeRender(3.5)
                                               },
                                           }}
                                           component={LoginAdmin}/>
                             <Stack.Screen name="HomeConfig" options={
                                 {
-                                    title: 'Configuración general',
+                                    title: 'Configuración General',
                                     headerStyle: {
                                         backgroundColor: store.getState().app.color,
                                     },
                                     headerTintColor: store.getState().app.secondaryColor,
                                     headerTitleStyle: {
-                                        fontWeight: 'bold',
+                                        fontFamily:'Poligon_Regular',
+                                        fontSize: textSizeRender(3.5)
                                     },
                                 }
                             } component={HomeSettings}/>
@@ -125,7 +129,8 @@ export default function App({iconSettings}) {
                                     },
                                     headerTintColor: store.getState().app.secondaryColor,
                                     headerTitleStyle: {
-                                        fontWeight: 'bold',
+                                        fontFamily:'Poligon_Regular',
+                                        fontSize: textSizeRender(3.5)
                                     },
                                 }
                             } component={LoginUser}/>
@@ -137,7 +142,8 @@ export default function App({iconSettings}) {
                                     },
                                     headerTintColor: store.getState().app.secondaryColor,
                                     headerTitleStyle: {
-                                        fontWeight: 'bold',
+                                        fontFamily:'Poligon_Regular',
+                                        fontSize: textSizeRender(3.5)
                                     },
                                 }
                             } component={AssessmentNom035}/>
@@ -150,7 +156,8 @@ export default function App({iconSettings}) {
                                     },
                                     headerTintColor: store.getState().app.secondaryColor,
                                     headerTitleStyle: {
-                                        fontWeight: 'bold',
+                                        fontFamily:'Poligon_Regular',
+                                        fontSize: textSizeRender(3.5)
                                     },
                                 }
                             } component={UsersUpdate}/>
@@ -162,7 +169,8 @@ export default function App({iconSettings}) {
                                     },
                                     headerTintColor: store.getState().app.secondaryColor,
                                     headerTitleStyle: {
-                                        fontWeight: 'bold',
+                                        fontFamily:'Poligon_Regular',
+                                        fontSize: textSizeRender(3.5)
                                     },
                                 }
                             } component={KhorConfig}/>
@@ -174,7 +182,8 @@ export default function App({iconSettings}) {
                                     },
                                     headerTintColor: store.getState().app.secondaryColor,
                                     headerTitleStyle: {
-                                        fontWeight: 'bold',
+                                        fontFamily:'Poligon_Regular',
+                                        fontSize: textSizeRender(3.5)
                                     },
                                 }
                             } component={SendScreen}/>
@@ -186,7 +195,8 @@ export default function App({iconSettings}) {
                                     },
                                     headerTintColor: store.getState().app.secondaryColor,
                                     headerTitleStyle: {
-                                        fontWeight: 'bold',
+                                        fontFamily:'Poligon_Regular',
+                                        fontSize: textSizeRender(3.5)
                                     },
                                 }
                             } component={SociodemographicPage}/>
@@ -197,7 +207,7 @@ export default function App({iconSettings}) {
         );
     }else {
         return (
-            <View style={{flex: 1,backgroundColor:'#F7F7FF'}}>
+            <View style={{flex: 1,backgroundColor:'#ffffff'}}>
 
                 <View style={{flex: 1}}>
                     <Image

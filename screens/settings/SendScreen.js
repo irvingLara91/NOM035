@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Image, ActivityIndicator, Text } from 'react-native';
+import { StyleSheet, Image,Dimensions, ActivityIndicator, Text } from 'react-native';
 import { Box, Button, Heading, View, ScrollView } from "native-base";
 import _ from 'lodash';
 import { AntDesign } from '@expo/vector-icons'; 
 import MainLayout from "../../layouts/MainLayout";
 import {connect} from "react-redux";
 import {getResponsesAction, updateResponsesAction, initProcess} from "../../redux/ducks/sendingDuck";
-
-const SendScreen = ({sending, getResponsesAction, updateResponsesAction, initProcess}) => {
+import {store} from "../../redux/store";
+import {textSizeRender} from "../../utils/utils";
+const {width, height} = Dimensions.get('window')
+const SendScreen = ({sending, getResponsesAction, updateResponsesAction, initProcess,app}) => {
     
     const [toSend, setToSend] = useState([]); // No cambia a menos que se detenga el envio o se complete
     const [sent, setSent] = useState([]); // Contador que me dice los que faltan por enviar
@@ -44,10 +46,10 @@ const SendScreen = ({sending, getResponsesAction, updateResponsesAction, initPro
         <MainLayout>
             <View style={ styles.container }>
                 <View style={ styles.sectionHead }>
-                    <Image style={{ width: 200, resizeMode: "contain", }} source={require("../../assets/logokhor.png")} />
-                    <Heading style={{ color:'black', textAlign:'center' }} size="lg" mb={4}>
+                    <Image style={{ width: width*.35, height:width*.15, resizeMode: "contain", }} source={require("../../assets/logokhor.png")} />
+                    <Text style={{fontFamily:'Poligon_Bold',marginBottom:5, color:app.color,fontSize:textSizeRender(4), textAlign:'center' }} size="lg" mb={3}>
                         Enviar respuestas a KHOR
-                    </Heading>
+                    </Text>
                 </View>               
                 <View style={ styles.sectionSquare } flex={1}>
                     <Text style={ styles.titulo }> Respuestas pendientes por sincronizar</Text>
@@ -59,18 +61,22 @@ const SendScreen = ({sending, getResponsesAction, updateResponsesAction, initPro
                             { 
                              estado !== 0 && <Text style={ styles.contador}>{sent.length}/</Text>
                             }
-                            <Text style={ styles.contador}>{toSend.length}</Text> 
+                            <Text style={ styles.contador}>{toSend.length}</Text>
                         </Box>
                         {
                             estado === 1 && <ActivityIndicator size={60} color="#75bb89" />
                         }
                         {
-                            estado === 2 && <AntDesign name="checkcircle" size={54} color="#75bb89" />
+                            estado === 2 && <AntDesign name="checkcircle" size={textSizeRender(12)} color="#75bb89" />
                         }
                     </Box>
                 </View>
                 <Box style={ styles.sectionBoton }>
-                    <Button size={'lg'} style={{ width: '90%' }} onPress={ () => updateResponsesAction(estado) } disabled={fetching}><Text style={ styles.botonText }>{boton}</Text></Button>
+                    <Button size={'lg'}
+                            _light={{bg: app.secondaryColor, _text: {color: app.color ,fontSize:textSizeRender(3.5),
+                                    fontFamily:'Poligon_Bold'}}}
+                            _pressed={{bg:app.secondaryColorHover, _text: {color: app.color}}}
+                            style={{ width: '90%' }} onPress={ () => updateResponsesAction(estado) } disabled={fetching}>{boton}</Button>
                 </Box>
             </View>
         </MainLayout>
@@ -81,12 +87,14 @@ const SendScreen = ({sending, getResponsesAction, updateResponsesAction, initPro
 const styles = StyleSheet.create({
     container: { 
         width: '100%',
-        height: '98%',
+        backgroundColor:'white',
+        height: '100%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
     }, 
     sectionHead: {
+        marginTop: 20,
         paddingBottom: 20,
         width: '100%',
         display: 'flex',
@@ -101,9 +109,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         borderRadius: 10, 
-        borderColor: '#053e65', 
-        borderWidth: 1,
-        backgroundColor: '#bfdff5',   
+        backgroundColor: '#DFE0EA'
     },
     indicador: {
         width: '100%',
@@ -112,11 +118,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     titulo: {
-        fontSize: 32,
+        fontSize: textSizeRender(4.5),
+        fontFamily:'Poligon_Bold',
         marginBottom: 10,
         fontWeight: '500',
         textAlign: 'center',
-        color: '#053e65'
+        color: store.getState().app.color
     },
     errores: {
         fontSize: 20,
@@ -133,28 +140,29 @@ const styles = StyleSheet.create({
     },
     contador: {
         marginBottom: 20,
-        fontSize: 68,
-        fontWeight: 'bold',
+        fontSize: textSizeRender(15),
+        fontFamily:'Poligon_Bold',
         textAlign: 'center',
-        color: '#000000'
+        color: store.getState().app.color
     },
     sectionBoton: {
         marginTop: 30, 
-        width: '100%', 
-        display: 'flex', 
+        width: '100%',
+        marginBottom:20,
         alignItems: 'center', 
         justifyContent: 'center'
     },
     botonText: {
-        fontSize: 18,
-        fontWeight: '500',
+        fontSize: textSizeRender(4.5),
+        fontFamily:'Poligon_Bold',
         textAlign: 'center',
-        color: '#000000'
+        color: store.getState().app.color
     }
 })
 
 const mapState = (state) => {
     return {
+        app:state.app,
         sending: state.sending,
     }
 }

@@ -90,7 +90,6 @@ const LoginUser = ({navigation, savedResponses, app}) => {
 
 
     return (
-
         <MainLayout>
             <KeyboardAwareScrollView
                 extraScrollHeight={80}
