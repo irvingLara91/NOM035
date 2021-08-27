@@ -8,8 +8,9 @@ import {
 
 const {width, height} = Dimensions.get('window');
 import {AntDesign, MaterialIcons} from '@expo/vector-icons';
+import {textSizeRender} from "../../utils/utils";
 
-const GenericModal =({visible, setVisible, title = '', text, isError = true,app})=>{
+const GenericModal =({ButtonText='Cerrar',visible, setVisible, title = '', text, isError = true,app})=>{
 
 
     return( <View style={styles.centeredView}>
@@ -22,7 +23,7 @@ const GenericModal =({visible, setVisible, title = '', text, isError = true,app}
                 <View style={[styles.modalView,{backgroundColor:app.color}]}>
                     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                         {isError ?
-                            <MaterialIcons name="cancel" size={50} color={app.secondaryColor} />
+                            <MaterialIcons name="cancel" size={width/6} color={app.secondaryColor} />
                             :
                             <Image style={{tintColor:app.secondaryColor,height:width/6,width:width/6}}  source={require('../../assets/success_icon.png')}/>
                         }
@@ -30,19 +31,19 @@ const GenericModal =({visible, setVisible, title = '', text, isError = true,app}
                     {
                         title !=='' &&
                         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                        <Text style={[styles.modalTitle,{color:'white'}]}>{title}</Text>
+                        <Text style={[styles.modalTitle,{color:'white',fontFamily:'Poligon_Regular'}]}>{title}</Text>
                         </View>
                     }
                     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                    <Text style={[styles.modalText, {marginBottom: 20,color:'white'}]}>{text}</Text>
+                    <Text style={[styles.modalText, {marginBottom: 20,color:'white',fontFamily:'Poligon_Regular'}]}>{text}</Text>
                     </View>
                     <View style={{flex: 0, alignItems: 'center', justifyContent: 'center'}}>
 
                     <TouchableOpacity style={[styles.fbBtn,{backgroundColor:app.secondaryColor}]} onPress={() => {
                         setVisible()
                     }}>
-                        <Text style={[styles.fbText,{color:app.color,fontWeight:'bold'}]}>
-                            Cerrar
+                        <Text style={[styles.fbText,{color:app.color,fontFamily:'Poligon_Bold'}]}>
+                            {ButtonText}
                         </Text>
                     </TouchableOpacity>
                     </View>
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     fbText: {
-        fontSize: 14,
+        fontSize: textSizeRender(4),
     },
     modalView: {
         margin: 20,
@@ -96,13 +97,13 @@ const styles = StyleSheet.create({
     },
     modalText: {
         textAlign: "center",
-        fontSize: 16,
+        fontSize: textSizeRender(4.5),
 
     },
     modalTitle: {
         marginBottom: 5,
         textAlign: "center",
-        fontSize: 20,
+        fontSize: textSizeRender(6),
     }
 });
 

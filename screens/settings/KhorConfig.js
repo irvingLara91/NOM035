@@ -10,12 +10,19 @@ import {connect} from "react-redux";
 import {saveConfigAction} from "../../redux/ducks/configDuck";
 import {textSizeRender} from "../../utils/utils";
 import {store} from "../../redux/store";
+import GenericModal from "../../components/Modals/GenericModal";
 const {width, height} = Dimensions.get('window')
 
 const KhorConfig = (props) => {
 
     const [datastate, setDatastate] = useState(null);
     const [inputstate, setInputstate] = useState('');
+
+    const [visible, setVisible] = useState(false);
+    const [isErrorModal, setIsErrorModal] = useState('');
+    const [titleModal, setTitleModal] = useState('');
+    const [messageModal, setMessageModal] = useState('');
+
 
     const getConfig = async () => {
         let storeConfig = await retrieveData("config");
@@ -45,7 +52,17 @@ const KhorConfig = (props) => {
             await FileSystem.copyAsync({ from: tempPath.uri, to: newPath });
             const configData = await FileSystem.readAsStringAsync( newPath );
             let jsonData = JSON.parse(configData)
-            await saveConfig( jsonData ) ? ( Alert.alert("Carga exitosa") ): Alert.alert("Error en la carga del archivo");
+            if (await saveConfig( jsonData)){
+                await setTitleModal("")
+                await setMessageModal("Carga exitosa")
+                await setIsErrorModal(false)
+                await setVisible(true)
+            }else {
+                await setTitleModal("")
+                await setMessageModal("Error en la carga del archivo")
+                await setIsErrorModal(true)
+                await setVisible(true)
+            }
             await getConfig();
         } catch (error){
             console.log(error)
@@ -63,7 +80,18 @@ const KhorConfig = (props) => {
     }
 
     const inputSubmit = () => {
-        validURL(inputstate) && storeData("khorurl", inputstate) ? Alert.alert("URL guardada") : Alert.alert("Por favor, escriba una url válida");
+        if (validURL(inputstate) && storeData("khorurl", inputstate)){
+             setTitleModal("")
+             setMessageModal("URL guardada")
+             setIsErrorModal(false)
+             setVisible(true)
+        }else {
+             setTitleModal("")
+             setMessageModal("Por favor, escriba una url válida")
+             setIsErrorModal(true)
+             setVisible(true)
+        }
+        //validURL(inputstate) && storeData("khorurl", inputstate) ? Alert.alert("URL guardada") : Alert.alert("Por favor, escriba una url válida");
     }
 
     return (
@@ -130,6 +158,10 @@ const KhorConfig = (props) => {
                             onPress={() => pickDocument()}>Cargar configuración</Button>
                 </Box>
             </View>
+            {
+                visible &&
+                <GenericModal app={props.app} visible={visible} setVisible={setVisible} isError={isErrorModal} title={titleModal} text={messageModal}/>
+            }
         </MainLayout>
     )
 

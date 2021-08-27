@@ -10,10 +10,15 @@ import { storeData, retrieveData } from "../../helpers/storage";
 import {textSizeRender} from "../../utils/utils";
 import {connect} from "react-redux";
 import {store} from "../../redux/store";
+import GenericModal from "../../components/Modals/GenericModal";
 
 const UsersUpdate = ({app}) => {
 
     const [datatable, setDatatable] = useState(null);
+    const [visible, setVisible] = useState(false);
+    const [isErrorModal, setIsErrorModal] = useState('');
+    const [titleModal, setTitleModal] = useState('');
+    const [messageModal, setMessageModal] = useState('');
 
     const getUsers = async () =>{
         let users = await retrieveData("userslist");
@@ -37,7 +42,19 @@ const UsersUpdate = ({app}) => {
             const wsName = wb.SheetNames[0];
             const ws = await wb.Sheets[wsName];
             let usersData = XLSX.utils.sheet_to_json(ws, {header:'1', blankrows: false});
-            await saveUsers( usersData ) ? Alert.alert("Carga exitosa") : Alert.alert("Error en la carga del archivo");
+            if( await saveUsers(usersData)){
+                 await setTitleModal("")
+                 await setMessageModal("Carga exitosa")
+                 await setIsErrorModal(false)
+                 await setVisible(true)
+             }else{
+                 await setTitleModal("")
+                 await setMessageModal("Error en la carga del archivo")
+                 await setIsErrorModal(true)
+                 await setVisible(true)
+             }
+
+
             await getUsers();
         } catch (error){
             console.log(error)
@@ -143,7 +160,12 @@ const UsersUpdate = ({app}) => {
                     <Text style={{textAlign:'center',color:app.color, fontSize:textSizeRender(5),fontFamily:'Poligon_Regular'}}>No existen usuarios</Text>
                     </View>
                 }
+
             </View>
+            {
+                visible &&
+                <GenericModal app={app} visible={visible} setVisible={setVisible} isError={isErrorModal} title={titleModal} text={messageModal}/>
+            }
         </MainLayout>
     )
 
