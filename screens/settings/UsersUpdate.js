@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { Alert, StyleSheet } from 'react-native';
-import {Box, Button, Heading, Center, FlatList, Text, View, ScrollView } from "native-base";
+import {Alert, StyleSheet, Text, View} from 'react-native';
+import {Box, Button, Heading, Center, FlatList, ScrollView } from "native-base";
 import * as DocumentPicker from 'expo-document-picker';
 import * as FileSystem from 'expo-file-system';
 import XLSX from 'xlsx';
 import _ from 'lodash';
 import MainLayout from "../../layouts/MainLayout";
 import { storeData, retrieveData } from "../../helpers/storage";
+import {textSizeRender} from "../../utils/utils";
+import {connect} from "react-redux";
+import {store} from "../../redux/store";
+import GenericModal from "../../components/Modals/GenericModal";
 
-const UsersUpdate = () => {
+const UsersUpdate = ({app}) => {
 
     const [datatable, setDatatable] = useState(null);
+    const [visible, setVisible] = useState(false);
+    const [isErrorModal, setIsErrorModal] = useState('');
+    const [titleModal, setTitleModal] = useState('');
+    const [messageModal, setMessageModal] = useState('');
 
     const getUsers = async () =>{
         let users = await retrieveData("userslist");
@@ -34,7 +42,19 @@ const UsersUpdate = () => {
             const wsName = wb.SheetNames[0];
             const ws = await wb.Sheets[wsName];
             let usersData = XLSX.utils.sheet_to_json(ws, {header:'1', blankrows: false});
-            await saveUsers( usersData ) ? Alert.alert("Carga exitosa") : Alert.alert("Error en la carga del archivo");
+            if( await saveUsers(usersData)){
+                 await setTitleModal("")
+                 await setMessageModal("Carga exitosa")
+                 await setIsErrorModal(false)
+                 await setVisible(true)
+             }else{
+                 await setTitleModal("")
+                 await setMessageModal("Error en la carga del archivo")
+                 await setIsErrorModal(true)
+                 await setVisible(true)
+             }
+
+
             await getUsers();
         } catch (error){
             console.log(error)
@@ -79,26 +99,33 @@ const UsersUpdate = () => {
         <MainLayout>
             <View style={ styles.container }>
                 <Center py={ 8 }>
-                    <Box>
-                        <Heading style={{ color:'black' }} size="lg" mb={3}>
+                        <Text style={{fontFamily:'Poligon_Bold',marginBottom:0, color:app.color,fontSize:textSizeRender(5), textAlign:'center' }} size="lg" mb={3}>
                             Actualizar BD de usuarios
-                        </Heading>
-                    </Box>
-                    <Button size={'lg'} style={{marginTop:20}} onPress={() => pickDocument()}>Cargar archivo .xlsx</Button>
+                        </Text>
+                    <Button size={'lg'}
+                            _light={{
+                                bg: app.color, _text: {
+                                    color: app.fontColor, fontSize: textSizeRender(3.5),
+                                    fontFamily: 'Poligon_Bold'
+                                }
+                            }}
+                            _pressed={{bg: app.colorHover, _text: {color: app.fontColor}}}
+                            style={{flex:1,borderRadius: 12}}
+                            style={{marginTop:20}} onPress={() => pickDocument()}>Cargar archivo .xlsx</Button>
                 </Center>
                 {
                 datatable && datatable.length > 0 ?
-                <ScrollView flex={1}>
+                <ScrollView flex={1} paddingRight={5} paddingLeft={5}>
                     <Text style={styles.titleHeaderTable}> Número de personas: {datatable.length} </Text>
                     <View style={ styles.headerTable }>
                         <View style={ styles.item1Table }>
-                            <Text fontSize={18} textAlign="center" fontWeight="bold">id</Text>
+                            <Text style={{textAlign:'center',color:app.color, fontSize:textSizeRender(4),fontFamily:'Poligon_Bold'}}>id</Text>
                         </View>
                         <View style={ styles.item2Table }>
-                            <Text fontSize={18} textAlign="center" fontWeight="bold">Nombre</Text>
+                            <Text style={{textAlign:'center',color:app.color, fontSize:textSizeRender(4),fontFamily:'Poligon_Bold'}}>Nombre</Text>
                         </View>
                         <View style={ styles.item3Table }>
-                            <Text fontSize={18} textAlign="center" fontWeight="bold">username</Text>
+                            <Text style={{textAlign:'center',color:app.color, fontSize:textSizeRender(4),fontFamily:'Poligon_Bold'}}>username</Text>
                         </View>
                     </View>
                     <FlatList
@@ -106,21 +133,39 @@ const UsersUpdate = () => {
                         renderItem={({ item }) => (
                             <View style={ styles.itemsTable }>
                                 <View style={ styles.item1Table }>
-                                    <Text fontSize={18} textAlign="center">{item.idParticipante}</Text>
+                                    <Text style={{textAlign:'center',color:app.color, fontSize:textSizeRender(4),fontFamily:'Poligon_Regular'}}>{item.idParticipante}</Text>
                                 </View>
                                 <View style={ styles.item2Table }>
-                                    <Text fontSize={18} textAlign="center">{item.nombre}</Text>
+                                    <Text style={{textAlign:'center',color:app.color, fontSize:textSizeRender(4),fontFamily:'Poligon_Regular'}}>{item.nombre}</Text>
                                 </View>
                                 <View style={ styles.item3Table }>
-                                    <Text fontSize={18} textAlign="center">{item.username}</Text>
+                                    <Text style={{textAlign:'center',color:app.color, fontSize:textSizeRender(4),fontFamily:'Poligon_Regular'}}>{item.username}</Text>
                                 </View>
                             </View>
                         )}
                         keyExtractor={(item) => item.idParticipante.toString() }
                     />
-                </ScrollView> : <Text py={40} fontSize={22} textAlign="center">No existen usuarios</Text>
+                </ScrollView> :
+                    <View style={{
+                        width: '80%',
+                        height:'60%',
+                        alignSelf:'center',
+                        justifyContent:'center',
+                        display: 'flex',
+                        borderRadius: 10,
+                        borderColor:app.color,
+                        borderWidth:2,
+                        backgroundColor: 'white'}}>
+
+                    <Text style={{textAlign:'center',color:app.color, fontSize:textSizeRender(5),fontFamily:'Poligon_Regular'}}>No existen usuarios</Text>
+                    </View>
                 }
+
             </View>
+            {
+                visible &&
+                <GenericModal app={app} visible={visible} setVisible={setVisible} isError={isErrorModal} title={titleModal} text={messageModal}/>
+            }
         </MainLayout>
     )
 
@@ -134,51 +179,60 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
     }, 
     titleHeaderTable:{
-        fontSize: 18,
-        fontWeight: 'bold',
+        fontSize: textSizeRender(5),
+        fontFamily: 'Poligon_Regular',
         textAlign:'center',
         paddingVertical: 4,
-        borderColor: '#707070', 
-        borderWidth: 1, 
-        backgroundColor: '#add3ec'
+        borderColor: store.getState().app.color,
+        borderWidth: 2,
+        backgroundColor: store.getState().app.fontColor
     },
     headerTable: {
         display: 'flex', 
         flexDirection: 'row', 
-        borderBottomColor: '#707070', 
-        borderBottomWidth: 1, 
-        borderLeftWidth: 1, 
-        borderRightWidth: 1, 
-        backgroundColor: '#bfdff5'
+        borderBottomColor: store.getState().app.color,
+        borderBottomWidth: 2,
+        borderLeftWidth: 2,
+        borderRightWidth: 2,
+        backgroundColor: store.getState().app.fontColor
     },
     itemsTable: { 
         display: 'flex', 
         flexDirection: 'row', 
-        borderBottomColor: '#707070', 
-        borderBottomWidth: 1,
-        borderLeftWidth: 1, 
-        borderRightWidth: 1, 
-        backgroundColor: '#e0ebf3'
+        borderBottomColor: store.getState().app.color,
+        borderBottomWidth: 2,
+        borderLeftWidth: 2,
+        borderRightWidth: 2,
+        backgroundColor:store.getState().app.fontColor
     },
     item1Table: { 
-        width: '20%', 
-        paddingHorizontal: 8, 
-        borderRightWidth: 1, 
-        borderColor: '#707070'
+        width: '20%',
+        paddingVertical: 8,
+        paddingHorizontal: 8,
+        borderRightWidth: 2,
+        borderColor: store.getState().app.color
     },
     item2Table: { 
-        width: '40%', 
+        width: '40%',
+        paddingVertical: 8,
         paddingHorizontal: 8, 
-        borderRightWidth: 1, 
-        borderColor: '#707070'
+        borderRightWidth: 2,
+        borderColor: store.getState().app.color
     },
-    item3Table: { 
+    item3Table: {
+        paddingVertical: 8,
         width: '40%', 
         paddingHorizontal: 8, 
     },
     
 })
 
+const mapState = (state) => {
+    return {
+        app: state.app,
+        productsDuck: state.productsDuck,
+        savedResponses: state.savedResponses
+    }
+}
 
-
-export default UsersUpdate;
+export default connect(mapState)(UsersUpdate);

@@ -9,6 +9,7 @@ import {Dimensions, TextInput, Image, View, StyleSheet} from 'react-native'
 import {textSizeRender} from "../../utils/utils";
 import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scrollview";
 import {store} from "../../redux/store";
+import GenericModal from "../../components/Modals/GenericModal";
 
 let logo = require('../../assets/logoa.png')
 const {width, height} = Dimensions.get('window')
@@ -20,6 +21,21 @@ const LoginUser = ({navigation, savedResponses, app}) => {
     const [loading, setLoading] = useState(false)
     const [users, setUsers] = useState([])
     const toast = useToast()
+
+    const [visible, setVisible] = useState(false);
+    const [isErrorModal, setIsErrorModal] = useState('');
+    const [titleModal, setTitleModal] = useState('');
+    const [messageModal, setMessageModal] = useState('');
+
+
+    const closeModal =()=>{
+        if (isErrorModal){
+            setVisible(false)
+        }else {
+            setVisible(false)
+             navigation.navigate('AssessmentNom035')
+        }
+    }
 
     useEffect(() => {
         getUsers()
@@ -53,9 +69,10 @@ const LoginUser = ({navigation, savedResponses, app}) => {
         }
 
         if (!userName || !password) {
-            toast.show({
-                title: "Ingresa la información solicitada",
-            })
+            setTitleModal("")
+            setMessageModal("Ingresa la información solicitada")
+            setIsErrorModal(true)
+            setVisible(true)
             setLoading(false)
             return false
         }
@@ -66,23 +83,25 @@ const LoginUser = ({navigation, savedResponses, app}) => {
             //existe el usuario en el arreglo de usuarios
             let pass = isUser.password.toString()
             if (pass.toString() !== password) {
-                toast.show({
-                    title: "Las credenciales son inválidas",
-                })
+                setTitleModal("")
+                setMessageModal("Las credenciales son inválidas")
+                setIsErrorModal(true)
+                setVisible(true)
                 return
             }
             setLoading(false)
             await storeData('devmode', {dev: false})
-            toast.show({
-                title: `Bienvenido ${isUser.nombre} ${isUser.apellido}`,
-            })
+            setTitleModal("")
+            setMessageModal(`Bienvenido ${isUser.nombre} ${isUser.apellido}`)
+            setIsErrorModal(false)
+            setVisible(true)
             await storeData('user', isUser)
-            await navigation.navigate('AssessmentNom035')
 
         } else {
-            toast.show({
-                title: "Las credenciales son inválidas",
-            })
+            setTitleModal("")
+            setMessageModal("Las credenciales son inválidas")
+            setIsErrorModal(true)
+            setVisible(true)
             setLoading(false)
         }
 
@@ -167,6 +186,10 @@ const LoginUser = ({navigation, savedResponses, app}) => {
                     </View>
                 </View>
             </KeyboardAwareScrollView>
+            {
+                visible &&
+                <GenericModal app={app} visible={visible} setVisible={closeModal} isError={isErrorModal} ButtonText={isErrorModal ?'Cerrar': 'Aceptar'} title={titleModal} text={messageModal}/>
+            }
         </MainLayout>
     )
 }
