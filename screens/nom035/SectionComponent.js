@@ -6,8 +6,21 @@ import QuestionComponent from "../../components/QuestionComponent";
 import {responseQuestion} from "../../redux/ducks/nom035Duck";
 import {retrieveData, storeData} from "../../helpers/storage"
 import _ from 'lodash'
+import {getCountAction, saveCountAction} from "../../redux/ducks/progressCountDuck";
 
-const SectionComponent = ({navigation, index=0, vref=null, encuesta=null, numEncuesta=1, nom035, responseQuestion, currentAssessment=1, onNextAssessment}) => {
+const SectionComponent = ({
+                              navigation,
+                              index = 0,
+                              vref = null,
+                              encuesta = null,
+                              numEncuesta = 1,
+                              nom035,
+                              responseQuestion,
+                              currentAssessment = 1,
+                              onNextAssessment,
+                              countResponse,
+                              getCountAction, saveCountAction
+                          }) => {
 
 
     const [validate1Section, setValidate1Section] = useState(false)
@@ -17,128 +30,156 @@ const SectionComponent = ({navigation, index=0, vref=null, encuesta=null, numEnc
     const [modeDev, setModeDev] = useState(false)
     const [hasYesSection1vref1, setHasYesSection1vref1] = useState(false) // este nos va a indicar si la seccion1 tiene al menos un yes y si no es así entonces lo saltará a la siguiente encuesta
     const toast = useToast()
+    const [totalQuestions, setTotalQuestions] = useState(0)
+    const [totalResponse, setTotalResponse] = useState(0)
 
-    useEffect(()=>{
-        if(vref===1){ // validamos si la encuesta es la v1 entonces sabemos que hay que validar la primera sección
+
+
+    useEffect(() => {
+        if (vref === 1) { // validamos si la encuesta es la v1 entonces sabemos que hay que validar la primera sección
             setValidate1Section(true)
         }
 
-        if(encuesta){
+
+        if (encuesta) {
             setNumQuestions(encuesta.preguntas.length)
         }
+        total()
+        getModeDev()
+    }, [])
 
-       getModeDev()
-    },[])
+    const total = () => {
+        if (nom035.respuesta && nom035.respuesta.respuestas[0].respuestas.length > 0 && nom035.respuesta && nom035.respuesta.respuestas[1].respuestas.length > 0) {
+            setTotalQuestions(nom035.respuesta.respuestas[1].respuestas.length + nom035.respuesta.respuestas[0].respuestas.length)
+        }
+    }
 
-    const getModeDev =async ()=>{
-        try{
+    const getModeDev = async () => {
+        try {
             let dev = await retrieveData('devmode')
             console.log(dev)
-            if(dev){
+            if (dev) {
                 setModeDev(dev.dev)
             }
             return dev
-        }catch (e){
+        } catch (e) {
             return null
         }
     }
 
 
-    const onSetValueQuestion =(question_index,value, section)=>{
-        try{
-            if(question_index+1<numQuestions){
-                console.log(numEncuesta, question_index,value)
+    useEffect(()=>{
+        getCountAction()
+
+        console.log(countResponse)
+    },[])
+
+    const onSetValueQuestion = (question_index, value, section) => {
+        try {
+            if (question_index + 1 < numQuestions) {
+                console.log(numEncuesta, question_index, value)
                 responseQuestion(numEncuesta, question_index, value)
-                setCurrentQuestion(currentQuestion+1)
-            }else{
+                setCurrentQuestion(currentQuestion + 1)
+                if (countResponse.count_responses!==0) {
+                    saveCountAction(countResponse.count_responses)
+                }else {
+                    saveCountAction(currentQuestion + 1)
+                }
+            } else {
                 responseQuestion(numEncuesta, question_index, value)
                 onNextAssessment()
             }
 
-        }catch (e) {
+        } catch (e) {
 
         }
 
-        if(vref===1){
-            validateNOQuestioninVref1(question_index,value, section)
+        if (vref === 1) {
+            validateNOQuestioninVref1(question_index, value, section)
         }
 
-        if(vref===2 && (question_index===40 || question_index===44)){
-            validateNoSectionsinVref2(question_index,value, section)
+        if (vref === 2 && (question_index === 40 || question_index === 44)) {
+            validateNoSectionsinVref2(question_index, value, section)
         }
 
-        if(vref===3 && (question_index===64 || question_index===69) ){
-            validateNoSectionsinVref3(question_index,value, section)
+        if (vref === 3 && (question_index === 64 || question_index === 69)) {
+            validateNoSectionsinVref3(question_index, value, section)
         }
 
     }
 
-    const validateNoSectionsinVref2=(question_index,value, section)=>{
-        if(question_index===40 && value===0){ // si la pregunta es un SINO y la respuesta es No entonces saltamos la sección
-           setCurrentQuestion(44)
+    const validateNoSectionsinVref2 = (question_index, value, section) => {
+        if (question_index === 40 && value === 0) { // si la pregunta es un SINO y la respuesta es No entonces saltamos la sección
+            setCurrentQuestion(44)
         }
 
-        if(question_index===44 && value===0){ // si la pregunta es un SINO y la respuesta es No entonces saltamos la sección
+        if (question_index === 44 && value === 0) { // si la pregunta es un SINO y la respuesta es No entonces saltamos la sección
             onNextAssessment() // lo forzamos al sig encuesta o finalizarla
         }
 
     }
 
-    const validateNoSectionsinVref3=(question_index,value, section)=>{
-        if(question_index===64 && value===0){ // si la pregunta es un SINO y la respuesta es No entonces saltamos la sección
-           setCurrentQuestion(69)
+    const validateNoSectionsinVref3 = (question_index, value, section) => {
+        if (question_index === 64 && value === 0) { // si la pregunta es un SINO y la respuesta es No entonces saltamos la sección
+            setCurrentQuestion(69)
         }
 
-        if(question_index===69 && value===0){ // si la pregunta es un SINO y la respuesta es No entonces saltamos la sección
+        if (question_index === 69 && value === 0) { // si la pregunta es un SINO y la respuesta es No entonces saltamos la sección
             onNextAssessment() // lo forzamos al sig encuesta o finalizarla
         }
 
     }
 
-    const validateNOQuestioninVref1=(question_index, value,section)=>{
+    const validateNOQuestioninVref1 = (question_index, value, section) => {
         //validar los NO de la primera sección
-        console.log('values',vref, section)
-        if(vref===1 && currentSection===1 && section!==undefined){
-            if(value===1){
+        console.log('values', vref, section)
+        if (vref === 1 && currentSection === 1 && section !== undefined) {
+            if (value === 1) {
                 setHasYesSection1vref1(true) // si en la primera sección tuvo al menos un SI entonces lo marcamos y lo dejamos continuar
             }
-            if(question_index===5 && !hasYesSection1vref1){ // si no tuvo algun SI entonces lo pasamos a la siguiente encuesta (si la hay)
+            if (question_index === 5 && !hasYesSection1vref1) { // si no tuvo algun SI entonces lo pasamos a la siguiente encuesta (si la hay)
                 onNextAssessment()
             }
         }
     }
 
     return (
-        <Box style={{width:'100%'}}>
+        <Box style={{width: '100%'}}>
 
 
-                <QuestionComponent
-                    onSetValueQuestion={onSetValueQuestion}
-                    modeDev={modeDev}
-                    question={encuesta.preguntas.length>=currentQuestion?encuesta.preguntas[currentQuestion]:0}
-                    title={encuesta.preguntas.length>=currentQuestion?_.get(encuesta.preguntas[currentQuestion], 'pregunta',''):0}
-                    index={currentQuestion}
-                    />
+            <QuestionComponent
+                onSetValueQuestion={onSetValueQuestion}
+                modeDev={modeDev}
+                totalQuestions={totalQuestions}
+                setTotalResponse={setTotalResponse}
+                totalResponse={totalResponse}
+                question={encuesta.preguntas.length >= currentQuestion ? encuesta.preguntas[currentQuestion] : 0}
+                title={encuesta.preguntas.length >= currentQuestion ? _.get(encuesta.preguntas[currentQuestion], 'pregunta', '') : 0}
+                index={currentQuestion}
+            />
 
-                    {
-                        modeDev?<Box>
-                            <Text>vref: {vref} , preguntas: {encuesta?encuesta.preguntas.length:0}</Text>
-                            <Text style={{fontSize:20}}>{JSON.stringify(nom035)}</Text>
-                        </Box>:null
-                    }
+            {
+                modeDev ? <Box>
+                    <Text>Contador: {currentQuestion} / {totalQuestions}</Text>
 
+                    <Text>vref: {vref} , preguntas: {encuesta ? encuesta.preguntas.length : 0}</Text>
+                    <Text style={{fontSize: 20}}>{JSON.stringify(nom035)}</Text>
+                </Box> : null
+            }
 
 
         </Box>
     )
 }
 
-const mapState =(state)=> {
+const mapState = (state) => {
     return {
-        nom035: state.nom035
+        nom035: state.nom035,
+        countResponse:state.countResponse
+
     }
 }
 
-export default connect(mapState,{
-    responseQuestion
+export default connect(mapState, {
+    responseQuestion,getCountAction,saveCountAction
 })(SectionComponent);

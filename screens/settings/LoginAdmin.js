@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from "react";
-import {Box, Text,Input,Stack,  Button, Heading, Center, HStack, Flex, ScrollView, useToast} from "native-base";
+import {Box,Input,Stack,  Button, Heading, Center, HStack, Flex, ScrollView, useToast} from "native-base";
 import {connect} from "react-redux";
 import MainLayout from "../../layouts/MainLayout";
 import config from "../../config"
 import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scrollview";
-import {Dimensions, Image, StyleSheet, TextInput, View} from "react-native";
+import {Dimensions, Image, StyleSheet, TextInput, Text, View, TouchableOpacity} from "react-native";
 import {textSizeRender} from "../../utils/utils";
 import {store} from "../../redux/store";
+import GenericModal from "../../components/Modals/GenericModal";
 
 const {width, height} = Dimensions.get('window')
 
@@ -17,15 +18,21 @@ const LoginAdmin = ({navigation,app}) => {
     const [loading, setLoading] = useState(false)
     const toast = useToast()
 
+    const [visible, setVisible] = useState(false);
+    const [isErrorModal, setIsErrorModal] = useState('');
+    const [titleModal, setTitleModal] = useState('');
+    const [messageModal, setMessageModal] = useState('');
+
     const validateAdmin=()=>{
         const {USER_ADMIN, USER_PASSWORD_ADMIN} = config;
         console.log(USER_ADMIN, USER_PASSWORD_ADMIN)
         setLoading(true)
 
         if(!userName || !password) {
-            toast.show({
-                title: "Ingresa la información solicitada",
-            })
+            setTitleModal("")
+            setMessageModal("Ingresa la información solicitada")
+            setIsErrorModal(true)
+            setVisible(true)
             setLoading(false)
             return false
         }
@@ -39,9 +46,10 @@ const LoginAdmin = ({navigation,app}) => {
                 500
             );
         }else{
-            toast.show({
-                title: "Las credenciales son inválidas",
-            })
+            setTitleModal("")
+            setMessageModal("Las credenciales son inválidas")
+            setIsErrorModal(true)
+            setVisible(true)
             setLoading(false)
         }
 
@@ -127,6 +135,10 @@ const LoginAdmin = ({navigation,app}) => {
                     </View>
                 </View>
             </KeyboardAwareScrollView>
+            {
+                visible &&
+                <GenericModal app={app} visible={visible} setVisible={setVisible} isError={isErrorModal} title={titleModal} text={messageModal}/>
+            }
         </MainLayout>
     )
 }
