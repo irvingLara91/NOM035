@@ -7,30 +7,37 @@ const initialData = {
     errores: [],
     estado: 0, /* detenido 0, enviando 1, completado 2 */
     fetching: false, 
+    running: false, 
     url: null,
 }
 
 const LOAD_URL = 'LOAD_URL';
 const UPDATE_RESPONSES = 'UPDATE_RESPONSES';
-const SAVE_RESPONSES_INIT = 'SAVE_RESPONSES_INIT';
-const SAVE_RESPONSES_END = 'SAVE_RESPONSES_END';
-const CREATE_RESPONSES_ERROR = 'CREATE_RESPONSES_ERROR';
+const UPDATE_RESPONSES_ERROR = 'UPDATE_RESPONSES_ERROR';
+const DELETE_RESPONSES_ERROR = 'DELETE_RESPONSES_ERROR';
+const PROCESS_FETCHING = 'FETCHING';
 const PROCESS_STATE = 'PROCESS_STATE';
+const PROCESS_RUNNING = 'PROCESS_RUNNING';
+const PROCESS_CLEAR = 'PROCESS_CLEAR';
 
 const sendingDuck = (state = initialData, action) => {
     switch (action.type) {
-        case UPDATE_RESPONSES:
-            return {...state, respuestas: action.payload, fetching: false}
         case LOAD_URL:
-            return {...state, url: action.payload}
-        case SAVE_RESPONSES_INIT:
-            return {...state, fetching: true}
-        case SAVE_RESPONSES_END:
-            return {...state, fetching: false}
-        case CREATE_RESPONSES_ERROR:
-            return {...state, errores: [ ...state.errores, action.payload ]}
+            return {...state, url:action.payload}
+        case UPDATE_RESPONSES:
+            return {...state, respuestas:action.payload, fetching:false}
+        case UPDATE_RESPONSES_ERROR:
+            return {...state, errores: [...state.errores, action.payload]}
+        case DELETE_RESPONSES_ERROR:
+            return {...state, errores: []}
+        case PROCESS_FETCHING:
+            return {...state, fetching:action.payload}
         case PROCESS_STATE:
-            return {...state, estado: action.payload}
+            return {...state, estado:action.payload}
+        case PROCESS_RUNNING:
+            return {...state, running:action.payload}
+        case PROCESS_CLEAR:
+            return {...state, errores: [], estado: 0, running: false}
         default:
             return state
     }
@@ -39,13 +46,13 @@ const sendingDuck = (state = initialData, action) => {
 /* ACTIONS */
 export const getResponsesAction = () => {
     return async (dispatch, getState) => {
-        dispatch({type: SAVE_RESPONSES_INIT})
+        dispatch({type: PROCESS_FETCHING, payload: true})
         try {
             let getResponses = await retrieveData("savedResponses");
             getResponses && dispatch({type: UPDATE_RESPONSES, payload: getResponses});
         } catch (error) {
             //Error
-            dispatch({type: SAVE_RESPONSES_END})
+            dispatch({type: PROCESS_FETCHING, payload: false})
         }
     };
 }
@@ -66,76 +73,83 @@ export const savedResponsesAction = () => {
         try {
             let responses = getState().sending.respuestas;
             const newStorage = _.filter(responses, ['send', false]);
-            console.log("NEWSTORAGE::", newStorage.length);
             //Guardarlas en el AsyncStorage.
             //newStorage?.length && await storeData('savedResponses', newStorage);
+            console.log("saved");
         } catch (error) {
-            console.log(error);
+            console.log("SAVE_ERROR::", error);
         }
     }
 }
 
-/**/
-export const updateResponsesAction = (current) => {
+/*CONTROLADOR*/
+export const updateResponsesAction = () => {
     return async (dispatch, getState) => {
-        let existChanges = _.filter(getState().sending.respuestas, ['send', false]).length;
         try {
-            current === 0 && existChanges > 0 && dispatch(startProcess()) && dispatch(initProcess());
-            current === 1 && dispatch(stopProcess());
-            current === 2 && dispatch(stopProcess()); 
+            let existChanges = _.filter(getState().sending.respuestas, ['send', false]).length;
+            if ( getState().sending.estado === 0 && existChanges > 0) {
+                await dispatch({type: DELETE_RESPONSES_ERROR});
+                await dispatch(startProcess());
+                await dispatch({type: PROCESS_RUNNING, payload: true})
+                dispatch(initProcess());
+            }else{
+                dispatch(stopProcess());
+            }
         } catch (error) {
             //Error
         }
     };
 }
 
-/*EVENT*/
 const waitFor = (ms) => new Promise(r => setTimeout(r, ms));
 
-export const initProcess = () => {
-    return async(dispatch, getState) => {
-        try {
-            let responses = getState().sending.respuestas;
-            let currentState = getState().sending.estado;
-            let urlApi = await joinURL(getState().sending.url, 'nom035'); 
-            console.log(urlApi);
-            await asyncForEach(responses, async (item, index, array) => {
-                await waitFor(50);
-                if ( !item.send ){ 
-                    console.log(index);
-                    /*
-                    Cancelar evento
-                    Pushear los mensajes de error errores :D 
-                    */
-                    if (true){
+/*
+TAREAS POR HACER: 
+Probar Axios :D 
+Pushear los mensajes de error errores :D 
+*/
+
+/*PROCESO*/
+export const initProcess = () => async(dispatch, getState) => {
+    try {
+        let responses = getState().sending.respuestas;
+        let urlApi = await joinURL(getState().sending.url, 'nom035'); 
+        await asyncForEach(responses, async (item, index, array) => {
+            if (getState().sending.estado !== 0){ 
+                if (!item.send){
+                    await waitFor(500);
+                    await axios.post(urlApi, responses).then(async(response) => {
+                        console.log("AXIOS_RESPONSE::", response);
                         await dispatch(updateResponse(index)); 
-                    } else {
+                    }).catch(async (error) => {
+                        console.log("AXIOS_ERROR::", error);
                         await dispatch(deleteResponse(item, index));
-                    }
-                    // axios.post(urlKhor, responses).then( response => {
-                    //     console.log(response);
-                    // }).catch( error => {
-                    //     console.log(error);
-                    // });
-                    array.length == index + 1 && dispatch(completeProcess()); 
-                } else {
-                    await dispatch(deleteResponse(item, index));  
+                    });
+                    dispatch(savedResponsesAction());
                 }
-                dispatch(savedResponsesAction());
-            });
-            dispatch(savedResponsesAction());
-            console.log("done");
-        } catch (error) {
-            console.log(error)
-        }
+                array.length == index + 1 && dispatch(completeProcess()); 
+            } else {
+                dispatch({type: PROCESS_FETCHING, payload: true})
+                console.log("Envio cancelado...")
+            }
+        });
+        dispatch({type: PROCESS_RUNNING, payload: false});
+        dispatch({type: PROCESS_FETCHING, payload: false});
+    } catch (error) {
+        dispatch({type: PROCESS_FETCHING, payload: false});
     }
 }
 
 export const updateResponse = (index) => {
     return async (dispatch, getState) => {
-        let respuestas= getState().sending.respuestas;
-        respuestas[index].send = true;
-        dispatch({ type: UPDATE_RESPONSES, payload:respuestas });
+        try {
+            let respuestas= getState().sending.respuestas;
+            respuestas[index].send = true;
+            await dispatch({ type: UPDATE_RESPONSES, payload:respuestas });
+            console.log("update");
+        } catch (error) {
+            //Error
+        }
     };
 }
 
@@ -144,8 +158,9 @@ export const deleteResponse = (item, index) => {
         try {
             let respuestas= getState().sending.respuestas;
             respuestas[index].send = true;
-            dispatch({ type: UPDATE_RESPONSES, payload:respuestas });
-            dispatch({ type: CREATE_RESPONSES_ERROR, payload:item });
+            await dispatch({ type: UPDATE_RESPONSES, payload:respuestas });
+            await dispatch({ type: UPDATE_RESPONSES_ERROR, payload:item });
+            console.log("error");
         } catch (error) {
             //Error        
         }

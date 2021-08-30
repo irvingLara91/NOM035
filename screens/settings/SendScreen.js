@@ -9,32 +9,40 @@ import { connect } from "react-redux";
 import {store} from "../../redux/store";
 import {textSizeRender} from "../../utils/utils";
 const {width, height} = Dimensions.get('window')
+import { useDispatch } from 'react-redux';
 import { getResponsesAction, getUrlAction, updateResponsesAction } from "../../redux/ducks/sendingDuck";
     
 const SendScreen = ({sending, getResponsesAction, getUrlAction, updateResponsesAction, app}) => {
+    const dispatch = useDispatch();
     const [responses, setResponses] = useState([]) // Guardados
     const [sent, setSent] = useState([]); // Enviados
-    const [boton, setBoton] = useState('Iniciar envío de respuestas');
-    const [errores, setErrores] = useState([]) // Array de errores
     const [tosend, setToSend] = useState([]); // Por enviar
-    const [fetching, setFetching] = useState(false); //bloquear boton en proceso end 
-    const [estado, setEstado] = useState(0); // Estado del envío - detenido 0, enviando 1, completado 2
+    const [errores, setErrores] = useState([]) // Array de errores
+    const [fetching, setFetching] = useState(false); //bloquea el boton 
+    const [corriendo, setCorriendo] = useState(false);
+    const [completado, setCompletado] = useState(false); 
+    const [boton, setBoton] = useState('Iniciar envío de respuestas');
 
     useEffect(()=>{
         if (sending) {
+            //console.log("ARRAY:",sending.respuestas)
             setSent( _.filter(sending.respuestas, ['send', true]) ); 
             setToSend( _.filter(sending.respuestas, ['send', false]));
             setErrores(sending.errores);
-            setEstado(sending.estado);
-            console.log('estado::', estado)
             setFetching(sending.fetching);
+            setCorriendo(sending.running);
             sending.estado === 0 && setBoton("Iniciar envío de respuestas");
             sending.estado === 1 && setBoton("Cancelar");
-            sending.estado === 2 && setBoton("Aceptar");
+            sending.estado === 2 ? ( setBoton("Aceptar"), setCompletado(true) ) : setCompletado(false);
+            // console.log("ERRORES:", sending.errores);
+            console.log("estado", sending.estado);
+            console.log("corriendo", corriendo);
+            console.log("completado", completado);
         }
     },[sending]) 
     
     useEffect(()=>{
+        dispatch({type: 'PROCESS_CLEAR'});
         getInitialResponses();
         getUrlAction();
         getResponsesAction();
@@ -57,26 +65,26 @@ const SendScreen = ({sending, getResponsesAction, getUrlAction, updateResponsesA
                 <View style={ styles.sectionSquare } flex={1}>
                     <Text style={ styles.titulo }>{tosend.length} Respuestas pendientes por sincronizar</Text>
                     {
-                        estado !== 0 && errores.length > 0 && <Text style={ styles.errores }> Envíos fallidos: {errores.length} </Text>
+                        (corriendo || completado) && errores.length > 0 && <Text style={ styles.errores }> Envíos fallidos: {errores.length} </Text>
                     }
                     <Box style={ styles.indicador } flex={1}>
                         <Box style={ styles.contadorBox }>
                         { 
-                            estado !== 0 && 
+                            (corriendo || completado) && 
                             <> 
                             <Text style={styles.contador}>{sent.length}/</Text>
                             <Text style={styles.contador}>{responses.length}</Text> 
                             </> 
                         }
                         {
-                            estado === 0 && <Text style={styles.contador}>{tosend.length}</Text> 
+                           (!corriendo && !completado) && <Text style={styles.contador}>{tosend.length}</Text> 
                         }
                         </Box>
                         {
-                            estado === 1 && <ActivityIndicator size={60} color="#75bb89" />
+                            (corriendo) && <ActivityIndicator size={60} color="#75bb89" />
                         }
                         {
-                            estado === 2 && <AntDesign name="checkcircle" size={textSizeRender(12)} color="#75bb89" />
+                            !corriendo && completado && <AntDesign name="checkcircle" size={textSizeRender(15)} color="#75bb89" />
                         }
                     </Box>
                 </View>
@@ -85,7 +93,7 @@ const SendScreen = ({sending, getResponsesAction, getUrlAction, updateResponsesA
                             _light={{bg: app.secondaryColor, _text: {color: app.color ,fontSize:textSizeRender(3.5),
                                     fontFamily:'Poligon_Bold'}}}
                             _pressed={{bg:app.secondaryColorHover, _text: {color: app.color}}}
-                            style={{ width: '90%' }} onPress={ () => updateResponsesAction(estado) } disabled={fetching}>{boton}</Button>
+                            style={{ width: '90%' }} onPress={ () => updateResponsesAction() } isLoading={fetching}>{boton}</Button>
                 </Box>
             </View>
         </MainLayout>
@@ -135,7 +143,8 @@ const styles = StyleSheet.create({
         color: store.getState().app.color
     },
     errores: {
-        fontSize: 20,
+        fontSize: textSizeRender(4.5),
+        fontFamily:'Poligon_Bold',
         fontWeight: '500',
         textAlign: 'center',
         color: '#e45a60'
@@ -149,7 +158,7 @@ const styles = StyleSheet.create({
     },
     contador: {
         marginBottom: 20,
-        fontSize: textSizeRender(15),
+        fontSize: textSizeRender(20),
         fontFamily:'Poligon_Bold',
         textAlign: 'center',
         color: store.getState().app.color
