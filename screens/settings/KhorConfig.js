@@ -5,13 +5,14 @@ import * as DocumentPicker from 'expo-document-picker';
 import * as FileSystem from 'expo-file-system';
 import _ from 'lodash';
 import MainLayout from "../../layouts/MainLayout";
-import { storeData, retrieveData, validURL } from "../../helpers/storage";
+import { storeData, validURL } from "../../helpers/storage";
 import {connect} from "react-redux";
-import {saveConfigAction} from "../../redux/ducks/configDuck";
 import {textSizeRender} from "../../utils/utils";
 import {store} from "../../redux/store";
 import GenericModal from "../../components/Modals/GenericModal";
 const {width, height} = Dimensions.get('window')
+import {saveConfigAction} from "../../redux/ducks/configDuck";
+import {saveUrlAction} from "../../redux/ducks/sendingDuck";
 
 const KhorConfig = (props) => {
 
@@ -24,24 +25,15 @@ const KhorConfig = (props) => {
     const [messageModal, setMessageModal] = useState('');
 
 
-    const getConfig = async () => {
-        let storeConfig = await retrieveData("config");
-        if ( storeConfig ) {
-            setDatastate(storeConfig);
-        }
-
-    }
-
-    const getKhorUrl = async () =>{
-        let storeUrl = await retrieveData("khorurl");
-        if ( storeUrl ) {
-            setInputstate(storeUrl);
-        } 
+    const getConfig = () => {
+        let configTemp = props.config.config;
+        configTemp && setDatastate(configTemp);
     }
 
     useEffect(()=>{
         getConfig();
-        getKhorUrl();
+        let urlTemp = props.sending.url;
+        urlTemp && setInputstate(urlTemp);
     },[]);
 
     const pickDocument = async () => {
@@ -53,17 +45,17 @@ const KhorConfig = (props) => {
             const configData = await FileSystem.readAsStringAsync( newPath );
             let jsonData = JSON.parse(configData)
             if (await saveConfig( jsonData)){
-                await setTitleModal("")
-                await setMessageModal("Carga exitosa")
-                await setIsErrorModal(false)
-                await setVisible(true)
+                setTitleModal("");
+                setMessageModal("Carga exitosa");
+                setIsErrorModal(false);
+                setVisible(true);
             }else {
-                await setTitleModal("")
-                await setMessageModal("Error en la carga del archivo")
-                await setIsErrorModal(true)
-                await setVisible(true)
+                setTitleModal("");
+                setMessageModal("Error en la carga del archivo");
+                setIsErrorModal(true);
+                setVisible(true);
             }
-            await getConfig();
+            getConfig();
         } catch (error){
             console.log(error)
         }
@@ -79,17 +71,18 @@ const KhorConfig = (props) => {
         }
     }
 
-    const inputSubmit = () => {
+    const inputSubmit = async() => {
         if (validURL(inputstate) && storeData("khorurl", inputstate)){
-             setTitleModal("")
-             setMessageModal("URL guardada")
-             setIsErrorModal(false)
-             setVisible(true)
+            await props.saveUrlAction(inputstate); 
+            setTitleModal("")
+            setMessageModal("URL guardada")
+            setIsErrorModal(false)
+            setVisible(true)
         }else {
-             setTitleModal("")
-             setMessageModal("Por favor, escriba una url válida")
-             setIsErrorModal(true)
-             setVisible(true)
+            setTitleModal("")
+            setMessageModal("Por favor, escriba una url válida")
+            setIsErrorModal(true)
+            setVisible(true)
         }
         //validURL(inputstate) && storeData("khorurl", inputstate) ? Alert.alert("URL guardada") : Alert.alert("Por favor, escriba una url válida");
     }
@@ -226,6 +219,7 @@ const mapState = (state) => {
     return {
         app:state.app,
         config:state.config,
+        sending:state.sending,
     }
 }
-export default connect(mapState,{saveConfigAction})(KhorConfig);
+export default connect(mapState,{saveConfigAction, saveUrlAction})(KhorConfig);

@@ -1,6 +1,7 @@
 import axios from "axios";
 import _ from 'lodash';
 import {storeData, retrieveData, asyncForEach, joinURL } from "../../helpers/storage";
+import nom_config from '../../screens/nom035/estructura/initial_config.json';
 
 const initialData = {
     respuestas: [],
@@ -11,7 +12,7 @@ const initialData = {
     url: null,
 }
 
-const LOAD_URL = 'LOAD_URL';
+const UPDATE_URL = 'UPDATE_URL';
 const UPDATE_RESPONSES = 'UPDATE_RESPONSES';
 const UPDATE_RESPONSES_ERROR = 'UPDATE_RESPONSES_ERROR';
 const DELETE_RESPONSES_ERROR = 'DELETE_RESPONSES_ERROR';
@@ -22,7 +23,7 @@ const PROCESS_CLEAR = 'PROCESS_CLEAR';
 
 const sendingDuck = (state = initialData, action) => {
     switch (action.type) {
-        case LOAD_URL:
+        case UPDATE_URL:
             return {...state, url:action.payload}
         case UPDATE_RESPONSES:
             return {...state, respuestas:action.payload, fetching:false}
@@ -44,30 +45,41 @@ const sendingDuck = (state = initialData, action) => {
 }
 
 /* ACTIONS */
-export const getResponsesAction = () => {
-    return async (dispatch, getState) => {
-        dispatch({type: PROCESS_FETCHING, payload: true})
-        try {
-            await dispatch(getResponsesAction)
-            let getResponses = await retrieveData("savedResponses");
-            if (getResponses?.length > 0){
-                let newResponses = _.filter(getResponses, ['send', false]);
-                newResponses && dispatch({type: UPDATE_RESPONSES, payload: newResponses});
-            }
-        } catch (error) {
-            //Error
-            dispatch({type: PROCESS_FETCHING, payload: false})
-        }
-    };
-}
-
 export const getUrlAction = () => {
     return async (dispatch, getState) => {
         try {
             let getConfig = await retrieveData("khorurl");
-            getConfig && dispatch({type: LOAD_URL, payload: getConfig});
+            getConfig?.length > 0 ? dispatch({type: UPDATE_URL, payload: getConfig}) : dispatch({type: UPDATE_URL, payload: nom_config.url});
         } catch (error) {
             //Error
+        }
+    };
+}
+
+export const saveUrlAction = (url) => {
+    return async (dispatch, getState) => {
+        try {
+            dispatch({type: UPDATE_URL, payload: url});
+        } catch (error) {
+            //Error
+        }
+    }
+}
+
+export const getResponsesAction = () => {
+    return async (dispatch, getState) => {
+        dispatch({type: PROCESS_FETCHING, payload: true})
+        try {
+            let getResponses = await retrieveData("savedResponses");
+            if (getResponses?.length > 0){
+                let newResponses = _.filter(getResponses, ['send', false]);
+                newResponses && dispatch({type: UPDATE_RESPONSES, payload: newResponses});
+            } else {
+                dispatch({type: PROCESS_FETCHING, payload: false})
+            }
+        } catch (error) {
+            //Error
+            dispatch({type: PROCESS_FETCHING, payload: false})
         }
     };
 }

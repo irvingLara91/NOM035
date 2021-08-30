@@ -9,9 +9,9 @@ import { connect } from "react-redux";
 import {store} from "../../redux/store";
 import {textSizeRender} from "../../utils/utils";
 const {width, height} = Dimensions.get('window')
-import { getResponsesAction, getUrlAction, updateResponsesAction, clearProcess } from "../../redux/ducks/sendingDuck";
+import { getResponsesAction, updateResponsesAction, clearProcess } from "../../redux/ducks/sendingDuck";
     
-const SendScreen = ({sending, getResponsesAction, getUrlAction, updateResponsesAction, clearProcess, app}) => {
+const SendScreen = ({sending, getResponsesAction, updateResponsesAction, clearProcess, app}) => {
     const [responses, setResponses] = useState([]) // Guardados
     const [sent, setSent] = useState([]); // Enviados
     const [tosend, setToSend] = useState([]); // Por enviar
@@ -37,7 +37,6 @@ const SendScreen = ({sending, getResponsesAction, getUrlAction, updateResponsesA
     useEffect(()=>{
         getInitialResponses();
         clearProcess();
-        getUrlAction();
         getResponsesAction();
     }, [])
 
@@ -184,7 +183,6 @@ const mapState = (state) => {
 
 export default connect(mapState,{
     getResponsesAction,
-    getUrlAction,
     updateResponsesAction,
     clearProcess,
 })(SendScreen);

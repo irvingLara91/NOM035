@@ -6,13 +6,14 @@ import * as FileSystem from 'expo-file-system';
 import XLSX from 'xlsx';
 import _ from 'lodash';
 import MainLayout from "../../layouts/MainLayout";
-import { storeData, retrieveData } from "../../helpers/storage";
+import { storeData, retrieveData, removeData} from "../../helpers/storage";
 import {textSizeRender} from "../../utils/utils";
 import {connect} from "react-redux";
 import {store} from "../../redux/store";
 import GenericModal from "../../components/Modals/GenericModal";
+import {saveUrlAction} from "../../redux/ducks/appDuck";
 
-const UsersUpdate = ({app}) => {
+const UsersUpdate = ({app, saveUrlAction}) => {
 
     const [datatable, setDatatable] = useState(null);
     const [visible, setVisible] = useState(false);
@@ -21,7 +22,8 @@ const UsersUpdate = ({app}) => {
     const [messageModal, setMessageModal] = useState('');
 
     const getUsers = async () =>{
-        let users = await retrieveData("userslist");
+        // await removeData("userslist");
+        let users = app.users;
         if ( users && users.length > 0  ) {
             setDatatable(users);
         } 
@@ -71,6 +73,7 @@ const UsersUpdate = ({app}) => {
                 } else {
                     let newArray = _.orderBy(data, ['idParticipante'], ['asc']);
                     storeData("userslist", newArray );
+                    saveUrlAction(newArray);
                 }
             });
             return true;
@@ -235,4 +238,4 @@ const mapState = (state) => {
     }
 }
 
-export default connect(mapState)(UsersUpdate);
+export default connect(mapState,{saveUrlAction})(UsersUpdate);

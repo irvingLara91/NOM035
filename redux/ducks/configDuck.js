@@ -1,8 +1,9 @@
 import {retrieveData} from "../../helpers/storage";
+import nom_config from '../../screens/nom035/estructura/initial_config.json';
 
 const initialData = {
    fetching:false,
-   config:null
+   config: null
 }
 
 const LOAD_CONFIG = 'LOAD_CONFIG'
@@ -25,26 +26,21 @@ const configReducer = (state = initialData, action) => {
 }
 export default configReducer;
 
-
-
-/***
- *ACTION AUX
- * ***/
-
+/*** ACTION AUX ***/
 //funcion action para recuperar configuración del AsyncStorage
 export let getConfigAction = () => async dispatch => {
-
-
    try {
       let storeConfig = await retrieveData("config");
-      if (storeConfig) {
+      if (storeConfig?.lenght > 0) {
          dispatch({
             type: LOAD_CONFIG_SUCCESS,
             payload: storeConfig
          })
+      } else {
+         dispatch({type: LOAD_CONFIG_SUCCESS, payload: nom_config.config})
       }
    } catch (error) {
-      // Error saving data
+      // Error
    }
 }
 

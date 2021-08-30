@@ -4,7 +4,6 @@ import _ from 'lodash';
 
 export const storeData = async (key, value)=>{
     try {
-
         await AsyncStorage.setItem(
             key,
             JSON.stringify(value)

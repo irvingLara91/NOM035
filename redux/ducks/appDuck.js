@@ -1,4 +1,7 @@
+import nom_config from '../../screens/nom035/estructura/initial_config.json';
+import { retrieveData } from "../../helpers/storage";
 import { Image } from 'react-native';
+
 // constants
 const initialData = {
     fetching: true,
@@ -12,10 +15,13 @@ const initialData = {
     url_base:'',
     url_term:'',
     name: '',
+    users: null
 }
+
 const LOAD_APP_DATA = 'LOAD_APP_DATA'
 const LOAD_APP_DATA_SUCCESS = 'LOAD_APP_DATA_SUCCESS'
 const LOAD_APP_DATA_ERROR = 'LOAD_APP_DATA_ERROR'
+const UPDATE_USERS = 'UPDATE_USERS'
 
 // reducer
 const appReducer = (state = initialData, action) => {
@@ -27,11 +33,39 @@ const appReducer = (state = initialData, action) => {
             return newState
         case LOAD_APP_DATA_ERROR:
             return {...state, error_msg: action.payload, fetching: false}
+        case UPDATE_USERS:
+            return {...state, users:action.payload}
         default:
             return state
     }
 }
 export default appReducer;
+
+export const getUsersAction = () => {
+    return async (dispatch, getState) => {
+        try {
+            let getUsers = await retrieveData("userslist");
+            if ( getUsers?.length > 0 ){
+                dispatch({type: UPDATE_USERS, payload: getUsers});
+            } else {
+                dispatch({type: UPDATE_USERS, payload: nom_config.users});
+            }
+        } catch (error) {
+            console.log("ERROR::", error);
+        }
+    };
+}
+
+export const saveUsersAction = (url) => {
+    return async (dispatch, getState) => {
+        try {
+            dispatch({type: UPDATE_USERS, payload: url});
+        } catch (error) {
+            //Error
+        }
+    }
+}
+
 
 // action
 /*
