@@ -9,11 +9,9 @@ import { connect } from "react-redux";
 import {store} from "../../redux/store";
 import {textSizeRender} from "../../utils/utils";
 const {width, height} = Dimensions.get('window')
-import { useDispatch } from 'react-redux';
-import { getResponsesAction, getUrlAction, updateResponsesAction } from "../../redux/ducks/sendingDuck";
+import { getResponsesAction, getUrlAction, updateResponsesAction, clearProcess } from "../../redux/ducks/sendingDuck";
     
-const SendScreen = ({sending, getResponsesAction, getUrlAction, updateResponsesAction, app}) => {
-    const dispatch = useDispatch();
+const SendScreen = ({sending, getResponsesAction, getUrlAction, updateResponsesAction, clearProcess, app}) => {
     const [responses, setResponses] = useState([]) // Guardados
     const [sent, setSent] = useState([]); // Enviados
     const [tosend, setToSend] = useState([]); // Por enviar
@@ -25,7 +23,6 @@ const SendScreen = ({sending, getResponsesAction, getUrlAction, updateResponsesA
 
     useEffect(()=>{
         if (sending) {
-            //console.log("ARRAY:",sending.respuestas)
             setSent( _.filter(sending.respuestas, ['send', true]) ); 
             setToSend( _.filter(sending.respuestas, ['send', false]));
             setErrores(sending.errores);
@@ -34,23 +31,23 @@ const SendScreen = ({sending, getResponsesAction, getUrlAction, updateResponsesA
             sending.estado === 0 && setBoton("Iniciar envío de respuestas");
             sending.estado === 1 && setBoton("Cancelar");
             sending.estado === 2 ? ( setBoton("Aceptar"), setCompletado(true) ) : setCompletado(false);
-            // console.log("ERRORES:", sending.errores);
-            console.log("estado", sending.estado);
-            console.log("corriendo", corriendo);
-            console.log("completado", completado);
         }
     },[sending]) 
     
     useEffect(()=>{
-        dispatch({type: 'PROCESS_CLEAR'});
         getInitialResponses();
+        clearProcess();
         getUrlAction();
         getResponsesAction();
     }, [])
 
     const getInitialResponses = async () =>{
         let respTemp = await retrieveData("savedResponses");
-        respTemp?.length > 0 &&  setResponses( _.filter( respTemp, ['send', false]) ); 
+        respTemp?.length > 0 && setResponses( _.filter( respTemp, ['send', false]) ); 
+    }
+
+    const handleSending = () => {
+        updateResponsesAction();
     }
 
     return (
@@ -93,7 +90,7 @@ const SendScreen = ({sending, getResponsesAction, getUrlAction, updateResponsesA
                             _light={{bg: app.secondaryColor, _text: {color: app.color ,fontSize:textSizeRender(3.5),
                                     fontFamily:'Poligon_Bold'}}}
                             _pressed={{bg:app.secondaryColorHover, _text: {color: app.color}}}
-                            style={{ width: '90%' }} onPress={ () => updateResponsesAction() } isLoading={fetching}>{boton}</Button>
+                            style={{ width: '90%' }} onPress={ handleSending } isLoading={fetching}>{boton}</Button>
                 </Box>
             </View>
         </MainLayout>
@@ -189,4 +186,5 @@ export default connect(mapState,{
     getResponsesAction,
     getUrlAction,
     updateResponsesAction,
+    clearProcess,
 })(SendScreen);

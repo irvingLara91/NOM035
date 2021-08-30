@@ -48,8 +48,12 @@ export const getResponsesAction = () => {
     return async (dispatch, getState) => {
         dispatch({type: PROCESS_FETCHING, payload: true})
         try {
+            await dispatch(getResponsesAction)
             let getResponses = await retrieveData("savedResponses");
-            getResponses && dispatch({type: UPDATE_RESPONSES, payload: getResponses});
+            if (getResponses?.length > 0){
+                let newResponses = _.filter(getResponses, ['send', false]);
+                newResponses && dispatch({type: UPDATE_RESPONSES, payload: newResponses});
+            }
         } catch (error) {
             //Error
             dispatch({type: PROCESS_FETCHING, payload: false})
@@ -72,10 +76,10 @@ export const savedResponsesAction = () => {
     return async (dispatch, getState) => {
         try {
             let responses = getState().sending.respuestas;
-            const newStorage = _.filter(responses, ['send', false]);
-            //Guardarlas en el AsyncStorage.
-            //newStorage?.length && await storeData('savedResponses', newStorage);
-            console.log("saved");
+            let newStorage = _.filter(responses, ['send', false]);
+            let newErrors = getState().sending.errores;
+            newStorage && await storeData('savedResponses', newStorage);
+            newErrors && await storeData('savedErrores', newErrors);
         } catch (error) {
             console.log("SAVE_ERROR::", error);
         }
@@ -88,7 +92,7 @@ export const updateResponsesAction = () => {
         try {
             let existChanges = _.filter(getState().sending.respuestas, ['send', false]).length;
             if ( getState().sending.estado === 0 && existChanges > 0) {
-                await dispatch({type: DELETE_RESPONSES_ERROR});
+                //await dispatch({type: DELETE_RESPONSES_ERROR}); NOTA: descomentar esto, borrar true, actualizar responses en sendScreen para refrescar datos al cancelar.
                 await dispatch(startProcess());
                 await dispatch({type: PROCESS_RUNNING, payload: true})
                 dispatch(initProcess());
@@ -103,31 +107,25 @@ export const updateResponsesAction = () => {
 
 const waitFor = (ms) => new Promise(r => setTimeout(r, ms));
 
-/*
-TAREAS POR HACER: 
-Probar Axios :D 
-Pushear los mensajes de error errores :D 
-*/
-
 /*PROCESO*/
 export const initProcess = () => async(dispatch, getState) => {
     try {
-        let responses = getState().sending.respuestas;
+        let responses = await getState().sending.respuestas;
         let urlApi = await joinURL(getState().sending.url, 'nom035'); 
         await asyncForEach(responses, async (item, index, array) => {
             if (getState().sending.estado !== 0){ 
                 if (!item.send){
-                    await waitFor(500);
-                    await axios.post(urlApi, responses).then(async(response) => {
-                        console.log("AXIOS_RESPONSE::", response);
-                        await dispatch(updateResponse(index)); 
+                    await index === 0 && await waitFor(200);
+                    await axios.post(urlApi, [item]).then(async(response) => {
+                        response.data[0].status === 0 ? await dispatch(updateResponse(index)) : await dispatch(deleteResponse(item, index, response.data[0]));
+                        await getState().sending.estado === 0 && await waitFor(200);
                     }).catch(async (error) => {
-                        console.log("AXIOS_ERROR::", error);
-                        await dispatch(deleteResponse(item, index));
+                        await dispatch(deleteResponse(item, index, {error}));
+                        await getState().sending.estado === 0 && await waitFor(200);
                     });
-                    dispatch(savedResponsesAction());
+                    await dispatch(savedResponsesAction());
+                    array.length == index + 1 && dispatch(completeProcess()); 
                 }
-                array.length == index + 1 && dispatch(completeProcess()); 
             } else {
                 dispatch({type: PROCESS_FETCHING, payload: true})
                 console.log("Envio cancelado...")
@@ -146,25 +144,31 @@ export const updateResponse = (index) => {
             let respuestas= getState().sending.respuestas;
             respuestas[index].send = true;
             await dispatch({ type: UPDATE_RESPONSES, payload:respuestas });
-            console.log("update");
         } catch (error) {
             //Error
         }
     };
 }
 
-export const deleteResponse = (item, index) => {
+export const deleteResponse = (respuesta, index, error) => {
     return async (dispatch, getState) => {
         try {
             let respuestas= getState().sending.respuestas;
             respuestas[index].send = true;
             await dispatch({ type: UPDATE_RESPONSES, payload:respuestas });
-            await dispatch({ type: UPDATE_RESPONSES_ERROR, payload:item });
-            console.log("error");
+            
+            let objError = {respuesta, error}
+            await dispatch({ type: UPDATE_RESPONSES_ERROR, payload: objError});
         } catch (error) {
             //Error        
         }
     };
+}
+
+export const clearProcess = () => {
+    return ({
+        type: PROCESS_CLEAR,
+    })
 }
 
 export const startProcess = () => {
