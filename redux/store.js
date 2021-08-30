@@ -5,6 +5,7 @@ import configReducer,{getConfigAction} from "./ducks/configDuck";
 import responsesReducer ,{getSavedResponsesAction} from "./ducks/responsesDuck";
 import sendingDuck, {getResponsesAction} from "./ducks/sendingDuck";
 import appReducer from './ducks/appDuck'
+import progressCountReducer from "./ducks/progressCountDuck";
 
 
 const rootReducer = combineReducers({
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     nom035: nom035Duck,
     config:configReducer,
     savedResponses:responsesReducer,
-    sending: sendingDuck
+    sending: sendingDuck,
+    countResponse:progressCountReducer
 })
 
 export const store = createStore(

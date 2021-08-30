@@ -6,6 +6,7 @@ import QuestionComponent from "../../components/QuestionComponent";
 import {responseQuestion} from "../../redux/ducks/nom035Duck";
 import {retrieveData, storeData} from "../../helpers/storage"
 import _ from 'lodash'
+import {getCountAction, saveCountAction} from "../../redux/ducks/progressCountDuck";
 
 const SectionComponent = ({
                               navigation,
@@ -16,7 +17,9 @@ const SectionComponent = ({
                               nom035,
                               responseQuestion,
                               currentAssessment = 1,
-                              onNextAssessment
+                              onNextAssessment,
+                              countResponse,
+                              getCountAction, saveCountAction
                           }) => {
 
 
@@ -65,12 +68,23 @@ const SectionComponent = ({
     }
 
 
+    useEffect(()=>{
+        getCountAction()
+
+        console.log(countResponse)
+    },[])
+
     const onSetValueQuestion = (question_index, value, section) => {
         try {
             if (question_index + 1 < numQuestions) {
                 console.log(numEncuesta, question_index, value)
                 responseQuestion(numEncuesta, question_index, value)
                 setCurrentQuestion(currentQuestion + 1)
+                if (countResponse.count_responses!==0) {
+                    saveCountAction(countResponse.count_responses)
+                }else {
+                    saveCountAction(currentQuestion + 1)
+                }
             } else {
                 responseQuestion(numEncuesta, question_index, value)
                 onNextAssessment()
@@ -146,6 +160,8 @@ const SectionComponent = ({
 
             {
                 modeDev ? <Box>
+                    <Text>Contador: {currentQuestion} / {totalQuestions}</Text>
+
                     <Text>vref: {vref} , preguntas: {encuesta ? encuesta.preguntas.length : 0}</Text>
                     <Text style={{fontSize: 20}}>{JSON.stringify(nom035)}</Text>
                 </Box> : null
@@ -158,10 +174,12 @@ const SectionComponent = ({
 
 const mapState = (state) => {
     return {
-        nom035: state.nom035
+        nom035: state.nom035,
+        countResponse:state.countResponse
+
     }
 }
 
 export default connect(mapState, {
-    responseQuestion
+    responseQuestion,getCountAction,saveCountAction
 })(SectionComponent);
