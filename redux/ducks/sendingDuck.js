@@ -10,6 +10,8 @@ const initialData = {
     fetching: false, 
     running: false, 
     url: null,
+    logErrores: [],
+    logExitosos: [],
 }
 
 const UPDATE_URL = 'UPDATE_URL';
@@ -20,6 +22,10 @@ const PROCESS_FETCHING = 'FETCHING';
 const PROCESS_STATE = 'PROCESS_STATE';
 const PROCESS_RUNNING = 'PROCESS_RUNNING';
 const PROCESS_CLEAR = 'PROCESS_CLEAR';
+const UPDATE_LOG_SUCCESS = 'UPDATE_LOG_SUCCESS';
+const UPDATE_LOG_ERRORS = 'UPDATE_SUCCLOG_ERRORS';
+const CLEAR_LOG = 'CLEAR_LOG';
+
 
 const sendingDuck = (state = initialData, action) => {
     switch (action.type) {
@@ -39,6 +45,12 @@ const sendingDuck = (state = initialData, action) => {
             return {...state, running:action.payload}
         case PROCESS_CLEAR:
             return {...state, errores: [], estado: 0, running: false}
+        case CLEAR_LOG:
+            return {...state, logErrores: [], logExitosos: []}
+        case UPDATE_LOG_ERRORS:
+            return {...state, logErrores: [...state.logErrores, action.payload]}
+        case UPDATE_LOG_SUCCESS:
+            return {...state, logExitosos: [...state.logExitosos, action.payload]}
         default:
             return state
     }
@@ -89,8 +101,8 @@ export const savedResponsesAction = () => {
         try {
             let responses = getState().sending.respuestas;
             let newStorage = _.filter(responses, ['send', false]);
-            let newErrors = getState().sending.errores;
             newStorage && await storeData('savedResponses', newStorage);
+            let newErrors = getState().sending.errores;
             newErrors && await storeData('savedErrores', newErrors);
         } catch (error) {
             console.log("SAVE_ERROR::", error);
@@ -127,13 +139,13 @@ export const initProcess = () => async(dispatch, getState) => {
         await asyncForEach(responses, async (item, index, array) => {
             if (getState().sending.estado !== 0){ 
                 if (!item.send){
-                    await index === 0 && await waitFor(200);
+                    await index === 0 && await waitFor(100);
                     await axios.post(urlApi, [item]).then(async(response) => {
-                        response.data[0].status === 0 ? await dispatch(updateResponse(index)) : await dispatch(deleteResponse(item, index, response.data[0]));
-                        await getState().sending.estado === 0 && await waitFor(200);
+                        response.data[0].status === 0 ? await dispatch(updateResponse(item, index)) : await dispatch(deleteResponse(item, index, response.data[0]));
+                        await getState().sending.estado === 0 && await waitFor(100);
                     }).catch(async (error) => {
                         await dispatch(deleteResponse(item, index, {error}));
-                        await getState().sending.estado === 0 && await waitFor(200);
+                        await getState().sending.estado === 0 && await waitFor(100);
                     });
                     await dispatch(savedResponsesAction());
                     array.length == index + 1 && dispatch(completeProcess()); 
@@ -150,12 +162,13 @@ export const initProcess = () => async(dispatch, getState) => {
     }
 }
 
-export const updateResponse = (index) => {
+export const updateResponse = (respuesta, index) => {
     return async (dispatch, getState) => {
         try {
             let respuestas= getState().sending.respuestas;
             respuestas[index].send = true;
             await dispatch({ type: UPDATE_RESPONSES, payload:respuestas });
+            await dispatch({ type: UPDATE_LOG_SUCCESS, payload:respuesta });
         } catch (error) {
             //Error
         }
@@ -171,6 +184,7 @@ export const deleteResponse = (respuesta, index, error) => {
             
             let objError = {respuesta, error}
             await dispatch({ type: UPDATE_RESPONSES_ERROR, payload: objError});
+            await dispatch({ type: UPDATE_LOG_ERRORS, payload: objError});
         } catch (error) {
             //Error        
         }
@@ -201,6 +215,12 @@ export const completeProcess = () => {
     return ({
         type: PROCESS_STATE,
         payload: 2
+    })
+}
+
+export const clearLog = () => {
+    return ({
+        type: CLEAR_LOG,
     })
 }
 

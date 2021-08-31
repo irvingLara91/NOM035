@@ -16,6 +16,7 @@ import HomeSettings from "./screens/settings/HomeSettings";
 import UsersUpdate from "./screens/settings/UsersUpdate";
 import KhorConfig from "./screens/settings/KhorConfig";
 import SendScreen from "./screens/settings/SendScreen";
+import ResponsesLog from "./screens/settings/ResponsesLog";
 import {useFonts} from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 
@@ -187,6 +188,19 @@ export default function App({iconSettings}) {
                                     },
                                 }
                             } component={SendScreen}/>
+                            <Stack.Screen name="ResponsesLog" options={
+                                {
+                                    title: 'Respuestas enviadas a KHOR',
+                                    headerStyle: {
+                                        backgroundColor: store.getState().app.color,
+                                    },
+                                    headerTintColor: store.getState().app.secondaryColor,
+                                    headerTitleStyle: {
+                                        fontFamily:'Poligon_Regular',
+                                        fontSize: textSizeRender(3.5)
+                                    },
+                                }
+                            } component={ResponsesLog}/>
                             <Stack.Screen name="SociodemographicPage" options={
                                 {
                                     title: 'Datos sociodemográficos',

@@ -14,7 +14,7 @@ const {width, height} = Dimensions.get('window')
 import {saveConfigAction} from "../../redux/ducks/configDuck";
 import {saveUrlAction} from "../../redux/ducks/sendingDuck";
 
-const KhorConfig = (props) => {
+const KhorConfig = ({app, config, sending, saveConfigAction, saveUrlAction}) => {
 
     const [datastate, setDatastate] = useState(null);
     const [inputstate, setInputstate] = useState('');
@@ -24,17 +24,15 @@ const KhorConfig = (props) => {
     const [titleModal, setTitleModal] = useState('');
     const [messageModal, setMessageModal] = useState('');
 
-
-    const getConfig = () => {
-        let configTemp = props.config.config;
-        configTemp && setDatastate(configTemp);
-    }
+    useEffect(()=>{
+        let urlTemp = sending.url;
+        urlTemp && setInputstate(urlTemp);
+    },[sending]);
 
     useEffect(()=>{
-        getConfig();
-        let urlTemp = props.sending.url;
-        urlTemp && setInputstate(urlTemp);
-    },[]);
+        let configTemp = config.config;
+        configTemp && setDatastate(configTemp);
+    },[config]);
 
     const pickDocument = async () => {
         try {
@@ -55,7 +53,6 @@ const KhorConfig = (props) => {
                 setIsErrorModal(true);
                 setVisible(true);
             }
-            getConfig();
         } catch (error){
             console.log(error)
         }
@@ -63,8 +60,8 @@ const KhorConfig = (props) => {
 
     const saveConfig = async( data ) => {
         if ( data.hasOwnProperty('empresa') && data.hasOwnProperty('cuestionarios') ){
-            await storeData("config", data );
-            await props.saveConfigAction(data)
+            await storeData("configkhor", data );
+            await saveConfigAction(data)
             return true;
         } else {
             return false;
@@ -73,7 +70,7 @@ const KhorConfig = (props) => {
 
     const inputSubmit = async() => {
         if (validURL(inputstate) && storeData("khorurl", inputstate)){
-            await props.saveUrlAction(inputstate); 
+            saveUrlAction(inputstate); 
             setTitleModal("")
             setMessageModal("URL guardada")
             setIsErrorModal(false)
@@ -91,11 +88,11 @@ const KhorConfig = (props) => {
         <MainLayout>
             <View style={ styles.container }>
                 <View style={ styles.sectionOne }>
-                    <Text style={{fontFamily:'Poligon_Regular',marginBottom:0, color:props.app.color,fontSize:textSizeRender(4), textAlign:'center' }} size="lg" mb={3}>
+                    <Text style={{fontFamily:'Poligon_Regular',marginBottom:0, color:app.color,fontSize:textSizeRender(4), textAlign:'center' }} size="lg" mb={3}>
                         Configuración
                     </Text>
                     <Image style={{ width: width*.35, height:width*.15, resizeMode: "contain", }} source={require("../../assets/logokhor.png")} />
-                    <Text style={{fontFamily:'Poligon_Bold',marginBottom:5, color:props.app.color,fontSize:textSizeRender(4), textAlign:'center' }} size="lg" mb={3}>
+                    <Text style={{fontFamily:'Poligon_Bold',marginBottom:5, color:app.color,fontSize:textSizeRender(4), textAlign:'center' }} size="lg" mb={3}>
                         Instancia KHOR
                     </Text>
                     <Box style={{ display: 'flex', flexDirection: 'row' }}>
@@ -110,9 +107,9 @@ const KhorConfig = (props) => {
                         />
                     </Box>
                     <Button size={'lg'}
-                            _light={{bg: props.app.secondaryColor, _text: {color: props.app.color ,fontSize:textSizeRender(3.5),
+                            _light={{bg: app.secondaryColor, _text: {color: app.color ,fontSize:textSizeRender(3.5),
                                     fontFamily:'Poligon_Bold'}}}
-                            _pressed={{bg:props.app.secondaryColorHover, _text: {color: props.app.color}}}
+                            _pressed={{bg:app.secondaryColorHover, _text: {color: app.color}}}
                             style={{ marginTop: 16, width: '60%' }} onPress={() => inputSubmit()}>Guardar</Button>
                 </View>               
                 <View style={ styles.sectionTwo } flex={1}>
@@ -131,22 +128,22 @@ const KhorConfig = (props) => {
                             )}
                         </ScrollView> 
                     :
-                        <Text style={{fontFamily:'Poligon_Bold',marginBottom:0, color:props.app.color,fontSize:textSizeRender(4), textAlign:'center' }} size="lg" mb={3}>
+                        <Text style={{fontFamily:'Poligon_Bold',marginBottom:0, color:app.color,fontSize:textSizeRender(4), textAlign:'center' }} size="lg" mb={3}>
                             Carga una configuración inicial</Text>
                     } 
                 </View>
                 <Box style={{ display: 'flex', alignItems: 'center' }} my={4}>
                     <Button size={'lg'}
-                            _light={{bg: props.app.secondaryColor, _text: {color: props.app.color ,fontSize:textSizeRender(3.5),
+                            _light={{bg: app.secondaryColor, _text: {color: app.color ,fontSize:textSizeRender(3.5),
                                     fontFamily:'Poligon_Bold'}}}
-                            _pressed={{bg:props.app.secondaryColorHover, _text: {color: props.app.color}}}
+                            _pressed={{bg:app.secondaryColorHover, _text: {color: app.color}}}
                             style={{width:'90%'}}
                             onPress={() => pickDocument()}>Cargar configuración</Button>
                 </Box>
             </View>
             {
                 visible &&
-                <GenericModal app={props.app} visible={visible} setVisible={setVisible} isError={isErrorModal} title={titleModal} text={messageModal}/>
+                <GenericModal app={app} visible={visible} setVisible={setVisible} isError={isErrorModal} title={titleModal} text={messageModal}/>
             }
         </MainLayout>
     )
@@ -217,9 +214,10 @@ const styles = StyleSheet.create({
 
 const mapState = (state) => {
     return {
-        app:state.app,
-        config:state.config,
-        sending:state.sending,
+        app: state.app,
+        config: state.config,
+        sending: state.sending,
     }
 }
+
 export default connect(mapState,{saveConfigAction, saveUrlAction})(KhorConfig);

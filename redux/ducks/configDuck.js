@@ -30,8 +30,8 @@ export default configReducer;
 //funcion action para recuperar configuración del AsyncStorage
 export let getConfigAction = () => async dispatch => {
    try {
-      let storeConfig = await retrieveData("config");
-      if (storeConfig?.lenght > 0) {
+      let storeConfig = await retrieveData("configkhor");
+      if (storeConfig) {
          dispatch({
             type: LOAD_CONFIG_SUCCESS,
             payload: storeConfig

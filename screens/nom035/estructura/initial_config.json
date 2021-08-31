@@ -2,7 +2,7 @@
     "config": {
         "empresa": "18b58dbf-6660-4ca3-9383-c73b082fbcd7",
         "cuestionarios": [1, 3],
-        "idPeriodo": 42,
+        "idPeriodo": 47,
         "Sociodemograficos": [{
            "grupo": "Datos sociodemográficos",
            "datosSociodemograficos": [{

@@ -11,9 +11,9 @@ import {textSizeRender} from "../../utils/utils";
 import {connect} from "react-redux";
 import {store} from "../../redux/store";
 import GenericModal from "../../components/Modals/GenericModal";
-import {saveUrlAction} from "../../redux/ducks/appDuck";
+import {saveUsersAction} from "../../redux/ducks/appDuck";
 
-const UsersUpdate = ({app, saveUrlAction}) => {
+const UsersUpdate = ({app, saveUsersAction}) => {
 
     const [datatable, setDatatable] = useState(null);
     const [visible, setVisible] = useState(false);
@@ -21,17 +21,9 @@ const UsersUpdate = ({app, saveUrlAction}) => {
     const [titleModal, setTitleModal] = useState('');
     const [messageModal, setMessageModal] = useState('');
 
-    const getUsers = async () =>{
-        // await removeData("userslist");
-        let users = app.users;
-        if ( users && users.length > 0  ) {
-            setDatatable(users);
-        } 
-    }
-
     useEffect(()=>{
-        getUsers();
-    },[]);
+        app.users && setDatatable(app.users);
+    },[app]);
 
     const pickDocument = async () => {
         try {
@@ -45,19 +37,16 @@ const UsersUpdate = ({app, saveUrlAction}) => {
             const ws = await wb.Sheets[wsName];
             let usersData = XLSX.utils.sheet_to_json(ws, {header:'1', blankrows: false});
             if( await saveUsers(usersData)){
-                 await setTitleModal("")
-                 await setMessageModal("Carga exitosa")
-                 await setIsErrorModal(false)
-                 await setVisible(true)
+                setTitleModal("")
+                setMessageModal("Carga exitosa")
+                setIsErrorModal(false)
+                setVisible(true)
              }else{
-                 await setTitleModal("")
-                 await setMessageModal("Error en la carga del archivo")
-                 await setIsErrorModal(true)
-                 await setVisible(true)
+                setTitleModal("")
+                setMessageModal("Error en la carga del archivo")
+                setIsErrorModal(true)
+                setVisible(true)
              }
-
-
-            await getUsers();
         } catch (error){
             console.log(error)
         }
@@ -70,10 +59,11 @@ const UsersUpdate = ({app, saveUrlAction}) => {
                     let tempArray = _.difference(datatable, repeated);
                     let newArray = _.orderBy([...tempArray, ...data], ['idParticipante'], ['asc']);
                     storeData("userslist", newArray );
+                    saveUsersAction(newArray);
                 } else {
                     let newArray = _.orderBy(data, ['idParticipante'], ['asc']);
                     storeData("userslist", newArray );
-                    saveUrlAction(newArray);
+                    saveUsersAction(newArray);
                 }
             });
             return true;
@@ -238,4 +228,4 @@ const mapState = (state) => {
     }
 }
 
-export default connect(mapState,{saveUrlAction})(UsersUpdate);
+export default connect(mapState,{saveUsersAction})(UsersUpdate);

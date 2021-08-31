@@ -43,6 +43,10 @@ const HomeSettings = ({navigation,app}) => {
                                 fontFamily:'Poligon_Bold'}}}
                                 _pressed={{bg: app.secondaryColorHover, _text: {color: app.color}}}
                                 style={[{borderRadius: 12}]} onPress={() => navigation.navigate('SendScreen')} loading={loading}>Enviar respuestas</Button>
+                        <Button size={'lg'}  _light={{bg: app.secondaryColor, _text: {color: app.color ,fontSize:textSizeRender(3.5),
+                                fontFamily:'Poligon_Bold'}}}
+                                _pressed={{bg: app.secondaryColorHover, _text: {color: app.color}}}
+                                style={[{borderRadius: 12, marginTop: 20}]} onPress={() => navigation.navigate('ResponsesLog')} loading={loading}>Log respuestas</Button>
 
                         <Image resizeMode={'contain'} style={{width: width*.3, height:width*.24,alignSelf:'center'}}
                                source={require('../../assets/logokhor.png')}/>
