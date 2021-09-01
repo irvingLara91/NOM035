@@ -8,7 +8,7 @@ import {textSizeRender} from "../../utils/utils";
 const {width, height} = Dimensions.get('window')
 
 
-const HomeSettings = ({navigation,app, config}) => {
+const HomeSettings = ({navigation,app}) => {
     const [loading,setLoading] = useState(false)
     const toast = useToast();
 
@@ -16,7 +16,6 @@ const HomeSettings = ({navigation,app, config}) => {
 
     useEffect(() => {
         setadmin(app.user_admin);
-        console.log(config);
     }, [app])
 
     return (

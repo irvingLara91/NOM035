@@ -26,7 +26,7 @@ const LoginAdmin = ({navigation,app, saveUserAdminAction}) => {
 
     const validateAdmin=()=>{
         const {USER_ADMIN, USER_PASSWORD_ADMIN, USER_QA, USER_PASSWORD_QA} = config;
-        console.log(USER_ADMIN, USER_PASSWORD_ADMIN)
+        // console.log(USER_ADMIN, USER_PASSWORD_ADMIN)
         setLoading(true)
 
         if(!userName || !password) {
