@@ -37,7 +37,7 @@ const ResponsesLog = ({sending, getResponsesAction, clearLog, app}) => {
                 <View style={ styles.sectionHead }>
                     <Image style={{ width: width*.35, height:width*.15, resizeMode: "contain", }} source={require("../../assets/logokhor.png")} />
                     <Text style={{fontFamily:'Poligon_Bold',marginBottom:5, color:app.color,fontSize:textSizeRender(4), textAlign:'center' }} size="lg" mb={3}>
-                        Enviar respuestas a KHOR
+                        Respuestas enviadas a KHOR
                     </Text>
                 </View>               
                 <View style={ styles.sectionSquare } flex={1}>

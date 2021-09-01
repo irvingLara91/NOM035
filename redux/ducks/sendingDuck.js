@@ -167,7 +167,7 @@ export const updateResponse = (respuesta, index) => {
         try {
             let respuestas= getState().sending.respuestas;
             respuestas[index].send = true;
-            await dispatch({ type: UPDATE_RESPONSES, payload:respuestas });
+            await dispatch({ type: UPDATE_RESPONSES, payload:respuestas});
             await dispatch({ type: UPDATE_LOG_SUCCESS, payload:respuesta });
         } catch (error) {
             //Error
@@ -180,7 +180,7 @@ export const deleteResponse = (respuesta, index, error) => {
         try {
             let respuestas= getState().sending.respuestas;
             respuestas[index].send = true;
-            await dispatch({ type: UPDATE_RESPONSES, payload:respuestas });
+            await dispatch({ type: UPDATE_RESPONSES, payload:respuestas});
             
             let objError = {respuesta, error}
             await dispatch({ type: UPDATE_RESPONSES_ERROR, payload: objError});

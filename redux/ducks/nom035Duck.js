@@ -36,7 +36,7 @@ export let initResponseNom035 = (cuestionarios,empresa,idPeriodo,idParticipante)
 
     cuestionarios.map((cuestionario,i)=>{
         respuestas.push({
-            cuestionario:i+1,
+            cuestionario:cuestionario.vref,
             respuestas:cuestionario.preguntas.map((e)=> 0).join('')
         })
     })
