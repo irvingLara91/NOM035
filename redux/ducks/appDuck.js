@@ -15,13 +15,15 @@ const initialData = {
     url_base:'',
     url_term:'',
     name: '',
-    users: null
+    users: null,
+    user_admin: '',
 }
 
 const LOAD_APP_DATA = 'LOAD_APP_DATA'
 const LOAD_APP_DATA_SUCCESS = 'LOAD_APP_DATA_SUCCESS'
 const LOAD_APP_DATA_ERROR = 'LOAD_APP_DATA_ERROR'
 const UPDATE_USERS = 'UPDATE_USERS'
+const UPDATE_USER_ADMIN = 'UPDATE_USER_ADMIN'
 
 // reducer
 const appReducer = (state = initialData, action) => {
@@ -35,6 +37,8 @@ const appReducer = (state = initialData, action) => {
             return {...state, error_msg: action.payload, fetching: false}
         case UPDATE_USERS:
             return {...state, users:action.payload}
+        case UPDATE_USER_ADMIN:
+            return {...state, user_admin:action.payload}
         default:
             return state
     }
@@ -56,10 +60,20 @@ export const getUsersAction = () => {
     };
 }
 
-export const saveUsersAction = (url) => {
+export const saveUsersAction = (data) => {
     return async (dispatch, getState) => {
         try {
-            dispatch({type: UPDATE_USERS, payload: url});
+            dispatch({type: UPDATE_USERS, payload: data});
+        } catch (error) {
+            //Error
+        }
+    }
+}
+
+export const saveUserAdminAction = (admin) => {
+    return async (dispatch, getState) => {
+        try {
+            dispatch({type: UPDATE_USER_ADMIN, payload: admin});
         } catch (error) {
             //Error
         }

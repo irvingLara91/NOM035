@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {Box,Button, Heading, Center, VStack, Flex, ScrollView, useToast} from "native-base";
 import {connect} from "react-redux";
 import MainLayout from "../../layouts/MainLayout";
@@ -6,10 +6,18 @@ import config from "../../config"
 import {Dimensions, Image, Text, View} from "react-native";
 import {textSizeRender} from "../../utils/utils";
 const {width, height} = Dimensions.get('window')
+
+
 const HomeSettings = ({navigation,app}) => {
     const [loading,setLoading] = useState(false)
+    const toast = useToast();
 
-    const toast = useToast()
+    const [admin, setadmin] = useState('')
+
+    useEffect(() => {
+        setadmin(app.user_admin);
+        console.log(app.user_admin);
+    }, [app])
 
     return (
         <MainLayout>
@@ -43,10 +51,13 @@ const HomeSettings = ({navigation,app}) => {
                                 fontFamily:'Poligon_Bold'}}}
                                 _pressed={{bg: app.secondaryColorHover, _text: {color: app.color}}}
                                 style={[{borderRadius: 12}]} onPress={() => navigation.navigate('SendScreen')} loading={loading}>Enviar respuestas</Button>
-                        <Button size={'lg'}  _light={{bg: app.secondaryColor, _text: {color: app.color ,fontSize:textSizeRender(3.5),
-                                fontFamily:'Poligon_Bold'}}}
-                                _pressed={{bg: app.secondaryColorHover, _text: {color: app.color}}}
-                                style={[{borderRadius: 12, marginTop: 20}]} onPress={() => navigation.navigate('ResponsesLog')} loading={loading}>Log respuestas</Button>
+                        {
+                            admin === "admin" && 
+                            <Button size={'lg'}  _light={{bg: app.secondaryColor, _text: {color: app.color ,fontSize:textSizeRender(3.5),
+                                    fontFamily:'Poligon_Bold'}}}
+                                    _pressed={{bg: app.secondaryColorHover, _text: {color: app.color}}}
+                                    style={[{borderRadius: 12, marginTop: 20}]} onPress={() => navigation.navigate('ResponsesLog')} loading={loading}>Log respuestas</Button>
+                        }
 
                         <Image resizeMode={'contain'} style={{width: width*.3, height:width*.24,alignSelf:'center'}}
                                source={require('../../assets/logokhor.png')}/>

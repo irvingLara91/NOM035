@@ -8,10 +8,11 @@ import {Dimensions, Image, StyleSheet, TextInput, Text, View, TouchableOpacity} 
 import {textSizeRender} from "../../utils/utils";
 import {store} from "../../redux/store";
 import GenericModal from "../../components/Modals/GenericModal";
+import {saveUserAdminAction} from "../../redux/ducks/appDuck";
 
 const {width, height} = Dimensions.get('window')
 
-const LoginAdmin = ({navigation,app}) => {
+const LoginAdmin = ({navigation,app, saveUserAdminAction}) => {
 
     const [userName, setUserName] = useState("")
     const [password, setPassword] = useState("")
@@ -38,6 +39,7 @@ const LoginAdmin = ({navigation,app}) => {
         }
 
         if(USER_ADMIN===userName && USER_PASSWORD_ADMIN===password){
+            saveUserAdminAction(userName); 
             setTimeout(
                 () => {
                     navigation.navigate('HomeConfig')
@@ -168,4 +170,4 @@ const mapState = (state) => {
     }
 }
 
-export default connect(mapState)(LoginAdmin);
+export default connect(mapState, {saveUserAdminAction})(LoginAdmin);
