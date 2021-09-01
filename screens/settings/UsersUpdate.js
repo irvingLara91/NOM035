@@ -78,6 +78,7 @@ const UsersUpdate = ({app, saveUsersAction}) => {
             if( users.hasOwnProperty('idParticipante') && users.hasOwnProperty('username') && users.hasOwnProperty('password') ) {
                 if ( datatable && datatable.length > 0 ){
                     let userExist = _.find( datatable, {'idParticipante': users.idParticipante} )
+                    console.log("userExist::", userExist);
                     userExist ? resolve(userExist) : resolve();
                 } else {
                     resolve();

@@ -77,11 +77,12 @@ const LoginUser = ({navigation, savedResponses, app}) => {
             setLoading(false)
             return false
         }
-        let isUser = _.find(users, {'username': userName.toString().trim()})
+        let isUser = _.find(users, function(o) { return o.username.toString().trim() === userName.trim(); });
+        // typeof userName === 'string' && console.log("IS STRING");
         if (isUser) {
             //existe el usuario en el arreglo de usuarios
-            let pass = isUser.password.toString()
-            if (pass.toString().trim() !== password.trim()) {
+            let pass = isUser.password.toString().trim();
+            if (pass !== password.trim()) {
                 setTitleModal("")
                 setMessageModal("Las credenciales son inválidas")
                 setIsErrorModal(true)
