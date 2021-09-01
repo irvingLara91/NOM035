@@ -8,7 +8,7 @@ import {textSizeRender} from "../../utils/utils";
 const {width, height} = Dimensions.get('window')
 
 
-const HomeSettings = ({navigation,app}) => {
+const HomeSettings = ({navigation,app, config}) => {
     const [loading,setLoading] = useState(false)
     const toast = useToast();
 
@@ -16,7 +16,7 @@ const HomeSettings = ({navigation,app}) => {
 
     useEffect(() => {
         setadmin(app.user_admin);
-        console.log(app.user_admin);
+        console.log(config);
     }, [app])
 
     return (
@@ -52,7 +52,7 @@ const HomeSettings = ({navigation,app}) => {
                                 _pressed={{bg: app.secondaryColorHover, _text: {color: app.color}}}
                                 style={[{borderRadius: 12}]} onPress={() => navigation.navigate('SendScreen')} loading={loading}>Enviar respuestas</Button>
                         {
-                            admin === "admin" && 
+                            admin === "testing" && 
                             <Button size={'lg'}  _light={{bg: app.secondaryColor, _text: {color: app.color ,fontSize:textSizeRender(3.5),
                                     fontFamily:'Poligon_Bold'}}}
                                     _pressed={{bg: app.secondaryColorHover, _text: {color: app.color}}}

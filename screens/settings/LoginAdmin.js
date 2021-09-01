@@ -25,7 +25,7 @@ const LoginAdmin = ({navigation,app, saveUserAdminAction}) => {
     const [messageModal, setMessageModal] = useState('');
 
     const validateAdmin=()=>{
-        const {USER_ADMIN, USER_PASSWORD_ADMIN} = config;
+        const {USER_ADMIN, USER_PASSWORD_ADMIN, USER_QA, USER_PASSWORD_QA} = config;
         console.log(USER_ADMIN, USER_PASSWORD_ADMIN)
         setLoading(true)
 
@@ -38,7 +38,7 @@ const LoginAdmin = ({navigation,app, saveUserAdminAction}) => {
             return false
         }
 
-        if(USER_ADMIN===userName && USER_PASSWORD_ADMIN===password){
+        if( (USER_ADMIN===userName && USER_PASSWORD_ADMIN===password) || (USER_QA===userName && USER_PASSWORD_QA===password)){
             saveUserAdminAction(userName); 
             setTimeout(
                 () => {
