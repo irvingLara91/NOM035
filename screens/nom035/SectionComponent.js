@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Box, Text, Input, Stack, Button, Heading, Center, HStack, Flex, ScrollView, useToast} from "native-base";
-import {Alert} from 'react-native'
+import {Alert, View} from 'react-native'
 import {connect} from "react-redux";
 import QuestionComponent from "../../components/QuestionComponent";
 import {responseQuestion} from "../../redux/ducks/nom035Duck";
@@ -49,8 +49,10 @@ const SectionComponent = ({
     }, [])
 
     const total = () => {
-        if (nom035.respuesta && nom035.respuesta.respuestas[0].respuestas.length > 0 && nom035.respuesta && nom035.respuesta.respuestas[1].respuestas.length > 0) {
+        if (nom035.respuesta && nom035.respuesta.respuestas[0].respuestas.length > 0 && nom035.respuesta && nom035.respuesta.respuestas[1] && nom035.respuesta.respuestas[1].respuestas.length > 0) {
             setTotalQuestions(nom035.respuesta.respuestas[1].respuestas.length + nom035.respuesta.respuestas[0].respuestas.length)
+        }else {
+            setTotalQuestions(nom035.respuesta.respuestas[0].respuestas.length)
         }
     }
 
@@ -71,7 +73,7 @@ const SectionComponent = ({
     useEffect(()=>{
         getCountAction()
 
-        console.log(countResponse)
+        console.log(countResponse.count_responses)
     },[])
 
     const onSetValueQuestion = (question_index, value, section) => {
@@ -80,11 +82,6 @@ const SectionComponent = ({
                 console.log(numEncuesta, question_index, value)
                 responseQuestion(numEncuesta, question_index, value)
                 setCurrentQuestion(currentQuestion + 1)
-                if (countResponse.count_responses!==0) {
-                    saveCountAction(countResponse.count_responses)
-                }else {
-                    saveCountAction(currentQuestion + 1)
-                }
             } else {
                 responseQuestion(numEncuesta, question_index, value)
                 onNextAssessment()
@@ -110,10 +107,12 @@ const SectionComponent = ({
 
     const validateNoSectionsinVref2 = (question_index, value, section) => {
         if (question_index === 40 && value === 0) { // si la pregunta es un SINO y la respuesta es No entonces saltamos la sección
+            saveCountAction(countResponse.count_responses+4)
             setCurrentQuestion(44)
         }
 
         if (question_index === 44 && value === 0) { // si la pregunta es un SINO y la respuesta es No entonces saltamos la sección
+            saveCountAction(totalQuestions)
             onNextAssessment() // lo forzamos al sig encuesta o finalizarla
         }
 
@@ -121,10 +120,12 @@ const SectionComponent = ({
 
     const validateNoSectionsinVref3 = (question_index, value, section) => {
         if (question_index === 64 && value === 0) { // si la pregunta es un SINO y la respuesta es No entonces saltamos la sección
+            saveCountAction(countResponse.count_responses+5)
             setCurrentQuestion(69)
         }
 
         if (question_index === 69 && value === 0) { // si la pregunta es un SINO y la respuesta es No entonces saltamos la sección
+            saveCountAction(totalQuestions)
             onNextAssessment() // lo forzamos al sig encuesta o finalizarla
         }
 
@@ -138,6 +139,7 @@ const SectionComponent = ({
                 setHasYesSection1vref1(true) // si en la primera sección tuvo al menos un SI entonces lo marcamos y lo dejamos continuar
             }
             if (question_index === 5 && !hasYesSection1vref1) { // si no tuvo algun SI entonces lo pasamos a la siguiente encuesta (si la hay)
+                saveCountAction(20)
                 onNextAssessment()
             }
         }
@@ -147,12 +149,11 @@ const SectionComponent = ({
         <Box style={{width: '100%'}}>
 
 
+            <View style={{alignItems:'center'}}><Text>  {countResponse.count_responses} /{totalQuestions}</Text></View>
             <QuestionComponent
                 onSetValueQuestion={onSetValueQuestion}
                 modeDev={modeDev}
                 totalQuestions={totalQuestions}
-                setTotalResponse={setTotalResponse}
-                totalResponse={totalResponse}
                 question={encuesta.preguntas.length >= currentQuestion ? encuesta.preguntas[currentQuestion] : 0}
                 title={encuesta.preguntas.length >= currentQuestion ? _.get(encuesta.preguntas[currentQuestion], 'pregunta', '') : 0}
                 index={currentQuestion}

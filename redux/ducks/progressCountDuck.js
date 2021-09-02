@@ -1,4 +1,4 @@
-import {retrieveData, storeData} from "../../helpers/storage";
+import {removeData, retrieveData, storeData} from "../../helpers/storage";
 
 const initialData = {
     fetching: true,
@@ -6,6 +6,7 @@ const initialData = {
 }
 
 const LOAD_COUNT_DATA = 'LOAD_COUNT_DATA'
+const LOAD_COUNT_DATA_REMOVE = 'LOAD_COUNT_DATA_REMOVE'
 const LOAD_COUNT_SUCCESS = 'LOAD_COUNT_SUCCESS'
 const LOAD_COUNT_ERROR = 'LOAD_COUNT_ERROR'
 
@@ -17,6 +18,9 @@ const progressCountReducer = (state = initialData, action) => {
         case LOAD_COUNT_SUCCESS:
             let newState = {...state, count_responses:action.payload, fetching: false}
             return newState
+        case LOAD_COUNT_DATA_REMOVE:
+            let removeState = {count_responses:0, fetching: false}
+            return removeState
         case LOAD_COUNT_ERROR:
             return {...state, error_msg: action.payload, fetching: false}
         default:
@@ -47,6 +51,15 @@ export const saveCountAction = (count) => async (dispatch, getState) => {
     try{
         dispatch({type: LOAD_COUNT_SUCCESS, payload:count})
         await storeData("countResponse",count);
+    }catch(err){
+        dispatch({type: LOAD_COUNT_ERROR, payload: err})
+    }
+}
+
+export const initialCountAction = () => async (dispatch, getState) => {
+    try{
+        dispatch({type:LOAD_COUNT_DATA_REMOVE})
+        await removeData("countResponse");
     }catch(err){
         dispatch({type: LOAD_COUNT_ERROR, payload: err})
     }

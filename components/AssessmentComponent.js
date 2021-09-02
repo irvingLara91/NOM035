@@ -10,8 +10,9 @@ import { CommonActions } from '@react-navigation/native';
 import SectionComponent from "../screens/nom035/SectionComponent";
 import {savedResponsesAction} from "../redux/ducks/responsesDuck";
 import GenericModal from "./Modals/GenericModal";
+import {initialCountAction} from "../redux/ducks/progressCountDuck";
 
-const AssessmentComponent = ({navigation, title='ejemplo',assment=null,nom035,savedResponsesAction,app}) => {
+const AssessmentComponent = ({navigation, title='ejemplo',assment=null,nom035,savedResponsesAction,app, initialCountAction}) => {
 
     const [currentAssessment, setCurrentAssessment] = useState(0)
     const [assessment, setAssessment] = useState(assment)
@@ -58,6 +59,7 @@ const AssessmentComponent = ({navigation, title='ejemplo',assment=null,nom035,sa
                 setVisible(true)
                 //Alert.alert('Gracias por haber contestado la encuesta!')
                 nom035.respuesta.send = false
+                //initialCountAction()
                 savedResponsesAction(nom035.respuesta)
             }else{
                 setCurrentAssessment(2); // de este nos sirve para cuando es el tipo de assessment 1 y no contesta
@@ -66,6 +68,7 @@ const AssessmentComponent = ({navigation, title='ejemplo',assment=null,nom035,sa
         }else{
             setVisible(true)
             nom035.respuesta.send = false
+            //initialCountAction()
             savedResponsesAction(nom035.respuesta)
             //Alert.alert('Gracias por haber contestado la encuesta!')
         }
@@ -108,4 +111,4 @@ const mapState = (state) => {
     }
 }
 
-export default connect(mapState,{savedResponsesAction})(AssessmentComponent);
+export default connect(mapState,{savedResponsesAction,initialCountAction})(AssessmentComponent);

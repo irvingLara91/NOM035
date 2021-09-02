@@ -19,31 +19,33 @@ const {width, height} = Dimensions.get('window')
 
 import RenderHtml, { defaultSystemFonts } from 'react-native-render-html';
 import {textSizeRender} from "../utils/utils";
+import {saveCountAction} from "../redux/ducks/progressCountDuck";
 const QuestionComponent = ({
                                navigation,
                                title = 'ejemplo',
                                index = 0,
                                question = null,
-                               totalQuestions=0,
-                               totalResponse,
-                               setTotalResponse,
                                onSetValueQuestion,
                                modeDev = false,
-                               app
+                               app,
+                               totalQuestions,
+                               saveCountAction,
+                               countResponse
                            }) => {
 
     const [response, setResponse] = useState(null)
     const [loading, setLoading] = useState(false)
     const [users, setUsers] = useState([])
 
-
-
-    useEffect(()=>{
-        setTotalResponse(totalResponse+1)
-    },[index])
-
-
     const toast = useToast()
+
+
+
+    const saveActionClick=()=>{
+        if (countResponse.count_responses<totalQuestions){
+            saveCountAction(countResponse.count_responses+1)
+        }
+    }
 
     const setValue = (val) => {
         setResponse(val)
@@ -100,7 +102,7 @@ const QuestionComponent = ({
                     color: 'white',
                     padding: 10
 
-                }}>{modeDev ? `Total:${totalQuestions} Section:${question.section} ref:${question.ref}` : ''}</Text>
+                }}>{modeDev ? `Section:${question.section} ref:${question.ref}` : ''}</Text>
             }
 
             <Center>
@@ -138,13 +140,19 @@ const QuestionComponent = ({
                                 _pressed={{borderColor:app.secondaryColor, borderWidth:0,bg: app.secondaryColor, _text: {color: app.color}}}
                             /***fin***/
                                 style={{marginRight: 20, width: '50%'}} isLoading={loading}
-                                onPress={() => setValue(1)}>Si</Button>
+                                onPress={() => {
+                                    saveActionClick()
+                                    setValue(1)
+                                }}>Si</Button>
                         <Button size={'lg'}
                             /*Cambiar colores del botón */
                                 _light={{borderColor:app.color, borderWidth:2,bg: app.fontColor, _text: {color: app.color,fontFamily: 'Poligon_Bold'}}}
                                 _pressed={{borderColor:app.secondaryColor, borderWidth:0,bg: app.secondaryColor, _text: {color: app.color}}}
                             /***fin***/
-                                isLoading={loading} style={{width: '50%'}} onPress={() => setValue(0)}>No</Button>
+                                isLoading={loading} style={{width: '50%'}} onPress={() => {
+                            saveActionClick()
+                            setValue(0)
+                        }}>No</Button>
                     </View> : null
                 }
 
@@ -158,29 +166,44 @@ const QuestionComponent = ({
                                 _light={{borderColor:app.color, borderWidth:2,bg: app.fontColor, _text: {color: app.color,fontFamily: 'Poligon_Bold'}}}
                                 _pressed={{borderColor:app.secondaryColor, borderWidth:0,bg: app.secondaryColor, _text: {color: app.color}}}
                                 style={{marginBottom: 20, width: '100%'}} isLoading={loading}
-                                onPress={() => setValue(question.tipo === '4desc' ? 0 : 4)}>Siempre</Button>
+                                onPress={() => {
+                                    saveActionClick()
+                                    setValue(question.tipo === '4desc' ? 0 : 4)
+                                }}>Siempre</Button>
                         <Button size={'lg'}
                                 _light={{borderColor:app.color, borderWidth:2,bg: app.fontColor, _text: {color: app.color,fontFamily: 'Poligon_Bold'}}}
                                 _pressed={{borderColor:app.secondaryColor, borderWidth:0,bg: app.secondaryColor, _text: {color: app.color}}}
                                 isLoading={loading}
                                 style={{marginBottom: 20, width: '100%'}}
-                                onPress={() => setValue(question.tipo === '4desc' ? 1 : 3)}>Casi siempre</Button>
+                                onPress={() => {
+                                    saveActionClick()
+                                    setValue(question.tipo === '4desc' ? 1 : 3)
+                                }}>Casi siempre</Button>
                         <Button size={'lg'}
                                 _light={{borderColor:app.color, borderWidth:2,bg: app.fontColor, _text: {color: app.color,fontFamily: 'Poligon_Bold'}}}
                                 _pressed={{borderColor:app.secondaryColor, borderWidth:0,bg: app.secondaryColor, _text: {color: app.color}}}
                                 isLoading={loading}
                                 style={{marginBottom: 20, width: '100%'}}
-                                onPress={() => setValue(question.tipo === '4desc' ? 2 : 2)}>Algunas veces</Button>
+                                onPress={() => {
+                                    saveActionClick()
+                                    setValue(question.tipo === '4desc' ? 2 : 2)
+                                }}>Algunas veces</Button>
                         <Button size={'lg'}     _light={{borderColor:app.color, borderWidth:2,bg: app.fontColor, _text: {color: app.color,fontFamily: 'Poligon_Bold'}}}
                                 _pressed={{borderColor:app.secondaryColor, borderWidth:0,bg: app.secondaryColor, _text: {color: app.color}}}
                                 isLoading={loading}
                                 style={{marginBottom: 20, width: '100%'}}
-                                onPress={() => setValue(question.tipo === '4desc' ? 3 : 1)}>Casi nunca</Button>
+                                onPress={() => {
+                                    saveActionClick()
+                                    setValue(question.tipo === '4desc' ? 3 : 1)
+                                }}>Casi nunca</Button>
                         <Button size={'lg'}     _light={{borderColor:app.color, borderWidth:2,bg: app.fontColor, _text: {color: app.color,fontFamily: 'Poligon_Bold'}}}
                                 _pressed={{borderColor:app.secondaryColor, borderWidth:0,bg: app.secondaryColor, _text: {color: app.color}}}
                                 isLoading={loading}
                                 style={{marginBottom: 20, width: '100%'}}
-                                onPress={() => setValue(question.tipo === '4desc' ? 4 : 0)}>Nunca</Button>
+                                onPress={() => {
+                                    saveActionClick()
+                                    setValue(question.tipo === '4desc' ? 4 : 0)
+                                }}>Nunca</Button>
                     </VStack> : null
             }
         </Box>
@@ -190,8 +213,9 @@ const QuestionComponent = ({
 const mapState = (state) => {
     return {
         app: state.app,
-        productsDuck: state.productsDuck
+        productsDuck: state.productsDuck,
+        countResponse:state.countResponse
     }
 }
 
-export default connect(mapState)(QuestionComponent);
+export default connect(mapState,{saveCountAction})(QuestionComponent);

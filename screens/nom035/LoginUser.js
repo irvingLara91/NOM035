@@ -4,17 +4,18 @@ import {connect} from "react-redux";
 import MainLayout from "../../layouts/MainLayout";
 import config from "../../config"
 import _ from 'lodash'
-import {retrieveData, storeData} from "../../helpers/storage"
+import {removeData, retrieveData, storeData} from "../../helpers/storage"
 import {Dimensions, TextInput, Image, View, StyleSheet} from 'react-native'
 import {textSizeRender} from "../../utils/utils";
 import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scrollview";
 import {store} from "../../redux/store";
 import GenericModal from "../../components/Modals/GenericModal";
+import {initialCountAction} from "../../redux/ducks/progressCountDuck";
 
 let logo = require('../../assets/logoa.png')
 const {width, height} = Dimensions.get('window')
 
-const LoginUser = ({navigation, savedResponses, app}) => {
+const LoginUser = ({navigation, savedResponses, app,initialCountAction}) => {
 
     const [userName, setUserName] = useState("")
     const [password, setPassword] = useState("")
@@ -65,6 +66,7 @@ const LoginUser = ({navigation, savedResponses, app}) => {
                 "password": 123,
                 "username": "ilara9",
             })
+            await initialCountAction()
             navigation.navigate('AssessmentNom035')
             return true
         }
@@ -91,6 +93,7 @@ const LoginUser = ({navigation, savedResponses, app}) => {
             }
             setLoading(false)
             await storeData('devmode', {dev: false})
+            await initialCountAction()
             setTitleModal("")
             setMessageModal(`Bienvenido ${isUser.nombre} ${isUser.apellido}`)
             setIsErrorModal(false)
@@ -221,4 +224,4 @@ const mapState = (state) => {
     }
 }
 
-export default connect(mapState)(LoginUser);
+export default connect(mapState,{initialCountAction})(LoginUser);
