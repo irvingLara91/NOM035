@@ -34,8 +34,8 @@ const HomeScreen = ({productsDuck, navigation, app}) => {
         <MainLayout>
             <View style={{width: width, height: height,backgroundColor:'white'}}>
                 <View style={{width: width, alignSelf: 'center', flex: 1}}>
-                    <Image style={{width: width, height:'100%',alignSelf:'center'}}
-                           source={require('../assets/logo_khor.jpeg')}/>
+                    <Image style={{width: width, height:'100%', alignSelf:'center'}}
+                           source={require('../assets/logo_khor.png')}/>
                 </View>
 
                 <View style={{

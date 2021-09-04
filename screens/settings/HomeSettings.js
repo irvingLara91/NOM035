@@ -58,8 +58,8 @@ const HomeSettings = ({navigation,app}) => {
                                     style={[{borderRadius: 12, marginTop: 20}]} onPress={() => navigation.navigate('ResponsesLog')} loading={loading}>Log respuestas</Button>
                         }
 
-                        <Image resizeMode={'contain'} style={{width: width*.3, height:width*.24,alignSelf:'center'}}
-                               source={require('../../assets/logokhor.png')}/>
+                        <Image resizeMode={'contain'} style={{width: width*.45, height:width*.24,alignSelf:'center'}}
+                               source={require('../../assets/logo_grupomexico.png')}/>
 
                     </View>
 

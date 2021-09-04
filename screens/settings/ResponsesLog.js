@@ -35,7 +35,7 @@ const ResponsesLog = ({sending, getResponsesAction, clearLog, app}) => {
         <MainLayout>
             <View style={ styles.container }>
                 <View style={ styles.sectionHead }>
-                    <Image style={{ width: width*.35, height:width*.15, resizeMode: "contain", }} source={require("../../assets/logokhor.png")} />
+                    <Image style={{ width: width*.4, height:width*.15, resizeMode: "contain", }} source={require("../../assets/logo_grupomexico.png")} />
                     <Text style={{fontFamily:'Poligon_Bold',marginBottom:5, color:app.color,fontSize:textSizeRender(4), textAlign:'center' }} size="lg" mb={3}>
                         Respuestas enviadas a KHOR
                     </Text>

@@ -3,6 +3,11 @@ import {store} from './redux/store'
 
 export const theme = extendTheme({
     components: {
+        Select: {
+            baseStyle: {
+                fontFamily:"Poligon_Regular"
+            },
+        },
         Progress: {
             baseStyle: {
                 innerBg: store.getState().app.colorNom35,

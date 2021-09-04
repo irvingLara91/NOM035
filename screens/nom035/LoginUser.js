@@ -121,7 +121,7 @@ const LoginUser = ({navigation, savedResponses, app,initialCountAction}) => {
                 <View style={{width: width, height: height,backgroundColor:'white'}}>
                     <View style={{width: width, alignSelf: 'center', flex: 1}}>
                         <Image style={{width: width, height: '100%', alignSelf: 'center'}}
-                               source={require('./../../assets/logo_khor.jpeg')}/>
+                               source={require('./../../assets/logo_khor.png')}/>
                     </View>
                     <View style={{
                         width: '100%',
@@ -136,7 +136,7 @@ const LoginUser = ({navigation, savedResponses, app,initialCountAction}) => {
                                     color: app.color,
                                     textAlign: 'center',
                                     fontSize: textSizeRender(5)
-                                }}>Acceso a evaluación NOM035</Text>
+                                }}>Acceso a la encuesta NOM035</Text>
                             </View>
                             <TextInput
                                 style={styles.input}

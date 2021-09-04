@@ -10,7 +10,7 @@ const {width, height} = Dimensions.get('window');
 import {AntDesign, MaterialIcons} from '@expo/vector-icons';
 import {textSizeRender} from "../../utils/utils";
 
-const GenericModal =({ButtonText='Cerrar',visible, setVisible, title = '', text, isError = true,app})=>{
+const GenericModal =({visible,isError=false, title = '', text,actionClose,actionAccept,app})=>{
 
 
     return( <View style={styles.centeredView}>
@@ -25,7 +25,7 @@ const GenericModal =({ButtonText='Cerrar',visible, setVisible, title = '', text,
                         {isError ?
                             <MaterialIcons name="cancel" size={width/6} color={app.fontColor} />
                             :
-                            <Image style={{tintColor:app.fontColor,height:width/6,width:width/6}}  source={require('../../assets/success_icon.png')}/>
+                            <AntDesign name="warning" size={width/6} color={app.fontColor} />
                         }
                     </View>
                     {
@@ -37,15 +37,22 @@ const GenericModal =({ButtonText='Cerrar',visible, setVisible, title = '', text,
                     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                     <Text style={[styles.modalText, {marginBottom: 20,color:'white',fontFamily:'Poligon_Regular'}]}>{text}</Text>
                     </View>
-                    <View style={{flex: 0, alignItems: 'center', justifyContent: 'center'}}>
+                    <View style={{flex: 0, flexDirection:'row', alignItems: 'center', justifyContent: 'center'}}>
 
-                    <TouchableOpacity style={[styles.fbBtn,{backgroundColor:app.secondaryColor}]} onPress={() => {
-                        setVisible()
+                    <TouchableOpacity style={[styles.fbBtn,{backgroundColor:app.secondaryColor,marginRight:2}]} onPress={() => {
+                        actionClose()
                     }}>
                         <Text style={[styles.fbText,{color:app.fontColor,fontFamily:'Poligon_Bold'}]}>
-                            {ButtonText}
+                            Cancelar
                         </Text>
                     </TouchableOpacity>
+                        <TouchableOpacity style={[styles.fbBtn,{backgroundColor:app.secondaryColor,marginLeft:2}]} onPress={() => {
+                            actionAccept()
+                        }}>
+                            <Text style={[styles.fbText,{color:app.fontColor,fontFamily:'Poligon_Bold'}]}>
+                                Aceptar
+                            </Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>
@@ -63,7 +70,8 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     fbBtn: {
-        width:height/3,
+        flex: 1,
+        width:width/3,
         height: 40,
         borderRadius: 10,
         marginTop: 30,
