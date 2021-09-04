@@ -368,11 +368,11 @@ export default function App({iconSettings}) {
         );
     } else {
         return (
-            <View style={{flex: 1, backgroundColor: '#ffffff'}}>
+            <View style={{flex: 1, backgroundColor: '#5494ce'}}>
 
                 <View style={{flex: 1}}>
                     <Image
-                        source={require('./assets/splash.png')}
+                        source={require('./assets/logo_grupomexico_blanco.png')}
                         onLoad={_cacheResourcesAsync}
                         style={{resizeMode: 'contain', width: '100%', height: '100%'}}
                     />
