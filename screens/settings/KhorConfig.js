@@ -107,9 +107,9 @@ const KhorConfig = ({app, config, sending, saveConfigAction, saveUrlAction}) => 
                         />
                     </Box>
                     <Button size={'lg'}
-                            _light={{bg: app.secondaryColor, _text: {color: app.color ,fontSize:textSizeRender(3.5),
+                            _light={{bg: app.secondaryColor, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5),
                                     fontFamily:'Poligon_Bold'}}}
-                            _pressed={{bg:app.secondaryColorHover, _text: {color: app.color}}}
+                            _pressed={{bg:app.secondaryColorHover, _text: {color: app.fontColor}}}
                             style={{ marginTop: 16, width: '60%' }} onPress={() => inputSubmit()}>Guardar</Button>
                 </View>               
                 <View style={ styles.sectionTwo } flex={1}>
@@ -134,9 +134,9 @@ const KhorConfig = ({app, config, sending, saveConfigAction, saveUrlAction}) => 
                 </View>
                 <Box style={{ display: 'flex', alignItems: 'center' }} my={4}>
                     <Button size={'lg'}
-                            _light={{bg: app.secondaryColor, _text: {color: app.color ,fontSize:textSizeRender(3.5),
+                            _light={{bg: app.secondaryColor, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5),
                                     fontFamily:'Poligon_Bold'}}}
-                            _pressed={{bg:app.secondaryColorHover, _text: {color: app.color}}}
+                            _pressed={{bg:app.secondaryColorHover, _text: {color: app.fontColor}}}
                             style={{width:'90%'}}
                             onPress={() => pickDocument()}>Cargar configuración</Button>
                 </Box>

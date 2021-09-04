@@ -71,9 +71,9 @@ const ResponsesLog = ({sending, getResponsesAction, clearLog, app}) => {
 
                 <Box style={ styles.sectionBoton }>
                     <Button size={'lg'}
-                            _light={{bg: app.secondaryColor, _text: {color: app.color ,fontSize:textSizeRender(3.5),
+                            _light={{bg: app.secondaryColor, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5),
                                     fontFamily:'Poligon_Bold'}}}
-                            _pressed={{bg:app.secondaryColorHover, _text: {color: app.color}}}
+                            _pressed={{bg:app.secondaryColorHover, _text: {color: app.fontColor}}}
                             style={{ width: '90%' }} onPress={ () => clearLog() } isLoading={fetching}>Limpiar Log de respuestas</Button>
                 </Box>
             </View>
@@ -118,7 +118,6 @@ const styles = StyleSheet.create({
     titulo: {
         fontSize: textSizeRender(5),
         fontFamily:'Poligon_Bold',
-        marginBottom: 6,
         fontWeight: '500',
         textAlign: 'center',
         color: store.getState().app.color,

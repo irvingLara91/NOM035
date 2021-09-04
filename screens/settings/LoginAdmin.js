@@ -80,7 +80,7 @@ const LoginAdmin = ({navigation,app, saveUserAdminAction}) => {
                             <View style={{alignSelf: 'center', paddingVertical: 40, paddingHorizontal: 40}}>
                                 <Text style={{
                                     fontFamily: 'Poligon_Regular',
-                                    color: 'black',
+                                    color: app.color,
                                     textAlign: 'center',
                                     fontSize: textSizeRender(5)
                                 }}>Acceso a configuración</Text>
@@ -112,11 +112,11 @@ const LoginAdmin = ({navigation,app, saveUserAdminAction}) => {
                                 <Button size={'lg'}
                                         _light={{
                                             bg: app.secondaryColor, _text: {
-                                                color: app.color, fontSize: textSizeRender(3.5),
+                                                color: app.fontColor, fontSize: textSizeRender(3.5),
                                                 fontFamily: 'Poligon_Bold'
                                             }
                                         }}
-                                        _pressed={{bg: app.secondaryColorHover, _text: {color: app.color}}}
+                                        _pressed={{bg: app.secondaryColorHover, _text: {color: app.fontColor}}}
                                         style={{flex:1,borderRadius: 12,marginRight: 10}}
                                         isDisabled={loading}
                                         loading={loading} onPress={() => navigation.navigate('Home')}>Regresar</Button>
@@ -127,7 +127,7 @@ const LoginAdmin = ({navigation,app, saveUserAdminAction}) => {
                                             fontFamily: 'Poligon_Bold'
                                         }
                                     }}
-                                    _pressed={{bg: app.colorHover, _text: {color: app.fontColor}}}
+                                    _pressed={{bg: app.secondaryColorHover, _text: {color: app.fontColor}}}
                                     style={{flex:1,borderRadius: 12}}
                                     size={'lg'} isLoading={loading} onPress={validateAdmin}>Ingresar</Button>
 

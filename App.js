@@ -83,13 +83,13 @@ export default function App({iconSettings}) {
                                             onPress={() => navigation.navigate('LoginAdmin')}
                                             name="md-settings-outline"
                                             size={38}
-                                            color={store.getState().app.secondaryColor}
+                                            color={store.getState().app.fontColor}
                                         />
                                     ),
                                     headerStyle: {
                                         backgroundColor: store.getState().app.color,
                                     },
-                                    headerTintColor: store.getState().app.secondaryColor,
+                                    headerTintColor: store.getState().app.fontColor,
                                     headerTitleStyle: {
                                         fontFamily:'Poligon_Regular',
                                         fontSize: textSizeRender(3.5)
@@ -102,7 +102,7 @@ export default function App({iconSettings}) {
                                               headerStyle: {
                                                   backgroundColor: store.getState().app.color,
                                               },
-                                              headerTintColor: store.getState().app.secondaryColor,
+                                              headerTintColor: store.getState().app.fontColor,
                                               headerTitleStyle: {
                                                   fontFamily:'Poligon_Regular',
                                                   fontSize: textSizeRender(3.5)
@@ -115,7 +115,7 @@ export default function App({iconSettings}) {
                                     headerStyle: {
                                         backgroundColor: store.getState().app.color,
                                     },
-                                    headerTintColor: store.getState().app.secondaryColor,
+                                    headerTintColor: store.getState().app.fontColor,
                                     headerTitleStyle: {
                                         fontFamily:'Poligon_Regular',
                                         fontSize: textSizeRender(3.5)
@@ -128,7 +128,7 @@ export default function App({iconSettings}) {
                                     headerStyle: {
                                         backgroundColor: store.getState().app.color,
                                     },
-                                    headerTintColor: store.getState().app.secondaryColor,
+                                    headerTintColor: store.getState().app.fontColor,
                                     headerTitleStyle: {
                                         fontFamily:'Poligon_Regular',
                                         fontSize: textSizeRender(3.5)
@@ -141,7 +141,7 @@ export default function App({iconSettings}) {
                                     headerStyle: {
                                         backgroundColor: store.getState().app.color,
                                     },
-                                    headerTintColor: store.getState().app.secondaryColor,
+                                    headerTintColor: store.getState().app.fontColor,
                                     headerTitleStyle: {
                                         fontFamily:'Poligon_Regular',
                                         fontSize: textSizeRender(3.5)
@@ -155,7 +155,7 @@ export default function App({iconSettings}) {
                                     headerStyle: {
                                         backgroundColor: store.getState().app.color,
                                     },
-                                    headerTintColor: store.getState().app.secondaryColor,
+                                    headerTintColor: store.getState().app.fontColor,
                                     headerTitleStyle: {
                                         fontFamily:'Poligon_Regular',
                                         fontSize: textSizeRender(3.5)
@@ -168,7 +168,7 @@ export default function App({iconSettings}) {
                                     headerStyle: {
                                         backgroundColor: store.getState().app.color,
                                     },
-                                    headerTintColor: store.getState().app.secondaryColor,
+                                    headerTintColor: store.getState().app.fontColor,
                                     headerTitleStyle: {
                                         fontFamily:'Poligon_Regular',
                                         fontSize: textSizeRender(3.5)
@@ -181,7 +181,7 @@ export default function App({iconSettings}) {
                                     headerStyle: {
                                         backgroundColor: store.getState().app.color,
                                     },
-                                    headerTintColor: store.getState().app.secondaryColor,
+                                    headerTintColor: store.getState().app.fontColor,
                                     headerTitleStyle: {
                                         fontFamily:'Poligon_Regular',
                                         fontSize: textSizeRender(3.5)
@@ -194,7 +194,7 @@ export default function App({iconSettings}) {
                                     headerStyle: {
                                         backgroundColor: store.getState().app.color,
                                     },
-                                    headerTintColor: store.getState().app.secondaryColor,
+                                    headerTintColor: store.getState().app.fontColor,
                                     headerTitleStyle: {
                                         fontFamily:'Poligon_Regular',
                                         fontSize: textSizeRender(3.5)
@@ -207,7 +207,7 @@ export default function App({iconSettings}) {
                                     headerStyle: {
                                         backgroundColor: store.getState().app.color,
                                     },
-                                    headerTintColor: store.getState().app.secondaryColor,
+                                    headerTintColor: store.getState().app.fontColor,
                                     headerTitleStyle: {
                                         fontFamily:'Poligon_Regular',
                                         fontSize: textSizeRender(3.5)

@@ -86,9 +86,9 @@ const SendScreen = ({sending, getResponsesAction, updateResponsesAction, clearPr
                 </View>
                 <Box style={ styles.sectionBoton }>
                     <Button size={'lg'}
-                            _light={{bg: app.secondaryColor, _text: {color: app.color ,fontSize:textSizeRender(3.5),
+                            _light={{bg: app.secondaryColor, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5),
                                     fontFamily:'Poligon_Bold'}}}
-                            _pressed={{bg:app.secondaryColorHover, _text: {color: app.color}}}
+                            _pressed={{bg:app.secondaryColorHover, _text: {color: app.fontColor}}}
                             style={{ width: '90%' }} onPress={ handleSending } isLoading={fetching}>{boton}</Button>
                 </Box>
             </View>

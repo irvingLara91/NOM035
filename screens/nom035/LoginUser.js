@@ -34,7 +34,7 @@ const LoginUser = ({navigation, savedResponses, app,initialCountAction}) => {
             setVisible(false)
         }else {
             setVisible(false)
-             navigation.navigate('AssessmentNom035')
+             navigation.navigate('SociodemographicPage')
         }
     }
 
@@ -67,7 +67,7 @@ const LoginUser = ({navigation, savedResponses, app,initialCountAction}) => {
                 "username": "ilara9",
             })
             await initialCountAction()
-            navigation.navigate('AssessmentNom035')
+            navigation.navigate('SociodemographicPage')
             return true
         }
 
@@ -133,7 +133,7 @@ const LoginUser = ({navigation, savedResponses, app,initialCountAction}) => {
                             <View style={{alignSelf: 'center', paddingVertical: 40, paddingHorizontal: 40}}>
                                 <Text style={{
                                     fontFamily: 'Poligon_Regular',
-                                    color: 'black',
+                                    color: app.color,
                                     textAlign: 'center',
                                     fontSize: textSizeRender(5)
                                 }}>Acceso a evaluación NOM035</Text>
@@ -165,11 +165,11 @@ const LoginUser = ({navigation, savedResponses, app,initialCountAction}) => {
                                 <Button size={'lg'}
                                         _light={{
                                             bg: app.secondaryColor, _text: {
-                                                color: app.color, fontSize: textSizeRender(3.5),
+                                                color: app.fontColor, fontSize: textSizeRender(3.5),
                                                 fontFamily: 'Poligon_Bold'
                                             }
                                         }}
-                                        _pressed={{bg: app.secondaryColorHover, _text: {color: app.color}}}
+                                        _pressed={{bg: app.secondaryColorHover, _text: {color: app.fontColor}}}
                                         style={{flex:1,borderRadius: 12,marginRight: 10}}
                                         isDisabled={loading}
                                         loading={loading} onPress={() => navigation.navigate('Home')}>Regresar</Button>
@@ -180,7 +180,7 @@ const LoginUser = ({navigation, savedResponses, app,initialCountAction}) => {
                                             fontFamily: 'Poligon_Bold'
                                         }
                                     }}
-                                    _pressed={{bg: app.colorHover, _text: {color: app.fontColor}}}
+                                    _pressed={{bg: app.secondaryColorHover, _text: {color: app.fontColor}}}
                                     style={{flex:1,borderRadius: 12}}
                                     size={'lg'} isLoading={loading} onPress={validateUser}>Ingresar</Button>
 

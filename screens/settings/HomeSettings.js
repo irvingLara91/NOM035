@@ -37,24 +37,24 @@ const HomeSettings = ({navigation,app}) => {
                             <Text style={{fontFamily:'Poligon_Regular', color: 'black',textAlign:'center',fontSize:textSizeRender(5)}}>Configuración</Text>
                         </View>
                         <Button size={'lg'}
-                                _light={{bg: app.secondaryColor, _text: {color: app.color ,fontSize:textSizeRender(3.5),
+                                _light={{bg: app.secondaryColor, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5),
                                         fontFamily:'Poligon_Bold'}}}
-                                _pressed={{bg: app.secondaryColorHover, _text: {color: app.color}}}
+                                _pressed={{bg: app.secondaryColorHover, _text: {color: app.fontColor}}}
                                 style={[style.butonMain,{borderRadius: 12}]}
                                  onPress={() => navigation.navigate('UsersUpdate')} loading={loading}>Acualizar BD de usuarios</Button>
-                        <Button size={'lg'}  _light={{bg: app.secondaryColor, _text: {color: app.color ,fontSize:textSizeRender(3.5),
+                        <Button size={'lg'}  _light={{bg: app.secondaryColor, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5),
                                 fontFamily:'Poligon_Bold'}}}
-                                _pressed={{bg: app.secondaryColorHover, _text: {color: app.color}}}
+                                _pressed={{bg: app.secondaryColorHover, _text: {color: app.fontColor}}}
                                 style={[style.butonMain,{borderRadius: 12}]} onPress={() => navigation.navigate('KhorConfig')} loading={loading}>Configuración khor</Button>
-                        <Button size={'lg'}  _light={{bg: app.secondaryColor, _text: {color: app.color ,fontSize:textSizeRender(3.5),
+                        <Button size={'lg'}  _light={{bg: app.secondaryColor, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5),
                                 fontFamily:'Poligon_Bold'}}}
-                                _pressed={{bg: app.secondaryColorHover, _text: {color: app.color}}}
+                                _pressed={{bg: app.secondaryColorHover, _text: {color: app.fontColor}}}
                                 style={[{borderRadius: 12}]} onPress={() => navigation.navigate('SendScreen')} loading={loading}>Enviar respuestas</Button>
                         {
                             admin === "testing" && 
-                            <Button size={'lg'}  _light={{bg: app.secondaryColor, _text: {color: app.color ,fontSize:textSizeRender(3.5),
+                            <Button size={'lg'}  _light={{bg: app.secondaryColor, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5),
                                     fontFamily:'Poligon_Bold'}}}
-                                    _pressed={{bg: app.secondaryColorHover, _text: {color: app.color}}}
+                                    _pressed={{bg: app.secondaryColorHover, _text: {color: app.fontColor}}}
                                     style={[{borderRadius: 12, marginTop: 20}]} onPress={() => navigation.navigate('ResponsesLog')} loading={loading}>Log respuestas</Button>
                         }
 

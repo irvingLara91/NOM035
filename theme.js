@@ -3,6 +3,12 @@ import {store} from './redux/store'
 
 export const theme = extendTheme({
     components: {
+        Progress: {
+            baseStyle: {
+                innerBg: store.getState().app.colorNom35,
+                bg:'#ffffff',
+            },
+        },
         Input: {
             baseStyle: {color:'#070707'}
         },

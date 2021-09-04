@@ -2,20 +2,57 @@ import React, {useEffect, useState} from "react";
 import {Box,Select, Text,Input,Stack,  Button, Heading, Center, HStack, Flex, ScrollView, useToast} from "native-base";
 import {connect} from "react-redux";
 import MainLayout from "../../layouts/MainLayout";
-import config from "../../config"
-import _ from 'lodash'
-import {retrieveData} from "../../helpers/storage"
-import _nomv1 from '../nom035/estructura/nom035_ref1v2.json'
-import _nomv2 from '../nom035/estructura/nom035_ref2.json'
-import _nomv3 from '../nom035/estructura/nom035_ref3.json'
-import AssessmentComponent from "../../components/AssessmentComponent";
+import nom035_demograficos from '../nom035/estructura/nom035_demograficos.json'
 import {View} from 'react-native'
-import {initResponseNom035, responseQuestion} from "../../redux/ducks/nom035Duck";
+import {initResponseNom035, responseQuestion, saveRsponseSocio} from "../../redux/ducks/nom035Duck";
 
-const SociodemographicPage = ({navigation, initResponseNom035, nom035, responseQuestion}) => {
+const SociodemographicPage = ({navigation, saveRsponseSocio}) => {
+    const [respuestas,setRespuestas]=useState([])
+    const [dato,setDato]=useState(0)
+
+    const [answer,setAnswer]=useState({})
 
 
 
+    useEffect(()=>{
+        ///console.log(nom035_demograficos.sociodemograficos[dato].opciones)
+    },[])
+
+    const addResponse=(response)=>{
+        let data ={}
+        data.dato= nom035_demograficos.sociodemograficos[dato].dato
+        data.valor= response
+
+        setAnswer(data)
+        console.log(answer)
+    }
+
+    const next= async ()=>{
+        if (answer.valor){
+             if(dato===3 && answer.valor==="No"){
+                 await respuestas.push(answer)
+                 await setDato(dato+1)
+                 await setAnswer({})
+                 await console.log(respuestas)
+                 await saveRsponseSocio(respuestas)
+                 navigation.navigate('AssessmentNom035')
+            }else {
+                await respuestas.push(answer)
+                await setAnswer({})
+                await console.log(dato,respuestas)
+                 if (dato===4){
+                    await saveRsponseSocio(respuestas)
+                     navigation.navigate('AssessmentNom035')
+                     return
+                 }
+                 await setDato(dato+1)
+             }
+        }else {
+            alert("selecciona una opción")
+
+        }
+
+    }
 
     return (
         <MainLayout>
@@ -25,26 +62,30 @@ const SociodemographicPage = ({navigation, initResponseNom035, nom035, responseQ
                 <Flex direction={'column'}>
 
                     <View style={{padding:20}}>
-                        <Text>Sexo</Text>
+                        <Text>
+                        {
+
+
+                            nom035_demograficos.sociodemograficos[dato].dato &&
+                            nom035_demograficos.sociodemograficos[dato].dato
+
+                        }
+                       </Text>
                         <Select
                             minWidth={200}
                             accessibilityLabel="Elige tu sexo"
                             placeholder="Elige una opción"
-                            onValueChange={(itemValue) => console.log(itemValue)}
+                            onValueChange={(itemValue) =>addResponse(itemValue)}
                         >
-                            <Select.Item label="Hombre" value="Hombre" />
-                            <Select.Item label="Mujer" value="Mujer" />
+                            {
+                                nom035_demograficos.sociodemograficos[dato].opciones.map((item)=>{
+                                  return  <Select.Item label={item.option} value={item.option} />
+                                })
+                            }
                         </Select>
 
 
-                        <Text style={{marginTop:20}}>Edad</Text>
-                        <Input
-                            type={"number"}
-                            keyboardType='number-pad'
-                            placeholder=""
-                        />
-
-                        <Button size={'lg'}  colorScheme={'gray'} style={{marginTop:20}} onPress={()=> navigation.navigate('AssessmentNom035')}>Continuar</Button>
+                        <Button size={'lg'}  colorScheme={'gray'} style={{marginTop:20}} onPress={()=> {next()}}>Continuar</Button>
 
                     </View>
 
@@ -64,5 +105,6 @@ const mapState = (state) => {
 
 export default connect(mapState,{
     initResponseNom035,
-    responseQuestion
+    responseQuestion,
+    saveRsponseSocio
 })(SociodemographicPage,);

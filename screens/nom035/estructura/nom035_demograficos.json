@@ -1,0 +1,149 @@
+{
+  "sociodemograficos": [
+    {
+      "id": 1,
+      "dato": "Indica tu último grado  de estudios",
+      "opciones": [
+        {
+          "option": "Primaria"
+        },
+        {
+          "option": "Secundaria"
+        },
+        {
+          "option": "Preparatoria o Bachillerato"
+        },
+        {
+          "option": "Carrera Técnica"
+        },
+        {
+          "option": "Técnico Superior Universitario"
+        },
+        {
+          "option": "Licenciatura o Ingeniería"
+        },
+        {
+          "option": "Posgrado"
+        },
+        {
+          "option": "Maestría"
+        },
+        {
+          "option": "Doctorado"
+        },
+        {
+          "option": "Ninguno"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "dato": "Indica la especialidad de tu último grado de estudios",
+      "opciones": [
+        {
+          "option": "Administrativas y financieras"
+        },
+        {
+          "option": "Contables"
+        },
+        {
+          "option": "Psicología y pedagogía"
+        },
+        {
+          "option": "Ciencias jurídicas y derecho"
+        },
+        {
+          "option": "Economía o matemáticas"
+        },
+        {
+          "option": "Medios o contenidos audiovisuales"
+        },
+
+        {
+          "option": "Eléctricos y telecomunicaciones"
+        },
+        {
+          "option": "Ciencias de la computación"
+        },
+        {
+          "option": "Agronomía y veterinaria"
+        },
+        {
+          "option": "Ciencias de la educación"
+        },
+        {
+          "option": "Ciencias de la vida y de la salud"
+        },
+        {
+          "option": "Artes y letras"
+        },
+        {
+          "option": "Ciencias políticas y sociales"
+        },
+        {
+          "option": "Comercio y negocios"
+        },
+        {
+          "option": "Ciencias naturales y exactas"
+        },
+        {
+          "option": "Humanidades"
+        },
+        {
+          "option": "Ingenierías"
+        },
+        {
+          "option": " Arquitectura y construcción"
+        }
+        ,
+        {
+          "option": "Biblioteconomia y archivonomia"
+        },
+        {
+          "option": "Servicios"
+        },
+
+        {
+          "option": "Logística"
+        },
+        {
+          "option": "Diseño"
+        },
+        {
+          "option": "Comunicación y periodismo"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "dato": "Indica si tu último grado de estudios fue en institución pública o privada",
+      "opciones":
+      [
+        {"option": "Pública"},
+        {"option": "Privada"}
+      ]
+    },
+    {
+      "id": 4,
+      "dato": "¿Te interesa seguir estudiando?",
+      "opciones":
+      [
+        {"option": "Si"},
+        {"option": "No"}
+      ]
+    },
+    {
+      "id": 5,
+      "dato": " ¿Qué grado de estudio te interesa?",
+      "opciones":
+      [
+        {"option": "Si, me interesa primaria"},
+        {"option": "Si, me interesa secundaria"},
+        {"option": "Si, me interesa bachillerato"},
+        {"option": "Si, me interesa otro"},
+        {"option": "No me interesa"}
+      ]
+    }
+  ]
+}
+

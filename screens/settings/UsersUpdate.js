@@ -103,7 +103,7 @@ const UsersUpdate = ({app, saveUsersAction}) => {
                                     fontFamily: 'Poligon_Bold'
                                 }
                             }}
-                            _pressed={{bg: app.colorHover, _text: {color: app.fontColor}}}
+                            _pressed={{bg: app.colorThree, _text: {color: app.fontColor}}}
                             style={{flex:1,borderRadius: 12}}
                             style={{marginTop:20}} onPress={() => pickDocument()}>Cargar archivo .xlsx</Button>
                 </Center>
@@ -177,6 +177,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Poligon_Regular',
         textAlign:'center',
         paddingVertical: 4,
+        color:store.getState().app.color,
         borderColor: store.getState().app.color,
         borderWidth: 2,
         backgroundColor: store.getState().app.fontColor
@@ -185,6 +186,8 @@ const styles = StyleSheet.create({
         display: 'flex', 
         flexDirection: 'row', 
         borderBottomColor: store.getState().app.color,
+        borderRightColor:store.getState().app.color,
+        borderLeftColor: store.getState().app.color,
         borderBottomWidth: 2,
         borderLeftWidth: 2,
         borderRightWidth: 2,
@@ -194,6 +197,8 @@ const styles = StyleSheet.create({
         display: 'flex', 
         flexDirection: 'row', 
         borderBottomColor: store.getState().app.color,
+        borderRightColor:store.getState().app.color,
+        borderLeftColor: store.getState().app.color,
         borderBottomWidth: 2,
         borderLeftWidth: 2,
         borderRightWidth: 2,

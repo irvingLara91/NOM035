@@ -20,12 +20,12 @@ const GenericModal =({ButtonText='Cerrar',visible, setVisible, title = '', text,
             visible={visible}
         >
             <View style={styles.centeredView}>
-                <View style={[styles.modalView,{backgroundColor:app.color}]}>
+                <View style={[styles.modalView,{backgroundColor:app.colorThree}]}>
                     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                         {isError ?
-                            <MaterialIcons name="cancel" size={width/6} color={app.secondaryColor} />
+                            <MaterialIcons name="cancel" size={width/6} color={app.fontColor} />
                             :
-                            <Image style={{tintColor:app.secondaryColor,height:width/6,width:width/6}}  source={require('../../assets/success_icon.png')}/>
+                            <Image style={{tintColor:app.fontColor,height:width/6,width:width/6}}  source={require('../../assets/success_icon.png')}/>
                         }
                     </View>
                     {
@@ -42,7 +42,7 @@ const GenericModal =({ButtonText='Cerrar',visible, setVisible, title = '', text,
                     <TouchableOpacity style={[styles.fbBtn,{backgroundColor:app.secondaryColor}]} onPress={() => {
                         setVisible()
                     }}>
-                        <Text style={[styles.fbText,{color:app.color,fontFamily:'Poligon_Bold'}]}>
+                        <Text style={[styles.fbText,{color:app.fontColor,fontFamily:'Poligon_Bold'}]}>
                             {ButtonText}
                         </Text>
                     </TouchableOpacity>

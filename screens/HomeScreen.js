@@ -45,22 +45,22 @@ const HomeScreen = ({productsDuck, navigation, app}) => {
                 }}>
                     <View style={{width: '100%', alignSelf: 'center',paddingHorizontal:45}}>
                         <View style={{alignSelf: 'center',paddingVertical:40,paddingHorizontal:40}}>
-                            <Text style={{fontFamily:'Poligon_Regular', color: 'black',textAlign:'center',fontSize:textSizeRender(5)}}>Elige la prueba que deseas responder</Text>
+                            <Text style={{fontFamily:'Poligon_Regular', color: app.color,textAlign:'center',fontSize:textSizeRender(5)}}>Elige la encuesta que deseas responder</Text>
                         </View>
                         <Button
-                            _light={{bg: app.secondaryColor, _text: {color: app.color,
+                            _light={{bg: app.secondaryColor, _text: {color: app.fontColor,
                                     fontFamily:'Poligon_Bold',
                                     fontSize:textSizeRender(3.5)}}}
-                            _pressed={{bg: app.secondaryColorHover, _text: {color: app.color}}}
+                            _pressed={{bg: app.secondaryColorHover, _text: {color: app.fontColor}}}
                             size={'lg'} style={{
                             marginBottom: 20,
                             borderRadius: 12
                         }}>ECCO</Button>
 
                         <Button size={'lg'}
-                                _light={{bg: app.secondaryColor, _text: {color: app.color ,fontSize:textSizeRender(3.5),
+                                _light={{bg: app.secondaryColor, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5),
                                         fontFamily:'Poligon_Bold'}}}
-                                _pressed={{bg: app.secondaryColorHover, _text: {color: app.color}}}
+                                _pressed={{bg: app.secondaryColorHover, _text: {color: app.fontColor}}}
                                 style={{ borderRadius: 12}}
                                 onPress={() => navigation.navigate('loginUser')}>NOM 035</Button>
                     </View>

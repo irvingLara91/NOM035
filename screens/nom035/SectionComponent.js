@@ -1,5 +1,18 @@
 import React, {useEffect, useState} from "react";
-import {Box, Text, Input, Stack, Button, Heading, Center, HStack, Flex, ScrollView, useToast} from "native-base";
+import {
+    Box,
+    Text,
+    Input,
+    Stack,
+    Button,
+    Heading,
+    Center,
+    HStack,
+    Flex,
+    ScrollView,
+    useToast,
+    Progress
+} from "native-base";
 import {Alert, View} from 'react-native'
 import {connect} from "react-redux";
 import QuestionComponent from "../../components/QuestionComponent";
@@ -7,6 +20,7 @@ import {responseQuestion} from "../../redux/ducks/nom035Duck";
 import {retrieveData, storeData} from "../../helpers/storage"
 import _ from 'lodash'
 import {getCountAction, saveCountAction} from "../../redux/ducks/progressCountDuck";
+import {textSizeRender} from "../../utils/utils";
 
 const SectionComponent = ({
                               navigation,
@@ -147,9 +161,30 @@ const SectionComponent = ({
 
     return (
         <Box style={{width: '100%'}}>
+            <View style={{alignItems: 'center',height:50,justifyContent:'center'}}>
+               {/* <Text
+                style={{fontSize: textSizeRender(9), fontFamily: 'Poligon_Bold'}}>
+                {(100 * countResponse.count_responses / totalQuestions).toFixed(1)+"%"}
 
+                {countResponse.count_responses}{totalQuestions}
 
-            <View style={{alignItems:'center'}}><Text>  {countResponse.count_responses} /{totalQuestions}</Text></View>
+            </Text>*/}
+                <View style={{width: '100%',alignItems:'center'}}>
+                    <Box w="100%">
+                        <Progress
+                            width={'90%'}
+                            size="xl"
+                            mx={4}
+                            value={countResponse.count_responses === totalQuestions ? totalQuestions : countResponse.count_responses }
+                            max={totalQuestions}
+                        />
+                           {/* <View style={{width:50,marginLeft:30,alignItems:'flex-end'}}>
+                                <Text style={{fontSize: textSizeRender(3), fontFamily: 'Poligon_Bold'}}>
+                                    {(100 * countResponse.count_responses / totalQuestions).toFixed(1)+"%"}</Text>
+                            </View>*/}
+                    </Box>
+                </View>
+            </View>
             <QuestionComponent
                 onSetValueQuestion={onSetValueQuestion}
                 modeDev={modeDev}
