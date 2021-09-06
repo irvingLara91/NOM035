@@ -3,12 +3,13 @@ import {Box, Select, Input, Stack, Button, Heading, Center, HStack, Flex, useToa
 import {connect} from "react-redux";
 import MainLayout from "../../layouts/MainLayout";
 import nom035_demograficos from '../nom035/estructura/nom035_demograficos.json'
-import {ScrollView, Text, BackHandler, View, Dimensions} from 'react-native'
+import {StyleSheet, Text, BackHandler, View, Dimensions, TextInput} from 'react-native'
 import {initResponseNom035, responseQuestion, saveRsponseSocio} from "../../redux/ducks/nom035Duck";
 import GenericModal from "../../components/Modals/GenericModal";
 import ModalAlertBack from "../../components/Modals/ModalAlertBack";
 import {retrieveData} from "../../helpers/storage";
 import {textSizeRender} from "../../utils/utils";
+import {store} from "../../redux/store";
 
 const {height, width} = Dimensions.get('window')
 const SociodemographicPage = ({navigation, saveRsponseSocio, app}) => {
@@ -125,12 +126,25 @@ const SociodemographicPage = ({navigation, saveRsponseSocio, app}) => {
 
                         }
                     </Text>
-                    <Select
+                    {
+                        dato === 1 ? 
+                        <TextInput
+                        style={styles.input}
+                        placeholder="Indica la especialidad"
+                        placeholderTextColor={app.color}
+                        autoCapitalize="none"
+                        value={answer?.valor}
+                        onChangeText={(itemValue) => addResponse(itemValue)}
+                        keyboardType="default"
+                        maxLength={300}
+                        underlineColorAndroid={'transparent'}
+                        /> :
+                        <Select
                         minWidth={200}
                         accessibilityLabel="Elige una opción"
                         placeholder="Elige una opción"
                         onValueChange={(itemValue) => addResponse(itemValue)}
-                    >
+                        >
                         {
 
                             nom035_demograficos.sociodemograficos[dato].opciones.map((item) => {
@@ -140,7 +154,9 @@ const SociodemographicPage = ({navigation, saveRsponseSocio, app}) => {
                                     label={item.option} value={item.option}/>
                             })
                         }
-                    </Select>
+                        </Select>
+                    }
+             
                 </View>
                 <View style={{flex: 0,padding: 20}}>
                     <Button size={'lg'}
@@ -177,6 +193,25 @@ const SociodemographicPage = ({navigation, saveRsponseSocio, app}) => {
         </MainLayout>
     )
 }
+
+const styles = StyleSheet.create({
+    input: {
+        marginTop: 8,
+        marginBottom: 8,
+        alignItems: 'center',
+        paddingHorizontal: 15,
+        width: "100%",
+        height: 54,
+        fontSize:textSizeRender(3.5),
+        fontFamily:'Poligon_Regular',
+        color: store.getState().app.color,
+        borderColor: store.getState().app.color,
+        borderWidth: 2,
+        backgroundColor: "white",
+        borderRadius: 10
+    },
+}
+);
 
 const mapState = (state) => {
     return {

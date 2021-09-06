@@ -38,7 +38,7 @@
     },
     {
       "id": 2,
-      "dato": "Indica la especialidad de tu último grado de estudios",
+      "dato": "Indica la especialidad de tu último grado de estudios (nombre de la carrera)",
       "opciones": [
         {
           "option": "Administrativas y financieras"
