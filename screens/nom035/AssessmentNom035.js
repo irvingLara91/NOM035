@@ -35,7 +35,7 @@ const AssessmentNom035 = ({navigation, initResponseNom035, nom035, responseQuest
             Empresa = config.config.empresa
             idPeriodo = config.config.idPeriodo
             idParticipante= storeUser.idParticipante
-            if (configAssessment && Empresa && idPeriodo,idParticipante){
+            if (configAssessment && Empresa && idPeriodo && idParticipante){
                 processAssessment()
             }
         }
@@ -77,6 +77,7 @@ const AssessmentNom035 = ({navigation, initResponseNom035, nom035, responseQuest
         <MainLayout>
             <ScrollView
                 height={'100%'}
+                showsVerticalScrollIndicator={false}
                 style={{height:'100%'}}>
                 <Flex direction={'column'}>
 

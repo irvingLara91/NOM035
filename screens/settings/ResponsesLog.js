@@ -9,45 +9,27 @@ import { connect } from "react-redux";
 import {store} from "../../redux/store";
 import {textSizeRender} from "../../utils/utils";
 const {width, height} = Dimensions.get('window')
-import { getResponsesAction, updateResponsesAction, clearProcess } from "../../redux/ducks/sendingDuck";
+import { getResponsesAction, clearLog } from "../../redux/ducks/sendingDuck";
+import { marginBottom, marginTop } from "styled-system";
     
-const SendScreen = ({sending, getResponsesAction, updateResponsesAction, clearProcess, app}) => {
-    const [responses, setResponses] = useState([]) // Guardados
-    const [sent, setSent] = useState([]); // Enviados
+const ResponsesLog = ({sending, getResponsesAction, clearLog, app}) => {
     const [tosend, setToSend] = useState([]); // Por enviar
-    const [errores, setErrores] = useState([]) // Array de errores
-    const [fetching, setFetching] = useState(false); //bloquea el boton 
-    const [corriendo, setCorriendo] = useState(false);
-    const [completado, setCompletado] = useState(false); 
-    const [boton, setBoton] = useState('Iniciar envío de respuestas');
+    const [errors, setErrors] = useState([]) // Array de errores
+    const [success, setSuccess] = useState([]) // Array de errores
+    const [fetching, setFetching] = useState(false); //Bloquea el boton 
 
     useEffect(()=>{
         if (sending) {
-            setSent( _.filter(sending.respuestas, ['send', true]) ); 
             setToSend( _.filter(sending.respuestas, ['send', false]));
-            setErrores(sending.errores);
+            setErrors(sending.logErrores);
+            setSuccess(sending.logExitosos);
             setFetching(sending.fetching);
-            setCorriendo(sending.running);
-            sending.estado === 0 && setBoton("Iniciar envío de respuestas");
-            sending.estado === 1 && setBoton("Cancelar");
-            sending.estado === 2 ? ( setBoton("Aceptar"), setCompletado(true) ) : setCompletado(false);
         }
     },[sending]) 
     
     useEffect(()=>{
-        getInitialResponses();
-        clearProcess();
         getResponsesAction();
     }, [])
-
-    const getInitialResponses = async () =>{
-        let respTemp = await retrieveData("savedResponses");
-        respTemp?.length > 0 && setResponses( _.filter( respTemp, ['send', false]) ); 
-    }
-
-    const handleSending = () => {
-        updateResponsesAction();
-    }
 
     return (
         <MainLayout>
@@ -55,41 +37,44 @@ const SendScreen = ({sending, getResponsesAction, updateResponsesAction, clearPr
                 <View style={ styles.sectionHead }>
                     <Image style={{ width: width*.4, height:width*.15, resizeMode: "contain", }} source={require("../../assets/logo_grupomexico.png")} />
                     <Text style={{fontFamily:'Poligon_Bold',marginBottom:5, color:app.color,fontSize:textSizeRender(4), textAlign:'center' }} size="lg" mb={3}>
-                        Enviar respuestas a KHOR
+                        Respuestas enviadas a KHOR
                     </Text>
                 </View>               
                 <View style={ styles.sectionSquare } flex={1}>
-                    <Text style={ styles.titulo }>{tosend.length} Respuestas pendientes por sincronizar</Text>
-                    {
-                        (corriendo || completado) && errores.length > 0 && <Text style={ styles.errores }> Envíos fallidos: {errores.length} </Text>
-                    }
-                    <Box style={ styles.indicador } flex={1}>
-                        <Box style={ styles.contadorBox }>
-                        { 
-                            (corriendo || completado) && 
-                            <> 
-                            <Text style={styles.contador}>{sent.length}/</Text>
-                            <Text style={styles.contador}>{responses.length}</Text> 
-                            </> 
+                    <ScrollView style={{ paddingVertical: 10, paddingHorizontal: 20 }}>
+                        <Text style={ styles.titulo }> RESUMEN </Text>
+                        <Text style={ styles.pendientes }>Respuestas pendientes: {tosend.length}</Text>
+                        <Text style={ styles.exitosos }>Envíos exitosos: {success.length}</Text>
+                        <Text style={ styles.errores }>Envíos fallidos: {errors.length}</Text>
+                        {
+                            success.length > 0 && <>
+                                <Text style={ styles.titulo }> EXITOSOS </Text>
+                                {   
+                                    success.map( (exitoso, index) => (
+                                        <Text style={styles.dato} key={index}> Envio exitoso {index + 1}: {JSON.stringify(exitoso)}</Text>
+                                    )) 
+                                }
+                            </>
                         }
                         {
-                           (!corriendo && !completado) && <Text style={styles.contador}>{tosend.length}</Text> 
+                            errors.length > 0 && <>
+                                <Text style={ styles.titulo }> ERRORES </Text>
+                                {   
+                                    errors.map( (error, index) => (
+                                        <Text style={ styles.dato} key={index}> Envio fallido {index + 1}: {JSON.stringify(error)}</Text>
+                                    )) 
+                                }
+                            </>
                         }
-                        </Box>
-                        {
-                            (corriendo) && <ActivityIndicator size={60} color="#75bb89" />
-                        }
-                        {
-                            !corriendo && completado && <AntDesign name="checkcircle" size={textSizeRender(15)} color="#75bb89" />
-                        }
-                    </Box>
+                    </ScrollView>
                 </View>
+
                 <Box style={ styles.sectionBoton }>
                     <Button size={'lg'}
                             _light={{bg: app.secondaryColor, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5),
                                     fontFamily:'Poligon_Bold'}}}
                             _pressed={{bg:app.secondaryColorHover, _text: {color: app.fontColor}}}
-                            style={{ width: '90%' }} onPress={ handleSending } isLoading={fetching}>{boton}</Button>
+                            style={{ width: '90%' }} onPress={ () => clearLog() } isLoading={fetching}>Limpiar Log de respuestas</Button>
                 </Box>
             </View>
         </MainLayout>
@@ -116,7 +101,7 @@ const styles = StyleSheet.create({
         borderRadius: 10           
     },
     sectionSquare: {
-        padding: 20,         
+        paddingVertical: 20,         
         width: '90%',
         maxHeight: 600,
         display: 'flex',
@@ -131,33 +116,41 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     titulo: {
-        fontSize: textSizeRender(4.5),
+        fontSize: textSizeRender(5),
         fontFamily:'Poligon_Bold',
-        marginBottom: 10,
         fontWeight: '500',
         textAlign: 'center',
+        color: store.getState().app.color,
+        marginTop: 10,
+        marginBottom: 10
+    },
+    pendientes: {
+        fontSize: textSizeRender(4.5),
+        fontFamily:'Poligon_Bold',
+        fontWeight: '500',
+        textAlign: 'left',
         color: store.getState().app.color
+    },
+    exitosos: {
+        fontSize: textSizeRender(4.5),
+        fontFamily:'Poligon_Bold',
+        fontWeight: '500',
+        textAlign: 'left',
+        color: '#7dc28e'
     },
     errores: {
         fontSize: textSizeRender(4.5),
         fontFamily:'Poligon_Bold',
         fontWeight: '500',
-        textAlign: 'center',
-        color: '#e45a60'
-    },
-    contadorBox: {
-        marginVertical: 20,
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    contador: {
+        textAlign: 'left',
+        color: '#e45a60',
         marginBottom: 20,
-        fontSize: textSizeRender(20),
-        fontFamily:'Poligon_Bold',
-        textAlign: 'center',
-        color: store.getState().app.color
+    },
+    dato: {
+        fontSize: textSizeRender(3.1),
+        fontFamily:'Poligon_Regular',
+        textAlign: 'left',
+        marginBottom: 20,
     },
     sectionBoton: {
         marginTop: 30, 
@@ -183,6 +176,5 @@ const mapState = (state) => {
 
 export default connect(mapState,{
     getResponsesAction,
-    updateResponsesAction,
-    clearProcess,
-})(SendScreen);
+    clearLog,
+})(ResponsesLog);

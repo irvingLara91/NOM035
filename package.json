@@ -8,10 +8,17 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "~1.15.0",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.5",
+    "axios": "^0.21.1",
+    "base-64": "^1.0.0",
     "expo": "~42.0.1",
+    "expo-document-picker": "~9.2.4",
+    "expo-file-system": "~11.1.3",
+    "expo-font": "~9.2.1",
+    "expo-splash-screen": "~0.11.2",
     "expo-status-bar": "~1.0.4",
     "native-base": "^3.0.3",
     "react": "16.13.1",
@@ -19,7 +26,9 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
     "react-native-dotenv": "^3.1.1",
     "react-native-gesture-handler": "^1.10.3",
+    "react-native-keyboard-aware-scrollview": "^2.1.0",
     "react-native-reanimated": "^2.2.0",
+    "react-native-render-html": "^6.0.5",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "^3.4.0",
     "react-native-svg": "12.1.1",
@@ -29,11 +38,7 @@
     "redux-thunk": "^2.3.0",
     "styled-components": "^5.3.0",
     "styled-system": "^5.1.5",
-    "@react-native-async-storage/async-storage": "~1.15.0",
-    "expo-document-picker": "~9.2.4",
-    "expo-file-system": "~11.1.3",
-    "xlsx": "^0.17.0",
-    "base-64": "^1.0.0"
+    "xlsx": "^0.17.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"

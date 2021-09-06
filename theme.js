@@ -1,7 +1,19 @@
 import {extendTheme} from "native-base";
+import {store} from './redux/store'
 
 export const theme = extendTheme({
     components: {
+        Select: {
+            baseStyle: {
+                fontFamily:"Poligon_Regular"
+            },
+        },
+        Progress: {
+            baseStyle: {
+                innerBg: store.getState().app.colorNom35,
+                bg:'#ffffff',
+            },
+        },
         Input: {
             baseStyle: {color:'#070707'}
         },
@@ -30,9 +42,6 @@ export const theme = extendTheme({
         amber: {
             400: '#d97706',
         },
-    },
-    config: {
-        initialColorMode: 'dark',
     },
     fonts: {
         heading: 'Roboto',

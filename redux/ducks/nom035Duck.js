@@ -1,5 +1,6 @@
 const initialData = {
     respuestaNom035: [],
+    respuestasSociodemograficos1:[],
     respuesta:{
         empresa:'9a4be0d5-367b-4a79-9111-2f724e9c582d',
         idPeriodo:456,
@@ -11,6 +12,7 @@ const initialData = {
 }
 
 const INIT_RESPONSES = 'INIT_RESPONSES';
+const INIT_RESPONSES_SOCIODEMOGRAFICO='INIT_RESPONSES_SOCIODEMOGRAFICO';
 const SUCCESS = 'SUCCESS';
 const ERROR = 'ERROR';
 const ERROR_SERVER = 'ERROR_SERVER';
@@ -23,9 +25,12 @@ const nom035Duck = (state = initialData, action) => {
                     idPeriodo:action.payload.idPeriodo,
                     idParticipante:action.payload.idParticipante,
                     respuestas:action.payload.respuestas,
-                    respuestasSociodemograficos:[],
+                    respuestasSociodemograficos:action.payload.respuestasSociodemograficos,
                     respuestasOpinion:[]
                     }}
+
+        case INIT_RESPONSES_SOCIODEMOGRAFICO:
+            return {...state,respuestasSociodemograficos1: action.payload}
         default:
             return state
     }
@@ -36,7 +41,7 @@ export let initResponseNom035 = (cuestionarios,empresa,idPeriodo,idParticipante)
 
     cuestionarios.map((cuestionario,i)=>{
         respuestas.push({
-            cuestionario:i+1,
+            cuestionario:cuestionario.vref,
             respuestas:cuestionario.preguntas.map((e)=> 0).join('')
         })
     })
@@ -63,6 +68,9 @@ export let initResponseNom035 = (cuestionarios,empresa,idPeriodo,idParticipante)
     }
 
     return async (dispatch, getState) => {
+        let responseSociodemograficos1 = getState().nom035.respuestasSociodemograficos1
+        data.respuestasSociodemograficos=responseSociodemograficos1
+
         dispatch({type: INIT_RESPONSES, payload:data});
     };
 }
@@ -70,8 +78,10 @@ export let initResponseNom035 = (cuestionarios,empresa,idPeriodo,idParticipante)
 
 export let responseQuestion=(cuestionario=1,indexResponse=0,value)=>{ // value es el que se pondría en esa posicion, y cuestionario debería ser la posicion
     return async (dispatch, getState) => {
+        let responseSociodemograficos1 = getState().nom035.respuestasSociodemograficos1
         let nom035response = getState().nom035.respuestaNom035
         let nom035Data = getState().nom035.respuesta
+
 
         let responses = getState().nom035.respuestaNom035[cuestionario-1].respuestas.split('')
         responses[indexResponse] = value;
@@ -81,13 +91,23 @@ export let responseQuestion=(cuestionario=1,indexResponse=0,value)=>{ // value e
             respuestas:nom035response,
             empresa:nom035Data.empresa,
             idPeriodo:nom035Data.idPeriodo,
-            idParticipante:nom035Data.idParticipante
+            idParticipante:nom035Data.idParticipante,
+            respuestasSociodemograficos:responseSociodemograficos1
         }
         return async (dispatch, getState) => {
             dispatch({type: INIT_RESPONSES, payload:data});
         };
     };
 }
+
+export let saveRsponseSocio=(responses)=>{ // value es el que se pondría en esa posicion, y cuestionario debería ser la posicion
+    return async (dispatch, getState) => {
+        dispatch({type: INIT_RESPONSES_SOCIODEMOGRAFICO, payload:responses});
+    };
+}
+
+
+
 
 export let getResponse=()=>{
     return async (dispatch, getState)=>{

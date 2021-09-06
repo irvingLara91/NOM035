@@ -1,38 +1,38 @@
 import React, { useState, useEffect } from "react";
-import { Alert, StyleSheet, Image, TextInput, } from 'react-native';
-import { Box, Button, Heading, Text, View, ScrollView } from "native-base";
+import {Alert, StyleSheet, Text, Image, TextInput, Dimensions,} from 'react-native';
+import { Box, Button, Heading, View, ScrollView } from "native-base";
 import * as DocumentPicker from 'expo-document-picker';
 import * as FileSystem from 'expo-file-system';
 import _ from 'lodash';
 import MainLayout from "../../layouts/MainLayout";
-import { storeData, retrieveData, validURL } from "../../helpers/storage";
+import { storeData, validURL } from "../../helpers/storage";
 import {connect} from "react-redux";
+import {textSizeRender} from "../../utils/utils";
+import {store} from "../../redux/store";
+import GenericModal from "../../components/Modals/GenericModal";
+const {width, height} = Dimensions.get('window')
 import {saveConfigAction} from "../../redux/ducks/configDuck";
+import {saveUrlAction} from "../../redux/ducks/sendingDuck";
 
-const KhorConfig = (props) => {
+const KhorConfig = ({app, config, sending, saveConfigAction, saveUrlAction}) => {
 
     const [datastate, setDatastate] = useState(null);
     const [inputstate, setInputstate] = useState('');
 
-    const getConfig = async () => {
-        let storeConfig = await retrieveData("config");
-        if ( storeConfig ) {
-            setDatastate(storeConfig);
-        }
-
-    }
-
-    const getKhorUrl = async () =>{
-        let storeUrl = await retrieveData("khorurl");
-        if ( storeUrl ) {
-            setInputstate(storeUrl);
-        } 
-    }
+    const [visible, setVisible] = useState(false);
+    const [isErrorModal, setIsErrorModal] = useState('');
+    const [titleModal, setTitleModal] = useState('');
+    const [messageModal, setMessageModal] = useState('');
 
     useEffect(()=>{
-        getConfig();
-        getKhorUrl();
-    },[]);
+        let urlTemp = sending.url;
+        urlTemp && setInputstate(urlTemp);
+    },[sending]);
+
+    useEffect(()=>{
+        let configTemp = config.config;
+        configTemp && setDatastate(configTemp);
+    },[config]);
 
     const pickDocument = async () => {
         try {
@@ -42,8 +42,17 @@ const KhorConfig = (props) => {
             await FileSystem.copyAsync({ from: tempPath.uri, to: newPath });
             const configData = await FileSystem.readAsStringAsync( newPath );
             let jsonData = JSON.parse(configData)
-            await saveConfig( jsonData ) ? ( Alert.alert("Carga exitosa") ): Alert.alert("Error en la carga del archivo");
-            await getConfig();
+            if (await saveConfig( jsonData)){
+                setTitleModal("");
+                setMessageModal("Carga exitosa");
+                setIsErrorModal(false);
+                setVisible(true);
+            }else {
+                setTitleModal("");
+                setMessageModal("Error en la carga del archivo");
+                setIsErrorModal(true);
+                setVisible(true);
+            }
         } catch (error){
             console.log(error)
         }
@@ -51,27 +60,41 @@ const KhorConfig = (props) => {
 
     const saveConfig = async( data ) => {
         if ( data.hasOwnProperty('empresa') && data.hasOwnProperty('cuestionarios') ){
-            await storeData("config", data );
-            await props.saveConfigAction(data)
+            await storeData("configkhor", data );
+            await saveConfigAction(data)
             return true;
         } else {
             return false;
         }
     }
 
-    const inputSubmit = () => {
-        validURL(inputstate) && storeData("khorurl", inputstate) ? Alert.alert("URL guardada") : Alert.alert("Por favor, escriba una url válida");
+    const inputSubmit = async() => {
+        if (validURL(inputstate) && storeData("khorurl", inputstate)){
+            saveUrlAction(inputstate); 
+            setTitleModal("")
+            setMessageModal("URL guardada")
+            setIsErrorModal(false)
+            setVisible(true)
+        }else {
+            setTitleModal("")
+            setMessageModal("Por favor, escriba una url válida")
+            setIsErrorModal(true)
+            setVisible(true)
+        }
+        //validURL(inputstate) && storeData("khorurl", inputstate) ? Alert.alert("URL guardada") : Alert.alert("Por favor, escriba una url válida");
     }
 
     return (
         <MainLayout>
             <View style={ styles.container }>
                 <View style={ styles.sectionOne }>
-                    <Image style={{ width: 200, resizeMode: "contain", }} source={require("../../assets/logokhor.png")} />
-                    <Heading style={{ color:'black', textAlign:'center' }} size="lg" mb={3}>
-                        Configuración KHOR
-                    </Heading>
-                    <Text style={ styles.label }>Instancia KHOR</Text>
+                    <Text style={{fontFamily:'Poligon_Regular',marginBottom:0, color:app.color,fontSize:textSizeRender(4), textAlign:'center' }} size="lg" mb={3}>
+                        Configuración
+                    </Text>
+                    <Image style={{ width: width*.4, height:width*.15, resizeMode: "contain", }} source={require("../../assets/logo_grupomexico.png")} />
+                    <Text style={{fontFamily:'Poligon_Bold',marginBottom:5, color:app.color,fontSize:textSizeRender(4), textAlign:'center' }} size="lg" mb={3}>
+                        Instancia KHOR
+                    </Text>
                     <Box style={{ display: 'flex', flexDirection: 'row' }}>
                         <TextInput
                         style={styles.input}
@@ -83,7 +106,11 @@ const KhorConfig = (props) => {
                         onChangeText={ text => setInputstate(text)}
                         />
                     </Box>
-                    <Button size={'lg'} style={{ marginTop: 16, width: '60%' }} onPress={() => inputSubmit()}>Guardar</Button>
+                    <Button size={'lg'}
+                            _light={{bg: app.secondaryColor, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5),
+                                    fontFamily:'Poligon_Bold'}}}
+                            _pressed={{bg:app.secondaryColorHover, _text: {color: app.fontColor}}}
+                            style={{ marginTop: 16, width: '60%' }} onPress={() => inputSubmit()}>Guardar</Button>
                 </View>               
                 <View style={ styles.sectionTwo } flex={1}>
                     {
@@ -93,40 +120,47 @@ const KhorConfig = (props) => {
                             <Text style={ styles.dato }> {datastate.empresa} </Text>
                             <Text style={ styles.titulo }> Cuestionarios: </Text>
                             <Text style={ styles.dato }> {_.join(datastate.cuestionarios, ', ')} </Text>
-                            { datastate.Sociodemograficos && (
+                            { datastate.idPeriodo && (
                             <>
-                                <Text style={ styles.titulo }> Sociodemograficos: </Text>
-                                <Text style={ styles.dato }> { (datastate.Sociodemograficos).length } </Text>
-                            </>
-                            )}
-                            {
-                               datastate.preguntasOpinion && (
-                            <>
-                                <Text style={ styles.titulo }> preguntasOpinion: </Text>
-                                <Text style={ styles.dato }> { datastate.preguntasOpinion.length } </Text>
+                                <Text style={ styles.titulo }>Periodo:</Text>
+                                <Text style={ styles.dato }>{datastate.idPeriodo}</Text>
                             </>
                             )}
                         </ScrollView> 
-                    : <Text py={20} fontSize={16} textAlign="center">Carga una configuración inicial</Text>
+                    :
+                        <Text style={{fontFamily:'Poligon_Bold',marginBottom:0, color:app.color,fontSize:textSizeRender(4), textAlign:'center' }} size="lg" mb={3}>
+                            Carga una configuración inicial</Text>
                     } 
                 </View>
                 <Box style={{ display: 'flex', alignItems: 'center' }} my={4}>
-                    <Button size={'lg'} style={{ width: '90%' }} onPress={() => pickDocument()}>Cargar configuración</Button>
+                    <Button size={'lg'}
+                            _light={{bg: app.secondaryColor, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5),
+                                    fontFamily:'Poligon_Bold'}}}
+                            _pressed={{bg:app.secondaryColorHover, _text: {color: app.fontColor}}}
+                            style={{width:'90%'}}
+                            onPress={() => pickDocument()}>Cargar configuración</Button>
                 </Box>
             </View>
+            {
+                visible &&
+                <GenericModal app={app} visible={visible} setVisible={setVisible} isError={isErrorModal} title={titleModal} text={messageModal}/>
+            }
         </MainLayout>
     )
 
 }
 
 const styles = StyleSheet.create({
-    container: { 
+    container: {
+        backgroundColor:'white',
         width: '100%',
-        height: '98%',
+        height: '100%',
         display: 'flex',
         flexDirection: 'column',
+        paddingHorizontal:40,
     }, 
     sectionOne: {
+        marginTop:20,
         paddingBottom: 20,
         width: '100%',
         display: 'flex',
@@ -140,10 +174,8 @@ const styles = StyleSheet.create({
         minHeight: 200,
         display: 'flex',
         flexDirection: 'column',
-        borderRadius: 10, 
-        borderColor: '#053e65', 
-        borderWidth: 1,
-        backgroundColor: '#bfdff5'        
+        borderRadius: 10,
+        backgroundColor: '#DFE0EA'
     },
     label: {
         marginBottom: 4,
@@ -153,27 +185,39 @@ const styles = StyleSheet.create({
         textAlign: 'left',
     },
     input: {
-        width: '100%',
-        fontSize: 16,
-        borderWidth: 1,
-        padding: 10,
-        borderRadius: 10,
+        marginTop: 8,
+        marginBottom: 8,
+        alignItems: 'center',
+        paddingHorizontal: 15,
+        width: "100%",
+        height: 54,
+        fontSize:textSizeRender(3.5),
+        fontFamily:'Poligon_Regular',
+        color: store.getState().app.color,
+        borderColor: store.getState().app.color,
+        borderWidth: 2,
+        backgroundColor: "white",
+        borderRadius: 10
     },
     titulo: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        textAlign: 'center',
+        fontSize: textSizeRender(4.5),
+        textAlign: 'justify',
+        fontFamily:'Poligon_Bold',
     },
     dato: {
-        fontSize: 16,
+        fontSize: textSizeRender(3.1),
         marginBottom: 20,
-        textAlign: 'center'
+        fontFamily:'Poligon_Regular',
+        textAlign: 'justify',
     }
 })
 
 const mapState = (state) => {
     return {
-        config:state.config,
+        app: state.app,
+        config: state.config,
+        sending: state.sending,
     }
 }
-export default connect(mapState,{saveConfigAction})(KhorConfig);
+
+export default connect(mapState,{saveConfigAction, saveUrlAction})(KhorConfig);

@@ -1,0 +1,1827 @@
+{
+  "id": 3000,
+  "nombre": "MX",
+  "sociodemograficos": {
+    "propiedad": [
+      {
+        "id": 3000,
+        "nombre": "BUENAVISTA DEL COBRE",
+        "direccion": [
+          {
+            "id": 3001,
+            "nombre": "CONCENTRADORA",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "CONTROL METALÚRGICO"
+              },
+              {
+                "id": 3002,
+                "nombre": "PROCESO HUMEDO"
+              },
+              {
+                "id": 3002,
+                "nombre": "PROCESO SECO"
+              },
+              {
+                "id": 3002,
+                "nombre": "REPRESOS Y TERRACERIAS"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "CONCENTRADORA II",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "CONTROL METALURGICO"
+              },
+              {
+                "id": 3002,
+                "nombre": "PROCESO HUMEDO"
+              },
+              {
+                "id": 3002,
+                "nombre": "PROCESO SECO"
+              },
+              {
+                "id": 3002,
+                "nombre": "REPRESOS Y TERRACERIAS"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "ESDE",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "OTROS ESDES"
+              },
+              {
+                "id": 3002,
+                "nombre": "LIXIVIACION"
+              },
+              {
+                "id": 3002,
+                "nombre": "MTTO ESDES"
+              },
+              {
+                "id": 3002,
+                "nombre": "OPERACIÓN ESDES"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "HIDROMETALURGIA",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "MTTO HIDROMETALURGIA"
+              },
+              {
+                "id": 3002,
+                "nombre": "OPERACIÓN QUEBALIXE´S"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "MINA",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "OTROS MINA OPERACIÓN"
+              },
+              {
+                "id": 3002,
+                "nombre": "BARRENACION Y VOLADURAS"
+              },
+              {
+                "id": 3002,
+                "nombre": "CAMION"
+              },
+              {
+                "id": 3002,
+                "nombre": "EQ. AUXILIAR"
+              },
+              {
+                "id": 3002,
+                "nombre": "MINA TAJO ABIERTO"
+              },
+              {
+                "id": 3002,
+                "nombre": "PALA"
+              },
+              {
+                "id": 3002,
+                "nombre": "PIPERO"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "MANTENIMIENTO MINA",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "MTTO CAMIONES Y EQ. AUXILIAR"
+              },
+              {
+                "id": 3002,
+                "nombre": "MTTO EQUIPO PESADO"
+              },
+              {
+                "id": 3002,
+                "nombre": "MTTO SERVICIOS"
+              },
+              {
+                "id": 3002,
+                "nombre": "MTTO SERVICIOS ELECTRICOS"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "MTTO PLANTAS",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "MTTO CONCENTRADORA"
+              },
+              {
+                "id": 3002,
+                "nombre": "MTTO CONCENTRADORA II"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3000,
+        "nombre": "CHARCAS",
+        "direccion": [
+          {
+            "id": 3001,
+            "nombre": "MINA",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "MOLINO",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "MANTENIMIENTO MECANICO",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "MANTENIMIENTO ELÉCTRICO",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "MANTENIMIENTO DIESEL",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "MANTENIMIENTO CIVIL",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "OFICINA GENERAL",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "SEGURIDAD",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "ALMACÉN",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "RECURSOS HUMANOS",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "VIGILANCIA",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3000,
+        "nombre": "GUAYMAS",
+        "direccion": [
+          {
+            "id": 3001,
+            "nombre": "GENERAL",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3000,
+        "nombre": "LA CARIDAD",
+        "direccion": [
+          {
+            "id": 3001,
+            "nombre": "MINA",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "OPERACIÓN"
+              },
+              {
+                "id": 3002,
+                "nombre": "MANTENIMIENTO"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "ESDE",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "OPERACIÓN"
+              },
+              {
+                "id": 3002,
+                "nombre": "MANTENIMIENTO"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "CONCENTRADORA",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "OPERACIÓN"
+              },
+              {
+                "id": 3002,
+                "nombre": "MANTENIMIENTO"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "TALLERES CENTRALES",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "MANTENIMIENTO"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "INGENIERIA DE PLANTAS",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "MANTENIMIENTO"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "TRANSPORTES",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "OPERACIÓN"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "ADMINISTRATIVA",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "ALMACEN"
+              },
+              {
+                "id": 3002,
+                "nombre": "SEGURIDAD"
+              },
+              {
+                "id": 3002,
+                "nombre": "CONTRATOS"
+              },
+              {
+                "id": 3002,
+                "nombre": "SERVICIOS"
+              },
+              {
+                "id": 3002,
+                "nombre": "CONTRALORÍA"
+              },
+              {
+                "id": 3002,
+                "nombre": "RECURSOS HUMANOS"
+              },
+              {
+                "id": 3002,
+                "nombre": "PLANEACIÓN"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3000,
+        "nombre": "OFICINAS CHIHUAHUA",
+        "direccion": [
+          {
+            "id": 3001,
+            "nombre": "GENERAL",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3000,
+        "nombre": "OFICINAS HERMOSILLO",
+        "direccion": [
+          {
+            "id": 3001,
+            "nombre": "GENERAL",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "CENTRO DE SERVICIOS COMPARTIDOS",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3000,
+        "nombre": "OFICINAS IMMSA SLP Y PLANTA DE COBRE",
+        "direccion": [
+          {
+            "id": 3001,
+            "nombre": "GENERAL",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3000,
+        "nombre": "OFICINAS MÉXICO",
+        "direccion": [
+          {
+            "id": 3001,
+            "nombre": "PRESIDENCIA / VICEPRESIDENCIA / DIRECCIÓN GENERAL DE OPERACIONES",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "DIRECCIÓN DE ADMINISTRACIÓN Y CONTROL",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "DIRECCIÓN DE ABASTECIMIENTOS",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "DIRECCIÓN COMERCIAL",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "DIRECCIÓN DE NUEVOS NEGOCIOS / FINANZAS",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "DIRECCIÓN GENERAL DE INGENIERÍA Y CONSTRUCCIÓN",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "DIRECCIÓN DE RECURSOS HUMANOS",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "DIRECCIÓN JURIDICA Y GOBIERNO CORPORATIVO",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "DIRECCIÓN JURIDICA Y RELACIONES INSTITUCIONALES",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "DIRECCIÓN DE TECNOLOGÍAS DE LA INFORMACIÓN",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "DIRECCIÓN DE AUDITORÍA INTERNA",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "DIRECCIÓN DE SUSTENTABILIDAD",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "DIRECCIÓN DE EXPLORACIONES",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "DIRECCIÓN GENERAL IMMSA / ASARCO",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "OTRAS AREAS ADMINISTRATIVAS / CORPORATIVAS",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3000,
+        "nombre": "PLANTA DE CAL",
+        "direccion": [
+          {
+            "id": 3001,
+            "nombre": "GERENCIA Y ADMINISTRATIVOS",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "MANTENIMIENTO",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "PRODUCCIÓN",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "MINA-TRITURACIÓN",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3000,
+        "nombre": "PLANTAS METALÚRGICAS",
+        "direccion": [
+          {
+            "id": 3001,
+            "nombre": "ADMINISTRATIVA",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "FUNDICIÓN",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "MANTENIMIENTO",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "INVESTIGACIONES METALURGICAS",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "PLANTA REFINERIA",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "PLANTA ALAMBRON",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "PLANTA DE METALES PRECIOSOS",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "PLANTA DE POLVOS Y EFLUENTES",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "MUESTREO Y MANEJO DE MATERIALES",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3000,
+        "nombre": "SAN LUIS ZINC",
+        "direccion": [
+          {
+            "id": 3001,
+            "nombre": "PLANTA DE ZINC",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "ABASTECIMIENTOS",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "CONTRALORÍA",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "INGENIERÍA Y CONSTRUCCIÓN",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "MEDIO AMBIENTE / ECOLOGÍA",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "PROGRAMACIÓN Y PLANEACIÓN",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "RECURSOS HUMANOS",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "SEGURIDAD E HIGIENE",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "CONTROL METALÚRGICO",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "TECNOLOGÍAS DE INFORMACIÓN",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "TRÁFICO Y COMERCIO",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3000,
+        "nombre": "SAN MARTIN",
+        "direccion": [
+          {
+            "id": 3001,
+            "nombre": "MINA",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "GEOLOGÍA",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "PLANEACIÓN INGENIERÍA",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "ALMACÉN",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "SEGURIDAD",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "MANTENIMIENTO MINA",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "MANTENIMIENTO DIESEL",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "MANTENIMIENTO ELÉCTRICO",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "PLANTA DE BENEFICIO",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "ADMINISTRATIVA",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3000,
+        "nombre": "SANTA BARBARA",
+        "direccion": [
+          {
+            "id": 3001,
+            "nombre": "TECOLOTES",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "OPERACIÓN"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "SEGOVEDAD",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "OPERACIÓN"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "SAN DIEGO",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "OPERACIÓN"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "PLANTA DE BENEFICIO",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "OPERACIÓN"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "SERVICIOS",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "PATIO Y ACARREO"
+              },
+              {
+                "id": 3002,
+                "nombre": "GEOLOGIA Y EXPLORACION"
+              },
+              {
+                "id": 3002,
+                "nombre": "ROBBINS"
+              },
+              {
+                "id": 3002,
+                "nombre": "PLANEACIÓN, LABORATORIO E INGENIERIA"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "MANTENIMIENTO",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "DIESEL TECOLOTES"
+              },
+              {
+                "id": 3002,
+                "nombre": "DIESEL SEGOVEDAD"
+              },
+              {
+                "id": 3002,
+                "nombre": "DIESEL SAN DIEGO"
+              },
+              {
+                "id": 3002,
+                "nombre": "PLANTA DE BENEFICIO"
+              },
+              {
+                "id": 3002,
+                "nombre": "MINAS Y CIVIL"
+              },
+              {
+                "id": 3002,
+                "nombre": "ELECTRICO"
+              },
+              {
+                "id": 3002,
+                "nombre": "INSTRUMENTACION"
+              },
+              {
+                "id": 3002,
+                "nombre": "DIESEL SUPERFICIE"
+              },
+              {
+                "id": 3002,
+                "nombre": "PAILERIA Y COMPRESORES"
+              },
+              {
+                "id": 3002,
+                "nombre": "MECANICO"
+              }
+            ]
+          },
+          {
+            "id": 3001,
+            "nombre": "ADMINISTRATIVA",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "ALMACEN"
+              },
+              {
+                "id": 3002,
+                "nombre": "RECURSOS HUMANOS"
+              },
+              {
+                "id": 3002,
+                "nombre": "SEGURIDAD Y SALUD"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3000,
+        "nombre": "TALLER CENTRA",
+        "direccion": [
+          {
+            "id": 3001,
+            "nombre": "GENERAL",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3000,
+        "nombre": "UNIDADES NO OPERATIVAS: ANGANGUEO, NUEVA ROSITA, SANTA EULALIA, TAXCO, OFICINAS MONTERREY, LAB. PARRAL, COAHUILA, ESTACIÓN SANTIAGO",
+        "direccion": [
+          {
+            "id": 3001,
+            "nombre": "GENERAL",
+            "area": [
+              {
+                "id": 3002,
+                "nombre": "NO APLICA"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "tipodecolaborador": [
+      {
+        "id": 3003,
+        "nombre": "SINDICALIZADO"
+      },
+      {
+        "id": 3003,
+        "nombre": "NO SINDICALIZADO"
+      }
+    ],
+    "residenciadelafamilia": [
+      {
+        "id": 3004,
+        "nombre": "CAMPAMENTO"
+      },
+      {
+        "id": 3004,
+        "nombre": "FUERA DEL CAMPAMENTO/ COLONIA"
+      }
+    ],
+    "genero": [
+      {
+        "id": 3005,
+        "nombre": "HOMBRE"
+      },
+      {
+        "id": 3005,
+        "nombre": "MUJER"
+      },
+      {
+        "id": 3005,
+        "nombre": "OTRO"
+      }
+    ],
+    "enqueanionaciste": [
+      {
+        "id": 3006,
+        "nombre": "1963 O ANTES"
+      },
+      {
+        "id": 3006,
+        "nombre": "DE 1964 A 1980"
+      },
+      {
+        "id": 3006,
+        "nombre": "DE 1981 A 1996"
+      },
+      {
+        "id": 3006,
+        "nombre": "1997 O DESPUÉS"
+      }
+    ],
+    "cuantosanioscumplidostienestrabajandoenlaempresa": [
+      {
+        "id": 3007,
+        "nombre": "0 A 2 AÑOS"
+      },
+      {
+        "id": 3007,
+        "nombre": "3 A 5 AÑOS"
+      },
+      {
+        "id": 3007,
+        "nombre": "6 A 10 AÑOS"
+      },
+      {
+        "id": 3007,
+        "nombre": "11 A 20 AÑOS"
+      },
+      {
+        "id": 3007,
+        "nombre": "20 A 30 AÑOS"
+      },
+      {
+        "id": 3007,
+        "nombre": "MÁS DE 30 AÑOS"
+      }
+    ],
+    "estadocivil": [
+      {
+        "id": 3008,
+        "nombre": "SOLTERO"
+      },
+      {
+        "id": 3008,
+        "nombre": "CASADO"
+      },
+      {
+        "id": 3008,
+        "nombre": "UNIÓN LIBRE"
+      },
+      {
+        "id": 3008,
+        "nombre": "NO DESEO CONTESTAR"
+      }
+    ],
+    "soyresponsabledelcuidadopersonalfinancierodeotraspersonasofamiliares": [
+      {
+        "id": 3009,
+        "nombre": "SÍ: HIJ@S MENORES DE 6 AÑOS"
+      },
+      {
+        "id": 3009,
+        "nombre": "SÍ: HIJ@S DE 6 A 12 AÑOS"
+      },
+      {
+        "id": 3009,
+        "nombre": "SÍ: HIJOS DE 13 AÑOS EN ADELANTE"
+      },
+      {
+        "id": 3009,
+        "nombre": "SÍ: PERSONAS CON DISCAPACIDAD"
+      },
+      {
+        "id": 3009,
+        "nombre": "SÍ: ADULTOS MAYORES"
+      },
+      {
+        "id": 3009,
+        "nombre": "NO"
+      },
+      {
+        "id": 3009,
+        "nombre": "NO DESEO CONTESTAR"
+      }
+    ],
+    "concualdelossiguientesgruposteidentificas": [
+      {
+        "id": 3010,
+        "nombre": "INDÍGENA"
+      },
+      {
+        "id": 3010,
+        "nombre": "AFRODESCENDIENTE"
+      },
+      {
+        "id": 3010,
+        "nombre": "EURODESCENDIENTE / BLANCO / CAUCÁSICO"
+      },
+      {
+        "id": 3010,
+        "nombre": "LATINO / HISPÁNICO"
+      },
+      {
+        "id": 3010,
+        "nombre": "ÁRABE"
+      },
+      {
+        "id": 3010,
+        "nombre": "ASIÁTICO"
+      },
+      {
+        "id": 3010,
+        "nombre": "NO DESEO CONTESTAR"
+      }
+    ],
+    "cuentasconalgunadiscapacidad": [
+      {
+        "id": 3011,
+        "nombre": "SI"
+      },
+      {
+        "id": 3011,
+        "nombre": "NO"
+      },
+      {
+        "id": 3011,
+        "nombre": "NO DESEO CONTESTAR"
+      }
+    ]
+  },
+  "reactivos": [
+    {
+      "id": 1000,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Las personas trabajan con integridad, dedicación y excelencia</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1001,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Mis compañeros han propuesto ideas para mejorar nuestro trabajo.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1002,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Todos sabemos donde encontrar la información que necesitamos.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1003,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>En la empresa son importantes mis habilidades, logros y actitudes para tener oportunidades de desarrollo.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1004,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>La empresa ha permitido el logro de mis metas personales y profesionales.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1005,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Mi jefe me reconoce cuando tengo un buen desempeño</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1006,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Mi jefe es capaz de inspirar al equipo de trabajo.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1007,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Realizo actividades recreativas después de mi jornada laboral.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1008,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Las comunidades cercanas a las operaciones tienen una visión positiva de la empresa.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1009,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Recibo un trato justo y digno de parte de la organización.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1010,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Los jefes tienen clara la visión de la empresa y la comparten con su equipo.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1011,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Felicito a los demás cuando hacen algo bueno.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1012,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>En la empresa se consideran mis necesidades individuales de forma justa y respetuosa.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1013,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Informo de cualquier condición o acto inseguro.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1014,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>En la empresa conozco personas que han sido promovidas internamente.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1015,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Puedo terminar todo lo que tengo que hacer dentro de mi horario normal de trabajo.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1016,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>La empresa promueve un ambiente cordial.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1017,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Trabajar aquí es algo especial, no sólo se trata de mi trabajo.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1018,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Existe un ambiente de respeto y dignidad en los equipos de trabajo.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1019,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Conocemos los avances y resultados de nuestro departamento o área.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1020,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Mis compañeros identifican riesgos, planifican y ejecutan las medidas preventivas necesarias.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1021,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Mis compañeros de trabajo me apoyan cuando tengo algún problema.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1022,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>En la empresa nos sentimos bienvenidos.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1023,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Trabajar en esta empresa es motivo de orgullo ante mi familia y amigos.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1024,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Cuando surge algún problema, todos como equipo participamos en la solución.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1025,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Mi trabajo es importante para los objetivos de la organización.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1026,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Me siento bien recibido en mi lugar de trabajo.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1027,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>En la empresa se reconoce el esfuerzo de las personas.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1028,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Se respira un ambiente de confianza entre mis compañeros de trabajo.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1029,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Me siento orgulloso y comprometido de trabajar en esta empresa.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1030,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>La comunicación fluye entre áreas o departamentos.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1031,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Los jefes delegan de forma efectiva sin tener que estar supervisando constantemente.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1032,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Se toman decisiones sin favoritismo en la organización.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1033,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Los jefes son ejemplo de los valores de la empresa.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1034,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Se toman acciones cuando un compañero no actúa conforme al código de ética y conducta.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1035,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Conozco las actividades que desarrolla la empresa en la comunidad.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1036,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Se nos informa sobre los accidentes que ocurren.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1037,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Los jefes escuchan a sus colaboradores.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1038,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>En la empresa se promueve el reconocimiento por buenos resultados.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1039,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>En la empresa manejamos positivamente los desacuerdos y los conflictos con el equipo.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1040,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Me capacitan para realizar mejor mi trabajo.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1041,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>En la empresa existen canales de comunicación disponibles para escucharme.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1042,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Me siento identificado con los valores de la empresa.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1043,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Tengo claros los procedimientos que debo seguir para realizar o mejorar mi trabajo.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1044,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>En esta empresa colaboramos y compartimos con nuestros compañeros.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1045,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Las personas que trabajan aquí respetan las políticas de la compañía, las reglas y a otros compañeros de trabajo.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1046,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Los líderes promueven un entorno de equidad dentro de la organización.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1047,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>La empresa muestra un interés genuino por la dignidad de las personas.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1048,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>La empresa desarrolla actividades a favor del bienestar de las comunidades donde opera.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1049,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>La empresa facilita la integración a nuestra cultura.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1050,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>La gente que trabaja en la empresa muestra un alto sentido de lealtad y responsabilidad con la organización.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1051,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>La empresa ofrece las mismas oportunidades de desarrollo para todos sin distinciones.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1052,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Como equipo contribuimos efectivamente a alcanzar nuestros objetivos.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1053,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Mis compañeros usan adecuadamente los recursos para evitar desperdicios (papel, luz, agua, combustibles, etc.).</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1054,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Con frecuencia puedo aprender algo nuevo después de mi horario laboral.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1055,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Puedo expresar mis ideas sin miedo a represalias.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1056,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>La empresa promueve la capacitación de forma regular para el desarrollo de los colaboradores.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1057,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Considero que la empresa tiene un impacto positivo en mi comunidad.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1058,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>En la empresa realizamos un manejo apropiado de basura, desperdicios y residuos peligrosos.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1059,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Mi trabajo me permite pasar tiempo con mi familia y tener otras actividades.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1060,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Se cuenta con planes de contingencia adecuados ante emergencias.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1061,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Mis compañeros dan su máximo esfuerzo cada día.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1062,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Recibo retroalmentación oportuna de mi jefe para mejorar mi desempeño.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1063,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>La empresa promueve la mejora continua de los procesos.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1064,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>En la empresa se busca cubrir los puestos con personal interno.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1065,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Con regularidad la empresa promueve que los colaboradores aportemos ideas para mejorar los procesos de trabajo.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1066,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Cuento con el equipo y herramientas óptimas para poder desempeñar mi trabajo adecuadamente.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1067,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Los jefes dan información, asignan labores y coordinan a las personas de forma adecuada.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1068,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Mi jefe muestra un trato igualitario con todos mis compañeros de trabajo sin importar su género.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1069,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Mi ambiente de trabajo es limpio y ordenado.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1070,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Mi ambiente de trabajo es seguro.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1071,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Tengo claros los riesgos y las acciones preventivas que debo realizar para evitar accidentes durante mi jornada laboral.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1072,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Prefiero trabajar en esta organización que en cualquier otra.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1073,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>En esta empresa todos somos responsables del logro de objetivos.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1074,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>La empresa realiza acciones para contribuir en la conservación del medio ambiente.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1075,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Las instalaciones de la empresa son apropiadas para desempeñar mi trabajo.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1076,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Recomiendo a otras personas trabajar en esta empresa</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1077,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>En la empresa contamos con tecnología innovadora y sistemas modernos para realizar nuestro trabajo.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1078,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Mi empresa es un gran lugar para trabajar.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1079,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Mi familia y yo participamos en actividades que la empresa desarrolla en las comunidades donde opera.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1080,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>La empresa brinda oportunidades profesionales a las personas, sin importar su género, edad, color de piel, religión, discapacidades, creencias y nivel educativo o socioeconómico.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1081,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Respeto a todas las personas por igual sin importar su apariencia.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1082,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>En la empresa se respetan por igual, los Derechos Humanos de todas las personas que trabajan en la empresa y personas de las comunidades</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1083,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>La empresa se ha preocupado por mi salud durante la emergencia sanitaria ante el Covid-19.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1084,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>La empresa ha implementado las medidas necesarias para prevenir contagios de Covid-19.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1085,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>La empresa me ha capacitado e informado para prevenir contagios de Covid-19.</p>",
+      "tipo": "1a5"
+    },
+    {
+      "id": 1086,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Todos llevamos a cabo las acciones para prevenir contagios de Covid-19.</p>",
+      "tipo": "1a5"
+    }
+  ],
+  "rankingdefactores": [
+    {
+      "id": 1,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Balance de vida y trabajo / Conciliación vida y trabajo.</p>",
+      "tipo": "1a11"
+    },
+    {
+      "id": 2,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Mi equipo de Trabajo.</p>",
+      "tipo": "1a11"
+    },
+    {
+      "id": 3,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Valores, integridad y ética dentro de la empresa.</p>",
+      "tipo": "1a11"
+    },
+    {
+      "id": 4,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>El impacto social de la empresa.</p>",
+      "tipo": "1a11"
+    },
+    {
+      "id": 5,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>El liderazgo de los jefes a todos los niveles.</p>",
+      "tipo": "1a11"
+    },
+    {
+      "id": 6,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Comunicación en la empresa.</p>",
+      "tipo": "1a11"
+    },
+    {
+      "id": 7,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Tener capacitación, reconocimiento y oportunidades de desarrollo.</p>",
+      "tipo": "1a11"
+    },
+    {
+      "id": 8,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Seguridad e higiene en mi trabajo.</p>",
+      "tipo": "1a11"
+    },
+    {
+      "id": 9,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Trato equitativo.</p>",
+      "tipo": "1a11"
+    },
+    {
+      "id": 10,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Cuidado al medio ambiente.</p>",
+      "tipo": "1a11"
+    },
+    {
+      "id": 11,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>La mejora continua.</p>",
+      "tipo": "1a11"
+    }
+  ],
+  "preguntasabiertas": [
+    {
+      "id": 1,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>¿Qué se debe mejorar en la empresa?</p>",
+      "tipo": "abierta"
+    },
+    {
+      "id": 2,
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>¿Qué hace valiosa a la empresa?</p>",
+      "tipo": "abierta"
+    }
+  ]
+}
+
