@@ -39,7 +39,7 @@ const SociodemographicPage = ({navigation, saveRsponseSocio, app}) => {
 
     const acceptBack = () => {
         setVisible(false)
-        navigation.navigate("loginUser")
+        navigation.navigate("Home")
     }
 
     const backAction = async () => {
@@ -49,7 +49,7 @@ const SociodemographicPage = ({navigation, saveRsponseSocio, app}) => {
         } else {
             setTitleModal("Hola usuario")
         }
-        setMessageModal("¿Estas seguro que desea salir de la encuesta de datos socio de demográficos?")
+        setMessageModal("¿Estas seguro que desea salir de la encuesta?")
         setVisible(true)
         return true;
     };

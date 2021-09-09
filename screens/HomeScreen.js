@@ -8,13 +8,18 @@ import {View, Dimensions, Image, Text} from "react-native";
 import {textSizeRender} from "../utils/utils";
 
 const {width, height} = Dimensions.get('window')
-const HomeScreen = ({productsDuck, navigation, app}) => {
+const HomeScreen = ({productsDuck, navigation, app,eco}) => {
     const [showModal, setShowModal] = useState(false)
 
     useEffect(() => {
-        console.log(config)
+
+
+        console.log("ECO:::::",eco)
         setInitialFakeData()
     }, [])
+
+
+
 
 
     let setInitialFakeData = () => {
@@ -55,7 +60,9 @@ const HomeScreen = ({productsDuck, navigation, app}) => {
                             size={'lg'} style={{
                             marginBottom: 20,
                             borderRadius: 12
-                        }}>ECCO</Button>
+                        }}
+                            onPress={() => navigation.navigate('SelectCountryScreen')}
+                        >ECCO</Button>
 
                         <Button size={'lg'}
                                 _light={{bg: app.secondaryColor, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5),
@@ -74,6 +81,7 @@ const HomeScreen = ({productsDuck, navigation, app}) => {
 const mapState = (state) => {
     return {
         app: state.app,
+        eco:state.eco,
         productsDuck: state.productsDuck
     }
 }

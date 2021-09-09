@@ -1,159 +1,135 @@
 {
-  "id": 3002,
+  "id": 3013,
   "nombre": "PR",
-  "sociodemograficos": {
-    "propiedad": [
+  "sociodemograficos": [
+    {
+      "dato": "Propiedad",
+      "propiedad": [
       {
         "id": 1023,
+        "dato": "Propiedad",
         "nombre": "CUAJONE",
         "direccion": [
           {
-            "id": 3001,
-            "nombre": "CONCENTRADORA",
+            "id": 3012,"dato": "Dirección",
+            "nombre": "DIRECCIÓN GENERAL OPERACIONES",
+            "selected": false,
             "area": [
               {
-                "id": 3002,
-                "nombre": "CONTROL METALÚRGICO"
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "INGENIERÍA DE PLANTA"
               },
               {
-                "id": 3002,
-                "nombre": "PROCESO HUMEDO"
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "RECURSOS HÍDRICOS"
               },
+
               {
-                "id": 3002,
-                "nombre": "PROCESO SECO"
-              },
-              {
-                "id": 3002,
-                "nombre": "REPRESOS Y TERRACERIAS"
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "OTROS"
               }
             ]
           },
           {
-            "id": 3001,
-            "nombre": "CONCENTRADORA II",
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "DIRECCIÓN OPERACIONES",
             "area": [
               {
-                "id": 3002,
-                "nombre": "CONTROL METALURGICO"
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "MINA"
               },
               {
-                "id": 3002,
-                "nombre": "PROCESO HUMEDO"
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "CONCENTRADORA"
               },
               {
-                "id": 3002,
-                "nombre": "PROCESO SECO"
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "MANTENIMIENTO"
               },
               {
-                "id": 3002,
-                "nombre": "REPRESOS Y TERRACERIAS"
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "SEGURIDAD E HIGIENE MINERA"
               }
             ]
           },
           {
-            "id": 3001,
-            "nombre": "ESDE",
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "DIRECCIÓN RECURSOS HUMANOS",
             "area": [
               {
-                "id": 3002,
-                "nombre": "OTROS ESDES"
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "RECURSOS HUMANOS"
               },
               {
-                "id": 3002,
-                "nombre": "LIXIVIACION"
-              },
-              {
-                "id": 3002,
-                "nombre": "MTTO ESDES"
-              },
-              {
-                "id": 3002,
-                "nombre": "OPERACIÓN ESDES"
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "HOSPITALES"
               }
             ]
           },
           {
-            "id": 3001,
-            "nombre": "HIDROMETALURGIA",
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "DIRECCIÓN ABASTECIMIENTO",
             "area": [
               {
-                "id": 3002,
-                "nombre": "MTTO HIDROMETALURGIA"
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "ALMACENES"
               },
               {
-                "id": 3002,
-                "nombre": "OPERACIÓN QUEBALIXE´S"
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "COMPRAS Y CONTRATOS"
               }
             ]
           },
           {
-            "id": 3001,
-            "nombre": "MINA",
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "DIRECCIÓN SERVICIOS AMBIENTALES",
             "area": [
               {
-                "id": 3002,
-                "nombre": "OTROS MINA OPERACIÓN"
-              },
-              {
-                "id": 3002,
-                "nombre": "BARRENACION Y VOLADURAS"
-              },
-              {
-                "id": 3002,
-                "nombre": "CAMION"
-              },
-              {
-                "id": 3002,
-                "nombre": "EQ. AUXILIAR"
-              },
-              {
-                "id": 3002,
-                "nombre": "MINA TAJO ABIERTO"
-              },
-              {
-                "id": 3002,
-                "nombre": "PALA"
-              },
-              {
-                "id": 3002,
-                "nombre": "PIPERO"
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "SERVICIOS AMBIENTALES"
               }
             ]
           },
           {
-            "id": 3001,
-            "nombre": "MANTENIMIENTO MINA",
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "OTRO",
             "area": [
               {
-                "id": 3002,
-                "nombre": "MTTO CAMIONES Y EQ. AUXILIAR"
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "LESDE"
               },
               {
-                "id": 3002,
-                "nombre": "MTTO EQUIPO PESADO"
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "DESARROLLO COMUNITARIO"
               },
               {
-                "id": 3002,
-                "nombre": "MTTO SERVICIOS"
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "PROYECTOS"
               },
               {
-                "id": 3002,
-                "nombre": "MTTO SERVICIOS ELECTRICOS"
-              }
-            ]
-          },
-          {
-            "id": 3001,
-            "nombre": "MTTO PLANTAS",
-            "area": [
-              {
-                "id": 3002,
-                "nombre": "MTTO CONCENTRADORA"
-              },
-              {
-                "id": 3002,
-                "nombre": "MTTO CONCENTRADORA II"
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "OTROS"
               }
             ]
           }
@@ -161,260 +137,424 @@
       },
       {
         "id": 1023,
-        "nombre": "CHARCAS",
+        "dato": "Propiedad",
+        "nombre": "ILO",
         "direccion": [
           {
-            "id": 3001,
-            "nombre": "MINA",
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "DIRECCIÓN GENERAL OPERACIONES",
             "area": [
               {
-                "id": 3002,
-                "nombre": "NO APLICA"
-              }
-            ]
-          },
-          {
-            "id": 3001,
-            "nombre": "MOLINO",
-            "area": [
-              {
-                "id": 3002,
-                "nombre": "NO APLICA"
-              }
-            ]
-          },
-          {
-            "id": 3001,
-            "nombre": "MANTENIMIENTO MECANICO",
-            "area": [
-              {
-                "id": 3002,
-                "nombre": "NO APLICA"
-              }
-            ]
-          },
-          {
-            "id": 3001,
-            "nombre": "MANTENIMIENTO ELÉCTRICO",
-            "area": [
-              {
-                "id": 3002,
-                "nombre": "NO APLICA"
-              }
-            ]
-          },
-          {
-            "id": 3001,
-            "nombre": "MANTENIMIENTO DIESEL",
-            "area": [
-              {
-                "id": 3002,
-                "nombre": "NO APLICA"
-              }
-            ]
-          },
-          {
-            "id": 3001,
-            "nombre": "MANTENIMIENTO CIVIL",
-            "area": [
-              {
-                "id": 3002,
-                "nombre": "NO APLICA"
-              }
-            ]
-          },
-          {
-            "id": 3001,
-            "nombre": "OFICINA GENERAL",
-            "area": [
-              {
-                "id": 3002,
-                "nombre": "NO APLICA"
-              }
-            ]
-          },
-          {
-            "id": 3001,
-            "nombre": "SEGURIDAD",
-            "area": [
-              {
-                "id": 3002,
-                "nombre": "NO APLICA"
-              }
-            ]
-          },
-          {
-            "id": 3001,
-            "nombre": "ALMACÉN",
-            "area": [
-              {
-                "id": 3002,
-                "nombre": "NO APLICA"
-              }
-            ]
-          },
-          {
-            "id": 3001,
-            "nombre": "RECURSOS HUMANOS",
-            "area": [
-              {
-                "id": 3002,
-                "nombre": "NO APLICA"
-              }
-            ]
-          },
-          {
-            "id": 3001,
-            "nombre": "VIGILANCIA",
-            "area": [
-              {
-                "id": 3002,
-                "nombre": "NO APLICA"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": 3000,
-        "nombre": "GUAYMAS",
-        "direccion": [
-          {
-            "id": 3001,
-            "nombre": "GENERAL",
-            "area": [
-              {
-                "id": 3002,
-                "nombre": "NO APLICA"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": 3000,
-        "nombre": "LA CARIDAD",
-        "direccion": [
-          {
-            "id": 3001,
-            "nombre": "MINA",
-            "area": [
-              {
-                "id": 3002,
-                "nombre": "OPERACIÓN"
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "INGENIERÍA DE PLANTA"
               },
               {
-                "id": 3002,
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "OTROS"
+              }
+            ]
+          },
+          {
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "DIRECCIÓN OPERACIONES",
+            "area": [
+              {
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "FUNDICIÓN"
+              },
+              {
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "REFINERÍA"
+              },
+              {
+                "id": 3013,
+                "dato": "Área",
                 "nombre": "MANTENIMIENTO"
+              },
+              {
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "FERROCARRIL INDUSTRIAL"
+              },
+              {
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "SEGURIDAD E HIGIENE MINERA"
               }
             ]
           },
           {
-            "id": 3001,
-            "nombre": "ESDE",
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "DIRECCIÓN RECURSOS HUMANOS",
             "area": [
               {
-                "id": 3002,
-                "nombre": "OPERACIÓN"
-              },
-              {
-                "id": 3002,
-                "nombre": "MANTENIMIENTO"
-              }
-            ]
-          },
-          {
-            "id": 3001,
-            "nombre": "CONCENTRADORA",
-            "area": [
-              {
-                "id": 3002,
-                "nombre": "OPERACIÓN"
-              },
-              {
-                "id": 3002,
-                "nombre": "MANTENIMIENTO"
-              }
-            ]
-          },
-          {
-            "id": 3001,
-            "nombre": "TALLERES CENTRALES",
-            "area": [
-              {
-                "id": 3002,
-                "nombre": "MANTENIMIENTO"
-              }
-            ]
-          },
-          {
-            "id": 3001,
-            "nombre": "INGENIERIA DE PLANTAS",
-            "area": [
-              {
-                "id": 3002,
-                "nombre": "MANTENIMIENTO"
-              }
-            ]
-          },
-          {
-            "id": 3001,
-            "nombre": "TRANSPORTES",
-            "area": [
-              {
-                "id": 3002,
-                "nombre": "OPERACIÓN"
-              }
-            ]
-          },
-          {
-            "id": 3001,
-            "nombre": "ADMINISTRATIVA",
-            "area": [
-              {
-                "id": 3002,
-                "nombre": "ALMACEN"
-              },
-              {
-                "id": 3002,
-                "nombre": "SEGURIDAD"
-              },
-              {
-                "id": 3002,
-                "nombre": "CONTRATOS"
-              },
-              {
-                "id": 3002,
-                "nombre": "SERVICIOS"
-              },
-              {
-                "id": 3002,
-                "nombre": "CONTRALORÍA"
-              },
-              {
-                "id": 3002,
+                "id": 3013,
+                "dato": "Área",
                 "nombre": "RECURSOS HUMANOS"
               },
               {
-                "id": 3002,
-                "nombre": "PLANEACIÓN"
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "HOSPITALES"
+              }
+            ]
+          },
+          {
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "DIRECCIÓN ABASTECIMIENTO",
+            "area": [
+              {
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "ALMACENES"
+              },
+              {
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "COMPRAS Y CONTRATOS"
+              }
+            ]
+          },
+          {
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "DIRECCIÓN SERVICIOS AMBIENTALES",
+            "area": [
+              {
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "SERVICIOS AMBIENTALES"
+              }
+            ]
+          },
+          {
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "DIRECCIÓN COMERCIAL",
+            "area": [
+              {
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "TRÁFICO COMERCIAL"
+              }
+            ]
+          },
+          {
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "DIRECCIÓN PROYECTOS INVERSIÓN",
+            "area": [
+              {
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "PROYECTOS"
+              }
+            ]
+          },
+          {
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "OTROS",
+            "area": [
+              {
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "DESARROLLO COMUNITARIO"
+              },
+              {
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "LEGAL"
+              },
+              {
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "CONTRALORÍA"
+              },
+              {
+                "id": 3013,
+                "dato": "Área",
+                "nombre": "OTROS"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 1023,
+        "dato": "Propiedad",
+        "nombre": "LIMA",
+        "direccion": [
+          {
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "PRESIDENCIA",
+            "area": [
+              {
+                "id": 3013,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "CONTRALORÍA",
+            "area": [
+              {
+                "id": 3013,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "FINANZAS / PLANEAMIENTO FINANCIERO",
+            "area": [
+              {
+                "id": 3013,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "ABASTECIMIENTOS",
+            "area": [
+              {
+                "id": 3013,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "COMPRAS Y CONTRATOS",
+            "area": [
+              {
+                "id": 3013,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "COMERCIAL",
+            "area": [
+              {
+                "id": 3013,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "EXPLORACIONES",
+            "area": [
+              {
+                "id": 3013,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "AUDITORÍA INTERNA",
+            "area": [
+              {
+                "id": 3013,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "LEGAL",
+            "area": [
+              {
+                "id": 3013,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "TI",
+            "area": [
+              {
+                "id": 3013,
+                "nombre": "NO APLICA"
+              }
+            ]
+          },
+          {
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "OTROS",
+            "area": [
+              {
+                "id": 3013,
+                "nombre": "NO APLICA"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 1023,
+        "dato": "Propiedad",
+        "nombre": "TOQUEPALA",
+        "direccion": [
+          {
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "DIRECCIÓN GENERAL OPERACIONES",
+            "area": [
+              {
+                "id": 3013,
+                "nombre": "INGENIERÍA DE PLANTA"
+              },
+              {
+                "id": 3013,
+                "nombre": "PLAN & SERVICIOS TÉCNICOS"
+              },
+              {
+                "id": 3013,
+                "nombre": "OTROS"
+              }
+            ]
+          },
+          {
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "DIRECCIÓN OPERACIONES",
+            "area": [
+              {
+                "id": 3013,
+                "nombre": "MINA"
+              },
+              {
+                "id": 3013,
+                "nombre": "CONCENTRADORA"
+              },
+              {
+                "id": 3013,
+                "nombre": "LESDE"
+              },
+              {
+                "id": 3013,
+                "nombre": "MANTENIMIENTO"
+              },
+              {
+                "id": 3013,
+                "nombre": "SEGURIDAD E HIGIENE MINERA"
+              }
+            ]
+          },
+          {
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "DIRECCIÓN RECURSOS HUMANOS",
+            "area": [
+              {
+                "id": 3013,
+                "nombre": "RECURSOS HUMANOS"
+              },
+              {
+                "id": 3013,
+                "nombre": "HOSPITALES"
+              }
+            ]
+          },
+          {
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "DIRECCIÓN ABASTECIMIENTO",
+            "area": [
+              {
+                "id": 3013,
+                "nombre": "ALMACENES"
+              },
+              {
+                "id": 3013,
+                "nombre": "COMPRAS Y CONTRATOS"
+              }
+            ]
+          },
+          {
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "DIRECCIÓN PROYECTOS INVERSIÓN",
+            "area": [
+              {
+                "id": 3013,
+                "nombre": "PROYECTOS"
+              }
+            ]
+          },
+          {
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "DIRECCIÓN SERVICIOS AMBIENTALES",
+            "area": [
+              {
+                "id": 3013,
+                "nombre": "SERVICIOS AMBIENTALES"
+              }
+            ]
+          },
+          {
+            "id": 3012,
+            "dato": "Dirección",
+            "nombre": "OTROS",
+            "area": [
+              {
+                "id": 3013,
+                "nombre": "FERROCARRIL INDUSTRIAL"
+              },
+              {
+                "id": 3013,
+                "nombre": "DESARROLLO COMUNITARIO"
+              },
+              {
+                "id": 3013,
+                "nombre": "OTRO"
               }
             ]
           }
         ]
       }
-    ],
+    ]},
+    {
+      "dato": "Tipo de colaborador",
     "tipodecolaborador": [
       {
-        "id": 3003,
+        "id": 3014,
         "nombre": "SINDICALIZADO"
       },
       {
-        "id": 3003,
+        "id": 3014,
         "nombre": "NO SINDICALIZADO"
       }
-    ],
-    "residenciadelafamilia": [
+    ]},
+    {
+      "dato": "residenciadelafamilia","residenciadelafamilia": [
       {
         "id": 3004,
         "nombre": "CAMPAMENTO"
@@ -423,8 +563,9 @@
         "id": 3004,
         "nombre": "FUERA DEL CAMPAMENTO/ COLONIA"
       }
-    ],
-    "genero": [
+    ]},
+    {
+      "dato": "gender","genero": [
       {
         "id": 3005,
         "nombre": "HOMBRE"
@@ -437,8 +578,9 @@
         "id": 3005,
         "nombre": "OTRO"
       }
-    ],
-    "enqueanionaciste": [
+    ]},
+    {
+      "dato": "enqueanionaciste","enqueanionaciste": [
       {
         "id": 3006,
         "nombre": "1963 O ANTES"
@@ -455,8 +597,9 @@
         "id": 3006,
         "nombre": "1997 O DESPUÉS"
       }
-    ],
-    "cuantosanioscumplidostienestrabajandoenlaempresa": [
+    ]},
+    {
+      "dato": "cuantosaniostienestrabajando","cuantosaniostienestrabajando": [
       {
         "id": 3007,
         "nombre": "0 A 2 AÑOS"
@@ -481,8 +624,9 @@
         "id": 3007,
         "nombre": "MÁS DE 30 AÑOS"
       }
-    ],
-    "estadocivil": [
+    ]},
+    {
+      "dato": "estadocivil","estadocivil": [
       {
         "id": 3008,
         "nombre": "SOLTERO"
@@ -499,8 +643,9 @@
         "id": 3008,
         "nombre": "NO DESEO CONTESTAR"
       }
-    ],
-    "soyresponsabledelcuidadopersonalfinancierodeotraspersonasofamiliares": [
+    ]},
+    {
+      "dato": "soyresponsabledelcuidadopersonalfinancierofamiliares","soyresponsabledelcuidadopersonalfinancierofamiliares": [
       {
         "id": 3009,
         "nombre": "SÍ: HIJ@S MENORES DE 6 AÑOS"
@@ -529,8 +674,9 @@
         "id": 3009,
         "nombre": "NO DESEO CONTESTAR"
       }
-    ],
-    "concualdelossiguientesgruposteidentificas": [
+    ]},
+    {
+      "dato": "concualdelossiguientesgruposteidentificas","concualdelossiguientesgruposteidentificas": [
       {
         "id": 3010,
         "nombre": "INDÍGENA"
@@ -559,8 +705,9 @@
         "id": 3010,
         "nombre": "NO DESEO CONTESTAR"
       }
-    ],
-    "cuentasconalgunadiscapacidad": [
+    ]},
+    {
+      "dato": "cuentasconalgunadiscapacidad","cuentasconalgunadiscapacidad": [
       {
         "id": 3011,
         "nombre": "SI"
@@ -573,8 +720,8 @@
         "id": 3011,
         "nombre": "NO DESEO CONTESTAR"
       }
-    ]
-  },
+    ]}
+  ],
   "reactivos": [
     {
       "id": 1000,

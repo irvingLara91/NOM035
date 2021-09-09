@@ -6,11 +6,13 @@ import responsesReducer ,{getSavedResponsesAction} from "./ducks/responsesDuck";
 import sendingDuck, {getResponsesAction, getUrlAction} from "./ducks/sendingDuck";
 import appReducer, {getUsersAction} from './ducks/appDuck'
 import progressCountReducer from "./ducks/progressCountDuck";
+import ECODuck from "./ducks/ECODuck";
 
 
 const rootReducer = combineReducers({
     app:appReducer,
     nom035: nom035Duck,
+    eco:ECODuck,
     config:configReducer,
     savedResponses:responsesReducer,
     sending: sendingDuck,

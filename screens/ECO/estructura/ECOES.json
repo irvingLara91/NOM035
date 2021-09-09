@@ -1,184 +1,204 @@
 {
   "id": 3001,
   "nombre": "ES",
-  "sociodemograficos": {
-    "propiedad": [
-      {
-        "id": 1013,
-        "nombre": "LOS FRAILES"
-      }
-    ],
-    "tipodecolaborador": [
-      {
-        "id": 3015,
-        "nombre": "OPERARIOS"
-      },
-      {
-        "id": 3015,
-        "nombre": "PERSONAL TÉCNICO"
-      }
-    ],
-    "residenciadelafamilia": [
-      {
-        "id": 3004,
-        "nombre": "CAMPAMENTO"
-      },
-      {
-        "id": 3004,
-        "nombre": "FUERA DEL CAMPAMENTO/ COLONIA"
-      }
-    ],
-    "genero": [
-      {
-        "id": 3005,
-        "nombre": "HOMBRE"
-      },
-      {
-        "id": 3005,
-        "nombre": "MUJER"
-      },
-      {
-        "id": 3005,
-        "nombre": "OTRO"
-      }
-    ],
-    "enqueanionaciste": [
-      {
-        "id": 3006,
-        "nombre": "1963 O ANTES"
-      },
-      {
-        "id": 3006,
-        "nombre": "DE 1964 A 1980"
-      },
-      {
-        "id": 3006,
-        "nombre": "DE 1981 A 1996"
-      },
-      {
-        "id": 3006,
-        "nombre": "1997 O DESPUÉS"
-      }
-    ],
-    "cuantosanioscumplidostienestrabajandoenlaempresa": [
-      {
-        "id": 3007,
-        "nombre": "0 A 2 AÑOS"
-      },
-      {
-        "id": 3007,
-        "nombre": "3 A 5 AÑOS"
-      },
-      {
-        "id": 3007,
-        "nombre": "6 A 10 AÑOS"
-      },
-      {
-        "id": 3007,
-        "nombre": "11 A 20 AÑOS"
-      },
-      {
-        "id": 3007,
-        "nombre": "20 A 30 AÑOS"
-      },
-      {
-        "id": 3007,
-        "nombre": "MÁS DE 30 AÑOS"
-      }
-    ],
-    "estadocivil": [
-      {
-        "id": 3008,
-        "nombre": "SOLTERO"
-      },
-      {
-        "id": 3008,
-        "nombre": "CASADO"
-      },
-      {
-        "id": 3008,
-        "nombre": "UNIÓN LIBRE"
-      },
-      {
-        "id": 3008,
-        "nombre": "NO DESEO CONTESTAR"
-      }
-    ],
-    "soyresponsabledelcuidadopersonalfinancierodeotraspersonasofamiliares": [
-      {
-        "id": 3009,
-        "nombre": "SÍ: HIJ@S MENORES DE 6 AÑOS"
-      },
-      {
-        "id": 3009,
-        "nombre": "SÍ: HIJ@S DE 6 A 12 AÑOS"
-      },
-      {
-        "id": 3009,
-        "nombre": "SÍ: HIJOS DE 13 AÑOS EN ADELANTE"
-      },
-      {
-        "id": 3009,
-        "nombre": "SÍ: PERSONAS CON DISCAPACIDAD"
-      },
-      {
-        "id": 3009,
-        "nombre": "SÍ: ADULTOS MAYORES"
-      },
-      {
-        "id": 3009,
-        "nombre": "NO"
-      },
-      {
-        "id": 3009,
-        "nombre": "NO DESEO CONTESTAR"
-      }
-    ],
-    "concualdelossiguientesgruposteidentificas": [
-      {
-        "id": 3010,
-        "nombre": "INDÍGENA"
-      },
-      {
-        "id": 3010,
-        "nombre": "AFRODESCENDIENTE"
-      },
-      {
-        "id": 3010,
-        "nombre": "EURODESCENDIENTE / BLANCO / CAUCÁSICO"
-      },
-      {
-        "id": 3010,
-        "nombre": "LATINO / HISPÁNICO"
-      },
-      {
-        "id": 3010,
-        "nombre": "ÁRABE"
-      },
-      {
-        "id": 3010,
-        "nombre": "ASIÁTICO"
-      },
-      {
-        "id": 3010,
-        "nombre": "NO DESEO CONTESTAR"
-      }
-    ],
-    "cuentasconalgunadiscapacidad": [
-      {
-        "id": 3011,
-        "nombre": "SI"
-      },
-      {
-        "id": 3011,
-        "nombre": "NO"
-      },
-      {
-        "id": 3011,
-        "nombre": "NO DESEO CONTESTAR"
-      }
-    ]
-  },
+  "sociodemograficos": [
+    {
+      "propiedad": [
+        {
+          "id": 1013,
+          "nombre": "LOS FRAILES"
+        }
+      ]
+    },
+    {
+      "tipodecolaborador": [
+        {
+          "id": 3015,
+          "nombre": "OPERARIOS"
+        },
+        {
+          "id": 3015,
+          "nombre": "PERSONAL TÉCNICO"
+        }
+      ]
+    },
+    {
+      "residenciadelafamilia": [
+        {
+          "id": 3004,
+          "nombre": "CAMPAMENTO"
+        },
+        {
+          "id": 3004,
+          "nombre": "FUERA DEL CAMPAMENTO/ COLONIA"
+        }
+      ]
+    },
+    {
+      "genero": [
+        {
+          "id": 3005,
+          "nombre": "HOMBRE"
+        },
+        {
+          "id": 3005,
+          "nombre": "MUJER"
+        },
+        {
+          "id": 3005,
+          "nombre": "OTRO"
+        }
+      ]
+    },
+    {
+      "enqueanionaciste": [
+        {
+          "id": 3006,
+          "nombre": "1963 O ANTES"
+        },
+        {
+          "id": 3006,
+          "nombre": "DE 1964 A 1980"
+        },
+        {
+          "id": 3006,
+          "nombre": "DE 1981 A 1996"
+        },
+        {
+          "id": 3006,
+          "nombre": "1997 O DESPUÉS"
+        }
+      ]
+    },
+    {
+      "cuantosaniostienestrabajando": [
+        {
+          "id": 3007,
+          "nombre": "0 A 2 AÑOS"
+        },
+        {
+          "id": 3007,
+          "nombre": "3 A 5 AÑOS"
+        },
+        {
+          "id": 3007,
+          "nombre": "6 A 10 AÑOS"
+        },
+        {
+          "id": 3007,
+          "nombre": "11 A 20 AÑOS"
+        },
+        {
+          "id": 3007,
+          "nombre": "20 A 30 AÑOS"
+        },
+        {
+          "id": 3007,
+          "nombre": "MÁS DE 30 AÑOS"
+        }
+      ]
+    },
+    {
+      "estadocivil": [
+        {
+          "id": 3008,
+          "nombre": "SOLTERO"
+        },
+        {
+          "id": 3008,
+          "nombre": "CASADO"
+        },
+        {
+          "id": 3008,
+          "nombre": "UNIÓN LIBRE"
+        },
+        {
+          "id": 3008,
+          "nombre": "NO DESEO CONTESTAR"
+        }
+      ]
+    },
+    {
+      "soyresponsabledelcuidadopersonalfinancierofamiliares": [
+        {
+          "id": 3009,
+          "nombre": "SÍ: HIJ@S MENORES DE 6 AÑOS"
+        },
+        {
+          "id": 3009,
+          "nombre": "SÍ: HIJ@S DE 6 A 12 AÑOS"
+        },
+        {
+          "id": 3009,
+          "nombre": "SÍ: HIJOS DE 13 AÑOS EN ADELANTE"
+        },
+        {
+          "id": 3009,
+          "nombre": "SÍ: PERSONAS CON DISCAPACIDAD"
+        },
+        {
+          "id": 3009,
+          "nombre": "SÍ: ADULTOS MAYORES"
+        },
+        {
+          "id": 3009,
+          "nombre": "NO"
+        },
+        {
+          "id": 3009,
+          "nombre": "NO DESEO CONTESTAR"
+        }
+      ]
+    },
+    {
+      "concualdelossiguientesgruposteidentificas": [
+        {
+          "id": 3010,
+          "nombre": "INDÍGENA"
+        },
+        {
+          "id": 3010,
+          "nombre": "AFRODESCENDIENTE"
+        },
+        {
+          "id": 3010,
+          "nombre": "EURODESCENDIENTE / BLANCO / CAUCÁSICO"
+        },
+        {
+          "id": 3010,
+          "nombre": "LATINO / HISPÁNICO"
+        },
+        {
+          "id": 3010,
+          "nombre": "ÁRABE"
+        },
+        {
+          "id": 3010,
+          "nombre": "ASIÁTICO"
+        },
+        {
+          "id": 3010,
+          "nombre": "NO DESEO CONTESTAR"
+        }
+      ]
+    },
+    {
+      "cuentasconalgunadiscapacidad": [
+        {
+          "id": 3011,
+          "nombre": "SI"
+        },
+        {
+          "id": 3011,
+          "nombre": "NO"
+        },
+        {
+          "id": 3011,
+          "nombre": "NO DESEO CONTESTAR"
+        }
+      ]
+    }
+  ],
   "reactivos": [
     {
       "id": 1000,

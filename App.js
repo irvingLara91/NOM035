@@ -27,6 +27,12 @@ import generateStore from './redux/store';
 import {textSizeRender} from "./utils/utils";
 import {retrieveData} from "./helpers/storage";
 import ModalAlertBack from "./components/Modals/ModalAlertBack";
+import SelectCountryScreen from "./screens/ECO/SelectCountryScreen";
+import AssessmentECO from "./screens/ECO/AssessmentECO";
+import ReagentsECOScreen from "./screens/ECO/ReagentsECOScreen";
+import FactorRankingScreen from "./screens/ECO/FactorRankingScreen";
+import OpenQuestionsScreen from "./screens/ECO/OpenQuestionsScreen";
+import AssessmentECO2 from "./screens/ECO/AssessmentECO2";
 
 const store = generateStore();
 
@@ -59,7 +65,7 @@ export default function App({iconSettings}) {
 
     const acceptBack = () => {
         setVisible(false)
-        navigation.navigate("loginUser")
+        navigation.navigate("Home")
     }
 
 
@@ -70,7 +76,13 @@ export default function App({iconSettings}) {
         } else {
             setTitleModal("Hola usuario")
         }
-        setMessageModal("¿Estas seguro que desea salir de la encuesta de datos socio de demográficos?")
+        setMessageModal("¿Estas seguro que desea salir de la encuesta?")
+        setVisible(true)
+    };
+
+    const backAction_eco = async () => {
+        setTitleModal("Hola usuario")
+        setMessageModal("¿Estas seguro que desea salir de la encuesta?")
         setVisible(true)
     };
 
@@ -261,7 +273,6 @@ export default function App({iconSettings}) {
                                           }
                                           component={UsersUpdate}/>
                             <Stack.Screen name="KhorConfig"
-
                                           options={({navigation}) =>
                                               ({
                                                   navigation,
@@ -358,6 +369,227 @@ export default function App({iconSettings}) {
                                                   },
                                               })
                                           } component={SociodemographicPage}/>
+                            <Stack.Screen name="SelectCountryScreen"
+                                          options={({navigation}) =>
+                                              ({
+                                                  navigation,
+                                                  title: '',
+                                                  headerLeft: () => (
+                                                      <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
+                                                          <MaterialIcons name="arrow-back-ios" size={textSizeRender(5)}
+                                                                         onPress={() => {
+                                                                             setNavigation(navigation)
+                                                                             backAction_eco()
+                                                                             //navigation.goBack()
+                                                                         }}
+                                                                         style={{top:-6,marginLeft: 15}}
+                                                                         color={'#a5a5a5'}/>
+                                                          <Image resizeMode={'contain'}
+                                                                 style={{top:-4,tintColor: '#a5a5a5', width: textSizeRender(10), marginLeft: 10}}
+                                                                 source={require('./assets/logo_eco.png')}/>
+
+                                                      </View>
+
+                                                  ),
+                                                  headerStyle: {
+                                                      backgroundColor: store.getState().app.colorECO,
+                                                  },
+                                                  headerTintColor: store.getState().app.fontColor,
+                                                  headerTitleStyle: {
+                                                      fontFamily: 'Poligon_Regular',
+                                                      fontSize: textSizeRender(3.5)
+                                                  },
+                                                  headerRight: () => (
+                                                      <Image resizeMode={'contain'}
+                                                             style={{top:-6,tintColor: '#a5a5a5', width: textSizeRender(32), marginLeft: 10}}
+                                                             source={require('./assets/logo_grupomexico_blanco.png')}/>),
+                                              })
+                                          } component={SelectCountryScreen}/>
+
+                            <Stack.Screen name="AssessmentECO"
+                                          options={({navigation}) =>
+                                              ({
+                                                  navigation,
+                                                  title: '',
+                                                  headerLeft: () => (
+                                                      <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
+                                                          <MaterialIcons name="arrow-back-ios" size={textSizeRender(5)}
+                                                                         onPress={() => {
+                                                                             setNavigation(navigation)
+                                                                             backAction_eco()
+                                                                             //navigation.goBack()
+                                                                         }}
+                                                                         style={{top:-6,marginLeft: 15}}
+                                                                         color={'#a5a5a5'}/>
+                                                          <Image resizeMode={'contain'}
+                                                                 style={{top:-4,tintColor: '#a5a5a5', width: textSizeRender(10), marginLeft: 10}}
+                                                                 source={require('./assets/logo_eco.png')}/>
+
+                                                      </View>
+
+                                                  ),
+                                                  headerStyle: {
+                                                      backgroundColor: store.getState().app.colorECO,
+                                                  },
+                                                  headerTintColor: store.getState().app.fontColor,
+                                                  headerTitleStyle: {
+                                                      fontFamily: 'Poligon_Regular',
+                                                      fontSize: textSizeRender(3.5)
+                                                  },
+                                                  headerRight: () => (
+                                                      <Image resizeMode={'contain'}
+                                                             style={{top:-6,tintColor: '#a5a5a5', width: textSizeRender(32), marginLeft: 10}}
+                                                             source={require('./assets/logo_grupomexico_blanco.png')}/>),
+                                              })
+                                          } component={AssessmentECO}/>
+                            <Stack.Screen name="AssessmentECO2"
+                                          options={({navigation}) =>
+                                              ({
+                                                  navigation,
+                                                  title: '',
+                                                  headerLeft: () => (
+                                                      <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
+                                                          <MaterialIcons name="arrow-back-ios" size={textSizeRender(5)}
+                                                                         onPress={() => {
+                                                                             setNavigation(navigation)
+                                                                             backAction_eco()
+                                                                             //navigation.goBack()
+                                                                         }}
+                                                                         style={{top:-6,marginLeft: 15}}
+                                                                         color={'#a5a5a5'}/>
+                                                          <Image resizeMode={'contain'}
+                                                                 style={{top:-4,tintColor: '#a5a5a5', width: textSizeRender(10), marginLeft: 10}}
+                                                                 source={require('./assets/logo_eco.png')}/>
+
+                                                      </View>
+
+                                                  ),
+                                                  headerStyle: {
+                                                      backgroundColor: store.getState().app.colorECO,
+                                                  },
+                                                  headerTintColor: store.getState().app.fontColor,
+                                                  headerTitleStyle: {
+                                                      fontFamily: 'Poligon_Regular',
+                                                      fontSize: textSizeRender(3.5)
+                                                  },
+                                                  headerRight: () => (
+                                                      <Image resizeMode={'contain'}
+                                                             style={{top:-6,tintColor: '#a5a5a5', width: textSizeRender(32), marginLeft: 10}}
+                                                             source={require('./assets/logo_grupomexico_blanco.png')}/>),
+                                              })
+                                          } component={AssessmentECO2}/>
+                            <Stack.Screen name="ReagentsECOScreen"
+                                          options={({navigation}) =>
+                                              ({
+                                                  navigation,
+                                                  title: '',
+                                                  headerLeft: () => (
+                                                      <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
+                                                          <MaterialIcons name="arrow-back-ios" size={textSizeRender(5)}
+                                                                         onPress={() => {
+                                                                             setNavigation(navigation)
+                                                                             backAction_eco()
+                                                                             //navigation.goBack()
+                                                                         }}
+                                                                         style={{top:-6,marginLeft: 15}}
+                                                                         color={'#a5a5a5'}/>
+                                                          <Image resizeMode={'contain'}
+                                                                 style={{top:-4,tintColor: '#a5a5a5', width: textSizeRender(10), marginLeft: 10}}
+                                                                 source={require('./assets/logo_eco.png')}/>
+
+                                                      </View>
+
+                                                  ),
+                                                  headerStyle: {
+                                                      backgroundColor: store.getState().app.colorECO,
+                                                  },
+                                                  headerTintColor: store.getState().app.fontColor,
+                                                  headerTitleStyle: {
+                                                      fontFamily: 'Poligon_Regular',
+                                                      fontSize: textSizeRender(3.5)
+                                                  },
+                                                  headerRight: () => (
+                                                      <Image resizeMode={'contain'}
+                                                             style={{top:-6,tintColor: '#a5a5a5', width: textSizeRender(32), marginLeft: 10}}
+                                                             source={require('./assets/logo_grupomexico_blanco.png')}/>),
+                                              })
+                                          } component={ReagentsECOScreen}/>
+
+                            <Stack.Screen name="FactorRankingScreen"
+                                          options={({navigation}) =>
+                                              ({
+                                                  navigation,
+                                                  title: '',
+                                                  headerLeft: () => (
+                                                      <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
+                                                          <MaterialIcons name="arrow-back-ios" size={textSizeRender(5)}
+                                                                         onPress={() => {
+                                                                             setNavigation(navigation)
+                                                                             backAction_eco()
+                                                                             //navigation.goBack()
+                                                                         }}
+                                                                         style={{top:-6,marginLeft: 15}}
+                                                                         color={'#a5a5a5'}/>
+                                                          <Image resizeMode={'contain'}
+                                                                 style={{top:-4,tintColor: '#a5a5a5', width: textSizeRender(10), marginLeft: 10}}
+                                                                 source={require('./assets/logo_eco.png')}/>
+
+                                                      </View>
+
+                                                  ),
+                                                  headerStyle: {
+                                                      backgroundColor: store.getState().app.colorECO,
+                                                  },
+                                                  headerTintColor: store.getState().app.fontColor,
+                                                  headerTitleStyle: {
+                                                      fontFamily: 'Poligon_Regular',
+                                                      fontSize: textSizeRender(3.5)
+                                                  },
+                                                  headerRight: () => (
+                                                      <Image resizeMode={'contain'}
+                                                             style={{top:-6,tintColor: '#a5a5a5', width: textSizeRender(32), marginLeft: 10}}
+                                                             source={require('./assets/logo_grupomexico_blanco.png')}/>),
+                                              })
+                                          } component={FactorRankingScreen}/>
+
+                            <Stack.Screen name="OpenQuestionsScreen"
+                                          options={({navigation}) =>
+                                              ({
+                                                  navigation,
+                                                  title: '',
+                                                  headerLeft: () => (
+                                                      <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
+                                                          <MaterialIcons name="arrow-back-ios" size={textSizeRender(5)}
+                                                                         onPress={() => {
+                                                                             setNavigation(navigation)
+                                                                             backAction_eco()
+                                                                             //navigation.goBack()
+                                                                         }}
+                                                                         style={{top:-6,marginLeft: 15}}
+                                                                         color={'#a5a5a5'}/>
+                                                          <Image resizeMode={'contain'}
+                                                                 style={{top:-4,tintColor: '#a5a5a5', width: textSizeRender(10), marginLeft: 10}}
+                                                                 source={require('./assets/logo_eco.png')}/>
+
+                                                      </View>
+
+                                                  ),
+                                                  headerStyle: {
+                                                      backgroundColor: store.getState().app.colorECO,
+                                                  },
+                                                  headerTintColor: store.getState().app.fontColor,
+                                                  headerTitleStyle: {
+                                                      fontFamily: 'Poligon_Regular',
+                                                      fontSize: textSizeRender(3.5)
+                                                  },
+                                                  headerRight: () => (
+                                                      <Image resizeMode={'contain'}
+                                                             style={{top:-6,tintColor: '#a5a5a5', width: textSizeRender(32), marginLeft: 10}}
+                                                             source={require('./assets/logo_grupomexico_blanco.png')}/>),
+                                              })
+                                          } component={OpenQuestionsScreen}/>
+
+
                         </Stack.Navigator>
 
                     </NavigationContainer>
