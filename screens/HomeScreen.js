@@ -62,7 +62,7 @@ const HomeScreen = ({productsDuck, navigation, app,eco}) => {
                             borderRadius: 12
                         }}
                             onPress={() => navigation.navigate('SelectCountryScreen')}
-                        >ECCO</Button>
+                        >ECO</Button>
 
                         <Button size={'lg'}
                                 _light={{bg: app.secondaryColor, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5),

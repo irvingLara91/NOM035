@@ -15,6 +15,8 @@ const initialData = {
     colorNom35:'#4CAF50',
     colorNom35Hover:'#3e8e41',
     colorECO:"#FF8025",
+    colorBaseEco:"#E2E2E2",
+    colorGray:"#5a5a5a",
     colorSecondaryECO:"#BE4D00",
     logo: '',
     url_base:'',

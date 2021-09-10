@@ -15,11 +15,13 @@ import {
 } from "native-base";
 import {connect} from "react-redux";
 import {Dimensions, TouchableOpacity, View} from 'react-native'
+
 const {width, height} = Dimensions.get('window')
 
-import RenderHtml, { defaultSystemFonts } from 'react-native-render-html';
+import RenderHtml, {defaultSystemFonts} from 'react-native-render-html';
 import {textSizeRender} from "../utils/utils";
 import {saveCountAction} from "../redux/ducks/progressCountDuck";
+
 const QuestionComponent = ({
                                navigation,
                                title = 'ejemplo',
@@ -40,10 +42,9 @@ const QuestionComponent = ({
     const toast = useToast()
 
 
-
-    const saveActionClick=()=>{
-        if (countResponse.count_responses<totalQuestions){
-            saveCountAction(countResponse.count_responses+1)
+    const saveActionClick = () => {
+        if (countResponse.count_responses < totalQuestions) {
+            saveCountAction(countResponse.count_responses + 1)
         }
     }
 
@@ -54,17 +55,17 @@ const QuestionComponent = ({
 
     const tagsStyles = {
         p: {
-            textAlign:'justify',
+            textAlign: 'justify',
             color: app.color,
-            fontSize:textSizeRender(5)
+            fontSize: textSizeRender(5)
         },
-        a:{
+        a: {
             color: 'red',
-            fontSize:textSizeRender(5)
+            fontSize: textSizeRender(5)
         }
     };
 
-    const systemFonts = ["Poligon_Regular","Poligon_Bold", ...defaultSystemFonts];
+    const systemFonts = ["Poligon_Regular", "Poligon_Bold", ...defaultSystemFonts];
 
     return (
         <Box>
@@ -84,12 +85,12 @@ const QuestionComponent = ({
             */}
 
 
-            <View style={{padding:20}}>
+            <View style={{padding: 20}}>
                 <RenderHtml
                     tagsStyles={tagsStyles}
                     contentWidth={width}
                     systemFonts={systemFonts}
-                    source={{html:question.titulo}}
+                    source={{html: question.titulo}}
                 />
             </View>
 
@@ -106,12 +107,12 @@ const QuestionComponent = ({
             }
 
             <Center>
-                <View style={{padding:20}}>
+                <View style={{padding: 20}}>
                     <RenderHtml
                         tagsStyles={tagsStyles}
                         contentWidth={width}
                         systemFonts={systemFonts}
-                        source={{html:title}}
+                        source={{html: title}}
                     />
                 </View>
                 {
@@ -127,33 +128,58 @@ const QuestionComponent = ({
                         textAlign: 'justify',
                         marginTop: 20,
                         marginBottom: 20
-                    }}>{modeDev ? index+1 : ''}</Text>
+                    }}>{modeDev ? index + 1 : ''}</Text>
 
                 }
 
                 {
                     question.tipo === 'sino' ?
-                        <View style={{flexDirection:'row',padding:20}}>
-                        <Button size={'lg'}
-                            /*Cambiar colores del botón */
-                                _light={{borderColor:app.colorNom35, borderWidth:2,bg: app.colorNom35, _text: {color: app.fontColor,fontFamily: 'Poligon_Bold'}}}
-                                _pressed={{borderColor:app.colorNom35Hover, borderWidth:0,bg: app.colorNom35Hover, _text: {color: app.fontColor}}}
-                            /***fin***/
-                                style={{marginRight: 20, width: '50%'}} isLoading={loading}
-                                onPress={() => {
-                                    saveActionClick()
-                                    setValue(1)
-                                }}>Si</Button>
-                        <Button size={'lg'}
-                            /*Cambiar colores del botón */
-                                _light={{borderColor:app.colorNom35, borderWidth:2,bg: app.colorNom35, _text: {color: app.fontColor,fontFamily: 'Poligon_Bold'}}}
-                                _pressed={{borderColor:app.colorNom35Hover, borderWidth:0,bg: app.colorNom35Hover, _text: {color: app.fontColor}}}
-                            /***fin***/
-                                isLoading={loading} style={{width: '50%'}} onPress={() => {
-                            saveActionClick()
-                            setValue(0)
-                        }}>No</Button>
-                    </View> : null
+                        <View style={{flexDirection: 'row', padding: 20}}>
+                            <Button size={'lg'}
+                                /*Cambiar colores del botón */
+                                    _light={{
+                                        borderColor: app.colorNom35, borderWidth: 2, bg: app.colorNom35, _text: {
+                                            fontSize: textSizeRender(4.3),
+                                            color: app.fontColor, fontFamily: 'Poligon_Bold'
+                                        }
+                                    }}
+                                    _pressed={{
+                                        borderColor: app.colorNom35Hover,
+                                        borderWidth: 0,
+                                        bg: app.colorNom35Hover,
+                                        _text: {
+                                            fontSize: textSizeRender(4.3), color: app.fontColor
+                                        }
+                                    }}
+                                /***fin***/
+                                    style={{marginRight: 20, width: '50%'}} isLoading={loading}
+                                    onPress={() => {
+                                        saveActionClick()
+                                        setValue(1)
+                                    }}>Si</Button>
+                            <Button size={'lg'}
+                                /*Cambiar colores del botón */
+                                    _light={{
+                                        borderColor: app.colorNom35, borderWidth: 2, bg: app.colorNom35, _text: {
+                                            fontSize: textSizeRender(4.3),
+                                            color: app.fontColor, fontFamily: 'Poligon_Bold'
+                                        }
+                                    }}
+                                    _pressed={{
+                                        borderColor: app.colorNom35Hover,
+                                        borderWidth: 0,
+                                        bg: app.colorNom35Hover,
+                                        _text: {
+                                            fontSize: textSizeRender(4.3),
+                                            color: app.fontColor
+                                        }
+                                    }}
+                                /***fin***/
+                                    isLoading={loading} style={{width: '50%'}} onPress={() => {
+                                saveActionClick()
+                                setValue(0)
+                            }}>No</Button>
+                        </View> : null
                 }
 
 
@@ -163,16 +189,40 @@ const QuestionComponent = ({
                 question.tipo === '4asc' || question.tipo === '4desc' ?
                     <VStack style={{paddingLeft: 30, paddingRight: 30}}>
                         <Button size={'lg'}
-                                _light={{borderColor:app.colorNom35, borderWidth:2,bg: app.colorNom35, _text: {color: app.fontColor,fontFamily: 'Poligon_Bold'}}}
-                                _pressed={{borderColor:app.colorNom35Hover, borderWidth:0,bg: app.colorNom35Hover, _text: {color: app.fontColor}}}
+                                _light={{
+                                    borderColor: app.colorNom35, borderWidth: 2, bg: app.colorNom35, _text: {
+                                        fontSize: textSizeRender(4.3),
+                                        color: app.fontColor, fontFamily: 'Poligon_Bold'
+                                    }
+                                }}
+                                _pressed={{
+                                    borderColor: app.colorNom35Hover, borderWidth: 0, bg: app.colorNom35Hover, _text: {
+                                        fontSize: textSizeRender(4.3),
+                                        fontFamily: 'Poligon_Bold',
+                                        color: app.fontColor
+                                    }
+                                }}
                                 style={{marginBottom: 20, width: '100%'}} isLoading={loading}
                                 onPress={() => {
                                     saveActionClick()
                                     setValue(question.tipo === '4desc' ? 0 : 4)
                                 }}>Siempre</Button>
                         <Button size={'lg'}
-                                _light={{borderColor:app.colorNom35, borderWidth:2,bg: app.colorNom35, _text: {color: app.fontColor,fontFamily: 'Poligon_Bold'}}}
-                                _pressed={{borderColor:app.colorNom35Hover, borderWidth:0,bg: app.colorNom35Hover, _text: {color: app.fontColor}}}
+                                _light={{
+                                    borderColor: app.colorNom35, borderWidth: 2, bg: app.colorNom35, _text: {
+                                        fontSize: textSizeRender(4.3),
+                                        color: app.fontColor, fontFamily: 'Poligon_Bold'
+                                    }
+                                }}
+                                _pressed={{
+                                    borderColor: app.colorNom35Hover,
+                                    borderWidth: 0,
+                                    bg: app.colorNom35Hover,
+                                    _text: {
+                                        fontSize: textSizeRender(4.3),
+                                        color: app.fontColor, fontFamily: 'Poligon_Bold'
+                                    }
+                                }}
                                 isLoading={loading}
                                 style={{marginBottom: 20, width: '100%'}}
                                 onPress={() => {
@@ -180,8 +230,24 @@ const QuestionComponent = ({
                                     setValue(question.tipo === '4desc' ? 1 : 3)
                                 }}>Casi siempre</Button>
                         <Button size={'lg'}
-                                _light={{borderColor:app.colorNom35, borderWidth:2,bg: app.colorNom35, _text: {color: app.fontColor,fontFamily: 'Poligon_Bold'}}}
-                                _pressed={{borderColor:app.colorNom35Hover, borderWidth:0,bg: app.colorNom35Hover, _text: {color: app.fontColor}}}
+                                _light={{
+                                    borderColor: app.colorNom35,
+                                    borderWidth: 2,
+                                    bg: app.colorNom35,
+                                    _text: {
+                                        fontSize: textSizeRender(4.3),
+                                        color: app.fontColor, fontFamily: 'Poligon_Bold'
+                                    }
+                                }}
+                                _pressed={{
+                                    borderColor: app.colorNom35Hover,
+                                    borderWidth: 0,
+                                    bg: app.colorNom35Hover,
+                                    _text: {
+                                        fontSize: textSizeRender(4.3),
+                                        color: app.fontColor, fontFamily: 'Poligon_Bold'
+                                    }
+                                }}
                                 isLoading={loading}
                                 style={{marginBottom: 20, width: '100%'}}
                                 onPress={() => {
@@ -189,8 +255,24 @@ const QuestionComponent = ({
                                     setValue(question.tipo === '4desc' ? 2 : 2)
                                 }}>Algunas veces</Button>
                         <Button size={'lg'}
-                                _light={{borderColor:app.colorNom35, borderWidth:2,bg: app.colorNom35, _text: {color: app.fontColor,fontFamily: 'Poligon_Bold'}}}
-                                _pressed={{borderColor:app.colorNom35Hover, borderWidth:0,bg: app.colorNom35Hover, _text: {color: app.fontColor}}}
+                                _light={{
+                                    borderColor: app.colorNom35,
+                                    borderWidth: 2,
+                                    bg: app.colorNom35,
+                                    _text: {
+                                        fontSize: textSizeRender(4.3),
+                                        color: app.fontColor, fontFamily: 'Poligon_Bold'
+                                    }
+                                }}
+                                _pressed={{
+                                    borderColor: app.colorNom35Hover,
+                                    borderWidth: 0,
+                                    bg: app.colorNom35Hover,
+                                    _text: {
+                                        fontSize: textSizeRender(4.3),
+                                        color: app.fontColor, fontFamily: 'Poligon_Bold'
+                                    }
+                                }}
                                 isLoading={loading}
                                 style={{marginBottom: 20, width: '100%'}}
                                 onPress={() => {
@@ -198,8 +280,24 @@ const QuestionComponent = ({
                                     setValue(question.tipo === '4desc' ? 3 : 1)
                                 }}>Casi nunca</Button>
                         <Button size={'lg'}
-                                _light={{borderColor:app.colorNom35, borderWidth:2,bg: app.colorNom35, _text: {color: app.fontColor,fontFamily: 'Poligon_Bold'}}}
-                                _pressed={{borderColor:app.colorNom35Hover, borderWidth:0,bg: app.colorNom35Hover, _text: {color: app.fontColor}}}
+                                _light={{
+                                    borderColor: app.colorNom35,
+                                    borderWidth: 2,
+                                    bg: app.colorNom35,
+                                    _text: {
+                                        fontSize: textSizeRender(4.3),
+                                        color: app.fontColor, fontFamily: 'Poligon_Bold'
+                                    }
+                                }}
+                                _pressed={{
+                                    borderColor: app.colorNom35Hover,
+                                    borderWidth: 0,
+                                    bg: app.colorNom35Hover,
+                                    _text: {
+                                        fontSize: textSizeRender(4.3),
+                                        color: app.fontColor, fontFamily: 'Poligon_Bold'
+                                    }
+                                }}
                                 isLoading={loading}
                                 style={{marginBottom: 20, width: '100%'}}
                                 onPress={() => {
@@ -216,8 +314,8 @@ const mapState = (state) => {
     return {
         app: state.app,
         productsDuck: state.productsDuck,
-        countResponse:state.countResponse
+        countResponse: state.countResponse
     }
 }
 
-export default connect(mapState,{saveCountAction})(QuestionComponent);
+export default connect(mapState, {saveCountAction})(QuestionComponent);

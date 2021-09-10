@@ -33,6 +33,8 @@ import ReagentsECOScreen from "./screens/ECO/ReagentsECOScreen";
 import FactorRankingScreen from "./screens/ECO/FactorRankingScreen";
 import OpenQuestionsScreen from "./screens/ECO/OpenQuestionsScreen";
 import AssessmentECO2 from "./screens/ECO/AssessmentECO2";
+import NoticeOfPrivacyScreen from "./screens/nom035/NoticeOfPrivacyScreen";
+import GeneralPoliciesScreen from "./screens/nom035/GeneralPoliciesScreen";
 
 const store = generateStore();
 
@@ -128,6 +130,7 @@ export default function App({iconSettings}) {
                                 ({
                                     navigation,
                                     title: '',
+                                    gestureEnabled: false,
                                     headerLeft: () => (
                                         <Image resizeMode={'contain'}
                                                style={{tintColor: 'white', width: width * .4, marginLeft: 10}}
@@ -157,6 +160,7 @@ export default function App({iconSettings}) {
                                               ({
                                                   navigation,
                                                   title: 'Login',
+                                                  gestureEnabled: false,
                                                   headerLeft: () => (
                                                       <MaterialIcons name="arrow-back-ios" size={width * .06}
                                                                      onPress={() => {
@@ -181,6 +185,7 @@ export default function App({iconSettings}) {
                                               ({
                                                   navigation,
                                                   title: 'Configuración General',
+                                                  gestureEnabled: false,
                                                   headerLeft: () => (
                                                       <MaterialIcons name="arrow-back-ios" size={width * .06}
                                                                      onPress={() => {
@@ -205,6 +210,7 @@ export default function App({iconSettings}) {
                                               ({
                                                   navigation,
                                                   title: 'Acceso',
+                                                  gestureEnabled: false,
                                                   headerLeft: () => (
                                                       <MaterialIcons name="arrow-back-ios" size={width * .06}
                                                                      onPress={() => {
@@ -229,6 +235,7 @@ export default function App({iconSettings}) {
                                               ({
                                                   navigation,
                                                   title: 'Nom035',
+                                                  gestureEnabled: false,
                                                   headerLeft: () => (
                                                       <MaterialIcons name="arrow-back-ios" size={width * .06}
                                                                      onPress={() => {
@@ -253,6 +260,7 @@ export default function App({iconSettings}) {
                                               ({
                                                   navigation,
                                                   title: 'Actualizar usuarios',
+                                                  gestureEnabled: false,
                                                   headerLeft: () => (
                                                       <MaterialIcons name="arrow-back-ios" size={width * .06}
                                                                      onPress={() => {
@@ -277,6 +285,7 @@ export default function App({iconSettings}) {
                                               ({
                                                   navigation,
                                                   title: 'Configuración KHOR',
+                                                  gestureEnabled: false,
                                                   headerLeft: () => (
                                                       <MaterialIcons name="arrow-back-ios" size={width * .06}
                                                                      onPress={() => {
@@ -301,6 +310,7 @@ export default function App({iconSettings}) {
                                               ({
                                                   navigation,
                                                   title: 'Enviar respuestas a KHOR',
+                                                  gestureEnabled: false,
                                                   headerLeft: () => (
                                                       <MaterialIcons name="arrow-back-ios" size={width * .06}
                                                                      onPress={() => {
@@ -324,6 +334,7 @@ export default function App({iconSettings}) {
                                               ({
                                                   navigation,
                                                   title: 'Respuestas enviadas a KHOR',
+                                                  gestureEnabled: false,
                                                   headerLeft: () => (
                                                       <MaterialIcons name="arrow-back-ios" size={width * .06}
                                                                      onPress={() => {
@@ -349,6 +360,7 @@ export default function App({iconSettings}) {
                                               ({
                                                   navigation,
                                                   title: 'Datos sociodemográficos',
+                                                  gestureEnabled: false,
                                                   headerLeft: () => (
                                                       <MaterialIcons name="arrow-back-ios" size={width * .06}
                                                                      onPress={() => {
@@ -374,25 +386,27 @@ export default function App({iconSettings}) {
                                               ({
                                                   navigation,
                                                   title: '',
+                                                  gestureEnabled: false,
                                                   headerLeft: () => (
                                                       <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
-                                                          <MaterialIcons name="arrow-back-ios" size={textSizeRender(5)}
+                                                          {/*<MaterialIcons name="arrow-back-ios" size={textSizeRender(5)}
                                                                          onPress={() => {
                                                                              setNavigation(navigation)
                                                                              backAction_eco()
                                                                              //navigation.goBack()
                                                                          }}
                                                                          style={{top:-6,marginLeft: 15}}
-                                                                         color={'#a5a5a5'}/>
+                                                                         color={'#a5a5a5'}/>*/}
                                                           <Image resizeMode={'contain'}
-                                                                 style={{top:-4,tintColor: '#a5a5a5', width: textSizeRender(10), marginLeft: 10}}
+                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 10}}
                                                                  source={require('./assets/logo_eco.png')}/>
-
                                                       </View>
 
                                                   ),
                                                   headerStyle: {
-                                                      backgroundColor: store.getState().app.colorECO,
+                                                      elevation: 0,
+                                                      backgroundColor: store.getState().app.colorBaseEco,
+
                                                   },
                                                   headerTintColor: store.getState().app.fontColor,
                                                   headerTitleStyle: {
@@ -401,8 +415,8 @@ export default function App({iconSettings}) {
                                                   },
                                                   headerRight: () => (
                                                       <Image resizeMode={'contain'}
-                                                             style={{top:-6,tintColor: '#a5a5a5', width: textSizeRender(32), marginLeft: 10}}
-                                                             source={require('./assets/logo_grupomexico_blanco.png')}/>),
+                                                             style={{top:-6, width: textSizeRender(32), marginLeft: 10}}
+                                                             source={require('./assets/grupo_Mexico_rojo.png')}/>),
                                               })
                                           } component={SelectCountryScreen}/>
 
@@ -411,25 +425,27 @@ export default function App({iconSettings}) {
                                               ({
                                                   navigation,
                                                   title: '',
+                                                  gestureEnabled: false,
                                                   headerLeft: () => (
                                                       <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
-                                                          <MaterialIcons name="arrow-back-ios" size={textSizeRender(5)}
+                                                         {/* <MaterialIcons name="arrow-back-ios" size={textSizeRender(5)}
                                                                          onPress={() => {
                                                                              setNavigation(navigation)
                                                                              backAction_eco()
                                                                              //navigation.goBack()
                                                                          }}
                                                                          style={{top:-6,marginLeft: 15}}
-                                                                         color={'#a5a5a5'}/>
+                                                                         color={'#a5a5a5'}/>*/}
                                                           <Image resizeMode={'contain'}
-                                                                 style={{top:-4,tintColor: '#a5a5a5', width: textSizeRender(10), marginLeft: 10}}
+                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 10}}
                                                                  source={require('./assets/logo_eco.png')}/>
 
                                                       </View>
 
                                                   ),
                                                   headerStyle: {
-                                                      backgroundColor: store.getState().app.colorECO,
+                                                      elevation: 0,
+                                                      backgroundColor: store.getState().app.colorBaseEco,
                                                   },
                                                   headerTintColor: store.getState().app.fontColor,
                                                   headerTitleStyle: {
@@ -438,8 +454,8 @@ export default function App({iconSettings}) {
                                                   },
                                                   headerRight: () => (
                                                       <Image resizeMode={'contain'}
-                                                             style={{top:-6,tintColor: '#a5a5a5', width: textSizeRender(32), marginLeft: 10}}
-                                                             source={require('./assets/logo_grupomexico_blanco.png')}/>),
+                                                             style={{top:-6, width: textSizeRender(32), marginLeft: 10}}
+                                                             source={require('./assets/grupo_Mexico_rojo.png')}/>),
                                               })
                                           } component={AssessmentECO}/>
                             <Stack.Screen name="AssessmentECO2"
@@ -447,25 +463,27 @@ export default function App({iconSettings}) {
                                               ({
                                                   navigation,
                                                   title: '',
+                                                  gestureEnabled: false,
                                                   headerLeft: () => (
                                                       <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
-                                                          <MaterialIcons name="arrow-back-ios" size={textSizeRender(5)}
+                                                          {/*<MaterialIcons name="arrow-back-ios" size={textSizeRender(5)}
                                                                          onPress={() => {
                                                                              setNavigation(navigation)
                                                                              backAction_eco()
                                                                              //navigation.goBack()
                                                                          }}
                                                                          style={{top:-6,marginLeft: 15}}
-                                                                         color={'#a5a5a5'}/>
+                                                                         color={'#a5a5a5'}/>*/}
                                                           <Image resizeMode={'contain'}
-                                                                 style={{top:-4,tintColor: '#a5a5a5', width: textSizeRender(10), marginLeft: 10}}
+                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 10}}
                                                                  source={require('./assets/logo_eco.png')}/>
 
                                                       </View>
 
                                                   ),
                                                   headerStyle: {
-                                                      backgroundColor: store.getState().app.colorECO,
+                                                      elevation: 0,
+                                                      backgroundColor: store.getState().app.colorBaseEco,
                                                   },
                                                   headerTintColor: store.getState().app.fontColor,
                                                   headerTitleStyle: {
@@ -474,8 +492,8 @@ export default function App({iconSettings}) {
                                                   },
                                                   headerRight: () => (
                                                       <Image resizeMode={'contain'}
-                                                             style={{top:-6,tintColor: '#a5a5a5', width: textSizeRender(32), marginLeft: 10}}
-                                                             source={require('./assets/logo_grupomexico_blanco.png')}/>),
+                                                             style={{top:-6, width: textSizeRender(32), marginLeft: 10}}
+                                                             source={require('./assets/grupo_Mexico_rojo.png')}/>),
                                               })
                                           } component={AssessmentECO2}/>
                             <Stack.Screen name="ReagentsECOScreen"
@@ -483,25 +501,27 @@ export default function App({iconSettings}) {
                                               ({
                                                   navigation,
                                                   title: '',
+                                                  gestureEnabled: false,
                                                   headerLeft: () => (
                                                       <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
-                                                          <MaterialIcons name="arrow-back-ios" size={textSizeRender(5)}
+                                                         {/* <MaterialIcons name="arrow-back-ios" size={textSizeRender(5)}
                                                                          onPress={() => {
                                                                              setNavigation(navigation)
                                                                              backAction_eco()
                                                                              //navigation.goBack()
                                                                          }}
                                                                          style={{top:-6,marginLeft: 15}}
-                                                                         color={'#a5a5a5'}/>
+                                                                         color={'#a5a5a5'}/>*/}
                                                           <Image resizeMode={'contain'}
-                                                                 style={{top:-4,tintColor: '#a5a5a5', width: textSizeRender(10), marginLeft: 10}}
+                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 10}}
                                                                  source={require('./assets/logo_eco.png')}/>
 
                                                       </View>
 
                                                   ),
                                                   headerStyle: {
-                                                      backgroundColor: store.getState().app.colorECO,
+                                                      elevation: 0,
+                                                      backgroundColor: store.getState().app.colorBaseEco,
                                                   },
                                                   headerTintColor: store.getState().app.fontColor,
                                                   headerTitleStyle: {
@@ -510,8 +530,8 @@ export default function App({iconSettings}) {
                                                   },
                                                   headerRight: () => (
                                                       <Image resizeMode={'contain'}
-                                                             style={{top:-6,tintColor: '#a5a5a5', width: textSizeRender(32), marginLeft: 10}}
-                                                             source={require('./assets/logo_grupomexico_blanco.png')}/>),
+                                                             style={{top:-6, width: textSizeRender(32), marginLeft: 10}}
+                                                             source={require('./assets/grupo_Mexico_rojo.png')}/>),
                                               })
                                           } component={ReagentsECOScreen}/>
 
@@ -520,25 +540,27 @@ export default function App({iconSettings}) {
                                               ({
                                                   navigation,
                                                   title: '',
+                                                  gestureEnabled: false,
                                                   headerLeft: () => (
                                                       <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
-                                                          <MaterialIcons name="arrow-back-ios" size={textSizeRender(5)}
+                                                          {/*<MaterialIcons name="arrow-back-ios" size={textSizeRender(5)}
                                                                          onPress={() => {
                                                                              setNavigation(navigation)
                                                                              backAction_eco()
                                                                              //navigation.goBack()
                                                                          }}
                                                                          style={{top:-6,marginLeft: 15}}
-                                                                         color={'#a5a5a5'}/>
+                                                                         color={'#a5a5a5'}/>*/}
                                                           <Image resizeMode={'contain'}
-                                                                 style={{top:-4,tintColor: '#a5a5a5', width: textSizeRender(10), marginLeft: 10}}
+                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 10}}
                                                                  source={require('./assets/logo_eco.png')}/>
 
                                                       </View>
 
                                                   ),
                                                   headerStyle: {
-                                                      backgroundColor: store.getState().app.colorECO,
+                                                      elevation: 0,
+                                                      backgroundColor: store.getState().app.colorBaseEco,
                                                   },
                                                   headerTintColor: store.getState().app.fontColor,
                                                   headerTitleStyle: {
@@ -547,8 +569,8 @@ export default function App({iconSettings}) {
                                                   },
                                                   headerRight: () => (
                                                       <Image resizeMode={'contain'}
-                                                             style={{top:-6,tintColor: '#a5a5a5', width: textSizeRender(32), marginLeft: 10}}
-                                                             source={require('./assets/logo_grupomexico_blanco.png')}/>),
+                                                             style={{top:-6, width: textSizeRender(32), marginLeft: 10}}
+                                                             source={require('./assets/grupo_Mexico_rojo.png')}/>),
                                               })
                                           } component={FactorRankingScreen}/>
 
@@ -557,25 +579,27 @@ export default function App({iconSettings}) {
                                               ({
                                                   navigation,
                                                   title: '',
+                                                  gestureEnabled: false,
                                                   headerLeft: () => (
                                                       <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
-                                                          <MaterialIcons name="arrow-back-ios" size={textSizeRender(5)}
+                                                          {/*<MaterialIcons name="arrow-back-ios" size={textSizeRender(5)}
                                                                          onPress={() => {
                                                                              setNavigation(navigation)
                                                                              backAction_eco()
                                                                              //navigation.goBack()
                                                                          }}
                                                                          style={{top:-6,marginLeft: 15}}
-                                                                         color={'#a5a5a5'}/>
+                                                                         color={'#a5a5a5'}/>*/}
                                                           <Image resizeMode={'contain'}
-                                                                 style={{top:-4,tintColor: '#a5a5a5', width: textSizeRender(10), marginLeft: 10}}
+                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 10}}
                                                                  source={require('./assets/logo_eco.png')}/>
 
                                                       </View>
 
                                                   ),
                                                   headerStyle: {
-                                                      backgroundColor: store.getState().app.colorECO,
+                                                      elevation: 0,
+                                                      backgroundColor: store.getState().app.colorBaseEco,
                                                   },
                                                   headerTintColor: store.getState().app.fontColor,
                                                   headerTitleStyle: {
@@ -584,10 +608,64 @@ export default function App({iconSettings}) {
                                                   },
                                                   headerRight: () => (
                                                       <Image resizeMode={'contain'}
-                                                             style={{top:-6,tintColor: '#a5a5a5', width: textSizeRender(32), marginLeft: 10}}
-                                                             source={require('./assets/logo_grupomexico_blanco.png')}/>),
+                                                             style={{top:-6, width: textSizeRender(32), marginLeft: 10}}
+                                                             source={require('./assets/grupo_Mexico_rojo.png')}/>),
                                               })
                                           } component={OpenQuestionsScreen}/>
+
+                            <Stack.Screen name="NoticeOfPrivacyScreen"
+                                          options={({navigation}) =>
+                                              ({
+                                                  navigation,
+                                                  title: 'AVISO DE PRIVACIDAD',
+                                                  gestureEnabled: false,
+                                                  headerLeft: () => (
+                                                      <MaterialIcons name="arrow-back-ios" size={width * .06}
+                                                                     onPress={() => {
+                                                                         setNavigation(navigation)
+                                                                         backAction()
+                                                                     }}
+                                                                     style={{marginLeft: 15}}
+                                                                     color={store.getState().app.fontColor}/>
+
+                                                  ),
+                                                  headerStyle: {
+                                                      backgroundColor: store.getState().app.color,
+                                                  },
+                                                  headerTintColor: store.getState().app.fontColor,
+                                                  headerTitleStyle: {
+                                                      fontFamily: 'Poligon_Regular',
+                                                      fontSize: textSizeRender(3.5)
+                                                  },
+                                              })
+                                          } component={NoticeOfPrivacyScreen}/>
+
+                            <Stack.Screen name="GeneralPoliciesScreen"
+                                          options={({navigation}) =>
+                                              ({
+                                                  navigation,
+                                                  title: "POLTICA GENERAL DE RESPETO Y BIENESTAR DE NUESTROS COLABORADORES",
+                                                  gestureEnabled: false,
+                                                  headerLeft: () => (
+                                                      <MaterialIcons name="arrow-back-ios" size={width * .06}
+                                                                     onPress={() => {
+                                                                         setNavigation(navigation)
+                                                                         backAction()
+                                                                     }}
+                                                                     style={{marginLeft: 15}}
+                                                                     color={store.getState().app.fontColor}/>
+
+                                                  ),
+                                                  headerStyle: {
+                                                      backgroundColor: store.getState().app.color,
+                                                  },
+                                                  headerTintColor: store.getState().app.fontColor,
+                                                  headerTitleStyle: {
+                                                      fontFamily: 'Poligon_Regular',
+                                                      fontSize: textSizeRender(3.5)
+                                                  },
+                                              })
+                                          } component={GeneralPoliciesScreen}/>
 
 
                         </Stack.Navigator>

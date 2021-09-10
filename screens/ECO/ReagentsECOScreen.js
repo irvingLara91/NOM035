@@ -44,7 +44,7 @@ const ReagentsECOScreen = (props) => {
     /**
      * modal de alertaAviso
      * **/
-    const [visibleAlert, setVisibleAlert] = useState(false);
+    const [visibleAlert, setVisibleAlert] = useState(true);
     /**
      * Final modal de alertaAviso
      * **/
@@ -60,9 +60,9 @@ const ReagentsECOScreen = (props) => {
     }
 
     const backAction = async () => {
-        setTitleModal("Hola usuario")
+       /* setTitleModal("Hola usuario")
         setMessageModal("¿Estas seguro que desea salir de la encuesta?")
-        setVisible(true)
+        setVisible(true)*/
         return true;
     };
 
@@ -99,7 +99,8 @@ const ReagentsECOScreen = (props) => {
 
         {
             loading ?
-                <View style={{height: height, width: width, justifyContent: 'center', alignItems: 'center'}}>
+                <View style={{backgroundColor: props.app.colorBaseEco,
+                    height: height, width: width, justifyContent: 'center', alignItems: 'center'}}>
                     <ActivityIndicator size={"large"} color={props.app.colorECO}/>
                     <Text style={{
                         color: props.app.colorECO,
@@ -111,6 +112,7 @@ const ReagentsECOScreen = (props) => {
                 :
                 <View style={{
                     width: '100%',
+                    backgroundColor: props.app.colorBaseEco,
                     flex: 1,
                 }}>
                     {
@@ -286,11 +288,15 @@ const ReagentsECOScreen = (props) => {
                             <Button size={'lg'}
                                     _light={{
                                         bg: props.app.colorECO,
-                                        _text: {color: props.app.fontColor, fontFamily: 'Poligon_Bold'}
+                                        _text: {
+                                            fontSize: textSizeRender(4.3),
+                                            color: props.app.fontColor, fontFamily: 'Poligon_Bold'}
                                     }}
                                     _pressed={{
                                         bg: props.app.colorSecondaryECO,
-                                        _text: {color: props.app.fontColor}
+                                        _text: {
+                                            fontSize: textSizeRender(4.3),
+                                            color: props.app.fontColor}
                                     }}
                                     style={{marginTop: 20, width: '100%'}} onPress={() => {
                                 setVisibleAlert(true)

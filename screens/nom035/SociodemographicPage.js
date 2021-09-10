@@ -140,7 +140,9 @@ const SociodemographicPage = ({navigation, saveRsponseSocio, app}) => {
                         underlineColorAndroid={'transparent'}
                         /> :
                         <Select
-                        minWidth={200}
+                            color={app.color}
+                            borderColor={app.colorGray}
+                            style={{fontSize: textSizeRender(4.3)}}
                         accessibilityLabel="Elige una opción"
                         placeholder="Elige una opción"
                         onValueChange={(itemValue) => addResponse(itemValue)}
@@ -149,8 +151,12 @@ const SociodemographicPage = ({navigation, saveRsponseSocio, app}) => {
 
                             nom035_demograficos.sociodemograficos[dato].opciones.map((item) => {
                                 return <Select.Item
-                                    _light={{_text: {color: app.color, fontFamily: 'Poligon_Regular'}}}
-                                    _pressed={{bg: app.secondaryColorHover, _text: {color: app.fontColor}}}
+                                    _light={{_text: {
+                                            fontSize: textSizeRender(4.3),
+                                            color: app.color, fontFamily: 'Poligon_Regular'}}}
+                                    _pressed={{bg: app.secondaryColorHover, _text: {
+                                            fontSize: textSizeRender(4.3),
+                                            color: app.fontColor}}}
                                     label={item.option} value={item.option}/>
                             })
                         }
@@ -164,16 +170,19 @@ const SociodemographicPage = ({navigation, saveRsponseSocio, app}) => {
                                 borderColor: app.colorNom35,
                                 borderWidth: 2,
                                 bg: app.colorNom35,
-                                _text: {color: app.fontColor, fontFamily: 'Poligon_Bold'}
+                                _text: {
+                                    fontSize: textSizeRender(4.3),
+                                    color: app.fontColor, fontFamily: 'Poligon_Bold'}
                             }}
                             _pressed={{
                                 borderColor: app.colorNom35Hover,
                                 borderWidth: 0,
                                 bg: app.colorNom35Hover,
-                                _text: {color: app.fontColor}
+                                _text: {
+                                    fontSize: textSizeRender(4.3),
+                                    color: app.fontColor}
                             }}
                         /***fin***/
-                            style={{marginRight: 20, width: '50%'}}
                             style={{marginTop: 20}} onPress={() => {
                         next()
                     }}>Continuar</Button>
@@ -224,4 +233,4 @@ export default connect(mapState, {
     initResponseNom035,
     responseQuestion,
     saveRsponseSocio
-})(SociodemographicPage,);
+})(SociodemographicPage);

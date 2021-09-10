@@ -10,6 +10,7 @@ import {Button} from "native-base";
 import GenericModal from "../../components/Modals/GenericModal";
 import ModalAlertBack from "../../components/Modals/ModalAlertBack";
 import {saveOpenQuestions} from "../../redux/ducks/ECODuck";
+import ModalAlertECO from "../../components/Modals/ModalAlertECO";
 
 const {width, height} = Dimensions.get('window')
 const OpenQuestionsScreen = (props) => {
@@ -56,9 +57,9 @@ const OpenQuestionsScreen = (props) => {
     }
 
     const backAction = async () => {
-        setTitleModal("Hola usuario")
+      /*  setTitleModal("Hola usuario")
         setMessageModal("¿Estas seguro que desea salir de la encuesta?")
-        setVisible(true)
+        setVisible(true)*/
         return true;
     };
 
@@ -100,6 +101,7 @@ const OpenQuestionsScreen = (props) => {
     return (<MainLayout>
         <View style={{
             width: '100%',
+            backgroundColor: props.app.colorBaseEco,
             flex: 1,
         }}>
             {
@@ -129,11 +131,10 @@ const OpenQuestionsScreen = (props) => {
                     dato < ECO_OPEN_QUESTIONS.preguntasabiertas.length &&
                     <TextInput
                         style={styles.input}
-                        placeholder="Reponder..."
+                        placeholder="Responder..."
                         placeholderTextColor={props.app.secondaryColorHover}
                         autoCapitalize="none"
                         numberOfLines={5}
-                        multiline={true}
                         value={answer?.valor}
                         onChangeText={(itemValue) => addResponse(itemValue)}
                         keyboardType="default"
@@ -168,14 +169,16 @@ const OpenQuestionsScreen = (props) => {
                     dato === ECO_OPEN_QUESTIONS.preguntasabiertas.length &&
                     <Button size={'lg'}
                             _light={{
-                                fontSize: textSizeRender(4.3),
                                 bg: props.app.colorECO,
-                                _text: {color: props.app.fontColor, fontFamily: 'Poligon_Bold'}
+                                _text: {
+                                    fontSize: textSizeRender(4.3),
+                                    color: props.app.fontColor, fontFamily: 'Poligon_Bold'}
                             }}
                             _pressed={{
-                                fontSize: textSizeRender(4.3),
                                 bg: props.app.colorSecondaryECO,
-                                _text: {color: props.app.fontColor, fontFamily: 'Poligon_Bold'}
+                                _text: {
+                                    fontSize: textSizeRender(4.3),
+                                    color: props.app.fontColor, fontFamily: 'Poligon_Bold'}
                             }}
                         /***fin***/
                             style={{marginTop: 20}} onPress={() => {
@@ -186,14 +189,16 @@ const OpenQuestionsScreen = (props) => {
                     dato < ECO_OPEN_QUESTIONS.preguntasabiertas.length &&
                     <Button size={'lg'}
                             _light={{
-                                fontSize: textSizeRender(4.3),
                                 bg: props.app.colorECO,
-                                _text: {color: props.app.fontColor, fontFamily: 'Poligon_Bold'}
+                                _text: {
+                                    fontSize: textSizeRender(4.3),
+                                    color: props.app.fontColor, fontFamily: 'Poligon_Bold'}
                             }}
                             _pressed={{
-                                fontSize: textSizeRender(4.3),
                                 bg: props.app.colorSecondaryECO,
-                                _text: {color: props.app.fontColor, fontFamily: 'Poligon_Bold'}
+                                _text: {
+                                    fontSize: textSizeRender(4.3),
+                                    color: props.app.fontColor, fontFamily: 'Poligon_Bold'}
                             }}
                         /***fin***/
                             style={{marginTop: 20}} onPress={() => {
@@ -203,8 +208,7 @@ const OpenQuestionsScreen = (props) => {
             </View>
             {
                 visibleAlert &&
-                <GenericModal app={props.app} visible={visibleAlert} setVisible={setVisibleAlert} isError={true}
-                              title={titleModal} text={messageModal}/>
+                <ModalAlertECO  visible={visibleAlert} setVisible={setVisibleAlert}/>
             }
             {
                 visible &&

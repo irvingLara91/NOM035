@@ -41,7 +41,7 @@ const HomeSettings = ({navigation,app}) => {
                                         fontFamily:'Poligon_Bold'}}}
                                 _pressed={{bg: app.secondaryColorHover, _text: {color: app.fontColor}}}
                                 style={[style.butonMain,{borderRadius: 12}]}
-                                 onPress={() => navigation.navigate('UsersUpdate')} loading={loading}>Acualizar BD de usuarios</Button>
+                                 onPress={() => navigation.navigate('UsersUpdate')} loading={loading}>Actualizar BD de usuarios</Button>
                         <Button size={'lg'}  _light={{bg: app.secondaryColor, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5),
                                 fontFamily:'Poligon_Bold'}}}
                                 _pressed={{bg: app.secondaryColorHover, _text: {color: app.fontColor}}}

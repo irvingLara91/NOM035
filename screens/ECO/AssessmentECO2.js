@@ -10,6 +10,7 @@ import GenericModal from "../../components/Modals/GenericModal";
 import ModalAlertBack from "../../components/Modals/ModalAlertBack";
 import {connect} from "react-redux";
 import {saveECODEMOGRAFICOS2} from "../../redux/ducks/ECODuck";
+import ModalAlertECO from "../../components/Modals/ModalAlertECO";
 const {width, height} = Dimensions.get('window')
 
 const AssessmentECO2 = (props) => {
@@ -163,7 +164,8 @@ const AssessmentECO2 = (props) => {
         <MainLayout>
             {
                 loading ?
-                    <View style={{height: height, width: width, justifyContent: 'center', alignItems: 'center'}}>
+                    <View style={{backgroundColor: props.app.colorBaseEco,
+                        height: height, width: width, justifyContent: 'center', alignItems: 'center'}}>
                         <ActivityIndicator size={"large"} color={props.app.colorECO}/>
                         <Text style={{
                             color: props.app.colorECO,
@@ -175,6 +177,7 @@ const AssessmentECO2 = (props) => {
                     :
                     <View style={{
                         width: '100%',
+                        backgroundColor: props.app.colorBaseEco,
                         flex: 1,
                     }}>
                         <View style={{width: width, paddingLeft: 20, paddingTop: 20}}>
@@ -202,9 +205,8 @@ const AssessmentECO2 = (props) => {
                                         <Select
                                             minWidth={'100%'}
                                             style={{
-                                                fontSize: textSizeRender(4.3),
-                                                borderColor: 'red', borderWidth: require_6 ? 1 : 0
-                                            }}
+                                                fontSize: textSizeRender(4.3)}}
+                                            borderColor={require_6 ?"red":props.app.colorGray}
                                             accessibilityLabel="Elige una opción"
                                             placeholder="Elige una opción"
                                             onValueChange={(itemValue) => {
@@ -251,9 +253,8 @@ const AssessmentECO2 = (props) => {
                                         <Select
                                             minWidth={'100%'}
                                             style={{
-                                                fontSize: textSizeRender(4.3),
-                                                borderColor: 'red', borderWidth: require_7 ? 1 : 0
-                                            }}
+                                                fontSize: textSizeRender(4.3)}}
+                                            borderColor={require_7 ?"red":props.app.colorGray}
                                             accessibilityLabel="Elige una opción"
                                             placeholder="Elige una opción"
                                             onValueChange={(itemValue) => {
@@ -300,9 +301,8 @@ const AssessmentECO2 = (props) => {
                                         <Select
                                             minWidth={'100%'}
                                             style={{
-                                                fontSize: textSizeRender(4.3),
-                                                borderColor: 'red', borderWidth: require_8 ? 1 : 0
-                                            }}
+                                                fontSize: textSizeRender(4.3)}}
+                                            borderColor={require_8 ?"red":props.app.colorGray}
                                             accessibilityLabel="Elige una opción"
                                             placeholder="Elige una opción"
                                             onValueChange={(itemValue) => {
@@ -349,9 +349,8 @@ const AssessmentECO2 = (props) => {
                                         <Select
                                             minWidth={'100%'}
                                             style={{
-                                                fontSize: textSizeRender(4.3),
-                                                borderColor: 'red', borderWidth: require_9 ? 1 : 0
-                                            }}
+                                                fontSize: textSizeRender(4.3)}}
+                                            borderColor={require_9 ?"red":props.app.colorGray}
                                             accessibilityLabel="Elige una opción"
                                             placeholder="Elige una opción"
                                             onValueChange={(itemValue) => {
@@ -398,9 +397,8 @@ const AssessmentECO2 = (props) => {
                                         <Select
                                             minWidth={'100%'}
                                             style={{
-                                                fontSize: textSizeRender(4.3),
-                                                borderColor: 'red', borderWidth: require_10 ? 1 : 0
-                                            }}
+                                                fontSize: textSizeRender(4.3)}}
+                                            borderColor={require_10 ?"red":props.app.colorGray}
                                             accessibilityLabel="Elige una opción"
                                             placeholder="Elige una opción"
                                             onValueChange={(itemValue) => {
@@ -446,9 +444,8 @@ const AssessmentECO2 = (props) => {
                                         <Select
                                             minWidth={'100%'}
                                             style={{
-                                                fontSize: textSizeRender(4.3)
-                                                , borderColor: 'red', borderWidth: require_11 ? 1 : 0
-                                            }}
+                                                fontSize: textSizeRender(4.3)}}
+                                            borderColor={require_11 ?"red":props.app.colorGray}
                                             accessibilityLabel="Elige una opción"
                                             placeholder="Elige una opción"
                                             onValueChange={(itemValue) => {
@@ -494,9 +491,8 @@ const AssessmentECO2 = (props) => {
                                         <Select
                                             minWidth={'100%'}
                                             style={{
-                                                fontSize: textSizeRender(4.3),
-                                                borderColor: 'red', borderWidth: require_12 ? 1 : 0
-                                            }}
+                                                fontSize: textSizeRender(4.3)}}
+                                            borderColor={require_12 ?"red":props.app.colorGray}
                                             accessibilityLabel="Elige una opción"
                                             placeholder="Elige una opción"
                                             onValueChange={(itemValue) => {
@@ -531,26 +527,25 @@ const AssessmentECO2 = (props) => {
                         <View style={{flex: 0, padding: 20}}>
                             <Button size={'lg'}
                                     _light={{
-                                        fontSize: textSizeRender(4.3),
                                         bg: props.app.colorECO,
-                                        _text: {color: props.app.fontColor, fontFamily: 'Poligon_Bold'}
+                                        _text: {
+                                            fontSize: textSizeRender(4.3),
+                                            color: props.app.fontColor, fontFamily: 'Poligon_Bold'}
                                     }}
                                     _pressed={{
-                                        fontSize: textSizeRender(4.3),
                                         bg: props.app.colorSecondaryECO,
-                                        _text: {color: props.app.fontColor}
+                                        _text: {
+                                            fontSize: textSizeRender(4.3),
+                                            color: props.app.fontColor}
                                     }}
                                 /***fin***/
-                                    style={{marginRight: 20, width: '50%'}}
                                     style={{marginTop: 20}} onPress={() => {
                                 next()
                             }}>Continuar</Button>
                         </View>
                         {
                             visibleAlert &&
-                            <GenericModal app={props.app} visible={visibleAlert} setVisible={setVisibleAlert}
-                                          isError={true}
-                                          title={titleModal} text={messageModal}/>
+                            <ModalAlertECO  visible={visibleAlert} setVisible={setVisibleAlert}/>
                         }
                         {
                             visible &&

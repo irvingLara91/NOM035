@@ -1,15 +1,15 @@
 import React from "react";
-import {StyleSheet, Dimensions, View, Modal, Image, Text, TouchableOpacity} from "react-native";
+import {Dimensions, Image, Modal, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {textSizeRender} from "../../utils/utils";
 import {store} from "../../redux/store";
-import {MaterialIcons} from "@expo/vector-icons";
+import moment from "moment";
 import {Button} from "native-base";
 
 const {width, height} = Dimensions.get('window')
-const ModalInstructions = ({visible, setVisible, text}) => {
 
+const ModalWelcome =({visible,setVisible})=>{
 
-    return (
+    return(
         <View style={styles.centeredView}>
             <Modal
                 animationType="slide"
@@ -18,25 +18,24 @@ const ModalInstructions = ({visible, setVisible, text}) => {
             >
                 <View style={styles.centeredView}>
                     <View style={[styles.modalView, {backgroundColor: '#494949'}]}>
+
                         <View style={{flex: 0, alignItems: 'center', justifyContent: 'center'}}>
+                            <Image resizeMode={'contain'}
+                                   style={{tintColor:'white',width: textSizeRender(45),height:textSizeRender(13), marginLeft: 10}}
+                                   source={require('../../assets/grupo_Mexico_rojo.png')}/>
                             <Text style={{
+                                textAlign:'center',
                                 fontSize: textSizeRender(5),
                                 fontFamily: 'Poligon_Bold',
                                 color: store.getState().app.fontColor
-                            }}>ENCUESTA DE OPINIÓN</Text>
+                            }}>{"Bienvenido a la Encuesta de opinión Demo ECO "+moment().year()}</Text>
                         </View>
                         <View style={{
                             flex: 1,
-                            marginTop: 10,
+                            marginTop: 20,
                             width: '100%',
                         }}>
-                            <View>
-                                <Text style={[styles.modalTitle, {
-                                    marginBottom: 20,
-                                    color: 'white',
-                                    fontFamily: 'Poligon_Regular'
-                                }]}>INSTRUCCIONES</Text>
-                            </View>
+
                             <View>
                                 <Text style={[styles.modalTitle, {
                                     color: 'white',
@@ -44,21 +43,14 @@ const ModalInstructions = ({visible, setVisible, text}) => {
                                     fontFamily: 'Poligon_Regular'
 
                                 }]}>{
-                                    "A continuación se presentan algunas recomendaciones para que puedas realizar y completar satisfactoriamente esta encuesta: \n" +
-                                    " \n 1.-Lee cuidadosamente cada pregunta y selecciona tu respuesta. \n " +
-
-                                    "\n2.-Cada vez que concluyas una página de la encuesta, el sistema te llevará a la siguiente página de manera automática. \n" +
-
-                                    "\n3.-Antes de finalizar la encuesta asegúrate de responder todas las preguntas. \n "+
-
-                                    "\n4.-Cuando hayas concluido la encuesta, da clic en Continuar. \n"
+                                    "Para AMC es importante conocer la opinión de todas las personas que lo conforman. Por eso, te invitamos a contestar la siguiente encuesta. "
                                 }</Text>
                                 <Text style={[styles.modalTitle, {
                                     color: 'white',
                                     fontFamily: 'Poligon_Regular'
 
                                 }]}>{
-                                    "Muchas gracias por tu valiosa participación."
+                                   "Te recordamos que la encuesta es Anónima y Confidencial."
                                 }
                                 </Text>
                             </View>
@@ -92,7 +84,8 @@ const ModalInstructions = ({visible, setVisible, text}) => {
                 </View>
             </Modal>
         </View>
-    )
+        )
+
 }
 const styles = StyleSheet.create({
     centeredView: {
@@ -119,7 +112,7 @@ const styles = StyleSheet.create({
     modalView: {
         margin: 20,
         width: '90%',
-        height: '70%',
+        height: '45%',
         borderRadius: 20,
         padding: 20,
         alignItems: "center",
@@ -148,5 +141,4 @@ const styles = StyleSheet.create({
         fontSize: textSizeRender(4),
     }
 });
-
-export default ModalInstructions;
+export default ModalWelcome;

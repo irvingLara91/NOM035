@@ -44,6 +44,7 @@ const SelectedComponent = ({update, ...props}) => {
                         <Select
                             key={index}
                             minWidth={120}
+                            borderColor={props.app.colorGray}
                             style={{fontSize: textSizeRender(3.5)}}
                             color={props.app.color}
                             accessibilityLabel="Elige una opción"
@@ -133,9 +134,9 @@ const FactorRankingScreen = (props) => {
     }
 
     const backAction = async () => {
-        setTitleModal("Hola usuario")
+       /* setTitleModal("Hola usuario")
         setMessageModal("¿Estas seguro que desea salir de la encuesta?")
-        setVisible(true)
+        setVisible(true)*/
         return true;
     };
 
@@ -190,7 +191,8 @@ const FactorRankingScreen = (props) => {
     return (<MainLayout>
         {
             loading ?
-                <View style={{height: height, width: width, justifyContent: 'center', alignItems: 'center'}}>
+                <View style={{backgroundColor: props.app.colorBaseEco,
+                    height: height, width: width, justifyContent: 'center', alignItems: 'center'}}>
                     <ActivityIndicator size={"large"} color={props.app.colorECO}/>
                     <Text style={{
                         color: props.app.colorECO,
@@ -201,6 +203,7 @@ const FactorRankingScreen = (props) => {
                 :
                 <View style={{
                     width: '100%',
+                    backgroundColor: props.app.colorBaseEco,
                     flex: 1,
                 }}>
                     <View style={{width: width, paddingLeft: 20, paddingTop: 20, paddingRight: 10}}>

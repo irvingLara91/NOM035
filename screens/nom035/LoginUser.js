@@ -34,7 +34,7 @@ const LoginUser = ({navigation, savedResponses, app,initialCountAction}) => {
             setVisible(false)
         }else {
             setVisible(false)
-             navigation.navigate('SociodemographicPage')
+             navigation.navigate('NoticeOfPrivacyScreen')
         }
     }
 
@@ -67,7 +67,7 @@ const LoginUser = ({navigation, savedResponses, app,initialCountAction}) => {
                 "username": "ilara9",
             })
             await initialCountAction()
-            navigation.navigate('SociodemographicPage')
+            navigation.navigate('NoticeOfPrivacyScreen')
             return true
         }
 

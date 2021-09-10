@@ -41,9 +41,9 @@ const SelectCountryScreen =(props)=>{
     }
 
     const backAction = async () => {
-        setTitleModal("Hola usuario")
+       /* setTitleModal("Hola usuario")
         setMessageModal("¿Estas seguro que desea salir de la encuesta?")
-        setVisible(true)
+        setVisible(true)*/
         return true;
     };
 
@@ -73,7 +73,8 @@ const SelectCountryScreen =(props)=>{
     return(
         <MainLayout>
         <View style={{
-            width: '100%',
+            backgroundColor: props.app.colorBaseEco,
+                width: '100%',
             flex: 1,
         }}>
             <View style={{padding: 20, flex: 1,width:'100%'}}>
@@ -92,6 +93,7 @@ const SelectCountryScreen =(props)=>{
                         <Select
                             minWidth={200}
                             color={props.app.color}
+                            borderColor={props.app.colorGray}
                             style={{fontSize: textSizeRender(4.3)}}
                             accessibilityLabel="Elige una opción"
                             placeholder="Elige una opción"
@@ -129,17 +131,18 @@ const SelectCountryScreen =(props)=>{
             <View style={{flex: 0,padding: 20}}>
                 <Button size={'lg'}
                         _light={{
-                            fontSize: textSizeRender(4.3),
                             bg: props.app.colorECO,
-                            _text: {color: props.app.fontColor, fontFamily: 'Poligon_Bold'}
+                            _text: {
+                                fontSize: textSizeRender(4.3),
+                                color: props.app.fontColor, fontFamily: 'Poligon_Bold'}
                         }}
                         _pressed={{
-                            fontSize: textSizeRender(4.3),
                             bg: props.app.colorSecondaryECO,
-                            _text: {color: props.app.fontColor}
+                            _text: {
+                                fontSize: textSizeRender(4.3),
+                                color: props.app.fontColor}
                         }}
                     /***fin***/
-                        style={{marginRight: 20, width: '50%'}}
                         style={{marginTop: 20}} onPress={() => {
 
                             next()
