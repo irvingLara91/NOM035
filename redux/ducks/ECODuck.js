@@ -1,7 +1,8 @@
+import moment from "moment";
 
 const initialData = {
     IdEncuesta: 1003,
-    Fecha: new Date(),
+    Fecha: moment(new Date()).format(moment.HTML5_FMT.DATETIME_LOCAL_SECONDS),
     Demograficos: [
         {"Id": 1003, "valor": "Cadena dato sociodemográfico 1"},
         {"Id": 1004, "valor": "Cadena dato sociodemográfico 2"},
