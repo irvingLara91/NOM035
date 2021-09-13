@@ -10,16 +10,60 @@ import {store} from "../../redux/store";
 import {textSizeRender} from "../../utils/utils";
 const {width, height} = Dimensions.get('window')
 import { getResponsesAction, updateResponsesAction, clearProcess } from "../../redux/ducks/sendingDuck";
-    
+import { getEcoResponsesAction, updateEcoResponsesAction, clearEcoProcess } from "../../redux/ducks/sendingECODuck";
+
+const SendComponent = ({ encuesta, color, responses, sent, tosend, errores, corriendo, completado }) => {
+    return (
+        <>
+            <View style={ styles.sectionSquare } flex={1}>
+                <Text style={[styles.titulo, { color: color }]}>{tosend.length} Respuestas {encuesta} pendientes por sincronizar </Text>
+                {
+                    (corriendo || completado) && errores.length > 0 && <Text style={ styles.errores }> Envíos fallidos: {errores.length} </Text>
+                }
+                <Box style={ styles.indicador } flex={1}>
+                    <Box style={ styles.contadorBox }>
+                    { 
+                        (corriendo || completado) && 
+                        <> 
+                        <Text style={[styles.contador, {color: color}]}>{sent.length}/</Text>
+                        <Text style={[styles.contador, {color: color}]}>{responses.length}</Text> 
+                        </> 
+                    }
+                    {
+                        (!corriendo && !completado) && <Text style={[styles.contador, {color: color}]}>{tosend.length}</Text> 
+                    }
+                    </Box>
+                    {
+                        (corriendo) && <ActivityIndicator size={60} color="#75bb89" />
+                    }
+                    {
+                        !corriendo && completado && <AntDesign name="checkcircle" size={textSizeRender(15)} color="#75bb89" />
+                    }
+                </Box>
+            </View>
+        </>
+    )
+}
 const SendScreen = ({sending, getResponsesAction, updateResponsesAction, clearProcess, app}) => {
+    /*NOM*/
     const [responses, setResponses] = useState([]) // Guardados
     const [sent, setSent] = useState([]); // Enviados
     const [tosend, setToSend] = useState([]); // Por enviar
     const [errores, setErrores] = useState([]) // Array de errores
-    const [fetching, setFetching] = useState(false); //bloquea el boton 
     const [corriendo, setCorriendo] = useState(false);
     const [completado, setCompletado] = useState(false); 
     const [boton, setBoton] = useState('Iniciar envío de respuestas');
+    const [fetching, setFetching] = useState(false); //bloquea el boton 
+
+    /*ECO*/
+    const [responsesEco, setResponsesEco] = useState([]) // Guardados
+    const [sentEco, setSentEco] = useState([]); // Enviados
+    const [tosendEco, setToSendEco] = useState([]); // Por enviar
+    const [erroresEco, setErroresEco] = useState([]) // Array de errores
+    const [corriendoEco, setCorriendoEco] = useState(false);
+    const [completadoEco, setCompletadoEco] = useState(false); 
+    const [botonEco, setBotonEco] = useState('Iniciar envío de respuestas');
+    const [fetchingEco, setFetchingEco] = useState(false); //bloquea el boton 
 
     useEffect(()=>{
         if (sending) {
@@ -57,39 +101,39 @@ const SendScreen = ({sending, getResponsesAction, updateResponsesAction, clearPr
                     <Text style={{fontFamily:'Poligon_Bold',marginBottom:5, color:app.color,fontSize:textSizeRender(4), textAlign:'center' }} size="lg" mb={3}>
                         Enviar respuestas a KHOR
                     </Text>
-                </View>               
-                <View style={ styles.sectionSquare } flex={1}>
-                    <Text style={ styles.titulo }>{tosend.length} Respuestas pendientes por sincronizar</Text>
-                    {
-                        (corriendo || completado) && errores.length > 0 && <Text style={ styles.errores }> Envíos fallidos: {errores.length} </Text>
-                    }
-                    <Box style={ styles.indicador } flex={1}>
-                        <Box style={ styles.contadorBox }>
-                        { 
-                            (corriendo || completado) && 
-                            <> 
-                            <Text style={styles.contador}>{sent.length}/</Text>
-                            <Text style={styles.contador}>{responses.length}</Text> 
-                            </> 
-                        }
-                        {
-                           (!corriendo && !completado) && <Text style={styles.contador}>{tosend.length}</Text> 
-                        }
-                        </Box>
-                        {
-                            (corriendo) && <ActivityIndicator size={60} color="#75bb89" />
-                        }
-                        {
-                            !corriendo && completado && <AntDesign name="checkcircle" size={textSizeRender(15)} color="#75bb89" />
-                        }
-                    </Box>
-                </View>
+                </View> 
+                <SendComponent
+                    encuesta = "NOM"
+                    color = {app.color}
+                    tosend = {tosend} 
+                    corriendo = {corriendo} 
+                    completado = {completado} 
+                    errores = {errores} 
+                    sent = {sent} 
+                    responses = {responses}/>
                 <Box style={ styles.sectionBoton }>
-                    <Button size={'lg'}
-                            _light={{bg: app.secondaryColor, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5),
-                                    fontFamily:'Poligon_Bold'}}}
-                            _pressed={{bg:app.secondaryColorHover, _text: {color: app.fontColor}}}
-                            style={{ width: '90%' }} onPress={ handleSending } isLoading={fetching}>{boton}</Button>
+                    <Button 
+                        size={'lg'} 
+                        _light={{bg: app.secondaryColor, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5), fontFamily:'Poligon_Bold'}}}
+                        _pressed={{bg:app.secondaryColorHover, _text: {color: app.fontColor}}}
+                        style={{ width: '90%' }} onPress={ handleSending } isLoading={fetching}>{boton}</Button>
+                </Box>
+                <SendComponent
+                    encuesta = "ECO"
+                    color = {app.colorECO}
+                    tosend = {tosendEco} 
+                    corriendo = {corriendoEco} 
+                    completado = {completadoEco} 
+                    errores = {erroresEco} 
+                    sent = {sentEco} 
+                    responses = {responsesEco}/>
+        
+                <Box style={ styles.sectionBoton }>
+                    <Button 
+                        size={'lg'}
+                        _light={{bg: app.colorECO, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5), fontFamily:'Poligon_Bold'}}}
+                        _pressed={{bg:app.colorSecondaryECO, _text: {color: app.fontColor}}}
+                        style={{ width: '90%' }} onPress={ handleSending } isLoading={fetching}>{boton}</Button>
                 </Box>
             </View>
         </MainLayout>
@@ -116,9 +160,9 @@ const styles = StyleSheet.create({
         borderRadius: 10           
     },
     sectionSquare: {
-        padding: 20,         
+        padding: 10,         
         width: '90%',
-        maxHeight: 600,
+        maxHeight: 200,
         display: 'flex',
         flexDirection: 'column',
         borderRadius: 10, 
@@ -136,7 +180,6 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         fontWeight: '500',
         textAlign: 'center',
-        color: store.getState().app.color
     },
     errores: {
         fontSize: textSizeRender(4.5),
@@ -154,7 +197,7 @@ const styles = StyleSheet.create({
     },
     contador: {
         marginBottom: 20,
-        fontSize: textSizeRender(20),
+        fontSize: textSizeRender(12),
         fontFamily:'Poligon_Bold',
         textAlign: 'center',
         color: store.getState().app.color

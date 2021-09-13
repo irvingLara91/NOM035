@@ -28,7 +28,7 @@ const UPDATE_LOG_SUCCESS = 'UPDATE_LOG_SUCCESS';
 const UPDATE_LOG_ERRORS = 'UPDATE_SUCCLOG_ERRORS';
 const CLEAR_LOG = 'CLEAR_LOG';
 
-const sendingDuck = (state = initialData, action) => {
+const sendingECODuck = (state = initialData, action) => {
     switch (action.type) {
         case UPDATE_NOM_URL:
             return {...state, nomurl:action.payload}
@@ -60,40 +60,7 @@ const sendingDuck = (state = initialData, action) => {
 }
 
 /* ACTIONS */
-export const getUrlAction = () => {
-    return async (dispatch, getState) => {
-        try {
-            let getNomConfig = await retrieveData("nomurl");
-            let getEcoConfig = await retrieveData("ecourl");
-            getNomConfig?.length > 0 ? dispatch({type: UPDATE_NOM_URL, payload: getNomConfig}) : dispatch({type: UPDATE_NOM_URL, payload: khorConfig.nomurl});
-            getEcoConfig?.length > 0 ? dispatch({type: UPDATE_ECO_URL, payload: getEcoConfig}) : dispatch({type: UPDATE_ECO_URL, payload: khorConfig.ecourl});
-        } catch (error) {
-            //Error
-        }
-    };
-}
-
-export const saveNomUrlAction = (url) => {
-    return async (dispatch, getState) => {
-        try {
-            dispatch({type: UPDATE_NOM_URL, payload: url});
-        } catch (error) {
-            //Error
-        }
-    }
-}
-
-export const saveEcoUrlAction = (url) => {
-    return async (dispatch, getState) => {
-        try {
-            dispatch({type: UPDATE_ECO_URL, payload: url});
-        } catch (error) {
-            //Error
-        }
-    }
-}
-
-export const getResponsesAction = () => {
+export const getEcoResponsesAction = () => {
     return async (dispatch, getState) => {
         dispatch({type: PROCESS_FETCHING, payload: true})
         try {
@@ -111,7 +78,7 @@ export const getResponsesAction = () => {
     };
 }
 
-export const savedResponsesAction = () => { 
+export const savedEcoResponsesAction = () => { 
     return async (dispatch, getState) => {
         try {
             let responses = getState().sending.respuestas;
@@ -126,7 +93,7 @@ export const savedResponsesAction = () => {
 }
 
 /*CONTROLADOR*/
-export const updateResponsesAction = () => {
+export const updateEcoResponsesAction = () => {
     return async (dispatch, getState) => {
         try {
             let existChanges = _.filter(getState().sending.respuestas, ['send', false]).length;
@@ -162,7 +129,7 @@ export const initProcess = () => async(dispatch, getState) => {
                         await dispatch(deleteResponse(item, index, {error}));
                         await getState().sending.estado === 0 && await waitFor(100);
                     });
-                    await dispatch(savedResponsesAction());
+                    await dispatch(savedEcoResponsesAction());
                     array.length == index + 1 && dispatch(completeProcess()); 
                 }
             } else {
@@ -206,7 +173,7 @@ export const deleteResponse = (respuesta, index, error) => {
     };
 }
 
-export const clearProcess = () => {
+export const clearEcoProcess = () => {
     return ({
         type: PROCESS_CLEAR,
     })
@@ -239,4 +206,4 @@ export const clearLog = () => {
     })
 }
 
-export default sendingDuck;
+export default sendingECODuck;
