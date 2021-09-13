@@ -11,6 +11,7 @@ import GenericModal from "../../components/Modals/GenericModal";
 import ModalAlertBack from "../../components/Modals/ModalAlertBack";
 import {saveOpenQuestions} from "../../redux/ducks/ECODuck";
 import ModalAlertECO from "../../components/Modals/ModalAlertECO";
+import {savedECOResponsesAction} from "../../redux/ducks/responsesECODuck";
 
 const {width, height} = Dimensions.get('window')
 const OpenQuestionsScreen = (props) => {
@@ -98,6 +99,18 @@ const OpenQuestionsScreen = (props) => {
     }, [dato])
 
 
+    const savedResponse=()=>{
+        let  data={}
+        data.IdEncuesta=props.eco.IdEncuesta;
+        data.Fecha=props.eco.Fecha;
+        data.Respuestas=props.eco.Respuestas;
+        data.Ranking=props.eco.Ranking;
+        data.PreguntasAbiertas=props.eco.PreguntasAbiertas;
+        props.savedECOResponsesAction(data)
+        props.navigation.navigate("Home")
+    }
+
+
     return (<MainLayout>
         <View style={{
             width: '100%',
@@ -182,7 +195,7 @@ const OpenQuestionsScreen = (props) => {
                             }}
                         /***fin***/
                             style={{marginTop: 20}} onPress={() => {
-                        props.navigation.navigate("Home")
+                            savedResponse()
                     }}>Salir</Button>
                 }
                 {
@@ -245,4 +258,4 @@ const mapState = (state) => {
     }
 }
 
-export default connect(mapState, {saveOpenQuestions})(OpenQuestionsScreen);
+export default connect(mapState, {saveOpenQuestions,savedECOResponsesAction})(OpenQuestionsScreen);

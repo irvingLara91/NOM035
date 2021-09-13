@@ -6,15 +6,14 @@ import config from "../config"
 import {storeData, retrieveData} from '../helpers/storage'
 import {View, Dimensions, Image, Text} from "react-native";
 import {textSizeRender} from "../utils/utils";
+import moment from "moment";
 
 const {width, height} = Dimensions.get('window')
-const HomeScreen = ({productsDuck, navigation, app,eco}) => {
+const HomeScreen = ({productsDuck, navigation, app,eco,responsesECO}) => {
     const [showModal, setShowModal] = useState(false)
 
     useEffect(() => {
-
-
-        console.log("ECO:::::",eco)
+        console.log("ECO:::::",eco,moment.HTML5_FMT.DATETIME_LOCAL_SECONDS)
         setInitialFakeData()
     }, [])
 
@@ -64,6 +63,20 @@ const HomeScreen = ({productsDuck, navigation, app,eco}) => {
                             onPress={() => navigation.navigate('SelectCountryScreen')}
                         >ECO</Button>
 
+                        <Button
+                            _light={{bg: app.secondaryColor, _text: {color: app.fontColor,
+                                    fontFamily:'Poligon_Bold',
+                                    fontSize:textSizeRender(3.5)}}}
+                            _pressed={{bg: app.secondaryColorHover, _text: {color: app.fontColor}}}
+                            size={'lg'} style={{
+                            marginBottom: 20,
+                            borderRadius: 12
+                        }}
+                            onPress={() => {
+                                console.log(":::::",responsesECO)
+                            }}
+                        >eeee</Button>
+
                         <Button size={'lg'}
                                 _light={{bg: app.secondaryColor, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5),
                                         fontFamily:'Poligon_Bold'}}}
@@ -82,7 +95,8 @@ const mapState = (state) => {
     return {
         app: state.app,
         eco:state.eco,
-        productsDuck: state.productsDuck
+        productsDuck: state.productsDuck,
+        responsesECO :state.responsesECO
     }
 }
 

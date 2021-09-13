@@ -7,6 +7,7 @@ import sendingDuck, {getResponsesAction, getUrlAction} from "./ducks/sendingDuck
 import appReducer, {getUsersAction} from './ducks/appDuck'
 import progressCountReducer from "./ducks/progressCountDuck";
 import ECODuck from "./ducks/ECODuck";
+import responsesECODuck, {getSavedECOResponsesAction} from "./ducks/responsesECODuck";
 
 
 const rootReducer = combineReducers({
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     config:configReducer,
     savedResponses:responsesReducer,
     sending: sendingDuck,
-    countResponse:progressCountReducer
+    countResponse:progressCountReducer,
+    responsesECO:responsesECODuck
 })
 
 export const store = createStore(
@@ -26,6 +28,7 @@ export const store = createStore(
 
 
 export default () => {
+    getSavedECOResponsesAction()(store.dispatch)
     getConfigAction()(store.dispatch)
     getSavedResponsesAction()(store.dispatch)
     getResponsesAction()(store.dispatch)
