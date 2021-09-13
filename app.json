@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "Nom035",
+    "name": "GMTest2021",
     "slug": "Nom035",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo_khor.png",
     "splash": {
       "image": "./assets/logo_grupomexico_blanco.png",
       "resizeMode": "contain",
@@ -17,13 +17,11 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.appshuman.Nom035",
       "supportsTablet": true
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      },
+      "versionCode":1,
       "package": "com.appshuman.Nom035"
     },
     "web": {
