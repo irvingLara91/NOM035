@@ -32,7 +32,7 @@ const HomeSettings = ({navigation,app}) => {
                     alignItems: 'center',
                     flex: 1,
                 }}>
-                    <View style={{width: '100%', alignSelf: 'center',paddingHorizontal:45}}>
+                    <ScrollView style={{width: '100%', alignSelf: 'center', paddingHorizontal:45, }}>
                         <View style={{alignSelf: 'center',paddingVertical:35,paddingHorizontal:40}}>
                             <Text style={{fontFamily:'Poligon_Regular', color: 'black',textAlign:'center',fontSize:textSizeRender(5)}}>Configuración</Text>
                         </View>
@@ -52,17 +52,20 @@ const HomeSettings = ({navigation,app}) => {
                                 style={[{borderRadius: 12}]} onPress={() => navigation.navigate('SendScreen')} loading={loading}>Enviar respuestas</Button>
                         {
                             admin === "testing" && 
+                            <>
                             <Button size={'lg'}  _light={{bg: app.secondaryColor, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5),
                                     fontFamily:'Poligon_Bold'}}}
                                     _pressed={{bg: app.secondaryColorHover, _text: {color: app.fontColor}}}
-                                    style={[{borderRadius: 12, marginTop: 20}]} onPress={() => navigation.navigate('ResponsesLog')} loading={loading}>Log respuestas</Button>
+                                    style={[{borderRadius: 12, marginTop: 20}]} onPress={() => navigation.navigate('ResponsesLog')} loading={loading}>LOG NOM</Button>
+                            <Button size={'lg'}  _light={{bg: app.secondaryColor, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5),
+                                    fontFamily:'Poligon_Bold'}}}
+                                    _pressed={{bg: app.secondaryColorHover, _text: {color: app.fontColor}}}
+                                    style={[{borderRadius: 12, marginTop: 20}]} onPress={() => navigation.navigate('ResponsesECOLog')} loading={loading}>LOG ECO</Button>
+                            </>
                         }
-
-                        <Image resizeMode={'contain'} style={{width: width*.45, height:width*.24,alignSelf:'center'}}
+                        <Image resizeMode={'contain'} style={{width: width*.45, height:width*.24,alignSelf:'center', marginBottom: 40}}
                                source={require('../../assets/logo_grupomexico.png')}/>
-
-                    </View>
-
+                    </ScrollView>
                 </View>
             </View>
         </MainLayout>

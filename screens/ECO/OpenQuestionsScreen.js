@@ -106,6 +106,7 @@ const OpenQuestionsScreen = (props) => {
         data.Respuestas=props.eco.Respuestas;
         data.Ranking=props.eco.Ranking;
         data.PreguntasAbiertas=props.eco.PreguntasAbiertas;
+        data.send=false;
         props.savedECOResponsesAction(data)
         props.navigation.navigate("Home")
     }

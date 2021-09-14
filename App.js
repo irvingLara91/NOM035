@@ -17,6 +17,7 @@ import UsersUpdate from "./screens/settings/UsersUpdate";
 import KhorConfig from "./screens/settings/KhorConfig";
 import SendScreen from "./screens/settings/SendScreen";
 import ResponsesLog from "./screens/settings/ResponsesLog";
+import ResponsesECOLog from "./screens/settings/ResponsesECOLog";
 import {useFonts} from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 
@@ -333,7 +334,7 @@ export default function App({iconSettings}) {
                                           options={({navigation}) =>
                                               ({
                                                   navigation,
-                                                  title: 'Respuestas enviadas a KHOR',
+                                                  title: 'Respuestas enviadas a KHOR NOM',
                                                   gestureEnabled: false,
                                                   headerLeft: () => (
                                                       <MaterialIcons name="arrow-back-ios" size={width * .06}
@@ -355,6 +356,32 @@ export default function App({iconSettings}) {
                                               })
                                           }
                                           component={ResponsesLog}/>
+                            <Stack.Screen name="ResponsesECOLog"
+                                          options={({navigation}) =>
+                                              ({
+                                                  navigation,
+                                                  title: 'Respuestas enviadas a KHOR ECO',
+                                                  gestureEnabled: false,
+                                                  headerLeft: () => (
+                                                      <MaterialIcons name="arrow-back-ios" size={width * .06}
+                                                                     onPress={() => {
+                                                                         navigation.goBack()
+                                                                     }}
+                                                                     style={{marginLeft: 15}}
+                                                                     color={store.getState().app.fontColor}/>
+
+                                                  ),
+                                                  headerStyle: {
+                                                      backgroundColor: store.getState().app.color,
+                                                  },
+                                                  headerTintColor: store.getState().app.fontColor,
+                                                  headerTitleStyle: {
+                                                      fontFamily: 'Poligon_Regular',
+                                                      fontSize: textSizeRender(3.5)
+                                                  },
+                                              })
+                                          }
+                                          component={ResponsesECOLog}/>
                             <Stack.Screen name="SociodemographicPage"
                                           options={({navigation}) =>
                                               ({

@@ -43,5 +43,7 @@
             "username": "user3"
         }
     ],
-    "url": "https://gmnom035.khor.mx/"
+    "nom_url": "https://gmnom035.khor.mx/api/nom035",
+    "eco_url": "https://eco_amc.khor.mx/GM_coInterfaz.ashx",
+    "clave_eco": "hiumanlab.ECO:hiuman#1"
 }

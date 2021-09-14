@@ -1,7 +1,7 @@
 import axios from "axios";
 import _ from 'lodash';
-import {storeData, retrieveData, asyncForEach, joinURL } from "../../helpers/storage";
-import nom_config from '../../screens/nom035/estructura/initial_config.json';
+import {storeData, retrieveData, removeData, asyncForEach} from "../../helpers/storage";
+import khorConfig from '../../screens/nom035/estructura/initial_config.json';
 
 const initialData = {
     respuestas: [],
@@ -9,12 +9,14 @@ const initialData = {
     estado: 0, /* detenido 0, enviando 1, completado 2 */
     fetching: false, 
     running: false, 
-    url: null,
+    nomurl: null,
+    ecourl: null,
     logErrores: [],
     logExitosos: [],
 }
 
-const UPDATE_URL = 'UPDATE_URL';
+const UPDATE_NOM_URL = 'UPDATE_NOM_URL';
+const UPDATE_ECO_URL = 'UPDATE_ECO_URL';
 const UPDATE_RESPONSES = 'UPDATE_RESPONSES';
 const UPDATE_RESPONSES_ERROR = 'UPDATE_RESPONSES_ERROR';
 const DELETE_RESPONSES_ERROR = 'DELETE_RESPONSES_ERROR';
@@ -26,11 +28,12 @@ const UPDATE_LOG_SUCCESS = 'UPDATE_LOG_SUCCESS';
 const UPDATE_LOG_ERRORS = 'UPDATE_SUCCLOG_ERRORS';
 const CLEAR_LOG = 'CLEAR_LOG';
 
-
 const sendingDuck = (state = initialData, action) => {
     switch (action.type) {
-        case UPDATE_URL:
-            return {...state, url:action.payload}
+        case UPDATE_NOM_URL:
+            return {...state, nomurl:action.payload}
+        case UPDATE_ECO_URL:
+            return {...state, ecourl:action.payload}
         case UPDATE_RESPONSES:
             return {...state, respuestas:action.payload, fetching:false}
         case UPDATE_RESPONSES_ERROR:
@@ -60,18 +63,30 @@ const sendingDuck = (state = initialData, action) => {
 export const getUrlAction = () => {
     return async (dispatch, getState) => {
         try {
-            let getConfig = await retrieveData("khorurl");
-            getConfig?.length > 0 ? dispatch({type: UPDATE_URL, payload: getConfig}) : dispatch({type: UPDATE_URL, payload: nom_config.url});
+            let getNomConfig = await retrieveData("nomurl");
+            getNomConfig?.length > 0 ? dispatch({type: UPDATE_NOM_URL, payload: getNomConfig}) : dispatch({type: UPDATE_NOM_URL, payload: khorConfig.nom_url});
+            let getEcoConfig = await retrieveData("ecourl");
+            getEcoConfig?.length > 0 ? dispatch({type: UPDATE_ECO_URL, payload: getEcoConfig}) : dispatch({type: UPDATE_ECO_URL, payload: khorConfig.eco_url});
         } catch (error) {
             //Error
         }
     };
 }
 
-export const saveUrlAction = (url) => {
+export const saveNomUrlAction = (url) => {
     return async (dispatch, getState) => {
         try {
-            dispatch({type: UPDATE_URL, payload: url});
+            dispatch({type: UPDATE_NOM_URL, payload: url});
+        } catch (error) {
+            //Error
+        }
+    }
+}
+
+export const saveEcoUrlAction = (url) => {
+    return async (dispatch, getState) => {
+        try {
+            dispatch({type: UPDATE_ECO_URL, payload: url});
         } catch (error) {
             //Error
         }
@@ -135,12 +150,12 @@ const waitFor = (ms) => new Promise(r => setTimeout(r, ms));
 export const initProcess = () => async(dispatch, getState) => {
     try {
         let responses = await getState().sending.respuestas;
-        let urlApi = await joinURL(getState().sending.url, 'nom035'); 
+        let nomApi = await getState().sending.nomurl; 
         await asyncForEach(responses, async (item, index, array) => {
             if (getState().sending.estado !== 0){ 
                 if (!item.send){
                     await index === 0 && await waitFor(100);
-                    await axios.post(urlApi, [item]).then(async(response) => {
+                    await axios.post(nomApi, [item]).then(async(response) => {
                         response.data[0].status === 0 ? await dispatch(updateResponse(item, index)) : await dispatch(deleteResponse(item, index, response.data[0]));
                         await getState().sending.estado === 0 && await waitFor(100);
                     }).catch(async (error) => {

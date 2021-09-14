@@ -12,12 +12,13 @@ import {store} from "../../redux/store";
 import GenericModal from "../../components/Modals/GenericModal";
 const {width, height} = Dimensions.get('window')
 import {saveConfigAction} from "../../redux/ducks/configDuck";
-import {saveUrlAction} from "../../redux/ducks/sendingDuck";
+import {saveNomUrlAction, saveEcoUrlAction} from "../../redux/ducks/sendingDuck";
 
-const KhorConfig = ({app, config, sending, saveConfigAction, saveUrlAction}) => {
+const KhorConfig = ({app, config, sending, saveConfigAction, saveNomUrlAction, saveEcoUrlAction}) => {
 
     const [datastate, setDatastate] = useState(null);
-    const [inputstate, setInputstate] = useState('');
+    const [nomurl, setNomurl] = useState('');
+    const [ecourl, setEcourl] = useState('');
 
     const [visible, setVisible] = useState(false);
     const [isErrorModal, setIsErrorModal] = useState('');
@@ -25,8 +26,8 @@ const KhorConfig = ({app, config, sending, saveConfigAction, saveUrlAction}) => 
     const [messageModal, setMessageModal] = useState('');
 
     useEffect(()=>{
-        let urlTemp = sending.url;
-        urlTemp && setInputstate(urlTemp);
+        setNomurl(sending.nomurl);
+        setEcourl(sending.ecourl);
     },[sending]);
 
     useEffect(()=>{
@@ -68,11 +69,11 @@ const KhorConfig = ({app, config, sending, saveConfigAction, saveUrlAction}) => 
         }
     }
 
-    const inputSubmit = async() => {
-        if (validURL(inputstate) && storeData("khorurl", inputstate)){
-            saveUrlAction(inputstate); 
+    const inputNomSubmit = async() => {
+        if (validURL(nomurl) && storeData("nomurl", nomurl)){
+            saveNomUrlAction(nomurl); 
             setTitleModal("")
-            setMessageModal("URL guardada")
+            setMessageModal("URL para NOM guardada")
             setIsErrorModal(false)
             setVisible(true)
         }else {
@@ -81,7 +82,21 @@ const KhorConfig = ({app, config, sending, saveConfigAction, saveUrlAction}) => 
             setIsErrorModal(true)
             setVisible(true)
         }
-        //validURL(inputstate) && storeData("khorurl", inputstate) ? Alert.alert("URL guardada") : Alert.alert("Por favor, escriba una url válida");
+    }
+
+    const inputEcoSubmit = async() => {
+        if (validURL(ecourl) && storeData("ecourl", ecourl)){
+            saveEcoUrlAction(ecourl); 
+            setTitleModal("")
+            setMessageModal("URL para ECO guardada")
+            setIsErrorModal(false)
+            setVisible(true)
+        }else {
+            setTitleModal("")
+            setMessageModal("Por favor, escriba una url válida")
+            setIsErrorModal(true)
+            setVisible(true)
+        }
     }
 
     return (
@@ -92,26 +107,49 @@ const KhorConfig = ({app, config, sending, saveConfigAction, saveUrlAction}) => 
                         Configuración
                     </Text>
                     <Image style={{ width: width*.4, height:width*.15, resizeMode: "contain", }} source={require("../../assets/logo_grupomexico.png")} />
-                    <Text style={{fontFamily:'Poligon_Bold',marginBottom:5, color:app.color,fontSize:textSizeRender(4), textAlign:'center' }} size="lg" mb={3}>
-                        Instancia KHOR
-                    </Text>
-                    <Box style={{ display: 'flex', flexDirection: 'row' }}>
-                        <TextInput
-                        style={styles.input}
-                        placeholder={"https://demo.khor.mx/"}
-                        placeholderTextColor="#c1c1c1"
-                        autoCapitalize="none"
-                        underlineColorAndroid={"transparent"}
-                        value={ inputstate }
-                        onChangeText={ text => setInputstate(text)}
-                        />
-                    </Box>
-                    <Button size={'lg'}
-                            _light={{bg: app.secondaryColor, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5),
-                                    fontFamily:'Poligon_Bold'}}}
+                    <View style={styles.instance}>
+                        <Text style={{fontFamily:'Poligon_Bold', color:app.color,fontSize:textSizeRender(4), textAlign:'center' }} size="lg" mb={3}>
+                            Instancia para NOM
+                        </Text>
+                        <Box style={{ display: 'flex', flexDirection: 'row' }}>
+                            <TextInput
+                            style={[styles.input, { color: app.color, borderColor: app.color}]}
+                            placeholder={"https://demo.khor.mx/"}
+                            placeholderTextColor="#c1c1c1"
+                            autoCapitalize="none"
+                            underlineColorAndroid={"transparent"}
+                            value={ nomurl }
+                            onChangeText={ text => setNomurl(text)}
+                            />
+                        </Box>
+                        <Button 
+                            size={'lg'}
+                            _light={{bg: app.secondaryColor, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5), fontFamily:'Poligon_Bold'}}}
                             _pressed={{bg:app.secondaryColorHover, _text: {color: app.fontColor}}}
-                            style={{ marginTop: 16, width: '60%' }} onPress={() => inputSubmit()}>Guardar</Button>
-                </View>               
+                            style={{ marginTop: 16, width: '60%' }} onPress={() => inputNomSubmit()}>Guardar</Button>
+                    </View>
+                    <View style={ styles.instance }>
+                        <Text style={{fontFamily:'Poligon_Bold', color: app.colorECO, fontSize:textSizeRender(4), textAlign:'center' }} size="lg" mb={3}>
+                            Instancia para ECO
+                        </Text>
+                        <Box style={{ display: 'flex', flexDirection: 'row' }}>
+                            <TextInput
+                            style={[styles.input, { color: app.colorECO, borderColor: app.colorECO}]}
+                            placeholder={"https://demo.khor.mx/"}
+                            placeholderTextColor="#c1c1c1"
+                            autoCapitalize="none"
+                            underlineColorAndroid={"transparent"}
+                            value={ ecourl }
+                            onChangeText={ text => setEcourl(text)}
+                            />
+                        </Box>
+                        <Button 
+                            size={'lg'}
+                            _light={{bg: app.colorECO, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5), fontFamily:'Poligon_Bold'}}}
+                            _pressed={{bg:app.colorSecondaryECO, _text: {color: app.fontColor}}}
+                            style={{ marginTop: 16, width: '60%' }} onPress={() => inputEcoSubmit()}>Guardar</Button>
+                    </View>               
+                </View>
                 <View style={ styles.sectionTwo } flex={1}>
                     {
                     datastate ?
@@ -160,8 +198,8 @@ const styles = StyleSheet.create({
         paddingHorizontal:40,
     }, 
     sectionOne: {
-        marginTop:20,
-        paddingBottom: 20,
+        marginTop: 10,
+        paddingBottom: 10,
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
@@ -177,6 +215,14 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         backgroundColor: '#DFE0EA'
     },
+    instance: {
+        paddingBottom: 20,
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        borderRadius: 10           
+    },
     label: {
         marginBottom: 4,
         paddingLeft: 4,
@@ -186,15 +232,12 @@ const styles = StyleSheet.create({
     },
     input: {
         marginTop: 8,
-        marginBottom: 8,
         alignItems: 'center',
         paddingHorizontal: 15,
         width: "100%",
         height: 54,
         fontSize:textSizeRender(3.5),
         fontFamily:'Poligon_Regular',
-        color: store.getState().app.color,
-        borderColor: store.getState().app.color,
         borderWidth: 2,
         backgroundColor: "white",
         borderRadius: 10
@@ -220,4 +263,4 @@ const mapState = (state) => {
     }
 }
 
-export default connect(mapState,{saveConfigAction, saveUrlAction})(KhorConfig);
+export default connect(mapState,{saveConfigAction, saveNomUrlAction, saveEcoUrlAction})(KhorConfig);

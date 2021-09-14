@@ -1,34 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Image,Dimensions, ActivityIndicator, Text } from 'react-native';
-import { Box, Button, Heading, View, ScrollView } from "native-base";
+import { StyleSheet, Image,Dimensions, Text } from 'react-native';
+import { Box, Button, View, ScrollView } from "native-base";
 import _ from 'lodash';
-import { AntDesign } from '@expo/vector-icons'; 
 import MainLayout from "../../layouts/MainLayout";
-import { retrieveData } from "../../helpers/storage";
 import { connect } from "react-redux";
 import {store} from "../../redux/store";
 import {textSizeRender} from "../../utils/utils";
-const {width, height} = Dimensions.get('window')
-import { getResponsesAction, clearLog } from "../../redux/ducks/sendingDuck";
-import { marginBottom, marginTop } from "styled-system";
+const {width} = Dimensions.get('window')
+import { getEcoResponsesAction, clearEcoLog } from "../../redux/ducks/sendingECODuck";
     
-const ResponsesLog = ({sending, getResponsesAction, clearLog, app}) => {
-    const [tosend, setToSend] = useState([]); // Por enviar
-    const [errors, setErrors] = useState([]) // Array de errores
-    const [success, setSuccess] = useState([]) // Array de errores
-    const [fetching, setFetching] = useState(false); //Bloquea el boton 
+const ResponsesLog = ({sendeco, getEcoResponsesAction, clearEcoLog, app}) => {
+    const [tosendEco, setToSendEco] = useState([]); // Por enviar
+    const [errorsEco, setErrorsEco] = useState([]) // Array de errores
+    const [successEco, setSuccessEco] = useState([]) // Array de errores
+    const [fetching, setFetchingEco] = useState(false); //Bloquea el boton 
 
     useEffect(()=>{
-        if (sending) {
-            setToSend( _.filter(sending.respuestas, ['send', false]));
-            setErrors(sending.logErrores);
-            setSuccess(sending.logExitosos);
-            setFetching(sending.fetching);
+        if (sendeco) {
+            setToSendEco( _.filter(sendeco.respuestasEco, ['send', false]));
+            setErrorsEco(sendeco.logErroresEco);
+            setSuccessEco(sendeco.logExitososEco);
+            setFetchingEco(sendeco.fetchingEco);
         }
-    },[sending]) 
+    },[sendeco]) 
     
     useEffect(()=>{
-        getResponsesAction();
+        getEcoResponsesAction();
     }, [])
 
     return (
@@ -37,30 +34,30 @@ const ResponsesLog = ({sending, getResponsesAction, clearLog, app}) => {
                 <View style={ styles.sectionHead }>
                     <Image style={{ width: width*.4, height:width*.15, resizeMode: "contain", }} source={require("../../assets/logo_grupomexico.png")} />
                     <Text style={{fontFamily:'Poligon_Bold',marginBottom:5, color:app.color,fontSize:textSizeRender(4), textAlign:'center' }} size="lg" mb={3}>
-                        Respuestas enviadas a KHOR NOM
+                        Respuestas enviadas a KHOR ECO
                     </Text>
                 </View>               
                 <View style={ styles.sectionSquare } flex={1}>
                     <ScrollView style={{ paddingVertical: 10, paddingHorizontal: 20 }}>
                         <Text style={ styles.titulo }> RESUMEN </Text>
-                        <Text style={ styles.pendientes }>Respuestas pendientes: {tosend.length}</Text>
-                        <Text style={ styles.exitosos }>Envíos exitosos: {success.length}</Text>
-                        <Text style={ styles.errores }>Envíos fallidos: {errors.length}</Text>
+                        <Text style={ styles.pendientes }>Respuestas pendientes: {tosendEco.length}</Text>
+                        <Text style={ styles.exitosos }>Envíos exitosos: {successEco.length}</Text>
+                        <Text style={ styles.errores }>Envíos fallidos: {errorsEco.length}</Text>
                         {
-                            success.length > 0 && <>
+                            successEco.length > 0 && <>
                                 <Text style={ styles.titulo }> EXITOSOS </Text>
                                 {   
-                                    success.map( (exitoso, index) => (
+                                    successEco.map( (exitoso, index) => (
                                         <Text style={styles.dato} key={index}> Envio exitoso {index + 1}: {JSON.stringify(exitoso)}</Text>
                                     )) 
                                 }
                             </>
                         }
                         {
-                            errors.length > 0 && <>
+                            errorsEco.length > 0 && <>
                                 <Text style={ styles.titulo }> ERRORES </Text>
                                 {   
-                                    errors.map( (error, index) => (
+                                    errorsEco.map( (error, index) => (
                                         <Text style={ styles.dato} key={index}> Envio fallido {index + 1}: {JSON.stringify(error)}</Text>
                                     )) 
                                 }
@@ -170,11 +167,11 @@ const styles = StyleSheet.create({
 const mapState = (state) => {
     return {
         app:state.app,
-        sending: state.sending,
+        sendeco: state.sendeco,
     }
 }
 
 export default connect(mapState,{
-    getResponsesAction,
-    clearLog,
+    getEcoResponsesAction,
+    clearEcoLog,
 })(ResponsesLog);
