@@ -91,39 +91,41 @@ const SendScreen = ({sending, getResponsesAction, updateResponsesAction, clearPr
                         Enviar respuestas a KHOR
                     </Text>
                 </View> 
-                <SendComponent
-                    encuesta = "NOM"
-                    color = {app.color}
-                    tosend = {tosend} 
-                    corriendo = {corriendo} 
-                    completado = {completado} 
-                    errores = {errores} 
-                    sent = {sent} 
-                    responses = {responses}/>
-                <Box style={ styles.sectionBoton }>
-                    <Button 
-                        size={'lg'} 
-                        _light={{bg: app.secondaryColor, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5), fontFamily:'Poligon_Bold'}}}
-                        _pressed={{bg:app.secondaryColorHover, _text: {color: app.fontColor}}}
-                        style={{ width: '90%' }} onPress={ handleSending } isLoading={fetching}>{boton}</Button>
-                </Box>
-                <SendComponent
-                    encuesta = "ECO"
-                    color = {app.colorECO}
-                    tosend = {tosendEco} 
-                    corriendo = {corriendoEco} 
-                    completado = {completadoEco} 
-                    errores = {erroresEco} 
-                    sent = {sentEco} 
-                    responses = {responsesEco}/>
-        
-                <Box style={ styles.sectionBoton }>
-                    <Button 
-                        size={'lg'}
-                        _light={{bg: app.colorECO, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5), fontFamily:'Poligon_Bold'}}}
-                        _pressed={{bg:app.colorSecondaryECO, _text: {color: app.fontColor}}}
-                        style={{ width: '90%' }} onPress={ handleSendingEco } isLoading={fetchingEco}>{botonEco}</Button>
-                </Box>
+                <ScrollView style={{ flex: 1, width:'90%', backgroundColor:"f4f4f4", }}>
+                    <SendComponent
+                        encuesta = "NOM"
+                        color = {app.color}
+                        tosend = {tosend} 
+                        corriendo = {corriendo} 
+                        completado = {completado} 
+                        errores = {errores} 
+                        sent = {sent} 
+                        responses = {responses}/>
+                    <Box style={ styles.sectionBoton }>
+                        <Button 
+                            size={'lg'} 
+                            _light={{bg: app.secondaryColor, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5), fontFamily:'Poligon_Bold'}}}
+                            _pressed={{bg:app.secondaryColorHover, _text: {color: app.fontColor}}}
+                            style={{ width: '90%', marginBottom: 20 }} onPress={ handleSending } isLoading={fetching}>{boton}</Button>
+                    </Box>
+                    <SendComponent
+                        encuesta = "ECO"
+                        color = {app.colorECO}
+                        tosend = {tosendEco} 
+                        corriendo = {corriendoEco} 
+                        completado = {completadoEco} 
+                        errores = {erroresEco} 
+                        sent = {sentEco} 
+                        responses = {responsesEco}/>
+            
+                    <Box style={ styles.sectionBoton }>
+                        <Button 
+                            size={'lg'}
+                            _light={{bg: app.colorECO, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5), fontFamily:'Poligon_Bold'}}}
+                            _pressed={{bg:app.colorSecondaryECO, _text: {color: app.fontColor}}}
+                            style={{ width: '90%' }} onPress={ handleSendingEco } isLoading={fetchingEco}>{botonEco}</Button>
+                    </Box>
+                </ScrollView>
             </View>
         </MainLayout>
     )
@@ -165,8 +167,8 @@ const SendComponent = ({ encuesta, color, responses, sent, tosend, errores, corr
 const styles = StyleSheet.create({
     container: { 
         width: '100%',
-        backgroundColor:'white',
         height: '100%',
+        backgroundColor:'white',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -182,8 +184,8 @@ const styles = StyleSheet.create({
     },
     sectionSquare: {
         padding: 10,         
-        width: '90%',
-        maxHeight: 800,
+        width: '100%',
+        minHeight: textSizeRender(50),
         display: 'flex',
         flexDirection: 'column',
         borderRadius: 10, 
@@ -224,7 +226,7 @@ const styles = StyleSheet.create({
         color: store.getState().app.color
     },
     sectionBoton: {
-        marginTop: 30, 
+        marginTop: 20,
         width: '100%',
         marginBottom:20,
         alignItems: 'center', 
