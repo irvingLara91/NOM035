@@ -1,6 +1,6 @@
 import axios from "axios";
 import _ from 'lodash';
-import {storeData, retrieveData, asyncForEach, joinURL } from "../../helpers/storage";
+import {storeData, retrieveData, removeData, asyncForEach} from "../../helpers/storage";
 import khorConfig from '../../screens/nom035/estructura/initial_config.json';
 
 const initialData = {
@@ -64,9 +64,9 @@ export const getUrlAction = () => {
     return async (dispatch, getState) => {
         try {
             let getNomConfig = await retrieveData("nomurl");
+            getNomConfig?.length > 0 ? dispatch({type: UPDATE_NOM_URL, payload: getNomConfig}) : dispatch({type: UPDATE_NOM_URL, payload: khorConfig.nom_url});
             let getEcoConfig = await retrieveData("ecourl");
-            getNomConfig?.length > 0 ? dispatch({type: UPDATE_NOM_URL, payload: getNomConfig}) : dispatch({type: UPDATE_NOM_URL, payload: khorConfig.nomurl});
-            getEcoConfig?.length > 0 ? dispatch({type: UPDATE_ECO_URL, payload: getEcoConfig}) : dispatch({type: UPDATE_ECO_URL, payload: khorConfig.ecourl});
+            getEcoConfig?.length > 0 ? dispatch({type: UPDATE_ECO_URL, payload: getEcoConfig}) : dispatch({type: UPDATE_ECO_URL, payload: khorConfig.eco_url});
         } catch (error) {
             //Error
         }

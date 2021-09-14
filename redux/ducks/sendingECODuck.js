@@ -1,79 +1,80 @@
 import axios from "axios";
 import _ from 'lodash';
-import {storeData, retrieveData, asyncForEach, joinURL } from "../../helpers/storage";
+import {storeData, retrieveData, asyncForEach} from "../../helpers/storage";
 import khorConfig from '../../screens/nom035/estructura/initial_config.json';
+import base64 from 'react-native-base64';
 
 const initialData = {
-    respuestas: [],
-    errores: [],
-    estado: 0, /* detenido 0, enviando 1, completado 2 */
-    fetching: false, 
-    running: false, 
-    nomurl: null,
-    ecourl: null,
-    logErrores: [],
-    logExitosos: [],
+    respuestasEco: [],
+    erroresEco: [],
+    estadoEco: 0, /* detenido 0, enviando 1, completado 2 */
+    fetchingEco: false, 
+    runningEco: false, 
+    logErroresEco: [],
+    logExitososEco: [],
 }
 
-const UPDATE_NOM_URL = 'UPDATE_NOM_URL';
-const UPDATE_ECO_URL = 'UPDATE_ECO_URL';
-const UPDATE_RESPONSES = 'UPDATE_RESPONSES';
-const UPDATE_RESPONSES_ERROR = 'UPDATE_RESPONSES_ERROR';
-const DELETE_RESPONSES_ERROR = 'DELETE_RESPONSES_ERROR';
-const PROCESS_FETCHING = 'FETCHING';
-const PROCESS_STATE = 'PROCESS_STATE';
-const PROCESS_RUNNING = 'PROCESS_RUNNING';
-const PROCESS_CLEAR = 'PROCESS_CLEAR';
-const UPDATE_LOG_SUCCESS = 'UPDATE_LOG_SUCCESS';
-const UPDATE_LOG_ERRORS = 'UPDATE_SUCCLOG_ERRORS';
-const CLEAR_LOG = 'CLEAR_LOG';
+const UPDATE_RESPONSES_ECO = 'UPDATE_RESPONSES_ECO';
+const UPDATE_RESPONSES_ECO_ERROR = 'UPDATE_RESPONSES_ECO_ERROR';
+const DELETE_RESPONSES_ERROR_ECO = 'DELETE_RESPONSES_ERROR_ECO';
+const PROCESS_FETCHING_ECO = 'PROCESS_FETCHING_ECO';
+const PROCESS_STATE_ECO = 'PROCESS_STATE_ECO';
+const PROCESS_RUNNING_ECO = 'PROCESS_RUNNING_ECO';
+const PROCESS_CLEAR_ECO = 'PROCESS_CLEAR_ECO';
+const UPDATE_LOG_SUCCESS_ECO = 'UPDATE_LOG_SUCCESS_ECO';
+const UPDATE_LOG_ERRORS_ECO = 'UPDATE_SUCCLOG_ERRORS';
+const CLEAR_LOG_ECO = 'CLEAR_LOG_ECO';
 
 const sendingECODuck = (state = initialData, action) => {
     switch (action.type) {
-        case UPDATE_NOM_URL:
-            return {...state, nomurl:action.payload}
-        case UPDATE_ECO_URL:
-            return {...state, ecourl:action.payload}
-        case UPDATE_RESPONSES:
-            return {...state, respuestas:action.payload, fetching:false}
-        case UPDATE_RESPONSES_ERROR:
-            return {...state, errores: [...state.errores, action.payload]}
-        case DELETE_RESPONSES_ERROR:
-            return {...state, errores: []}
-        case PROCESS_FETCHING:
-            return {...state, fetching:action.payload}
-        case PROCESS_STATE:
-            return {...state, estado:action.payload}
-        case PROCESS_RUNNING:
-            return {...state, running:action.payload}
-        case PROCESS_CLEAR:
-            return {...state, errores: [], estado: 0, running: false}
-        case CLEAR_LOG:
-            return {...state, logErrores: [], logExitosos: []}
-        case UPDATE_LOG_ERRORS:
-            return {...state, logErrores: [...state.logErrores, action.payload]}
-        case UPDATE_LOG_SUCCESS:
-            return {...state, logExitosos: [...state.logExitosos, action.payload]}
+        case UPDATE_RESPONSES_ECO:
+            return {...state, respuestasEco:action.payload, fetchingEco:false}
+        case UPDATE_RESPONSES_ECO_ERROR:
+            return {...state, erroresEco: [...state.erroresEco, action.payload]}
+        case DELETE_RESPONSES_ERROR_ECO:
+            return {...state, erroresEco: []}
+        case PROCESS_FETCHING_ECO:
+            return {...state, fetchingEco:action.payload}
+        case PROCESS_STATE_ECO:
+            return {...state, estadoEco:action.payload}
+        case PROCESS_RUNNING_ECO:
+            return {...state, runningEco:action.payload}
+        case PROCESS_CLEAR_ECO:
+            return {...state, erroresEco: [], estadoEco: 0, runningEco: false}
+        case CLEAR_LOG_ECO:
+            return {...state, logErroresEco: [], logExitososEco: []}
+        case UPDATE_LOG_ERRORS_ECO:
+            return {...state, logErroresEco: [...state.logErroresEco, action.payload]}
+        case UPDATE_LOG_SUCCESS_ECO:
+            return {...state, logExitososEco: [...state.logExitososEco, action.payload]}
         default:
             return state
     }
 }
 
+const token = base64.encode(khorConfig.clave_eco);
+const options = {
+    headers: {
+      'Authorization': `Basic ${token}` 
+    }
+  }
+;
+
 /* ACTIONS */
 export const getEcoResponsesAction = () => {
     return async (dispatch, getState) => {
-        dispatch({type: PROCESS_FETCHING, payload: true})
+        dispatch({type: PROCESS_FETCHING_ECO, payload: true})
         try {
-            let getResponses = await retrieveData("savedResponses");
+            let getResponses = await retrieveData("savedECOResponses");
             if (getResponses?.length > 0){
                 let newResponses = _.filter(getResponses, ['send', false]);
-                newResponses && dispatch({type: UPDATE_RESPONSES, payload: newResponses});
+                newResponses && dispatch({type: UPDATE_RESPONSES_ECO, payload: newResponses});
             } else {
-                dispatch({type: PROCESS_FETCHING, payload: false})
+                dispatch({type: PROCESS_FETCHING_ECO, payload: false})
             }
         } catch (error) {
             //Error
-            dispatch({type: PROCESS_FETCHING, payload: false})
+            dispatch({type: PROCESS_FETCHING_ECO, payload: false})
         }
     };
 }
@@ -81,11 +82,11 @@ export const getEcoResponsesAction = () => {
 export const savedEcoResponsesAction = () => { 
     return async (dispatch, getState) => {
         try {
-            let responses = getState().sending.respuestas;
+            let responses = getState().sendeco.respuestasEco;
             let newStorage = _.filter(responses, ['send', false]);
-            newStorage && await storeData('savedResponses', newStorage);
-            let newErrors = getState().sending.errores;
-            newErrors && await storeData('savedErrores', newErrors);
+            // newStorage && await storeData('savedECOResponses', newStorage);
+            let newErrors = getState().sendeco.erroresEco;
+            newErrors && await storeData('savedEcoErroresEco', newErrors);
         } catch (error) {
             console.log("SAVE_ERROR::", error);
         }
@@ -96,11 +97,11 @@ export const savedEcoResponsesAction = () => {
 export const updateEcoResponsesAction = () => {
     return async (dispatch, getState) => {
         try {
-            let existChanges = _.filter(getState().sending.respuestas, ['send', false]).length;
-            if ( getState().sending.estado === 0 && existChanges > 0) {
-                //await dispatch({type: DELETE_RESPONSES_ERROR}); NOTA: descomentar esto, borrar true, actualizar responses en sendScreen para refrescar datos al cancelar.
+            let existChanges = _.filter(getState().sendeco.respuestasEco, ['send', false]).length;
+            if ( getState().sendeco.estadoEco === 0 && existChanges > 0) {
+                //await dispatch({type: DELETE_RESPONSES_ERROR_ECO}); NOTA: descomentar esto, borrar true, actualizar responses en sendScreen para refrescar datos al cancelar.
                 await dispatch(startProcess());
-                await dispatch({type: PROCESS_RUNNING, payload: true})
+                await dispatch({type: PROCESS_RUNNING_ECO, payload: true})
                 dispatch(initProcess());
             }else{
                 dispatch(stopProcess());
@@ -116,41 +117,41 @@ const waitFor = (ms) => new Promise(r => setTimeout(r, ms));
 /*PROCESO*/
 export const initProcess = () => async(dispatch, getState) => {
     try {
-        let responses = await getState().sending.respuestas;
-        let nomApi = await getState().sending.nomurl; 
+        let responses = await getState().sendeco.respuestasEco;
+        let ecoApi = await getState().sending.ecourl; 
         await asyncForEach(responses, async (item, index, array) => {
-            if (getState().sending.estado !== 0){ 
+            if (getState().sendeco.estadoEco !== 0){ 
                 if (!item.send){
                     await index === 0 && await waitFor(100);
-                    await axios.post(nomApi, [item]).then(async(response) => {
+                    await axios.post(ecoApi, [item], options).then(async(response) => {
                         response.data[0].status === 0 ? await dispatch(updateResponse(item, index)) : await dispatch(deleteResponse(item, index, response.data[0]));
-                        await getState().sending.estado === 0 && await waitFor(100);
+                        await getState().sendeco.estadoEco === 0 && await waitFor(100);
                     }).catch(async (error) => {
                         await dispatch(deleteResponse(item, index, {error}));
-                        await getState().sending.estado === 0 && await waitFor(100);
+                        await getState().sendeco.estadoEco === 0 && await waitFor(100);
                     });
                     await dispatch(savedEcoResponsesAction());
                     array.length == index + 1 && dispatch(completeProcess()); 
                 }
             } else {
-                dispatch({type: PROCESS_FETCHING, payload: true})
+                dispatch({type: PROCESS_FETCHING_ECO, payload: true})
                 console.log("Envio cancelado...")
             }
         });
-        dispatch({type: PROCESS_RUNNING, payload: false});
-        dispatch({type: PROCESS_FETCHING, payload: false});
+        dispatch({type: PROCESS_RUNNING_ECO, payload: false});
+        dispatch({type: PROCESS_FETCHING_ECO, payload: false});
     } catch (error) {
-        dispatch({type: PROCESS_FETCHING, payload: false});
+        dispatch({type: PROCESS_FETCHING_ECO, payload: false});
     }
 }
 
 export const updateResponse = (respuesta, index) => {
     return async (dispatch, getState) => {
         try {
-            let respuestas= getState().sending.respuestas;
-            respuestas[index].send = true;
-            await dispatch({ type: UPDATE_RESPONSES, payload:respuestas});
-            await dispatch({ type: UPDATE_LOG_SUCCESS, payload:respuesta });
+            let respuestasEco= getState().sendeco.respuestasEco;
+            respuestasEco[index].send = true;
+            await dispatch({ type: UPDATE_RESPONSES_ECO, payload:respuestasEco});
+            await dispatch({ type: UPDATE_LOG_SUCCESS_ECO, payload:respuesta });
         } catch (error) {
             //Error
         }
@@ -160,13 +161,13 @@ export const updateResponse = (respuesta, index) => {
 export const deleteResponse = (respuesta, index, error) => {
     return async (dispatch, getState) => {
         try {
-            let respuestas= getState().sending.respuestas;
-            respuestas[index].send = true;
-            await dispatch({ type: UPDATE_RESPONSES, payload:respuestas});
+            let respuestasEco= getState().sendeco.respuestasEco;
+            respuestasEco[index].send = true;
+            await dispatch({ type: UPDATE_RESPONSES_ECO, payload:respuestasEco});
             
             let objError = {respuesta, error}
-            await dispatch({ type: UPDATE_RESPONSES_ERROR, payload: objError});
-            await dispatch({ type: UPDATE_LOG_ERRORS, payload: objError});
+            await dispatch({ type: UPDATE_RESPONSES_ECO_ERROR, payload: objError});
+            await dispatch({ type: UPDATE_LOG_ERRORS_ECO, payload: objError});
         } catch (error) {
             //Error        
         }
@@ -175,34 +176,34 @@ export const deleteResponse = (respuesta, index, error) => {
 
 export const clearEcoProcess = () => {
     return ({
-        type: PROCESS_CLEAR,
+        type: PROCESS_CLEAR_ECO,
     })
 }
 
 export const startProcess = () => {
     return ({
-        type: PROCESS_STATE,
+        type: PROCESS_STATE_ECO,
         payload: 1
     })
 }
 
 export const stopProcess = () => {
     return ({
-        type: PROCESS_STATE,
+        type: PROCESS_STATE_ECO,
         payload: 0
     })
 }
 
 export const completeProcess = () => {
     return ({
-        type: PROCESS_STATE,
+        type: PROCESS_STATE_ECO,
         payload: 2
     })
 }
 
 export const clearLog = () => {
     return ({
-        type: CLEAR_LOG,
+        type: CLEAR_LOG_ECO,
     })
 }
 

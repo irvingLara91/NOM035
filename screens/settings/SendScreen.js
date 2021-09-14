@@ -4,7 +4,7 @@ import { Box, Button, Heading, View, ScrollView } from "native-base";
 import _ from 'lodash';
 import { AntDesign } from '@expo/vector-icons'; 
 import MainLayout from "../../layouts/MainLayout";
-import { retrieveData } from "../../helpers/storage";
+import { retrieveData, removeData } from "../../helpers/storage";
 import { connect } from "react-redux";
 import {store} from "../../redux/store";
 import {textSizeRender} from "../../utils/utils";
@@ -12,39 +12,7 @@ const {width, height} = Dimensions.get('window')
 import { getResponsesAction, updateResponsesAction, clearProcess } from "../../redux/ducks/sendingDuck";
 import { getEcoResponsesAction, updateEcoResponsesAction, clearEcoProcess } from "../../redux/ducks/sendingECODuck";
 
-const SendComponent = ({ encuesta, color, responses, sent, tosend, errores, corriendo, completado }) => {
-    return (
-        <>
-            <View style={ styles.sectionSquare } flex={1}>
-                <Text style={[styles.titulo, { color: color }]}>{tosend.length} Respuestas {encuesta} pendientes por sincronizar </Text>
-                {
-                    (corriendo || completado) && errores.length > 0 && <Text style={ styles.errores }> Envíos fallidos: {errores.length} </Text>
-                }
-                <Box style={ styles.indicador } flex={1}>
-                    <Box style={ styles.contadorBox }>
-                    { 
-                        (corriendo || completado) && 
-                        <> 
-                        <Text style={[styles.contador, {color: color}]}>{sent.length}/</Text>
-                        <Text style={[styles.contador, {color: color}]}>{responses.length}</Text> 
-                        </> 
-                    }
-                    {
-                        (!corriendo && !completado) && <Text style={[styles.contador, {color: color}]}>{tosend.length}</Text> 
-                    }
-                    </Box>
-                    {
-                        (corriendo) && <ActivityIndicator size={60} color="#75bb89" />
-                    }
-                    {
-                        !corriendo && completado && <AntDesign name="checkcircle" size={textSizeRender(15)} color="#75bb89" />
-                    }
-                </Box>
-            </View>
-        </>
-    )
-}
-const SendScreen = ({sending, getResponsesAction, updateResponsesAction, clearProcess, app}) => {
+const SendScreen = ({sending, getResponsesAction, updateResponsesAction, clearProcess, sendeco, getEcoResponsesAction, updateEcoResponsesAction, clearEcoProcess, app}) => {
     /*NOM*/
     const [responses, setResponses] = useState([]) // Guardados
     const [sent, setSent] = useState([]); // Enviados
@@ -77,20 +45,41 @@ const SendScreen = ({sending, getResponsesAction, updateResponsesAction, clearPr
             sending.estado === 2 ? ( setBoton("Aceptar"), setCompletado(true) ) : setCompletado(false);
         }
     },[sending]) 
+
+    useEffect(()=>{
+        if (sendeco) {
+            setSentEco( _.filter(sendeco.respuestasEco, ['send', true]) ); 
+            setToSendEco( _.filter(sendeco.respuestasEco, ['send', false]));
+            setErroresEco(sendeco.erroresEco);
+            setFetchingEco(sendeco.fetchingEco);
+            setCorriendoEco(sendeco.runningEco);
+            sendeco.estadoEco === 0 && setBotonEco("Iniciar envío de respuestas");
+            sendeco.estadoEco === 1 && setBotonEco("Cancelar");
+            sendeco.estadoEco === 2 ? ( setBotonEco("Aceptar"), setCompletadoEco(true) ) : setCompletadoEco(false);
+        }
+    },[sendeco]) 
     
     useEffect(()=>{
         getInitialResponses();
         clearProcess();
+        clearEcoProcess();
         getResponsesAction();
+        getEcoResponsesAction();
     }, [])
 
     const getInitialResponses = async () =>{
-        let respTemp = await retrieveData("savedResponses");
-        respTemp?.length > 0 && setResponses( _.filter( respTemp, ['send', false]) ); 
+        let nomTemp = await retrieveData("savedResponses");
+        nomTemp?.length > 0 && setResponses( _.filter( nomTemp, ['send', false]) ); 
+        let ecoTemp = await retrieveData("savedEcoResponses");
+        ecoTemp?.length > 0 && setResponsesEco( _.filter( ecoTemp, ['send', false]) ); 
     }
 
     const handleSending = () => {
         updateResponsesAction();
+    }
+
+    const handleSendingEco = () => {
+        updateEcoResponsesAction();
     }
 
     return (
@@ -133,12 +122,44 @@ const SendScreen = ({sending, getResponsesAction, updateResponsesAction, clearPr
                         size={'lg'}
                         _light={{bg: app.colorECO, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5), fontFamily:'Poligon_Bold'}}}
                         _pressed={{bg:app.colorSecondaryECO, _text: {color: app.fontColor}}}
-                        style={{ width: '90%' }} onPress={ handleSending } isLoading={fetching}>{boton}</Button>
+                        style={{ width: '90%' }} onPress={ handleSendingEco } isLoading={fetchingEco}>{botonEco}</Button>
                 </Box>
             </View>
         </MainLayout>
     )
+}
 
+const SendComponent = ({ encuesta, color, responses, sent, tosend, errores, corriendo, completado }) => {
+    return (
+        <>
+            <View style={ styles.sectionSquare } flex={1}>
+                <Text style={[styles.titulo, { color: color }]}>{tosend.length} Respuestas {encuesta} pendientes por sincronizar </Text>
+                {
+                    (corriendo || completado) && errores.length > 0 && <Text style={ styles.errores }> Envíos fallidos: {errores.length} </Text>
+                }
+                <Box style={ styles.indicador } flex={1}>
+                    <Box style={ styles.contadorBox }>
+                    { 
+                        (corriendo || completado) && 
+                        <> 
+                        <Text style={[styles.contador, {color: color}]}>{sent.length}/</Text>
+                        <Text style={[styles.contador, {color: color}]}>{responses.length}</Text> 
+                        </> 
+                    }
+                    {
+                        (!corriendo && !completado) && <Text style={[styles.contador, {color: color}]}>{tosend.length}</Text> 
+                    }
+                    </Box>
+                    {
+                        (corriendo) && <ActivityIndicator size={textSizeRender(10)} color="#75bb89" />
+                    }
+                    {
+                        !corriendo && completado && <AntDesign name="checkcircle" size={textSizeRender(10)} color="#75bb89" />
+                    }
+                </Box>
+            </View>
+        </>
+    )
 }
 
 const styles = StyleSheet.create({
@@ -162,7 +183,7 @@ const styles = StyleSheet.create({
     sectionSquare: {
         padding: 10,         
         width: '90%',
-        maxHeight: 200,
+        maxHeight: 800,
         display: 'flex',
         flexDirection: 'column',
         borderRadius: 10, 
@@ -189,14 +210,14 @@ const styles = StyleSheet.create({
         color: '#e45a60'
     },
     contadorBox: {
-        marginVertical: 20,
+        marginVertical: textSizeRender(1),
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
     },
     contador: {
-        marginBottom: 20,
+        marginBottom: textSizeRender(1),
         fontSize: textSizeRender(12),
         fontFamily:'Poligon_Bold',
         textAlign: 'center',
@@ -221,6 +242,7 @@ const mapState = (state) => {
     return {
         app:state.app,
         sending: state.sending,
+        sendeco: state.sendeco,
     }
 }
 
@@ -228,4 +250,7 @@ export default connect(mapState,{
     getResponsesAction,
     updateResponsesAction,
     clearProcess,
+    getEcoResponsesAction, 
+    updateEcoResponsesAction, 
+    clearEcoProcess
 })(SendScreen);

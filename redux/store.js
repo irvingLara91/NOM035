@@ -4,7 +4,7 @@ import nom035Duck from "./ducks/nom035Duck";
 import configReducer,{getConfigAction} from "./ducks/configDuck";
 import responsesReducer ,{getSavedResponsesAction} from "./ducks/responsesDuck";
 import sendingDuck, {getResponsesAction, getUrlAction} from "./ducks/sendingDuck";
-import sendingECODuck, {getEcoResponsesAction } from "./ducks/sendingECODuck";
+import sendingECODuck, {getEcoResponsesAction} from "./ducks/sendingECODuck";
 import appReducer, {getUsersAction} from './ducks/appDuck'
 import progressCountReducer from "./ducks/progressCountDuck";
 import ECODuck from "./ducks/ECODuck";
@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
     config:configReducer,
     savedResponses:responsesReducer,
     sending: sendingDuck,
-    sendEco: sendingECODuck,
+    sendeco: sendingECODuck,
     countResponse:progressCountReducer,
     responsesECO:responsesECODuck
 })
@@ -34,6 +34,7 @@ export default () => {
     getConfigAction()(store.dispatch)
     getSavedResponsesAction()(store.dispatch)
     getResponsesAction()(store.dispatch)
+    getEcoResponsesAction()(store.dispatch)
     getUrlAction()(store.dispatch)
     getUsersAction()(store.dispatch)
     return store
