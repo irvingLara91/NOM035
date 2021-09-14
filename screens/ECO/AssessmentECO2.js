@@ -200,7 +200,7 @@ const AssessmentECO2 = (props) => {
                                             fontFamily: 'Poligon_Regular',
                                             fontSize: textSizeRender(4.3),
                                         }}>
-                                            Genero
+                                            Género
                                         </Text>
                                         <Select
                                             minWidth={'100%'}
