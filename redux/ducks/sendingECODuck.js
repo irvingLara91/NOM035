@@ -84,7 +84,7 @@ export const savedEcoResponsesAction = () => {
         try {
             let responses = getState().sendeco.respuestasEco;
             let newStorage = _.filter(responses, ['send', false]);
-            // newStorage && await storeData('savedECOResponses', newStorage);
+            newStorage && await storeData('savedECOResponses', newStorage);
             let newErrors = getState().sendeco.erroresEco;
             newErrors && await storeData('savedEcoErroresEco', newErrors);
         } catch (error) {
