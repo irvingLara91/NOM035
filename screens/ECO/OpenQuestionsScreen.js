@@ -103,6 +103,7 @@ const OpenQuestionsScreen = (props) => {
         let  data={}
         data.IdEncuesta=props.eco.IdEncuesta;
         data.Fecha=props.eco.Fecha;
+        data.Demograficos= props.eco.Demograficos;
         data.Respuestas=props.eco.Respuestas;
         data.Ranking=props.eco.Ranking;
         data.PreguntasAbiertas=props.eco.PreguntasAbiertas;

@@ -11,6 +11,16 @@
           "direccion": [
             {
               "id": 3001,
+              "nombre": "ADMINISTRATIVA",
+              "area": [
+                {
+                  "id": 3002,
+                  "nombre": "NO APLICA"
+                }
+              ]
+            },
+            {
+              "id": 3001,
               "nombre": "CONCENTRADORA",
               "area": [
                 {

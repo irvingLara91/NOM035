@@ -2,7 +2,7 @@ import moment from "moment";
 
 const initialData = {
     IdEncuesta: 1003,
-    Fecha: moment(new Date()).format(moment.HTML5_FMT.DATETIME_LOCAL_SECONDS),
+    Fecha: moment(new Date()).utc(false).format('YYYY-MM-DDTHH:mm:ss'),
     Demograficos: [
         {"Id": 1003, "valor": "Cadena dato sociodemográfico 1"},
         {"Id": 1004, "valor": "Cadena dato sociodemográfico 2"},
