@@ -13,7 +13,7 @@ const ResponsesLog = ({sendeco, getEcoResponsesAction, clearEcoLog, app}) => {
     const [tosendEco, setToSendEco] = useState([]); // Por enviar
     const [errorsEco, setErrorsEco] = useState([]) // Array de errores
     const [successEco, setSuccessEco] = useState([]) // Array de errores
-    const [fetching, setFetchingEco] = useState(false); //Bloquea el boton 
+    const [fetchingEco, setFetchingEco] = useState(false); //Bloquea el boton 
 
     useEffect(()=>{
         if (sendeco) {
@@ -71,7 +71,7 @@ const ResponsesLog = ({sendeco, getEcoResponsesAction, clearEcoLog, app}) => {
                             _light={{bg: app.secondaryColor, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5),
                                     fontFamily:'Poligon_Bold'}}}
                             _pressed={{bg:app.secondaryColorHover, _text: {color: app.fontColor}}}
-                            style={{ width: '90%' }} onPress={ () => clearLog() } isLoading={fetching}>Limpiar Log de respuestas</Button>
+                            style={{ width: '90%' }} onPress={ () => clearEcoLog() } isLoading={fetchingEco}>Limpiar Log de respuestas</Button>
                 </Box>
             </View>
         </MainLayout>

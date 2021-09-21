@@ -22,7 +22,7 @@ const PROCESS_STATE_ECO = 'PROCESS_STATE_ECO';
 const PROCESS_RUNNING_ECO = 'PROCESS_RUNNING_ECO';
 const PROCESS_CLEAR_ECO = 'PROCESS_CLEAR_ECO';
 const UPDATE_LOG_SUCCESS_ECO = 'UPDATE_LOG_SUCCESS_ECO';
-const UPDATE_LOG_ERRORS_ECO = 'UPDATE_SUCCLOG_ERRORS';
+const UPDATE_LOG_ERRORS_ECO = 'UPDATE_LOG_ERRORS_ECO';
 const CLEAR_LOG_ECO = 'CLEAR_LOG_ECO';
 
 const sendingECODuck = (state = initialData, action) => {
@@ -53,12 +53,7 @@ const sendingECODuck = (state = initialData, action) => {
 }
 
 const token = base64.encode(khorConfig.clave_eco);
-const options = {
-    headers: {
-      'Authorization': `Basic ${token}` 
-    }
-  }
-;
+// const options = { }
 
 /* ACTIONS */
 export const getEcoResponsesAction = () => {
@@ -84,9 +79,9 @@ export const savedEcoResponsesAction = () => {
         try {
             let responses = getState().sendeco.respuestasEco;
             let newStorage = _.filter(responses, ['send', false]);
-            newStorage && await storeData('savedECOResponses', newStorage);
+            // newStorage && await storeData('savedECOResponses', newStorage);
             let newErrors = getState().sendeco.erroresEco;
-            newErrors && await storeData('savedEcoErroresEco', newErrors);
+            // newErrors && await storeData('savedEcoErroresEco', newErrors);
         } catch (error) {
             console.log("SAVE_ERROR::", error);
         }
@@ -122,8 +117,13 @@ export const initProcess = () => async(dispatch, getState) => {
         await asyncForEach(responses, async (item, index, array) => {
             if (getState().sendeco.estadoEco !== 0){ 
                 if (!item.send){
+                    // console.log("TOKEN::", token);
                     await index === 0 && await waitFor(100);
-                    await axios.post(ecoApi, [item], options).then(async(response) => {
+                    await axios.post(ecoApi, [item], {
+                        headers: {
+                            'Authorization': `Basic [${token}]` 
+                        }  
+                    }).then(async(response) => {
                         response.data[0].status === 0 ? await dispatch(updateResponse(item, index)) : await dispatch(deleteResponse(item, index, response.data[0]));
                         await getState().sendeco.estadoEco === 0 && await waitFor(100);
                     }).catch(async (error) => {
