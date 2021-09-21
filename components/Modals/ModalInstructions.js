@@ -1,5 +1,5 @@
 import React from "react";
-import {StyleSheet, Dimensions, View, Modal, Image, Text, TouchableOpacity} from "react-native";
+import {StyleSheet, Dimensions, View, Modal, Image, Text, TouchableOpacity, ScrollView} from "react-native";
 import {textSizeRender} from "../../utils/utils";
 import {store} from "../../redux/store";
 import {MaterialIcons} from "@expo/vector-icons";
@@ -37,33 +37,35 @@ const ModalInstructions = ({visible, setVisible, text}) => {
                                     fontFamily: 'Poligon_Regular'
                                 }]}>INSTRUCCIONES</Text>
                             </View>
-                            <View>
-                                <Text style={[styles.modalTitle, {
-                                    color: 'white',
-                                    textAlign: 'justify',
-                                    fontFamily: 'Poligon_Regular'
+                            <ScrollView>
+                                <View>
+                                    <Text style={[styles.modalTitle, {
+                                        color: 'white',
+                                        textAlign: 'justify',
+                                        fontFamily: 'Poligon_Regular'
 
-                                }]}>{
-                                    "A continuación se presentan algunas recomendaciones para que puedas realizar y completar satisfactoriamente esta encuesta: \n" +
-                                    " \n 1.-Lee cuidadosamente cada pregunta y selecciona tu respuesta. \n " +
+                                    }]}>{
+                                        "A continuación se presentan algunas recomendaciones para que puedas realizar y completar satisfactoriamente esta encuesta: \n" +
+                                        " \n 1.-Lee cuidadosamente cada pregunta y selecciona tu respuesta. \n " +
 
-                                    "\n2.-Cada vez que concluyas una página de la encuesta, el sistema te llevará a la siguiente página de manera automática. \n" +
+                                        "\n2.-Cada vez que concluyas una página de la encuesta, el sistema te llevará a la siguiente página de manera automática. \n" +
 
-                                    "\n3.-Antes de finalizar la encuesta asegúrate de responder todas las preguntas. \n "+
+                                        "\n3.-Antes de finalizar la encuesta asegúrate de responder todas las preguntas. \n "+
 
-                                    "\n4.-Cuando hayas concluido la encuesta, da clic en Continuar. \n"
-                                }</Text>
-                                <Text style={[styles.modalTitle, {
-                                    color: 'white',
-                                    fontFamily: 'Poligon_Regular'
+                                        "\n4.-Cuando hayas concluido la encuesta, da clic en Continuar. \n"
+                                    }</Text>
+                                    <Text style={[styles.modalTitle, {
+                                        color: 'white',
+                                        fontFamily: 'Poligon_Regular'
 
-                                }]}>{
-                                    "Muchas gracias por tu valiosa participación."
-                                }
-                                </Text>
-                            </View>
+                                    }]}>{
+                                        "Muchas gracias por tu valiosa participación."
+                                    }
+                                    </Text>
+                                </View>
+                            </ScrollView>
+
                         </View>
-
 
                         <View style={{flex: 0, alignItems: 'center', justifyContent: 'center'}}>
                             <Button size={'lg'}
@@ -118,8 +120,8 @@ const styles = StyleSheet.create({
     },
     modalView: {
         margin: 20,
-        width: '90%',
-        height: '70%',
+        width: width/1.1,
+        height: height/1.3,
         borderRadius: 20,
         padding: 20,
         alignItems: "center",

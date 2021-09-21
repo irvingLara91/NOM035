@@ -488,6 +488,23 @@ const AssessmentECO2 = (props) => {
                                         }}>
                                             ¿Cuentas con alguna discapacidad?
                                         </Text>
+
+                                        <Text style={{
+                                            marginTop: 10,
+                                            marginBottom: 10,
+                                            textAlign: 'justify',
+                                            padding:10,
+                                            color: 'black',
+                                            fontFamily: 'Poligon_Regular',
+                                            fontSize: textSizeRender(3),
+                                        }}>
+                                            {'• Visual (Cualquier alteración de la vista ya sea total o parcial)\n\n' +
+                                            '• Motriz (Cualquier alteración de movilidad física, puede afectar sólo a una parte del cuerpo)\n\n' +
+                                            '• Auditiva (La disminución total o parcial de la audición en cada oído)\n\n' +
+                                            '• Intelectual (Alguna limitación para aprender, comprender y comunicarse)\n\n'+
+                                                '• Psicológica (Enfermedad o trastorno mental diagnosticado)'
+                                            }
+                                        </Text>
                                         <Select
                                             minWidth={'100%'}
                                             style={{

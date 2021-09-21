@@ -610,19 +610,19 @@
       },
       {
         "id": 3007,
-        "nombre": "6 A 10 AÑOS"
+        "nombre": "6 A 10"
       },
       {
         "id": 3007,
-        "nombre": "11 A 20 AÑOS"
+        "nombre": "11 A 20"
       },
       {
         "id": 3007,
-        "nombre": "20 A 30 AÑOS"
+        "nombre": "20 A 30"
       },
       {
         "id": 3007,
-        "nombre": "MÁS DE 30 AÑOS"
+        "nombre": "MÁS DE 30"
       }
     ]},
     {
@@ -1035,7 +1035,7 @@
     },
     {
       "id": 1062,
-      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Recibo retroalmentación oportuna de mi jefe para mejorar mi desempeño.</p>",
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Recibo retroalimentación oportuna de mi jefe para mejorar mi desempeño.</p>",
       "tipo": "1a5"
     },
     {

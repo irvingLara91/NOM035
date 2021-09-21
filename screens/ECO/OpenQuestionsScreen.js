@@ -153,7 +153,9 @@ const OpenQuestionsScreen = (props) => {
                         value={answer?.valor}
                         onChangeText={(itemValue) => addResponse(itemValue)}
                         keyboardType="default"
+                        multiline={true}
                         maxLength={300}
+
                         underlineColorAndroid={'transparent'}
                     />
                 }
@@ -241,7 +243,7 @@ const styles = StyleSheet.create({
             padding: 10,
             textAlignVertical: 'top',
             marginTop: 8,
-            height: '15%',
+            height: 100,
             paddingHorizontal: 15,
             fontSize: textSizeRender(4.3),
             fontFamily: 'Poligon_Regular',
