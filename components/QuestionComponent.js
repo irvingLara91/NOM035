@@ -188,97 +188,7 @@ const QuestionComponent = ({
             {
                 question.tipo === '4asc' || question.tipo === '4desc' ?
                     <VStack style={{paddingLeft: 30, paddingRight: 30}}>
-                        <Button size={'lg'}
-                                _light={{
-                                    borderColor: app.colorNom35, borderWidth: 2, bg: app.colorNom35, _text: {
-                                        fontSize: textSizeRender(4.3),
-                                        color: app.fontColor, fontFamily: 'Poligon_Bold'
-                                    }
-                                }}
-                                _pressed={{
-                                    borderColor: app.colorNom35Hover, borderWidth: 0, bg: app.colorNom35Hover, _text: {
-                                        fontSize: textSizeRender(4.3),
-                                        fontFamily: 'Poligon_Bold',
-                                        color: app.fontColor
-                                    }
-                                }}
-                                style={{marginBottom: 20, width: '100%'}} isLoading={loading}
-                                onPress={() => {
-                                    saveActionClick()
-                                    setValue(question.tipo === '4desc' ? 0 : 4)
-                                }}>Siempre</Button>
-                        <Button size={'lg'}
-                                _light={{
-                                    borderColor: app.colorNom35, borderWidth: 2, bg: app.colorNom35, _text: {
-                                        fontSize: textSizeRender(4.3),
-                                        color: app.fontColor, fontFamily: 'Poligon_Bold'
-                                    }
-                                }}
-                                _pressed={{
-                                    borderColor: app.colorNom35Hover,
-                                    borderWidth: 0,
-                                    bg: app.colorNom35Hover,
-                                    _text: {
-                                        fontSize: textSizeRender(4.3),
-                                        color: app.fontColor, fontFamily: 'Poligon_Bold'
-                                    }
-                                }}
-                                isLoading={loading}
-                                style={{marginBottom: 20, width: '100%'}}
-                                onPress={() => {
-                                    saveActionClick()
-                                    setValue(question.tipo === '4desc' ? 1 : 3)
-                                }}>Casi siempre</Button>
-                        <Button size={'lg'}
-                                _light={{
-                                    borderColor: app.colorNom35,
-                                    borderWidth: 2,
-                                    bg: app.colorNom35,
-                                    _text: {
-                                        fontSize: textSizeRender(4.3),
-                                        color: app.fontColor, fontFamily: 'Poligon_Bold'
-                                    }
-                                }}
-                                _pressed={{
-                                    borderColor: app.colorNom35Hover,
-                                    borderWidth: 0,
-                                    bg: app.colorNom35Hover,
-                                    _text: {
-                                        fontSize: textSizeRender(4.3),
-                                        color: app.fontColor, fontFamily: 'Poligon_Bold'
-                                    }
-                                }}
-                                isLoading={loading}
-                                style={{marginBottom: 20, width: '100%'}}
-                                onPress={() => {
-                                    saveActionClick()
-                                    setValue(question.tipo === '4desc' ? 2 : 2)
-                                }}>Algunas veces</Button>
-                        <Button size={'lg'}
-                                _light={{
-                                    borderColor: app.colorNom35,
-                                    borderWidth: 2,
-                                    bg: app.colorNom35,
-                                    _text: {
-                                        fontSize: textSizeRender(4.3),
-                                        color: app.fontColor, fontFamily: 'Poligon_Bold'
-                                    }
-                                }}
-                                _pressed={{
-                                    borderColor: app.colorNom35Hover,
-                                    borderWidth: 0,
-                                    bg: app.colorNom35Hover,
-                                    _text: {
-                                        fontSize: textSizeRender(4.3),
-                                        color: app.fontColor, fontFamily: 'Poligon_Bold'
-                                    }
-                                }}
-                                isLoading={loading}
-                                style={{marginBottom: 20, width: '100%'}}
-                                onPress={() => {
-                                    saveActionClick()
-                                    setValue(question.tipo === '4desc' ? 3 : 1)
-                                }}>Casi nunca</Button>
+
                         <Button size={'lg'}
                                 _light={{
                                     borderColor: app.colorNom35,
@@ -304,6 +214,101 @@ const QuestionComponent = ({
                                     saveActionClick()
                                     setValue(question.tipo === '4desc' ? 4 : 0)
                                 }}>Nunca</Button>
+
+                        <Button size={'lg'}
+                                _light={{
+                                    borderColor: app.colorNom35,
+                                    borderWidth: 2,
+                                    bg: app.colorNom35,
+                                    _text: {
+                                        fontSize: textSizeRender(4.3),
+                                        color: app.fontColor, fontFamily: 'Poligon_Bold'
+                                    }
+                                }}
+                                _pressed={{
+                                    borderColor: app.colorNom35Hover,
+                                    borderWidth: 0,
+                                    bg: app.colorNom35Hover,
+                                    _text: {
+                                        fontSize: textSizeRender(4.3),
+                                        color: app.fontColor, fontFamily: 'Poligon_Bold'
+                                    }
+                                }}
+                                isLoading={loading}
+                                style={{marginBottom: 20, width: '100%'}}
+                                onPress={() => {
+                                    saveActionClick()
+                                    setValue(question.tipo === '4desc' ? 3 : 1)
+                                }}>Casi nunca</Button>
+
+                        <Button size={'lg'}
+                                _light={{
+                                    borderColor: app.colorNom35,
+                                    borderWidth: 2,
+                                    bg: app.colorNom35,
+                                    _text: {
+                                        fontSize: textSizeRender(4.3),
+                                        color: app.fontColor, fontFamily: 'Poligon_Bold'
+                                    }
+                                }}
+                                _pressed={{
+                                    borderColor: app.colorNom35Hover,
+                                    borderWidth: 0,
+                                    bg: app.colorNom35Hover,
+                                    _text: {
+                                        fontSize: textSizeRender(4.3),
+                                        color: app.fontColor, fontFamily: 'Poligon_Bold'
+                                    }
+                                }}
+                                isLoading={loading}
+                                style={{marginBottom: 20, width: '100%'}}
+                                onPress={() => {
+                                    saveActionClick()
+                                    setValue(question.tipo === '4desc' ? 2 : 2)
+                                }}>Algunas veces</Button>
+
+                        <Button size={'lg'}
+                                _light={{
+                                    borderColor: app.colorNom35, borderWidth: 2, bg: app.colorNom35, _text: {
+                                        fontSize: textSizeRender(4.3),
+                                        color: app.fontColor, fontFamily: 'Poligon_Bold'
+                                    }
+                                }}
+                                _pressed={{
+                                    borderColor: app.colorNom35Hover,
+                                    borderWidth: 0,
+                                    bg: app.colorNom35Hover,
+                                    _text: {
+                                        fontSize: textSizeRender(4.3),
+                                        color: app.fontColor, fontFamily: 'Poligon_Bold'
+                                    }
+                                }}
+                                isLoading={loading}
+                                style={{marginBottom: 20, width: '100%'}}
+                                onPress={() => {
+                                    saveActionClick()
+                                    setValue(question.tipo === '4desc' ? 1 : 3)
+                                }}>Casi siempre</Button>
+
+                        <Button size={'lg'}
+                                _light={{
+                                    borderColor: app.colorNom35, borderWidth: 2, bg: app.colorNom35, _text: {
+                                        fontSize: textSizeRender(4.3),
+                                        color: app.fontColor, fontFamily: 'Poligon_Bold'
+                                    }
+                                }}
+                                _pressed={{
+                                    borderColor: app.colorNom35Hover, borderWidth: 0, bg: app.colorNom35Hover, _text: {
+                                        fontSize: textSizeRender(4.3),
+                                        fontFamily: 'Poligon_Bold',
+                                        color: app.fontColor
+                                    }
+                                }}
+                                style={{marginBottom: 20, width: '100%'}} isLoading={loading}
+                                onPress={() => {
+                                    saveActionClick()
+                                    setValue(question.tipo === '4desc' ? 0 : 4)
+                                }}>Siempre</Button>
                     </VStack> : null
             }
         </Box>

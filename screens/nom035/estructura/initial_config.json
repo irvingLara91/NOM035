@@ -1,49 +1,808 @@
 {
-    "config": {
-        "empresa": "18b58dbf-6660-4ca3-9383-c73b082fbcd7",
-        "cuestionarios": [1, 3],
-        "idPeriodo": 42,
-        "Sociodemograficos": [{
-           "grupo": "Datos sociodemográficos",
-           "datosSociodemograficos": [{
-              "dato": "Sexo",
-              "tipo": 2,
-              "opciones": "Hombre|Mujer"
-           }, {
-              "dato": "Departamento",
-              "tipo": 13,
-              "opciones": "{\"children\":[{\"id\":\"1\",\"value\":\"ADMINISTRACION Y FINANZAS\",\"children\":[{\"id\":\"1\",\"value\":\"CONTRALORIA\"},{\"id\":\"2\",\"value\":\"PLANEACION Y TESORERIA\"},{\"id\":\"3\",\"value\":\"OTRA\"}]},{\"id\":\"2\",\"value\":\"AUDITORIA\",\"children\":[{\"id\":\"1\",\"value\":\"AUDITORIA\"},{\"id\":\"2\",\"value\":\"OTRA\"}]},{\"id\":\"3\",\"value\":\"Tecnología\",\"children\":[{\"id\":\"1\",\"value\":\"CANALES DIGITALES\"},{\"id\":\"2\",\"value\":\"OTRA\"}]}]}"
-           }]
-        }],
-        "preguntasOpinion": [{
-           "id": 0,
-           "pregunta": "¿Qué cambiarías en tu centro de trabajo?"
-        }]
-    },
-    "users": [
-        {
-            "apellido": "",
-            "idParticipante": 9315,
-            "nombre": "Usuario 1",
-            "password": 123,
-            "username": "user1"
-        },
-        {
-            "apellido": "",
-            "idParticipante": 9316,
-            "nombre": "Usuario 2",
-            "password": 123,
-            "username": "user2"
-        },
-        {
-            "apellido": "",
-            "idParticipante": 9317,
-            "nombre": "Usuario 3",
-            "password": 123,
-            "username": "user3"
-        }
+  "config": {
+    "empresa": "18b58dbf-6660-4ca3-9383-c73b082fbcd7",
+    "cuestionarios": [
+      1,
+      3
     ],
-    "nom_url": "https://gmnom035.khor.mx/api/nom035",
-    "eco_url": "https://eco_amc.khor.mx/GM_coInterfaz.ashx",
-    "clave_eco": "hiumanlab.ECO:hiuman#1"
+    "idPeriodo": 42,
+    "Sociodemograficos": [
+      {
+        "grupo": "Datos sociodemográficos",
+        "datosSociodemograficos": [
+          {
+            "dato": "Sexo",
+            "tipo": 2,
+            "opciones": "Hombre|Mujer"
+          },
+          {
+            "dato": "Departamento",
+            "tipo": 13,
+            "opciones": "{\"children\":[{\"id\":\"1\",\"value\":\"ADMINISTRACION Y FINANZAS\",\"children\":[{\"id\":\"1\",\"value\":\"CONTRALORIA\"},{\"id\":\"2\",\"value\":\"PLANEACION Y TESORERIA\"},{\"id\":\"3\",\"value\":\"OTRA\"}]},{\"id\":\"2\",\"value\":\"AUDITORIA\",\"children\":[{\"id\":\"1\",\"value\":\"AUDITORIA\"},{\"id\":\"2\",\"value\":\"OTRA\"}]},{\"id\":\"3\",\"value\":\"Tecnología\",\"children\":[{\"id\":\"1\",\"value\":\"CANALES DIGITALES\"},{\"id\":\"2\",\"value\":\"OTRA\"}]}]}"
+          }
+        ]
+      }
+    ],
+    "preguntasOpinion": [
+      {
+        "id": 0,
+        "pregunta": "¿Qué cambiarías en tu centro de trabajo?"
+      }
+    ]
+  },
+  "users": [
+    {
+      "apellido": "",
+      "idParticipante": 600001,
+      "nombre": "UNO DEMO",
+      "password": "demo123",
+      "username": "600001"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600002,
+      "nombre": "DOS DEMO",
+      "password": "demo123",
+      "username": "600002"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600003,
+      "nombre": "TRES DEMO",
+      "password": "demo123",
+      "username": "600003"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600004,
+      "nombre": "CUATRO DEMO",
+      "password": "demo123",
+      "username": "600004"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600005,
+      "nombre": "CINCO DEMO",
+      "password": "demo123",
+      "username": "600005"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600006,
+      "nombre": "SEIS DEMO",
+      "password": "demo123",
+      "username": "600006"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600007,
+      "nombre": "SIETE DEMO",
+      "password": "demo123",
+      "username": "600007"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600008,
+      "nombre": "OCHO DEMO",
+      "password": "demo123",
+      "username": "600008"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600009,
+      "nombre": "NUEVE DEMO",
+      "password": "demo123",
+      "username": "600009"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600010,
+      "nombre": "DIEZ DEMO",
+      "password": "demo123",
+      "username": "600010"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600011,
+      "nombre": "ONCE DEMO",
+      "password": "demo123",
+      "username": "600011"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600012,
+      "nombre": "DOCE DEMO",
+      "password": "demo123",
+      "username": "600012"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600013,
+      "nombre": "TRECE DEMO",
+      "password": "demo123",
+      "username": "600013"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600014,
+      "nombre": "CATORCE DEMO",
+      "password": "demo123",
+      "username": "600014"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600015,
+      "nombre": "QUINCE DEMO",
+      "password": "demo123",
+      "username": "600015"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600016,
+      "nombre": "DIECISEIS DEMO",
+      "password": "demo123",
+      "username": "600016"
+    },{
+      "apellido": "",
+      "idParticipante": 600017,
+      "nombre": "DIECISIETE DEMO",
+      "password": "demo123",
+      "username": "600017"
+    },{
+      "apellido": "",
+      "idParticipante": 600018,
+      "nombre": "DIECIOCHO DEMO",
+      "password": "demo123",
+      "username": "600018"
+    },{
+      "apellido": "",
+      "idParticipante": 600019,
+      "nombre": "DIECINUEVE DEMO",
+      "password": "demo123",
+      "username": "600019"
+    },{
+      "apellido": "",
+      "idParticipante": 600020,
+      "nombre": "VEINTE DEMO",
+      "password": "demo123",
+      "username": "600020"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600021,
+      "nombre": "VEINTIUNO DEMO",
+      "password": "demo123",
+      "username": "600021"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600022,
+      "nombre": "VEINTIDOS DEMO",
+      "password": "demo123",
+      "username": "600022"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600023,
+      "nombre": "VEINTITRES DEMO",
+      "password": "demo123",
+      "username": "600023"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600024,
+      "nombre": "VEINTICUATRO DEMO",
+      "password": "demo123",
+      "username": "600024"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600025,
+      "nombre": "VEINTICINCO DEMO",
+      "password": "demo123",
+      "username": "600025"
+    },
+
+    {
+      "apellido": "",
+      "idParticipante": 600026,
+      "nombre": "VEINTISEIS DEMO",
+      "password": "demo123",
+      "username": "600026"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600027,
+      "nombre": "VEINTISIETE DEMO",
+      "password": "demo123",
+      "username": "600027"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600028,
+      "nombre": "VEINTIOCHO DEMO",
+      "password": "demo123",
+      "username": "600028"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600029,
+      "nombre": "VEINTINUEVE DEMO",
+      "password": "demo123",
+      "username": "600029"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600030,
+      "nombre": "TREINTA DEMO",
+      "password": "demo123",
+      "username": "600030"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600031,
+      "nombre": "TREINTA Y UNO DEMO",
+      "password": "demo123",
+      "username": "600031"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600032,
+      "nombre": "TREINTA Y DOS DEMO",
+      "password": "demo123",
+      "username": "600032"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600033,
+      "nombre": "TREINTA Y TRES DEMO",
+      "password": "demo123",
+      "username": "600033"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600034,
+      "nombre": "TREINTA Y CUATRO DEMO",
+      "password": "demo123",
+      "username": "600034"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600035,
+      "nombre": "TREINTA Y CINCO DEMO",
+      "password": "demo123",
+      "username": "600035"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600036,
+      "nombre": "TREINTA Y SEIS DEMO",
+      "password": "demo123",
+      "username": "600036"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600037,
+      "nombre": "TREINTA Y SIETE DEMO",
+      "password": "demo123",
+      "username": "600037"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600038,
+      "nombre": "TREINTA Y OCHO DEMO",
+      "password": "demo123",
+      "username": "600038"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600039,
+      "nombre": "TREINTA Y NUEVE DEMO",
+      "password": "demo123",
+      "username": "600039"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600040,
+      "nombre": "CUARENTA DEMO",
+      "password": "demo123",
+      "username": "600040"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600041,
+      "nombre": "CUARENTA Y UNO DEMO INTERNO",
+      "password": "demo123",
+      "username": "600041"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600042,
+      "nombre": "CUARENTA Y DOS DEMO INTERNO",
+      "password": "demo123",
+      "username": "600042"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600043,
+      "nombre": "CUARENTA Y TRES DEMO INTERNO",
+      "password": "demo123",
+      "username": "600043"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600044,
+      "nombre": "CUARENTA Y CUATRO DEMO INTERNO",
+      "password": "demo123",
+      "username": "600044"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600045,
+      "nombre": "CUARENTA Y CINCO DEMO INTERNO",
+      "password": "demo123",
+      "username": "600045"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600046,
+      "nombre": "CUARENTA Y SEIS DEMO INTERNO",
+      "password": "demo123",
+      "username": "600046"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600047,
+      "nombre": "CUARENTA Y SIETE DEMO INTERNO",
+      "password": "demo123",
+      "username": "600047"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600048,
+      "nombre": "CUARENTA Y OCHO DEMO INTERNO",
+      "password": "demo123",
+      "username": "600048"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600049,
+      "nombre": "CUARENTA Y NUEVE DEMO INTERNO",
+      "password": "demo123",
+      "username": "600049"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600050,
+      "nombre": "CINCUENTA DEMO INTERNO",
+      "password": "demo123",
+      "username": "600050"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600051,
+      "nombre": "CINCUENTA Y UNO DEMO INTERNO",
+      "password": "demo123",
+      "username": "600051"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600052,
+      "nombre": "CINCUENTA Y DOS DEMO INTERNO",
+      "password": "demo123",
+      "username": "600052"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600053,
+      "nombre": "CINCUENTA Y TRES DEMO INTERNO",
+      "password": "demo123",
+      "username": "600053"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600054,
+      "nombre": "CINCUENTA Y CUATRO DEMO INTERNO",
+      "password": "demo123",
+      "username": "600054"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600055,
+      "nombre": "CINCUENTA Y CINCO DEMO INTERNO",
+      "password": "demo123",
+      "username": "600055"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600056,
+      "nombre": "CINCUENTA Y SEIS DEMO INTERNO",
+      "password": "demo123",
+      "username": "600056"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600057,
+      "nombre": "CINCUENTA Y SIETE DEMO INTERNO",
+      "password": "demo123",
+      "username": "600057"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600058,
+      "nombre": "CINCUENTA Y OCHO DEMO INTERNO",
+      "password": "demo123",
+      "username": "600058"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600059,
+      "nombre": "CINCUENTA Y NUEVE DEMO INTERNO",
+      "password": "demo123",
+      "username": "600059"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600060,
+      "nombre": "SESENTA DEMO INTERNO",
+      "password": "demo123",
+      "username": "600060"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600061,
+      "nombre": "SESENTA Y UNO DEMO",
+      "password": "demo123",
+      "username": "600061"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600062,
+      "nombre": "SESENTA Y DOS DEMO",
+      "password": "demo123",
+      "username": "600062"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600063,
+      "nombre": "SESENTA Y TRES DEMO",
+      "password": "demo123",
+      "username": "600063"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600064,
+      "nombre": "SESENTA Y CUATRO DEMO",
+      "password": "demo123",
+      "username": "600064"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600065,
+      "nombre": "SESENTA Y CINCO DEMO",
+      "password": "demo123",
+      "username": "600065"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600066,
+      "nombre": "SESENTA Y SEIS DEMO",
+      "password": "demo123",
+      "username": "600066"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600067,
+      "nombre": "SESENTA Y SIETE DEMO",
+      "password": "demo123",
+      "username": "600067"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600068,
+      "nombre": "SESENTA Y OCHO DEMO",
+      "password": "demo123",
+      "username": "600068"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600069,
+      "nombre": "SESENTA Y NUEVE DEMO",
+      "password": "demo123",
+      "username": "600069"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600070,
+      "nombre": "SETENTA DEMO",
+      "password": "demo123",
+      "username": "600070"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600071,
+      "nombre": "SETENTA Y UNO DEMO",
+      "password": "demo123",
+      "username": "60007¡1"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600072,
+      "nombre": "SETENTA Y DOS DEMO",
+      "password": "demo123",
+      "username": "600072"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600073,
+      "nombre": "SETENTA Y TRES DEMO",
+      "password": "demo123",
+      "username": "600073"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600074,
+      "nombre": "SETENTA Y CUATRO DEMO",
+      "password": "demo123",
+      "username": "600074"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600075,
+      "nombre": "SETENTA Y CINCO DEMO",
+      "password": "demo123",
+      "username": "600075"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600076,
+      "nombre": "SETENTA Y SEIS DEMO",
+      "password": "demo123",
+      "username": "600076"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600077,
+      "nombre": "SETENTA Y SIETE DEMO",
+      "password": "demo123",
+      "username": "600077"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600078,
+      "nombre": "SETENTA Y OCHO DEMO",
+      "password": "demo123",
+      "username": "600078"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600079,
+      "nombre": "SETENTA Y NUEVE DEMO",
+      "password": "demo123",
+      "username": "600079"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600080,
+      "nombre": "OCHENTA DEMO",
+      "password": "demo123",
+      "username": "600080"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600081,
+      "nombre": "OCHENTA Y UNO DEMO",
+      "password": "demo123",
+      "username": "600081"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600082,
+      "nombre": "OCHENTA Y DOS DEMO",
+      "password": "demo123",
+      "username": "600082"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600083,
+      "nombre": "OCHENTA Y TRES DEMO",
+      "password": "demo123",
+      "username": "600083"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600084,
+      "nombre": "OCHENTA Y CUATRO DEMO",
+      "password": "demo123",
+      "username": "600084"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600085,
+      "nombre": "OCHENTA Y CINCO DEMO",
+      "password": "demo123",
+      "username": "600085"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600086,
+      "nombre": "OCHENTA Y SEIS DEMO",
+      "password": "demo123",
+      "username": "600086"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600087,
+      "nombre": "OCHENTA Y SIETE DEMO",
+      "password": "demo123",
+      "username": "600087"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600088,
+      "nombre": "OCHENTA Y OCHO DEMO",
+      "password": "demo123",
+      "username": "600088"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600089,
+      "nombre": "OCHENTA Y NUEVE DEMO",
+      "password": "demo123",
+      "username": "600089"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600090,
+      "nombre": "NOVENTA DEMO",
+      "password": "demo123",
+      "username": "600090"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600091,
+      "nombre": "NOVENTA Y UNO DEMO",
+      "password": "demo123",
+      "username": "600091"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600092,
+      "nombre": "NOVENTA Y DOS DEMO",
+      "password": "demo123",
+      "username": "600092"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600093,
+      "nombre": "NOVENTA Y TRES DEMO",
+      "password": "demo123",
+      "username": "600093"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600094,
+      "nombre": "NOVENTA Y CUATRO DEMO",
+      "password": "demo123",
+      "username": "600094"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600095,
+      "nombre": "NOVENTA Y CINCO DEMO",
+      "password": "demo123",
+      "username": "600095"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600096,
+      "nombre": "NOVENTA Y SEIS DEMO",
+      "password": "demo123",
+      "username": "600096"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600097,
+      "nombre": "NOVENTA Y SIETE DEMO",
+      "password": "demo123",
+      "username": "600097"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600098,
+      "nombre": "NOVENTA Y OCHO DEMO",
+      "password": "demo123",
+      "username": "600098"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600099,
+      "nombre": "NOVENTA Y NUEVE DEMO",
+      "password": "demo123",
+      "username": "600099"
+    },
+
+    {
+      "apellido": "",
+      "idParticipante": 600100,
+      "nombre": "CIEN DEMO",
+      "password": "demo123",
+      "username": "600100"
+    },
+
+    {
+      "apellido": "",
+      "idParticipante": 600101,
+      "nombre": "CIENTO UNO DEMO",
+      "password": "demo123",
+      "username": "600101"
+    },
+
+    {
+      "apellido": "",
+      "idParticipante": 600102,
+      "nombre": "CIENTO DOS DEMO",
+      "password": "demo123",
+      "username": "600102"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600103,
+      "nombre": "CIENTO TRES DEMO",
+      "password": "demo123",
+      "username": "600103"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600104,
+      "nombre": "CIENTO CUATRO DEMO",
+      "password": "demo123",
+      "username": "600104"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600105,
+      "nombre": "CIENTO CINCO DEMO",
+      "password": "demo123",
+      "username": "600105"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600106,
+      "nombre": "CIENTO SEIS DEMO",
+      "password": "demo123",
+      "username": "600106"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600107,
+      "nombre": "CIENTO SIETE DEMO",
+      "password": "demo123",
+      "username": "600107"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600108,
+      "nombre": "CIENTO OCHO DEMO",
+      "password": "demo123",
+      "username": "600108"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600109,
+      "nombre": "CIENTO NUEVE DEMO",
+      "password": "demo123",
+      "username": "600109"
+    },
+    {
+      "apellido": "",
+      "idParticipante": 600110,
+      "nombre": "CIENTO DIEZ DEMO",
+      "password": "demo123",
+      "username": "600110"
+    }
+  ],
+  "nom_url": "https://gmnom035.khor.mx/api/nom035",
+  "eco_url": "https://eco_amc.khor.mx/gm_cointerfaz.ashx",
+  "clave_eco": "hiumanlab.ECO:hiuman#1"
 }

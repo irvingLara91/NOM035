@@ -196,7 +196,7 @@
       "section": 5,
       "ref": 3,
       "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Las preguntas siguientes están relacionadas con su <b style=font-family:'Poligon_Bold';>jornada de trabajo</b>.</p>",
-      "pregunta": "<p style=font-family:'Poligon_Regular'; padding: 10px;>rabajo horas extras más de tres veces a la semana</p>",
+      "pregunta": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Trabajo horas extras más de tres veces a la semana</p>",
       "tipo": "4asc",
       "categorias": {
         "categoria": "Organización del tiempo de trabajo",
@@ -292,7 +292,7 @@
       "section": 6,
       "ref": 3,
       "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Las preguntas siguientes están relacionadas con las <b style=font-family:'Poligon_Bold';>decisiones que puede tomar en su trabajo</b>.</p>",
-      "pregunta": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Durante mi <b style=font-family:'Poligon_Bold';>jornada de trabajo</b> puedo tomar pausas cuando las necesito</p>",
+      "pregunta": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Durante mi jornada de trabajo puedo tomar pausas cuando las necesito</p>",
       "tipo": "4desc",
       "categorias": {
         "categoria": "Factores propios de la actividad",

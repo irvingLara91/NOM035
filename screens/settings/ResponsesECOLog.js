@@ -7,9 +7,9 @@ import { connect } from "react-redux";
 import {store} from "../../redux/store";
 import {textSizeRender} from "../../utils/utils";
 const {width} = Dimensions.get('window')
-import { getEcoResponsesAction, clearEcoLog } from "../../redux/ducks/sendingECODuck";
+import { getEcoResponsesAction, clearLogECO } from "../../redux/ducks/sendingECODuck";
     
-const ResponsesLog = ({sendeco, getEcoResponsesAction, clearEcoLog, app}) => {
+const ResponsesLog = ({sendeco, getEcoResponsesAction, clearLogECO, app}) => {
     const [tosendEco, setToSendEco] = useState([]); // Por enviar
     const [errorsEco, setErrorsEco] = useState([]) // Array de errores
     const [successEco, setSuccessEco] = useState([]) // Array de errores
@@ -71,7 +71,7 @@ const ResponsesLog = ({sendeco, getEcoResponsesAction, clearEcoLog, app}) => {
                             _light={{bg: app.secondaryColor, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5),
                                     fontFamily:'Poligon_Bold'}}}
                             _pressed={{bg:app.secondaryColorHover, _text: {color: app.fontColor}}}
-                            style={{ width: '90%' }} onPress={ () => clearEcoLog() } isLoading={fetchingEco}>Limpiar Log de respuestas</Button>
+                            style={{ width: '90%' }} onPress={ () => clearLogECO() } isLoading={fetchingEco}>Limpiar Log de respuestas</Button>
                 </Box>
             </View>
         </MainLayout>
@@ -173,5 +173,5 @@ const mapState = (state) => {
 
 export default connect(mapState,{
     getEcoResponsesAction,
-    clearEcoLog,
+    clearLogECO,
 })(ResponsesLog);

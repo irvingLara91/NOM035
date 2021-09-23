@@ -125,16 +125,7 @@
     },
     {
       "id": 4,
-      "dato": "¿Te interesa seguir estudiando?",
-      "opciones":
-      [
-        {"option": "Si"},
-        {"option": "No"}
-      ]
-    },
-    {
-      "id": 5,
-      "dato": " ¿Qué grado de estudio te interesa?",
+      "dato": "¿Te interesa seguir estudiando?, ¿Qué grado de estudio te interesa?",
       "opciones":
       [
         {"option": "Si, me interesa primaria"},

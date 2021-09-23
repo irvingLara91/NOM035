@@ -52,6 +52,8 @@ const sendingECODuck = (state = initialData, action) => {
     }
 }
 
+
+
 const token = base64.encode(khorConfig.clave_eco);
 // const options = { }
 
@@ -114,24 +116,26 @@ export const initProcess = () => async(dispatch, getState) => {
     try {
         let responses = await getState().sendeco.respuestasEco;
         let ecoApi = await getState().sending.ecourl; 
-        await asyncForEach(responses, async (item, index, array) => {
+        await asyncForEach(responses,  (item, index, array) => {
             if (getState().sendeco.estadoEco !== 0){ 
                 if (!item.send){
-                    console.log("TOKEN::", token);
-                    await index === 0 && await waitFor(100);
-                    await axios.post(ecoApi, [item], {
-                        headers: {
-                            'Authorization': `Basic ${token}` 
-                        }  
-                    }).then(async(response) => {
-                        response.data[0].status === 0 ? await dispatch(updateResponse(item, index)) : await dispatch(deleteResponse(item, index, response.data[0]));
-                        await getState().sendeco.estadoEco === 0 && await waitFor(100);
-                    }).catch(async (error) => {
-                        await dispatch(deleteResponse(item, index, {error}));
-                        await getState().sendeco.estadoEco === 0 && await waitFor(100);
+                    console.log("TOKEN::", token,"https://gmnom035.khor.mx/api/nom035");
+                     index === 0 &&  waitFor(100);
+                     axios.post("https://eco_amc.khor.mx/GM_coInterfaz.ashx", [item],{
+                         headers:{
+                             'Authorization':`Basic ${token}`
+                         }
+                     }).then(response => {
+                         console.log("response:::",response.data)
+                        response.data[0].status === 0 ?  dispatch(updateResponse(item, index)) :  dispatch(deleteResponse(item, index, response.data[0]));
+                         getState().sendeco.estadoEco === 0 &&  waitFor(100);
+                    }).catch( error => {
+                        console.log("ERROR::",error,JSON.stringify(error))
+                         dispatch(deleteResponse(item, index, {error}));
+                         getState().sendeco.estadoEco === 0 &&  waitFor(100);
                     });
-                    await dispatch(savedEcoResponsesAction());
-                    array.length == index + 1 && dispatch(completeProcess()); 
+                     dispatch(savedEcoResponsesAction());
+                    array.length === index + 1 && dispatch(completeProcess());
                 }
             } else {
                 dispatch({type: PROCESS_FETCHING_ECO, payload: true})
@@ -201,7 +205,7 @@ export const completeProcess = () => {
     })
 }
 
-export const clearLog = () => {
+export const clearLogECO = () => {
     return ({
         type: CLEAR_LOG_ECO,
     })
