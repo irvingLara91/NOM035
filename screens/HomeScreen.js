@@ -3,7 +3,7 @@ import {Box, Button, Center, Flex, Heading} from "native-base";
 import {connect} from "react-redux";
 import MainLayout from "../layouts/MainLayout";
 import config from "../config"
-import {storeData, retrieveData} from '../helpers/storage'
+import {storeData, retrieveData, removeData} from '../helpers/storage'
 import {View, Dimensions, Image, Text} from "react-native";
 import {textSizeRender} from "../utils/utils";
 import moment from "moment";
@@ -13,9 +13,20 @@ const HomeScreen = ({productsDuck, navigation, app,eco,responsesECO}) => {
     const [showModal, setShowModal] = useState(false)
 
     useEffect(() => {
-        console.log("ECO:::::",eco,moment.HTML5_FMT.DATETIME_LOCAL_SECONDS)
+        removess()
+
+
+        console.log("ECO:::::",responsesECO)
         setInitialFakeData()
     }, [])
+
+    const removess=async ()=>{
+        try{
+            await removeData("savedECOResponses");
+        }catch(err){
+            alert(err)
+        }
+    }
 
 
 

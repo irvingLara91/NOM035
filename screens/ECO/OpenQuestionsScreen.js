@@ -81,12 +81,26 @@ const OpenQuestionsScreen = (props) => {
         console.log(answer)
     }
 
+    const addAllResponse=async ()=>{
+        if (ECO_OPEN_QUESTIONS.preguntasabiertas[dato].id ===1){
+            await respuestas.push({Id:1,valor:""})
+            await respuestas.push({Id:2,valor:""})
+            await setDato(2)
+            await setAnswer({})
+        }else if (ECO_OPEN_QUESTIONS.preguntasabiertas[dato].id ===2){
+            await respuestas.push({Id:2,valor:""})
+            await setDato(2)
+            await setAnswer({})
+        }
+
+    }
+
     const next = async () => {
         if (answer.valor) {
             await respuestas.push(answer)
             await setDato(dato + 1)
             await setAnswer({})
-        } else {
+        } else  {
             setVisibleAlert(true)
             setTitleModal("")
             setMessageModal("Responde las  pregunta")
@@ -225,7 +239,7 @@ const OpenQuestionsScreen = (props) => {
             </View>
             {
                 visibleAlert &&
-                <ModalAlertECO  visible={visibleAlert} setVisible={setVisibleAlert}/>
+                <ModalAlertECO  exception={true} addAllResponse={addAllResponse} visible={visibleAlert} setVisible={setVisibleAlert}/>
             }
             {
                 visible &&

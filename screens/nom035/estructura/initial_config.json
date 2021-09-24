@@ -803,6 +803,6 @@
     }
   ],
   "nom_url": "https://gmnom035.khor.mx/api/nom035",
-  "eco_url": "https://eco_amc.khor.mx/gm_cointerfaz.ashx",
+  "eco_url": "https://gmnom035.khor.mx/api2/ecco",
   "clave_eco": "hiumanlab.ECO:hiuman#1"
 }

@@ -11,7 +11,469 @@ import {textSizeRender} from "../../utils/utils";
 const {width, height} = Dimensions.get('window')
 import { getResponsesAction, updateResponsesAction, clearProcess } from "../../redux/ducks/sendingDuck";
 import { getEcoResponsesAction, updateEcoResponsesAction, clearEcoProcess } from "../../redux/ducks/sendingECODuck";
-
+import axios from "axios";
+const data = [
+    {
+        "Fecha": "2021-09-21T11:09:38",
+        "IdEncuesta": 3000,
+        "Demograficos":  [
+            {
+                "Id": 3000,
+                "valor": "BUENAVISTA DEL COBRE",
+            },
+            {
+                "Id": 3001,
+                "valor": "ADMINISTRATIVA",
+            },
+            {
+                "Id": 3002,
+                "valor": "NO APLICA",
+            },
+            {
+                "Id": 3003,
+                "valor": "SINDICALIZADO",
+            },
+            {
+                "Id": 3004,
+                "valor": "CAMPAMENTO",
+            },
+            {
+                "Id": 3005,
+                "valor": "HOMBRE",
+            },
+            {
+                "Id": 3006,
+                "valor": "1963 O ANTES",
+            },
+            {
+                "Id": 3007,
+                "valor":"11 A 20",
+            },
+            {
+                "Id": 3008,
+                "valor": "CASADO",
+            },
+            {
+                "Id": 3009,
+                "valor": "SÍ: ADULTOS MAYORES",
+            },
+            {
+                "Id": 3010,
+                "valor": "ASIÁTICO",
+            },
+            {
+                "Id": 3011,
+                "valor": "SI",
+            },
+        ],
+        "PreguntasAbiertas": [
+            {
+                "Id": 1,
+                "valor": "r",
+            },
+            {
+                "Id": 2,
+                "valor": "r",
+            },
+        ],
+        "Ranking": [
+            {
+                "Id": 1,
+                "valor": 1,
+            },
+            {
+                "Id": 2,
+                "valor": 2,
+            },
+            {
+                "Id": 3,
+                "valor": 3,
+            },
+            {
+                "Id": 4,
+                "valor": 4,
+            },
+            {
+                "Id": 5,
+                "valor": 5,
+            },
+            {
+                "Id": 6,
+                "valor": 6,
+            },
+            {
+                "Id": 7,
+                "valor": 7,
+            },
+            {
+                "Id": 8,
+                "valor": 8,
+            },
+            {
+                "Id": 9,
+                "valor": 9,
+            },
+            {
+                "Id": 10,
+                "valor": 10,
+            },
+            {
+                "Id": 11,
+                "valor": 11,
+            },
+        ],
+        "Respuestas": [
+            {
+                "Id": 1000,
+                "valor": 2,
+            },
+            {
+                "Id": 1001,
+                "valor": 4,
+            },
+            {
+                "Id": 1002,
+                "valor": 5,
+            },
+            {
+                "Id": 1003,
+                "valor": 3,
+            },
+            {
+                "Id": 1004,
+                "valor": 1,
+            },
+            {
+                "Id": 1005,
+                "valor": 2,
+            },
+            {
+                "Id": 1006,
+                "valor": 4,
+            },
+            {
+                "Id": 1007,
+                "valor": 5,
+            },
+            {
+                "Id": 1008,
+                "valor": 4,
+            },
+            {
+                "Id": 1009,
+                "valor": 2,
+            },
+            {
+                "Id": 1010,
+                "valor": 1,
+            },
+            {
+                "Id": 1011,
+                "valor": 5,
+            },
+            {
+                "Id": 1012,
+                "valor": 5,
+            },
+            {
+                "Id": 1013,
+                "valor": 3,
+            },
+            {
+                "Id": 1014,
+                "valor": 1,
+            },
+            {
+                "Id": 1015,
+                "valor": 3,
+            },
+            {
+                "Id": 1016,
+                "valor": 4,
+            },
+            {
+                "Id": 1017,
+                "valor": 5,
+            },
+            {
+                "Id": 1018,
+                "valor": 3,
+            },
+            {
+                "Id": 1019,
+                "valor": 2,
+            },
+            {
+                "Id": 1020,
+                "valor": 4,
+            },
+            {
+                "Id": 1021,
+                "valor": 2,
+            },
+            {
+                "Id": 1022,
+                "valor": 3,
+            },
+            {
+                "Id": 1023,
+                "valor": 4,
+            },
+            {
+                "Id": 1024,
+                "valor": 3,
+            },
+            {
+                "Id": 1025,
+                "valor": 1,
+            },
+            {
+                "Id": 1026,
+                "valor": 5,
+            },
+            {
+                "Id": 1027,
+                "valor": 1,
+            },
+            {
+                "Id": 1028,
+                "valor": 5,
+            },
+            {
+                "Id": 1029,
+                "valor": 3,
+            },
+            {
+                "Id": 1030,
+                "valor": 2,
+            },
+            {
+                "Id": 1031,
+                "valor": 1,
+            },
+            {
+                "Id": 1032,
+                "valor": 5,
+            },
+            {
+                "Id": 1033,
+                "valor": 2,
+            },
+            {
+                "Id": 1034,
+                "valor": 1,
+            },
+            {
+                "Id": 1035,
+                "valor": 3,
+            },
+            {
+                "Id": 1036,
+                "valor": 5,
+            },
+            {
+                "Id": 1037,
+                "valor": 2,
+            },
+            {
+                "Id": 1038,
+                "valor": 1,
+            },
+            {
+                "Id": 1039,
+                "valor": 4,
+            },
+            {
+                "Id": 1040,
+                "valor": 4,
+            },
+            {
+                "Id": 1041,
+                "valor": 2,
+            },
+            {
+                "Id": 1042,
+                "valor": 4,
+            },
+            {
+                "Id": 1043,
+                "valor": 2,
+            },
+            {
+                "Id": 1044,
+                "valor": 4,
+            },
+            {
+                "Id": 1045,
+                "valor": 4,
+            },
+            {
+                "Id": 1046,
+                "valor": 3,
+            },
+            {
+                "Id": 1047,
+                "valor": 1,
+            },
+            {
+                "Id": 1048,
+                "valor": 3,
+            },
+            {
+                "Id": 1049,
+                "valor": 5,
+            },
+            {
+                "Id": 1050,
+                "valor": 4,
+            },
+            {
+                "Id": 1051,
+                "valor": 3,
+            },
+            {
+                "Id": 1052,
+                "valor": 5,
+            },
+            {
+                "Id": 1053,
+                "valor": 2,
+            },
+            {
+                "Id": 1054,
+                "valor": 1,
+            },
+            {
+                "Id": 1055,
+                "valor": 2,
+            },
+            {
+                "Id": 1056,
+                "valor": 5,
+            },
+            {
+                "Id": 1057,
+                "valor": 2,
+            },
+            {
+                "Id": 1058,
+                "valor": 4,
+            },
+            {
+                "Id": 1059,
+                "valor": 5,
+            },
+            {
+                "Id": 1060,
+                "valor": 2,
+            },
+            {
+                "Id": 1061,
+                "valor": 1,
+            },
+            {
+                "Id": 1062,
+                "valor": 3,
+            },
+            {
+                "Id": 1063,
+                "valor": 4,
+            },
+            {
+                "Id": 1064,
+                "valor": 1,
+            },
+            {
+                "Id": 1065,
+                "valor": 3,
+            },
+            {
+                "Id": 1066,
+                "valor": 5,
+            },
+            {
+                "Id": 1067,
+                "valor": 2,
+            },
+            {
+                "Id": 1068,
+                "valor": 1,
+            },
+            {
+                "Id": 1069,
+                "valor": 3,
+            },
+            {
+                "Id": 1070,
+                "valor": 4,
+            },
+            {
+                "Id": 1071,
+                "valor": 1,
+            },
+            {
+                "Id": 1072,
+                "valor": 3,
+            },
+            {
+                "Id": 1073,
+                "valor": 1,
+            },
+            {
+                "Id": 1074,
+                "valor": 2,
+            },
+            {
+                "Id": 1075,
+                "valor": 4,
+            },
+            {
+                "Id": 1076,
+                "valor": 5,
+            },
+            {
+                "Id": 1077,
+                "valor": 5,
+            },
+            {
+                "Id": 1078,
+                "valor": 4,
+            },
+            {
+                "Id": 1079,
+                "valor": 3,
+            },
+            {
+                "Id": 1080,
+                "valor": 2,
+            },
+            {
+                "Id": 1081,
+                "valor": 1,
+            },
+            {
+                "Id": 1082,
+                "valor": 1,
+            },
+            {
+                "Id": 1083,
+                "valor": 3,
+            },
+            {
+                "Id": 1084,
+                "valor": 5,
+            },
+            {
+                "Id": 1085,
+                "valor": 5,
+            },
+            {
+                "Id": 1086,
+                "valor": 2,
+            },
+        ]
+    }
+]
 const SendScreen = ({sending, getResponsesAction, updateResponsesAction, clearProcess, sendeco, getEcoResponsesAction, updateEcoResponsesAction, clearEcoProcess, app}) => {
     /*NOM*/
     const [responses, setResponses] = useState([]) // Guardados
@@ -70,7 +532,7 @@ const SendScreen = ({sending, getResponsesAction, updateResponsesAction, clearPr
     const getInitialResponses = async () =>{
         let nomTemp = await retrieveData("savedResponses");
         nomTemp?.length > 0 && setResponses( _.filter( nomTemp, ['send', false]) ); 
-        let ecoTemp = await retrieveData("savedEcoResponses");
+        let ecoTemp = await retrieveData("savedECOResponses");
         ecoTemp?.length > 0 && setResponsesEco( _.filter( ecoTemp, ['send', false]) ); 
     }
 
@@ -80,6 +542,28 @@ const SendScreen = ({sending, getResponsesAction, updateResponsesAction, clearPr
 
     const handleSendingEco = () => {
         updateEcoResponsesAction();
+       //Api()
+    }
+    useEffect(() => {
+        removess()
+    }, [])
+
+    const removess=async ()=>{
+        try{
+            await removeData("savedECOResponses");
+        }catch(err){
+            alert(err)
+        }
+    }
+
+
+    const Api =()=>{
+
+        axios.post("https://gmnom035.khor.mx/api2/ecco",data).then(res=>{
+            console.log(res.data)
+        }).catch(e=>{
+            console.log("ERROR:::::>",JSON.stringify(e))
+        })
     }
 
     return (

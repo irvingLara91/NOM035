@@ -7,9 +7,9 @@ import {Button} from "native-base";
 
 const {width, height} = Dimensions.get('window')
 
-const ModalAlertECO =({visible,setVisible})=>{
+const ModalAlertECO = ({visible, setVisible, exception = false, addAllResponse = null}) => {
 
-    return(
+    return (
         <View style={styles.centeredView}>
             <Modal
                 animationType="slide"
@@ -21,10 +21,15 @@ const ModalAlertECO =({visible,setVisible})=>{
 
                         <View style={{flex: 0, alignItems: 'center', justifyContent: 'center'}}>
                             <Image resizeMode={'contain'}
-                                   style={{tintColor:'white',width: textSizeRender(45),height:textSizeRender(13), marginLeft: 10}}
+                                   style={{
+                                       tintColor: 'white',
+                                       width: textSizeRender(45),
+                                       height: textSizeRender(13),
+                                       marginLeft: 10
+                                   }}
                                    source={require('../../assets/grupo_Mexico_rojo.png')}/>
                             <Text style={{
-                                textAlign:'center',
+                                textAlign: 'center',
                                 fontSize: textSizeRender(5),
                                 fontFamily: 'Poligon_Bold',
                                 color: store.getState().app.fontColor
@@ -38,52 +43,107 @@ const ModalAlertECO =({visible,setVisible})=>{
                         }}>
 
                             <View>
-                                <Text style={[styles.modalTitle, {
-                                    color: 'white',
-                                    textAlign: 'justify',
-                                    fontFamily: 'Poligon_Regular'
+                                {
+                                    exception ?
+                                        <Text style={[styles.modalTitle, {
+                                            color: 'white',
+                                            textAlign: 'justify',
+                                            fontFamily: 'Poligon_Regular'
 
-                                }]}>{"Debes responder todas las preguntas para continuar"}</Text>
+                                        }]}>{"No has respondido la sección de preguntas.\n¿Deseas dar por terminada la evaluación? "}</Text>
+                                        :
+                                        <Text style={[styles.modalTitle, {
+                                            color: 'white',
+                                            textAlign: 'justify',
+                                            fontFamily: 'Poligon_Regular'
+
+                                        }]}>{"Debes responder todas las preguntas para continuar"}</Text>
+                                }
+
+
                                 <Text style={[styles.modalTitle, {
                                     color: 'white',
                                     fontFamily: 'Poligon_Regular'
 
                                 }]}>{
-                                   ""
+                                    ""
                                 }
                                 </Text>
                             </View>
                         </View>
 
 
-                        <View style={{flex: 0, alignItems: 'center', justifyContent: 'center'}}>
+                        <View style={{flex: 0, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
                             <Button size={'lg'}
                                     _light={{
                                         bg: store.getState().app.colorECO,
                                         _text: {
-                                            justifyContent:'center',
+                                            justifyContent: 'center',
                                             fontSize: textSizeRender(4.3),
-                                            color: store.getState().app.fontColor, fontFamily: 'Poligon_Bold'}
+                                            color: store.getState().app.fontColor, fontFamily: 'Poligon_Bold'
+                                        }
                                     }}
                                     _pressed={{
                                         bg: store.getState().app.colorSecondaryECO,
                                         _text: {
-                                            textAlign:'center',
+                                            textAlign: 'center',
                                             fontSize: textSizeRender(4.3),
-                                            color: store.getState().app.fontColor}
+                                            color: store.getState().app.fontColor
+                                        }
                                     }}
                                 /***fin***/
-                                    style={{width:width/1.4,marginTop: 20,justifyContent:'center'}} onPress={() => {
+                                    style={{
+                                        flex: 1,
+                                        marginRight: 5,
+                                        width: width / 1.4,
+                                        marginTop: 20,
+                                        justifyContent: 'center'
+                                    }} onPress={() => {
 
-                                setVisible()
+                                if (exception) {
+                                    addAllResponse()
+                                    setVisible()
+                                } else {
+                                    setVisible()
+                                }
 
-                            }}>Continuar</Button>
+
+                            }}>{exception ? "Aceptar" : "Continuar"}</Button>
+
+                            {
+                                exception &&
+                                <Button size={'lg'}
+                                        _light={{
+                                            bg: store.getState().app.colorECO,
+                                            _text: {
+                                                justifyContent: 'center',
+                                                fontSize: textSizeRender(4.3),
+                                                color: store.getState().app.fontColor, fontFamily: 'Poligon_Bold'
+                                            }
+                                        }}
+                                        _pressed={{
+                                            bg: store.getState().app.colorSecondaryECO,
+                                            _text: {
+                                                textAlign: 'center',
+                                                fontSize: textSizeRender(4.3),
+                                                color: store.getState().app.fontColor
+                                            }
+                                        }}
+                                    /***fin***/
+                                        style={{flex: 1, width: width / 1.4, marginTop: 20, justifyContent: 'center'}}
+                                        onPress={() => {
+
+                                            setVisible()
+
+                                        }}>Cancelar</Button>
+                            }
+
                         </View>
                     </View>
                 </View>
             </Modal>
         </View>
-        )
+    )
 
 }
 const styles = StyleSheet.create({

@@ -81,9 +81,9 @@ export const savedEcoResponsesAction = () => {
         try {
             let responses = getState().sendeco.respuestasEco;
             let newStorage = _.filter(responses, ['send', false]);
-            // newStorage && await storeData('savedECOResponses', newStorage);
+            newStorage && await storeData('savedECOResponses', newStorage);
             let newErrors = getState().sendeco.erroresEco;
-            // newErrors && await storeData('savedEcoErroresEco', newErrors);
+            newErrors && await storeData('savedEcoErroresEco', newErrors);
         } catch (error) {
             console.log("SAVE_ERROR::", error);
         }
@@ -119,15 +119,12 @@ export const initProcess = () => async(dispatch, getState) => {
         await asyncForEach(responses,  (item, index, array) => {
             if (getState().sendeco.estadoEco !== 0){ 
                 if (!item.send){
-                    console.log("TOKEN::", token,"https://gmnom035.khor.mx/api/nom035");
+                    console.log("TOKEN::", token,ecoApi);
                      index === 0 &&  waitFor(100);
-                     axios.post("https://eco_amc.khor.mx/GM_coInterfaz.ashx", [item],{
-                         headers:{
-                             'Authorization':`Basic ${token}`
-                         }
-                     }).then(response => {
+
+                     axios.post(ecoApi, [item]).then(response => {
                          console.log("response:::",response.data)
-                        response.data[0].status === 0 ?  dispatch(updateResponse(item, index)) :  dispatch(deleteResponse(item, index, response.data[0]));
+                        response.data[0].estado === "Éxito" ?  dispatch(updateResponse(item, index)) :  dispatch(deleteResponse(item, index, response.data[0]));
                          getState().sendeco.estadoEco === 0 &&  waitFor(100);
                     }).catch( error => {
                         console.log("ERROR::",error,JSON.stringify(error))

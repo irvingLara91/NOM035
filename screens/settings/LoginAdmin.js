@@ -14,8 +14,8 @@ const {width, height} = Dimensions.get('window')
 
 const LoginAdmin = ({navigation,app, saveUserAdminAction}) => {
 
-    const [userName, setUserName] = useState("")
-    const [password, setPassword] = useState("")
+    const [userName, setUserName] = useState("testing")
+    const [password, setPassword] = useState("testing")
     const [loading, setLoading] = useState(false)
     const toast = useToast()
 

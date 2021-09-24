@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {ActivityIndicator, Dimensions, ScrollView, Text, TextInput, View} from "react-native";
+import {ActivityIndicator, Dimensions, ScrollView, Text, TextInput, TouchableOpacity, View} from "react-native";
 import { Select, Button} from "native-base";
 import MainLayout from "../../layouts/MainLayout";
 import {textSizeRender} from "../../utils/utils";
@@ -56,6 +56,8 @@ const AssessmentECO = (props) => {
 
     const [loading,setLoading]=useState(false)
 
+
+    const [click, setClick] = useState(false)
 
 
     useEffect(() => {
@@ -197,39 +199,40 @@ const AssessmentECO = (props) => {
                             {
                                 encuesta &&
                                 <View style={{flexDirection: 'row'}}>
-                                    <Select
-                                        minWidth={'100%'}
-                                        style={{
-                                            fontSize: textSizeRender(4.3)}}
-                                        accessibilityLabel="Elige una opción"
-                                        borderColor={require_1 ?"red":props.app.colorGray}
-                                        placeholder="Elige una opción"
-                                        onValueChange={(itemValue) => {
-                                            setRequire_1(false)
-                                            addResponseAddress(null)
-                                            addResponseArea(null)
-                                            addResponseProperty(itemValue)
-                                        }}
-                                    >
-                                        {
-                                            encuesta && encuesta.sociodemograficos[0].propiedad.map((item) => {
-                                                return (<Select.Item
-                                                        _light={{
-                                                            _text: {
+                                        <Select
+                                            isDisabled={click}
+                                            minWidth={'100%'}
+                                            style={{
+                                                fontSize: textSizeRender(4.3)}}
+                                            accessibilityLabel="Elige una opción"
+                                            borderColor={require_1 ?"red":props.app.colorGray}
+                                            placeholder="Elige una opción"
+                                            onValueChange={(itemValue) => {
+                                                setRequire_1(false)
+                                                addResponseAddress(null)
+                                                addResponseArea(null)
+                                                addResponseProperty(itemValue)
+                                            }}
+                                        >
+                                            {
+                                                encuesta && encuesta.sociodemograficos[0].propiedad.map((item) => {
+                                                    return (<Select.Item
+                                                            _light={{
+                                                                _text: {
+                                                                    fontSize: textSizeRender(4.3),
+                                                                    color: props.app.color,
+                                                                    fontFamily: 'Poligon_Regular'
+                                                                }
+                                                            }}
+                                                            _pressed={{
                                                                 fontSize: textSizeRender(4.3),
-                                                                color: props.app.color,
-                                                                fontFamily: 'Poligon_Regular'
-                                                            }
-                                                        }}
-                                                        _pressed={{
-                                                            fontSize: textSizeRender(4.3),
-                                                            bg: props.app.secondaryColorHover,
-                                                            _text: {color: props.app.fontColor}
-                                                        }}
-                                                        label={item.nombre} value={item}/>
-                                                )
-                                            })
-                                        }
+                                                                bg: props.app.secondaryColorHover,
+                                                                _text: {color: props.app.fontColor}
+                                                            }}
+                                                            label={item.nombre} value={item}/>
+                                                    )
+                                                })
+                                            }
 
                                     </Select>
                                 </View>
@@ -250,6 +253,7 @@ const AssessmentECO = (props) => {
                                             Dirección
                                         </Text>
                                         <Select
+                                            isDisabled={click}
                                             minWidth={'100%'}
                                             style={{
                                                 fontSize: textSizeRender(4.3)}}
@@ -303,6 +307,7 @@ const AssessmentECO = (props) => {
                                             Área
                                         </Text>
                                         <Select
+                                            isDisabled={click}
                                             minWidth={'100%'}
                                             style={{
                                                 fontSize: textSizeRender(4.3)}}
@@ -354,6 +359,7 @@ const AssessmentECO = (props) => {
                                         Tipo de Colaborador
                                     </Text>
                                     <Select
+                                        isDisabled={click}
                                         minWidth={'100%'}
                                         style={{
                                             fontSize: textSizeRender(4.3)}}
@@ -401,6 +407,7 @@ const AssessmentECO = (props) => {
                                         Residencia de la familia
                                     </Text>
                                     <Select
+                                        isDisabled={click}
                                         minWidth={'100%'}
                                         style={{
                                             fontSize: textSizeRender(4.3)}}
