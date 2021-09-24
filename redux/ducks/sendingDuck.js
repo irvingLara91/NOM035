@@ -17,6 +17,7 @@ const initialData = {
 
 const UPDATE_NOM_URL = 'UPDATE_NOM_URL';
 const UPDATE_ECO_URL = 'UPDATE_ECO_URL';
+const LOAD_RESPONSES = 'LOAD_RESPONSES';
 const UPDATE_RESPONSES = 'UPDATE_RESPONSES';
 const UPDATE_RESPONSES_ERROR = 'UPDATE_RESPONSES_ERROR';
 const DELETE_RESPONSES_ERROR = 'DELETE_RESPONSES_ERROR';
@@ -34,8 +35,10 @@ const sendingDuck = (state = initialData, action) => {
             return {...state, nomurl:action.payload}
         case UPDATE_ECO_URL:
             return {...state, ecourl:action.payload}
-        case UPDATE_RESPONSES:
+        case LOAD_RESPONSES:
             return {...state, respuestas:action.payload, fetching:false}
+        case UPDATE_RESPONSES:
+            return {...state, respuestas: state.respuestas.map( e => ( e.id === action.payload.id ) ? action.payload : e )}
         case UPDATE_RESPONSES_ERROR:
             return {...state, errores: [...state.errores, action.payload]}
         case DELETE_RESPONSES_ERROR:
@@ -100,7 +103,7 @@ export const getResponsesAction = () => {
             let getResponses = await retrieveData("savedResponses");
             if (getResponses?.length > 0){
                 let newResponses = _.filter(getResponses, ['send', false]);
-                newResponses && dispatch({type: UPDATE_RESPONSES, payload: newResponses});
+                newResponses && dispatch({type: LOAD_RESPONSES, payload: newResponses});
             } else {
                 dispatch({type: PROCESS_FETCHING, payload: false})
             }
@@ -156,7 +159,7 @@ export const initProcess = () => async(dispatch, getState) => {
                 if (!item.send){
                     await index === 0 && await waitFor(100);
                     await axios.post(nomApi, [item]).then(async(response) => {
-                        response.data[0].status === 0 ? await dispatch(updateResponse(item, index)) : await dispatch(deleteResponse(item, index, response.data[0]));
+                        response.data[0].status === 0 ? await dispatch(updateResponse(item)) : await dispatch(deleteResponse(item, response.data[0]));
                         await getState().sending.estado === 0 && await waitFor(100);
                     }).catch(async (error) => {
                         await dispatch(deleteResponse(item, index, {error}));
@@ -177,25 +180,23 @@ export const initProcess = () => async(dispatch, getState) => {
     }
 }
 
-export const updateResponse = (respuesta, index) => {
-    return async (dispatch, getState) => {
+export const updateResponse = (respuesta) => {
+    return async (dispatch) => {
         try {
-            let respuestas= getState().sending.respuestas;
-            respuestas[index].send = true;
-            await dispatch({ type: UPDATE_RESPONSES, payload:respuestas});
-            await dispatch({ type: UPDATE_LOG_SUCCESS, payload:respuesta });
+            respuesta.send = true;
+            await dispatch({ type: UPDATE_RESPONSES, payload:respuesta});
+            await dispatch({ type: UPDATE_LOG_SUCCESS, payload:respuesta});
         } catch (error) {
             //Error
         }
     };
 }
 
-export const deleteResponse = (respuesta, index, error) => {
-    return async (dispatch, getState) => {
+export const deleteResponse = (respuesta, error) => {
+    return async (dispatch) => {
         try {
-            let respuestas= getState().sending.respuestas;
-            respuestas[index].send = true;
-            await dispatch({ type: UPDATE_RESPONSES, payload:respuestas});
+            respuesta.send = true;
+            await dispatch({ type: UPDATE_RESPONSES, payload:respuesta});
             
             let objError = {respuesta, error}
             await dispatch({ type: UPDATE_RESPONSES_ERROR, payload: objError});
