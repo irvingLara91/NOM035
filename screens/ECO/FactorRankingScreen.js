@@ -153,18 +153,18 @@ const FactorRankingScreen = (props) => {
         let objectValueExist = _.find(arrayFactorsSelecteds, {value: response});
 
 
-        console.log(160, objectValueExist)
+       // console.log(160, objectValueExist)
         if (objectValueExist) {
             let objIndex = arrayFactorsSelecteds.findIndex((obj => obj.id == objectValueExist.id));
             arrayFactorsSelecteds[objIndex].value = null;
         } else {
-            console.log('no existe');
+          ///  console.log('no existe');
         }
 
         arrayFactorsSelecteds[index].value = response
 
         //console.log("165: ",arrayFactorsSelecteds[index])
-        console.log(arrayFactorsSelecteds)
+       // console.log(arrayFactorsSelecteds)
 
         setUpdate(!update)
         validateArrayFactor(arrayFactorsSelecteds)

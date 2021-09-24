@@ -53,7 +53,7 @@ export const savedResponsesAction = (data) => async (dispatch, getState) => {
         let savedResponses = await retrieveData("savedResponses");
         if (savedResponses) {
             await  savedResponses.push(data)
-            console.log('savedResponses',savedResponses)
+            //console.log('savedResponses',savedResponses)
 
             dispatch({
                 type: LOAD_RESPONSES_SUCCESS,
@@ -63,7 +63,7 @@ export const savedResponsesAction = (data) => async (dispatch, getState) => {
         }else {
             let  response_= []
             await response_.push(data)
-            console.log('response_',response_)
+            //console.log('response_',response_)
             dispatch({
                 type: LOAD_RESPONSES_SUCCESS,
                 payload: response_

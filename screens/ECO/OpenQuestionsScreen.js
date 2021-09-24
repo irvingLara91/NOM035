@@ -78,7 +78,7 @@ const OpenQuestionsScreen = (props) => {
         data.Id = ECO_OPEN_QUESTIONS.preguntasabiertas[dato].id
         data.valor = response
         setAnswer(data)
-        console.log(answer)
+      ///  console.log(answer)
     }
 
     const addAllResponse=async ()=>{

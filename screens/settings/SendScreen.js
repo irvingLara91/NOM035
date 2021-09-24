@@ -548,7 +548,7 @@ const SendScreen = ({sending, getResponsesAction, updateResponsesAction, clearPr
     const Api =()=>{
 
         axios.post("https://gmnom035.khor.mx/api2/ecco",data).then(res=>{
-            console.log(res.data)
+           /// console.log(res.data)
         }).catch(e=>{
             console.log("ERROR:::::>",JSON.stringify(e))
         })

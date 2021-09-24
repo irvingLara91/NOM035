@@ -73,7 +73,7 @@ const SectionComponent = ({
     const getModeDev = async () => {
         try {
             let dev = await retrieveData('devmode')
-            console.log(dev)
+           /// console.log(dev)
             if (dev) {
                 setModeDev(dev.dev)
             }
@@ -87,13 +87,13 @@ const SectionComponent = ({
     useEffect(()=>{
         getCountAction()
 
-        console.log(countResponse.count_responses)
+       /// console.log(countResponse.count_responses)
     },[])
 
     const onSetValueQuestion = (question_index, value, section) => {
         try {
             if (question_index + 1 < numQuestions) {
-                console.log(numEncuesta, question_index, value)
+                ///console.log(numEncuesta, question_index, value)
                 responseQuestion(numEncuesta, question_index, value)
                 setCurrentQuestion(currentQuestion + 1)
             } else {
@@ -147,7 +147,7 @@ const SectionComponent = ({
 
     const validateNOQuestioninVref1 = (question_index, value, section) => {
         //validar los NO de la primera sección
-        console.log('values', vref, section)
+        ///console.log('values', vref, section)
         if (vref === 1 && currentSection === 1 && section !== undefined) {
             if (value === 1) {
                 setHasYesSection1vref1(true) // si en la primera sección tuvo al menos un SI entonces lo marcamos y lo dejamos continuar

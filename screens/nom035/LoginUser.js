@@ -43,14 +43,14 @@ const LoginUser = ({navigation, savedResponses, app,initialCountAction}) => {
     }, [])
 
     useEffect(() => {
-        console.log(":::irvingLara::", savedResponses)
+      //  console.log(":::irvingLara::", savedResponses)
     }, [])
 
 
     const getUsers = async () => {
         let val = app.users;
         // let val = await retrieveData('userslist')
-        console.log('valor de users', val)
+       /// console.log('valor de users', val)
         if (val)
             setUsers(val)
     }
@@ -101,7 +101,7 @@ const LoginUser = ({navigation, savedResponses, app,initialCountAction}) => {
             await storeData('user', isUser)
 
         } else {
-            console.log("USER", users)
+           /// console.log("USER", users)
             setTitleModal("")
             setMessageModal("Las credenciales son inválidas")
             setIsErrorModal(true)

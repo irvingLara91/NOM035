@@ -75,7 +75,7 @@ const SociodemographicPage = ({navigation, saveRsponseSocio, app}) => {
             data.dato = nom035_demograficos.sociodemograficos[dato].dato
             data.valor = response
             setAnswer(data)
-            console.log(answer)
+            ///console.log(answer)
         }
     }
 
@@ -85,13 +85,13 @@ const SociodemographicPage = ({navigation, saveRsponseSocio, app}) => {
                 await respuestas.push(answer)
                 await setDato(dato + 1)
                 await setAnswer({})
-                await console.log(respuestas)
+                ///await console.log(respuestas)
                 await saveRsponseSocio(respuestas)
                 navigation.navigate('AssessmentNom035')
             } else {
                 await respuestas.push(answer)
                 await setAnswer({})
-                await console.log(dato, respuestas)
+                //await console.log(dato, respuestas)
                 await setDato(dato + 1)
             }
         } else {

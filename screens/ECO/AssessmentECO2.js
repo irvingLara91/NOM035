@@ -82,7 +82,7 @@ const AssessmentECO2 = (props) => {
     }, []);
 
     useEffect(()=>{
-        console.log("raking::",props.eco.Ranking)
+       /// console.log("raking::",props.eco.Ranking)
     },[])
 
     const acceptBack = () => {

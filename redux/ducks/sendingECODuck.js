@@ -151,7 +151,7 @@ export const updateResponse = (respuesta) => {
     return async (dispatch, getState) => {
         try {
             respuesta.send = true;
-            console.log("RESPUESTA UPDATE", respuesta);
+           /// console.log("RESPUESTA UPDATE", respuesta);
             await dispatch({type: UPDATE_RESPONSES_ECO, payload:respuesta});
             await dispatch({type: UPDATE_LOG_SUCCESS_ECO, payload:respuesta});
         } catch (error) {
@@ -164,7 +164,7 @@ export const deleteResponse = (respuesta, error) => {
     return async (dispatch, getState) => {
         try {
             respuesta.send = true;
-            console.log("RESPUESTA DELETE", respuesta);
+            //console.log("RESPUESTA DELETE", respuesta);
             await dispatch({ type: UPDATE_RESPONSES_ECO, payload:respuesta});
             let objError = {respuesta, error}
             await dispatch({ type: UPDATE_RESPONSES_ECO_ERROR, payload: objError});
