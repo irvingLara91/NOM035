@@ -13,9 +13,7 @@ const HomeScreen = ({productsDuck, navigation, app,eco,responsesECO}) => {
     const [showModal, setShowModal] = useState(false)
 
     useEffect(() => {
-        removess()
-
-
+       /// removess()
         console.log("ECO:::::",responsesECO)
         setInitialFakeData()
     }, [])

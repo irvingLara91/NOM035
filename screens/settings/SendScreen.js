@@ -544,18 +544,6 @@ const SendScreen = ({sending, getResponsesAction, updateResponsesAction, clearPr
         updateEcoResponsesAction();
        //Api()
     }
-    useEffect(() => {
-        removess()
-    }, [])
-
-    const removess=async ()=>{
-        try{
-            await removeData("savedECOResponses");
-        }catch(err){
-            alert(err)
-        }
-    }
-
 
     const Api =()=>{
 
