@@ -13,6 +13,7 @@ import GenericModal from "../../components/Modals/GenericModal";
 const {width, height} = Dimensions.get('window')
 import {saveConfigAction} from "../../redux/ducks/configDuck";
 import {saveNomUrlAction, saveEcoUrlAction} from "../../redux/ducks/sendingDuck";
+import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scrollview";
 
 const KhorConfig = ({app, config, sending, saveConfigAction, saveNomUrlAction, saveEcoUrlAction}) => {
 
@@ -100,8 +101,12 @@ const KhorConfig = ({app, config, sending, saveConfigAction, saveNomUrlAction, s
     }
 
     return (
-        <MainLayout>
-            <View style={ styles.container }>
+        <MainLayout isWhite={true}>
+            <KeyboardAwareScrollView
+                extraScrollHeight={80}
+                enableOnAndroid={true}
+                keyboardShouldPersistTaps='handled'>
+            <View style={styles.container}>
                 <View style={ styles.sectionOne }>
                     <Text style={{fontFamily:'Poligon_Regular',marginBottom:0, color:app.color,fontSize:textSizeRender(4), textAlign:'center' }} size="lg" mb={3}>
                         Configuración
@@ -183,6 +188,7 @@ const KhorConfig = ({app, config, sending, saveConfigAction, saveNomUrlAction, s
                 visible &&
                 <GenericModal app={app} visible={visible} setVisible={setVisible} isError={isErrorModal} title={titleModal} text={messageModal}/>
             }
+            </KeyboardAwareScrollView>
         </MainLayout>
     )
 
@@ -191,7 +197,7 @@ const KhorConfig = ({app, config, sending, saveConfigAction, saveNomUrlAction, s
 const styles = StyleSheet.create({
     container: {
         backgroundColor:'white',
-        width: '100%',
+        width: width,
         height: '100%',
         display: 'flex',
         flexDirection: 'column',

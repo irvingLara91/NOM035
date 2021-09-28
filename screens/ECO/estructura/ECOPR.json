@@ -546,11 +546,11 @@
     "tipodecolaborador": [
       {
         "id": 3014,
-        "nombre": "SINDICALIZADO"
+        "nombre": "TRABAJADOR"
       },
       {
         "id": 3014,
-        "nombre": "NO SINDICALIZADO"
+        "nombre": "FUNCIONARIO"
       }
     ]},
     {
@@ -725,7 +725,7 @@
   "reactivos": [
     {
       "id": 1000,
-      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Las personas trabajan con integridad, dedicación y excelencia</p>",
+      "titulo": "<p style=font-family:'Poligon_Regular'; padding: 10px;>Las personas trabajan con integridad, dedicación y excelencia.</p>",
       "tipo": "1a5"
     },
     {

@@ -66,16 +66,17 @@ const LoginAdmin = ({navigation,app, saveUserAdminAction}) => {
                 enableOnAndroid={true}
                 keyboardShouldPersistTaps='handled'>
                 <View style={{width: width, height: height,backgroundColor:'white'}}>
-                    <View style={{width: width, alignSelf: 'center', flex: 1}}>
-                        <Image style={{width: width, height: '100%', alignSelf: 'center'}}
-                               source={require('./../../assets/logo_khor.png')}/>
-                    </View>
                     <View style={{
                         width: '100%',
                         flex: 1,
                         alignSelf:'center',
                         alignItems: 'center',
                     }}>
+
+                        <View style={{width: width, alignSelf: 'center', flex: 1}}>
+                            <Image style={{width: width, height: '100%', alignSelf: 'center'}}
+                                   source={require('./../../assets/logo_khor.png')}/>
+                        </View>
                         <View style={{width: '100%', alignSelf: 'center', paddingHorizontal: 55}}>
                             <View style={{alignSelf: 'center', paddingVertical: 40, paddingHorizontal: 40}}>
                                 <Text style={{
@@ -108,7 +109,7 @@ const LoginAdmin = ({navigation,app, saveUserAdminAction}) => {
                                 underlineColorAndroid={'transparent'}
                             />
 
-                            <View style={{flexDirection:'row',width:'100%',marginTop:10}}>
+                            <View style={{flexDirection:'row',width:'100%',marginTop:10,marginBottom: 20}}>
                                 <Button size={'lg'}
                                         _light={{
                                             bg: app.secondaryColor, _text: {

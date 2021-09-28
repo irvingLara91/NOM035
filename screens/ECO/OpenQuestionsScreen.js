@@ -167,9 +167,7 @@ const OpenQuestionsScreen = (props) => {
                         value={answer?.valor}
                         onChangeText={(itemValue) => addResponse(itemValue)}
                         keyboardType="default"
-                        multiline={true}
                         maxLength={300}
-
                         underlineColorAndroid={'transparent'}
                     />
                 }
@@ -184,7 +182,7 @@ const OpenQuestionsScreen = (props) => {
                         </View>
                         <View style={{alignItems: 'center',flex:1}}>
                             <Text
-                                style={{fontFamily: 'Poligon_Regular', textAlign: 'justify', fontSize: textSizeRender(7)}}>
+                                style={{fontFamily: 'Poligon_Regular', textAlign: 'center', fontSize: textSizeRender(7)}}>
                                 ¡Muchas gracias por tu participación en la encuesta!
                                 Juntos hacemos un mejor lugar para trabajar.</Text>
                         </View>

@@ -61,6 +61,7 @@ const QuestionComponent = ({
         },
         a: {
             color: 'red',
+            fontFamily:'Poligon_Bold',
             fontSize: textSizeRender(5)
         }
     };

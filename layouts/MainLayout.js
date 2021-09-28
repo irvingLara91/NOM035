@@ -8,7 +8,7 @@ const MainLayout = (props) => {
     return (
 
         <Center flex={1}>
-            <VStack space={4} flex={1} w="100%">
+            <VStack space={4} backgroundColor={props.isWhite ?"white":null} flex={1} w="100%">
                 {props.children}
             </VStack>
         </Center>

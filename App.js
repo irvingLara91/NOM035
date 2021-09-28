@@ -134,8 +134,9 @@ export default function App({iconSettings}) {
                                     gestureEnabled: false,
                                     headerLeft: () => (
                                         <Image resizeMode={'contain'}
-                                               style={{tintColor: 'white', width: width * .4, marginLeft: 10}}
-                                               source={require('./assets/logo_grupomexico_blanco.png')}/>
+                                               style={{tintColor: 'white',top:-6, width: textSizeRender(32), marginLeft: 10}}
+                                               source={require('./assets/grupo_Mexico_rojo.png')}/>
+
                                     ),
                                     headerRight: () => (
                                         <Ionicons
@@ -425,7 +426,7 @@ export default function App({iconSettings}) {
                                                                          style={{top:-6,marginLeft: 15}}
                                                                          color={'#a5a5a5'}/>*/}
                                                           <Image resizeMode={'contain'}
-                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 10}}
+                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 15}}
                                                                  source={require('./assets/logo_eco.png')}/>
                                                       </View>
 
@@ -442,7 +443,7 @@ export default function App({iconSettings}) {
                                                   },
                                                   headerRight: () => (
                                                       <Image resizeMode={'contain'}
-                                                             style={{top:-6, width: textSizeRender(32), marginLeft: 10}}
+                                                             style={{top:-6, width: textSizeRender(32), marginRight: 15}}
                                                              source={require('./assets/grupo_Mexico_rojo.png')}/>),
                                               })
                                           } component={SelectCountryScreen}/>
@@ -464,7 +465,7 @@ export default function App({iconSettings}) {
                                                                          style={{top:-6,marginLeft: 15}}
                                                                          color={'#a5a5a5'}/>*/}
                                                           <Image resizeMode={'contain'}
-                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 10}}
+                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 15}}
                                                                  source={require('./assets/logo_eco.png')}/>
 
                                                       </View>
@@ -481,7 +482,7 @@ export default function App({iconSettings}) {
                                                   },
                                                   headerRight: () => (
                                                       <Image resizeMode={'contain'}
-                                                             style={{top:-6, width: textSizeRender(32), marginLeft: 10}}
+                                                             style={{top:-6, width: textSizeRender(32), marginRight: 15}}
                                                              source={require('./assets/grupo_Mexico_rojo.png')}/>),
                                               })
                                           } component={AssessmentECO}/>
@@ -502,7 +503,7 @@ export default function App({iconSettings}) {
                                                                          style={{top:-6,marginLeft: 15}}
                                                                          color={'#a5a5a5'}/>*/}
                                                           <Image resizeMode={'contain'}
-                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 10}}
+                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 15}}
                                                                  source={require('./assets/logo_eco.png')}/>
 
                                                       </View>
@@ -519,7 +520,7 @@ export default function App({iconSettings}) {
                                                   },
                                                   headerRight: () => (
                                                       <Image resizeMode={'contain'}
-                                                             style={{top:-6, width: textSizeRender(32), marginLeft: 10}}
+                                                             style={{top:-6, width: textSizeRender(32), marginRight: 15}}
                                                              source={require('./assets/grupo_Mexico_rojo.png')}/>),
                                               })
                                           } component={AssessmentECO2}/>
@@ -540,7 +541,7 @@ export default function App({iconSettings}) {
                                                                          style={{top:-6,marginLeft: 15}}
                                                                          color={'#a5a5a5'}/>*/}
                                                           <Image resizeMode={'contain'}
-                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 10}}
+                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 15}}
                                                                  source={require('./assets/logo_eco.png')}/>
 
                                                       </View>
@@ -557,7 +558,7 @@ export default function App({iconSettings}) {
                                                   },
                                                   headerRight: () => (
                                                       <Image resizeMode={'contain'}
-                                                             style={{top:-6, width: textSizeRender(32), marginLeft: 10}}
+                                                             style={{top:-6, width: textSizeRender(32), marginRight: 15}}
                                                              source={require('./assets/grupo_Mexico_rojo.png')}/>),
                                               })
                                           } component={ReagentsECOScreen}/>
@@ -579,7 +580,7 @@ export default function App({iconSettings}) {
                                                                          style={{top:-6,marginLeft: 15}}
                                                                          color={'#a5a5a5'}/>*/}
                                                           <Image resizeMode={'contain'}
-                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 10}}
+                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 15}}
                                                                  source={require('./assets/logo_eco.png')}/>
 
                                                       </View>
@@ -596,7 +597,7 @@ export default function App({iconSettings}) {
                                                   },
                                                   headerRight: () => (
                                                       <Image resizeMode={'contain'}
-                                                             style={{top:-6, width: textSizeRender(32), marginLeft: 10}}
+                                                             style={{top:-6, width: textSizeRender(32), marginRight: 15}}
                                                              source={require('./assets/grupo_Mexico_rojo.png')}/>),
                                               })
                                           } component={FactorRankingScreen}/>
@@ -618,7 +619,7 @@ export default function App({iconSettings}) {
                                                                          style={{top:-6,marginLeft: 15}}
                                                                          color={'#a5a5a5'}/>*/}
                                                           <Image resizeMode={'contain'}
-                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 10}}
+                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 15}}
                                                                  source={require('./assets/logo_eco.png')}/>
 
                                                       </View>
@@ -635,7 +636,7 @@ export default function App({iconSettings}) {
                                                   },
                                                   headerRight: () => (
                                                       <Image resizeMode={'contain'}
-                                                             style={{top:-6, width: textSizeRender(32), marginLeft: 10}}
+                                                             style={{top:-6, width: textSizeRender(32), marginRight: 15}}
                                                              source={require('./assets/grupo_Mexico_rojo.png')}/>),
                                               })
                                           } component={OpenQuestionsScreen}/>
@@ -709,7 +710,7 @@ export default function App({iconSettings}) {
 
                 <View style={{flex: 1}}>
                     <Image
-                        source={require('./assets/logo_grupomexico_blanco.png')}
+                        source={require('./assets/grupo_mexico_mineria.png')}
                         onLoad={_cacheResourcesAsync}
                         style={{resizeMode: 'contain', width: '100%', height: '100%'}}
                     />

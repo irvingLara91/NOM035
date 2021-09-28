@@ -19,7 +19,7 @@ const SelectedComponent = ({update, ...props}) => {
     const [numbers, setNumbers] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
     const tagsStyles = {
         p: {
-            textAlign: 'justify',
+            textAlign: 'left',
             color: props.app.color,
             fontSize: textSizeRender(3.5)
         },

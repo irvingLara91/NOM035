@@ -180,367 +180,370 @@ const AssessmentECO2 = (props) => {
                         backgroundColor: props.app.colorBaseEco,
                         flex: 1,
                     }}>
-                        <View style={{width: width, paddingLeft: 20, paddingTop: 20}}>
-                            <Text style={{fontFamily: 'Poligon_Regular', fontSize: textSizeRender(4.5)}}>
+                        <View style={{width: width, paddingLeft: 20, paddingTop: 20,paddingRight:20}}>
+                            <Text style={{textAlign:'justify',fontFamily: 'Poligon_Regular', fontSize: textSizeRender(4.5)}}>
                                 Queremos que todas las personas se sientan incluidas, bienvenidas y valoradas en la
                                 empresa. Responde a las siguientes preguntas, que nos permitirán conocer mejor tu lugar
                                 de trabajo, con perspectiva de Diversidad e Inclusión:
                             </Text>
                         </View>
+                        <View style={{width: '100%', paddingLeft: 10, paddingTop: 20,paddingRight:10, flex: 1}}>
                         <ScrollView>
-                            <View style={{width: '100%', padding: 20, flex: 1}}>
-                                {
-                                    encuesta &&
-                                    <View>
-                                        <Text style={{
-                                            marginTop: 10,
-                                            marginBottom: 10,
-                                            textAlign: 'justify',
-                                            color: props.app.color,
-                                            fontFamily: 'Poligon_Regular',
-                                            fontSize: textSizeRender(4.3),
-                                        }}>
-                                            Género
-                                        </Text>
-                                        <Select
-                                            minWidth={'100%'}
-                                            style={{
-                                                fontSize: textSizeRender(4.3)}}
-                                            borderColor={require_6 ?"red":props.app.colorGray}
-                                            accessibilityLabel="Elige una opción"
-                                            placeholder="Elige una opción"
-                                            onValueChange={(itemValue) => {
-                                                setRequire_6(false)
-                                                setResponseGender(itemValue)
-                                            }}
-                                        >
-                                            {
-                                                encuesta && encuesta.sociodemograficos[3].genero.map((item) => {
-                                                    return (<Select.Item
-                                                            _light={{
-                                                                _text: {
+                            <View style={{paddingLeft: 10,paddingRight:10}}>
+                                    {
+                                        encuesta &&
+                                        <View>
+                                            <Text style={{
+                                                marginTop: 10,
+                                                marginBottom: 10,
+                                                textAlign: 'justify',
+                                                color: props.app.color,
+                                                fontFamily: 'Poligon_Regular',
+                                                fontSize: textSizeRender(4.3),
+                                            }}>
+                                                Género
+                                            </Text>
+                                            <Select
+                                                minWidth={'100%'}
+                                                style={{
+                                                    fontSize: textSizeRender(4.3)}}
+                                                borderColor={require_6 ?"red":props.app.colorGray}
+                                                accessibilityLabel="Elige una opción"
+                                                placeholder="Elige una opción"
+                                                onValueChange={(itemValue) => {
+                                                    setRequire_6(false)
+                                                    setResponseGender(itemValue)
+                                                }}
+                                            >
+                                                {
+                                                    encuesta && encuesta.sociodemograficos[3].genero.map((item) => {
+                                                        return (<Select.Item
+                                                                _light={{
+                                                                    _text: {
+                                                                        fontSize: textSizeRender(4.3),
+                                                                        color: props.app.color,
+                                                                        fontFamily: 'Poligon_Regular'
+                                                                    }
+                                                                }}
+                                                                _pressed={{
                                                                     fontSize: textSizeRender(4.3),
-                                                                    color: props.app.color,
-                                                                    fontFamily: 'Poligon_Regular'
-                                                                }
-                                                            }}
-                                                            _pressed={{
-                                                                fontSize: textSizeRender(4.3),
-                                                                bg: props.app.secondaryColorHover,
-                                                                _text: {color: props.app.fontColor}
-                                                            }}
-                                                            label={item.nombre} value={item}/>
-                                                    )
-                                                })
-                                            }
-                                        </Select>
-                                    </View>
-                                }
+                                                                    bg: props.app.secondaryColorHover,
+                                                                    _text: {color: props.app.fontColor}
+                                                                }}
+                                                                label={item.nombre} value={item}/>
+                                                        )
+                                                    })
+                                                }
+                                            </Select>
+                                        </View>
+                                    }
 
-                                {
-                                    encuesta &&
-                                    <View>
-                                        <Text style={{
-                                            marginTop: 10,
-                                            marginBottom: 10,
-                                            textAlign: 'justify',
-                                            color: props.app.color,
-                                            fontFamily: 'Poligon_Regular',
-                                            fontSize: textSizeRender(4.3),
-                                        }}>
-                                            ¿En qué año naciste?
-                                        </Text>
-                                        <Select
-                                            minWidth={'100%'}
-                                            style={{
-                                                fontSize: textSizeRender(4.3)}}
-                                            borderColor={require_7 ?"red":props.app.colorGray}
-                                            accessibilityLabel="Elige una opción"
-                                            placeholder="Elige una opción"
-                                            onValueChange={(itemValue) => {
-                                                setRequire_7(false)
-                                                setResponseWhatYearWereYouBorn(itemValue)
-                                            }}
-                                        >
-                                            {
-                                                encuesta && encuesta.sociodemograficos[4].enqueanionaciste.map((item) => {
-                                                    return (<Select.Item
-                                                            _light={{
-                                                                _text: {
+                                    {
+                                        encuesta &&
+                                        <View>
+                                            <Text style={{
+                                                marginTop: 10,
+                                                marginBottom: 10,
+                                                textAlign: 'justify',
+                                                color: props.app.color,
+                                                fontFamily: 'Poligon_Regular',
+                                                fontSize: textSizeRender(4.3),
+                                            }}>
+                                                ¿En qué año naciste?
+                                            </Text>
+                                            <Select
+                                                minWidth={'100%'}
+                                                style={{
+                                                    fontSize: textSizeRender(4.3)}}
+                                                borderColor={require_7 ?"red":props.app.colorGray}
+                                                accessibilityLabel="Elige una opción"
+                                                placeholder="Elige una opción"
+                                                onValueChange={(itemValue) => {
+                                                    setRequire_7(false)
+                                                    setResponseWhatYearWereYouBorn(itemValue)
+                                                }}
+                                            >
+                                                {
+                                                    encuesta && encuesta.sociodemograficos[4].enqueanionaciste.map((item) => {
+                                                        return (<Select.Item
+                                                                _light={{
+                                                                    _text: {
+                                                                        fontSize: textSizeRender(4.3),
+                                                                        color: props.app.color,
+                                                                        fontFamily: 'Poligon_Regular'
+                                                                    }
+                                                                }}
+                                                                _pressed={{
                                                                     fontSize: textSizeRender(4.3),
-                                                                    color: props.app.color,
-                                                                    fontFamily: 'Poligon_Regular'
-                                                                }
-                                                            }}
-                                                            _pressed={{
-                                                                fontSize: textSizeRender(4.3),
-                                                                bg: props.app.secondaryColorHover,
-                                                                _text: {color: props.app.fontColor}
-                                                            }}
-                                                            label={item.nombre} value={item}/>
-                                                    )
-                                                })
-                                            }
-                                        </Select>
-                                    </View>
-                                }
+                                                                    bg: props.app.secondaryColorHover,
+                                                                    _text: {color: props.app.fontColor}
+                                                                }}
+                                                                label={item.nombre} value={item}/>
+                                                        )
+                                                    })
+                                                }
+                                            </Select>
+                                        </View>
+                                    }
 
-                                {
-                                    encuesta &&
-                                    <View>
-                                        <Text style={{
-                                            marginTop: 10,
-                                            marginBottom: 10,
-                                            textAlign: 'justify',
-                                            color: props.app.color,
-                                            fontFamily: 'Poligon_Regular',
-                                            fontSize: textSizeRender(4.3),
-                                        }}>
-                                            ¿Cuántos años cumplidos tienes trabajando en la empresa?
-                                        </Text>
-                                        <Select
-                                            minWidth={'100%'}
-                                            style={{
-                                                fontSize: textSizeRender(4.3)}}
-                                            borderColor={require_8 ?"red":props.app.colorGray}
-                                            accessibilityLabel="Elige una opción"
-                                            placeholder="Elige una opción"
-                                            onValueChange={(itemValue) => {
-                                                setRequire_8(false)
-                                                setResponseYouHaveBeenWorkingForYears(itemValue)
-                                            }}
-                                        >
-                                            {
-                                                encuesta && encuesta.sociodemograficos[5].cuantosaniostienestrabajando.map((item) => {
-                                                    return (<Select.Item
-                                                            _light={{
-                                                                _text: {
+                                    {
+                                        encuesta &&
+                                        <View>
+                                            <Text style={{
+                                                marginTop: 10,
+                                                marginBottom: 10,
+                                                textAlign: 'justify',
+                                                color: props.app.color,
+                                                fontFamily: 'Poligon_Regular',
+                                                fontSize: textSizeRender(4.3),
+                                            }}>
+                                                ¿Cuántos años cumplidos tienes trabajando en la empresa?
+                                            </Text>
+                                            <Select
+                                                minWidth={'100%'}
+                                                style={{
+                                                    fontSize: textSizeRender(4.3)}}
+                                                borderColor={require_8 ?"red":props.app.colorGray}
+                                                accessibilityLabel="Elige una opción"
+                                                placeholder="Elige una opción"
+                                                onValueChange={(itemValue) => {
+                                                    setRequire_8(false)
+                                                    setResponseYouHaveBeenWorkingForYears(itemValue)
+                                                }}
+                                            >
+                                                {
+                                                    encuesta && encuesta.sociodemograficos[5].cuantosaniostienestrabajando.map((item) => {
+                                                        return (<Select.Item
+                                                                _light={{
+                                                                    _text: {
+                                                                        fontSize: textSizeRender(4.3),
+                                                                        color: props.app.color,
+                                                                        fontFamily: 'Poligon_Regular'
+                                                                    }
+                                                                }}
+                                                                _pressed={{
                                                                     fontSize: textSizeRender(4.3),
-                                                                    color: props.app.color,
-                                                                    fontFamily: 'Poligon_Regular'
-                                                                }
-                                                            }}
-                                                            _pressed={{
-                                                                fontSize: textSizeRender(4.3),
-                                                                bg: props.app.secondaryColorHover,
-                                                                _text: {color: props.app.fontColor}
-                                                            }}
-                                                            label={item.nombre} value={item}/>
-                                                    )
-                                                })
-                                            }
-                                        </Select>
-                                    </View>
-                                }
+                                                                    bg: props.app.secondaryColorHover,
+                                                                    _text: {color: props.app.fontColor}
+                                                                }}
+                                                                label={item.nombre} value={item}/>
+                                                        )
+                                                    })
+                                                }
+                                            </Select>
+                                        </View>
+                                    }
 
-                                {
-                                    encuesta &&
-                                    <View>
-                                        <Text style={{
-                                            marginTop: 10,
-                                            marginBottom: 10,
-                                            textAlign: 'justify',
-                                            color: props.app.color,
-                                            fontFamily: 'Poligon_Regular',
-                                            fontSize: textSizeRender(4.3),
-                                        }}>
-                                            Estado civil
-                                        </Text>
-                                        <Select
-                                            minWidth={'100%'}
-                                            style={{
-                                                fontSize: textSizeRender(4.3)}}
-                                            borderColor={require_9 ?"red":props.app.colorGray}
-                                            accessibilityLabel="Elige una opción"
-                                            placeholder="Elige una opción"
-                                            onValueChange={(itemValue) => {
-                                                setRequire_9(false)
-                                                setResponseMaritalStatus(itemValue)
-                                            }}
-                                        >
-                                            {
-                                                encuesta && encuesta.sociodemograficos[6].estadocivil.map((item) => {
-                                                    return (<Select.Item
-                                                            _light={{
-                                                                _text: {
+                                    {
+                                        encuesta &&
+                                        <View>
+                                            <Text style={{
+                                                marginTop: 10,
+                                                marginBottom: 10,
+                                                textAlign: 'justify',
+                                                color: props.app.color,
+                                                fontFamily: 'Poligon_Regular',
+                                                fontSize: textSizeRender(4.3),
+                                            }}>
+                                                Estado civil
+                                            </Text>
+                                            <Select
+                                                minWidth={'100%'}
+                                                style={{
+                                                    fontSize: textSizeRender(4.3)}}
+                                                borderColor={require_9 ?"red":props.app.colorGray}
+                                                accessibilityLabel="Elige una opción"
+                                                placeholder="Elige una opción"
+                                                onValueChange={(itemValue) => {
+                                                    setRequire_9(false)
+                                                    setResponseMaritalStatus(itemValue)
+                                                }}
+                                            >
+                                                {
+                                                    encuesta && encuesta.sociodemograficos[6].estadocivil.map((item) => {
+                                                        return (<Select.Item
+                                                                _light={{
+                                                                    _text: {
+                                                                        fontSize: textSizeRender(4.3),
+                                                                        color: props.app.color,
+                                                                        fontFamily: 'Poligon_Regular'
+                                                                    }
+                                                                }}
+                                                                _pressed={{
                                                                     fontSize: textSizeRender(4.3),
-                                                                    color: props.app.color,
-                                                                    fontFamily: 'Poligon_Regular'
-                                                                }
-                                                            }}
-                                                            _pressed={{
-                                                                fontSize: textSizeRender(4.3),
-                                                                bg: props.app.secondaryColorHover,
-                                                                _text: {color: props.app.fontColor}
-                                                            }}
-                                                            label={item.nombre} value={item}/>
-                                                    )
-                                                })
-                                            }
-                                        </Select>
-                                    </View>
-                                }
-                                {
-                                    encuesta &&
-                                    <View>
-                                        <Text style={{
-                                            marginTop: 10,
-                                            marginBottom: 10,
-                                            textAlign: 'justify',
-                                            color: props.app.color,
-                                            fontFamily: 'Poligon_Regular',
-                                            fontSize: textSizeRender(4.3),
-                                        }}>
-                                            ¿Soy responsable del cuidado personal/ financiero de otras personas o
-                                            familiares?
-                                        </Text>
-                                        <Select
-                                            minWidth={'100%'}
-                                            style={{
-                                                fontSize: textSizeRender(4.3)}}
-                                            borderColor={require_10 ?"red":props.app.colorGray}
-                                            accessibilityLabel="Elige una opción"
-                                            placeholder="Elige una opción"
-                                            onValueChange={(itemValue) => {
-                                                setRequire_10(false)
-                                                setResponseResponsiblePersonalFamily(itemValue)
-                                            }}
-                                        >
-                                            {
-                                                encuesta && encuesta.sociodemograficos[7].soyresponsabledelcuidadopersonalfinancierofamiliares.map((item) => {
-                                                    return (<Select.Item
-                                                            _light={{
-                                                                _text: {
+                                                                    bg: props.app.secondaryColorHover,
+                                                                    _text: {color: props.app.fontColor}
+                                                                }}
+                                                                label={item.nombre} value={item}/>
+                                                        )
+                                                    })
+                                                }
+                                            </Select>
+                                        </View>
+                                    }
+                                    {
+                                        encuesta &&
+                                        <View>
+                                            <Text style={{
+                                                marginTop: 10,
+                                                marginBottom: 10,
+                                                textAlign: 'justify',
+                                                color: props.app.color,
+                                                fontFamily: 'Poligon_Regular',
+                                                fontSize: textSizeRender(4.3),
+                                            }}>
+                                                ¿Soy responsable del cuidado personal/ financiero de otras personas o
+                                                familiares?
+                                            </Text>
+                                            <Select
+                                                minWidth={'100%'}
+                                                style={{
+                                                    fontSize: textSizeRender(4.3)}}
+                                                borderColor={require_10 ?"red":props.app.colorGray}
+                                                accessibilityLabel="Elige una opción"
+                                                placeholder="Elige una opción"
+                                                onValueChange={(itemValue) => {
+                                                    setRequire_10(false)
+                                                    setResponseResponsiblePersonalFamily(itemValue)
+                                                }}
+                                            >
+                                                {
+                                                    encuesta && encuesta.sociodemograficos[7].soyresponsabledelcuidadopersonalfinancierofamiliares.map((item) => {
+                                                        return (<Select.Item
+                                                                _light={{
+                                                                    _text: {
+                                                                        fontSize: textSizeRender(4.3),
+                                                                        color: props.app.color,
+                                                                        fontFamily: 'Poligon_Regular'
+                                                                    }
+                                                                }}
+                                                                _pressed={{
                                                                     fontSize: textSizeRender(4.3),
-                                                                    color: props.app.color,
-                                                                    fontFamily: 'Poligon_Regular'
-                                                                }
-                                                            }}
-                                                            _pressed={{
-                                                                fontSize: textSizeRender(4.3),
-                                                                bg: props.app.secondaryColorHover,
-                                                                _text: {color: props.app.fontColor}
-                                                            }}
-                                                            label={item.nombre} value={item}/>
-                                                    )
-                                                })
-                                            }
-                                        </Select>
-                                    </View>
-                                }
-                                {
-                                    encuesta &&
-                                    <View>
-                                        <Text style={{
-                                            marginTop: 10,
-                                            marginBottom: 10,
-                                            textAlign: 'justify',
-                                            color: props.app.color,
-                                            fontFamily: 'Poligon_Regular',
-                                            fontSize: textSizeRender(4.3),
-                                        }}>
-                                            ¿Con cuál de los siguientes grupos te identificas?
-                                        </Text>
-                                        <Select
-                                            minWidth={'100%'}
-                                            style={{
-                                                fontSize: textSizeRender(4.3)}}
-                                            borderColor={require_11 ?"red":props.app.colorGray}
-                                            accessibilityLabel="Elige una opción"
-                                            placeholder="Elige una opción"
-                                            onValueChange={(itemValue) => {
-                                                setRequire_11(false)
-                                                setResponseGroupsYouIdentifyYourself(itemValue)
-                                            }}
-                                        >
-                                            {
-                                                encuesta && encuesta.sociodemograficos[8].concualdelossiguientesgruposteidentificas.map((item) => {
-                                                    return (<Select.Item
-                                                            _light={{
-                                                                _text: {
+                                                                    bg: props.app.secondaryColorHover,
+                                                                    _text: {color: props.app.fontColor}
+                                                                }}
+                                                                label={item.nombre} value={item}/>
+                                                        )
+                                                    })
+                                                }
+                                            </Select>
+                                        </View>
+                                    }
+                                    {
+                                        encuesta &&
+                                        <View>
+                                            <Text style={{
+                                                marginTop: 10,
+                                                marginBottom: 10,
+                                                textAlign: 'justify',
+                                                color: props.app.color,
+                                                fontFamily: 'Poligon_Regular',
+                                                fontSize: textSizeRender(4.3),
+                                            }}>
+                                                ¿Con cuál de los siguientes grupos te identificas?
+                                            </Text>
+                                            <Select
+                                                minWidth={'100%'}
+                                                style={{
+                                                    fontSize: textSizeRender(4.3)}}
+                                                borderColor={require_11 ?"red":props.app.colorGray}
+                                                accessibilityLabel="Elige una opción"
+                                                placeholder="Elige una opción"
+                                                onValueChange={(itemValue) => {
+                                                    setRequire_11(false)
+                                                    setResponseGroupsYouIdentifyYourself(itemValue)
+                                                }}
+                                            >
+                                                {
+                                                    encuesta && encuesta.sociodemograficos[8].concualdelossiguientesgruposteidentificas.map((item) => {
+                                                        return (<Select.Item
+                                                                _light={{
+                                                                    _text: {
+                                                                        fontSize: textSizeRender(4.3),
+                                                                        color: props.app.color,
+                                                                        fontFamily: 'Poligon_Regular'
+                                                                    }
+                                                                }}
+                                                                _pressed={{
                                                                     fontSize: textSizeRender(4.3),
-                                                                    color: props.app.color,
-                                                                    fontFamily: 'Poligon_Regular'
-                                                                }
-                                                            }}
-                                                            _pressed={{
-                                                                fontSize: textSizeRender(4.3),
-                                                                bg: props.app.secondaryColorHover,
-                                                                _text: {color: props.app.fontColor}
-                                                            }}
-                                                            label={item.nombre} value={item}/>
-                                                    )
-                                                })
-                                            }
-                                        </Select>
-                                    </View>
-                                }
-                                {
-                                    encuesta &&
-                                    <View>
-                                        <Text style={{
-                                            marginTop: 10,
-                                            marginBottom: 10,
-                                            textAlign: 'justify',
-                                            color: props.app.color,
-                                            fontFamily: 'Poligon_Regular',
-                                            fontSize: textSizeRender(4.3),
-                                        }}>
-                                            ¿Cuentas con alguna discapacidad?
-                                        </Text>
+                                                                    bg: props.app.secondaryColorHover,
+                                                                    _text: {color: props.app.fontColor}
+                                                                }}
+                                                                label={item.nombre} value={item}/>
+                                                        )
+                                                    })
+                                                }
+                                            </Select>
+                                        </View>
+                                    }
+                                    {
+                                        encuesta &&
+                                        <View>
+                                            <Text style={{
+                                                marginTop: 10,
+                                                marginBottom: 10,
+                                                textAlign: 'justify',
+                                                color: props.app.color,
+                                                fontFamily: 'Poligon_Regular',
+                                                fontSize: textSizeRender(4.3),
+                                            }}>
+                                                ¿Cuentas con alguna discapacidad?
+                                            </Text>
 
-                                        <Text style={{
-                                            marginTop: 10,
-                                            marginBottom: 10,
-                                            textAlign: 'justify',
-                                            padding:10,
-                                            color: 'black',
-                                            fontFamily: 'Poligon_Regular',
-                                            fontSize: textSizeRender(3),
-                                        }}>
-                                            {'• Visual (Cualquier alteración de la vista ya sea total o parcial)\n\n' +
-                                            '• Motriz (Cualquier alteración de movilidad física, puede afectar sólo a una parte del cuerpo)\n\n' +
-                                            '• Auditiva (La disminución total o parcial de la audición en cada oído)\n\n' +
-                                            '• Intelectual (Alguna limitación para aprender, comprender y comunicarse)\n\n'+
+                                            <Text style={{
+                                                marginTop: 10,
+                                                marginBottom: 10,
+                                                textAlign: 'justify',
+                                                padding:10,
+                                                color: 'black',
+                                                fontFamily: 'Poligon_Regular',
+                                                fontSize: textSizeRender(3),
+                                            }}>
+                                                {'• Visual (Cualquier alteración de la vista ya sea total o parcial)\n\n' +
+                                                '• Motriz (Cualquier alteración de movilidad física, puede afectar sólo a una parte del cuerpo)\n\n' +
+                                                '• Auditiva (La disminución total o parcial de la audición en cada oído)\n\n' +
+                                                '• Intelectual (Alguna limitación para aprender, comprender y comunicarse)\n\n'+
                                                 '• Psicológica (Enfermedad o trastorno mental diagnosticado)'
-                                            }
-                                        </Text>
-                                        <Select
-                                            minWidth={'100%'}
-                                            style={{
-                                                fontSize: textSizeRender(4.3)}}
-                                            borderColor={require_12 ?"red":props.app.colorGray}
-                                            accessibilityLabel="Elige una opción"
-                                            placeholder="Elige una opción"
-                                            onValueChange={(itemValue) => {
-                                                setRequire_12(false)
-                                                setResponseYouHaveADisability(itemValue)
-                                            }}
-                                        >
-                                            {
-                                                encuesta && encuesta.sociodemograficos[9].cuentasconalgunadiscapacidad.map((item) => {
-                                                    return (<Select.Item
-                                                            _light={{
-                                                                _text: {
+                                                }
+                                            </Text>
+                                            <Select
+                                                minWidth={'100%'}
+                                                style={{
+                                                    fontSize: textSizeRender(4.3)}}
+                                                borderColor={require_12 ?"red":props.app.colorGray}
+                                                accessibilityLabel="Elige una opción"
+                                                placeholder="Elige una opción"
+                                                onValueChange={(itemValue) => {
+                                                    setRequire_12(false)
+                                                    setResponseYouHaveADisability(itemValue)
+                                                }}
+                                            >
+                                                {
+                                                    encuesta && encuesta.sociodemograficos[9].cuentasconalgunadiscapacidad.map((item) => {
+                                                        return (<Select.Item
+                                                                _light={{
+                                                                    _text: {
+                                                                        fontSize: textSizeRender(4.3),
+                                                                        color: props.app.color,
+                                                                        fontFamily: 'Poligon_Regular'
+                                                                    }
+                                                                }}
+                                                                _pressed={{
                                                                     fontSize: textSizeRender(4.3),
-                                                                    color: props.app.color,
-                                                                    fontFamily: 'Poligon_Regular'
-                                                                }
-                                                            }}
-                                                            _pressed={{
-                                                                fontSize: textSizeRender(4.3),
-                                                                bg: props.app.secondaryColorHover,
-                                                                _text: {color: props.app.fontColor}
-                                                            }}
-                                                            label={item.nombre} value={item}/>
-                                                    )
-                                                })
-                                            }
-                                        </Select>
-                                    </View>
-                                }
+                                                                    bg: props.app.secondaryColorHover,
+                                                                    _text: {color: props.app.fontColor}
+                                                                }}
+                                                                label={item.nombre} value={item}/>
+                                                        )
+                                                    })
+                                                }
+                                            </Select>
+                                        </View>
+                                    }
                             </View>
-                        </ScrollView>
+                            </ScrollView>
+                        </View>
+
                         <View style={{flex: 0, padding: 20}}>
                             <Button size={'lg'}
                                     _light={{

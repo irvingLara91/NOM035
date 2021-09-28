@@ -5,6 +5,7 @@ import MainLayout from "../../layouts/MainLayout";
 import config from "../../config"
 import {Dimensions, Image, Text, View} from "react-native";
 import {textSizeRender} from "../../utils/utils";
+import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scrollview";
 const {width, height} = Dimensions.get('window')
 
 
@@ -33,9 +34,11 @@ const HomeSettings = ({navigation,app}) => {
                     flex: 1,
                 }}>
                     <ScrollView style={{width: '100%', alignSelf: 'center', paddingHorizontal:45, }}>
-                        <View style={{alignSelf: 'center',paddingVertical:35,paddingHorizontal:40}}>
+                        <View style={{alignSelf: 'center',paddingVertical:20,paddingHorizontal:40}}>
                             <Text style={{fontFamily:'Poligon_Regular', color: 'black',textAlign:'center',fontSize:textSizeRender(5)}}>Configuración</Text>
                         </View>
+                        <View style={{paddingBottom:40}}>
+
                         <Button size={'lg'}
                                 _light={{bg: app.secondaryColor, _text: {color: app.fontColor ,fontSize:textSizeRender(3.5),
                                         fontFamily:'Poligon_Bold'}}}
@@ -65,6 +68,7 @@ const HomeSettings = ({navigation,app}) => {
                         }
                         <Image resizeMode={'contain'} style={{width: width*.45, height:width*.24,alignSelf:'center', marginBottom: 40}}
                                source={require('../../assets/logo_grupomexico.png')}/>
+                        </View>
                     </ScrollView>
                 </View>
             </View>

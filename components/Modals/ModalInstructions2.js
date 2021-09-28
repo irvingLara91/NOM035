@@ -6,7 +6,7 @@ import {MaterialIcons} from "@expo/vector-icons";
 import {Button} from "native-base";
 
 const {width, height} = Dimensions.get('window')
-const ModalInstructions = ({visible, setVisible,one,setOne, text}) => {
+const ModalInstructions2 = ({visible,setOne, setVisible, text}) => {
 
 
     return (
@@ -45,23 +45,8 @@ const ModalInstructions = ({visible, setVisible,one,setOne, text}) => {
                                         fontFamily: 'Poligon_Regular'
 
                                     }]}>{
-                                        "A continuación se presentan algunas recomendaciones para que puedas realizar y completar satisfactoriamente esta encuesta: \n" +
-                                        " \n1.-Lee cuidadosamente cada pregunta y selecciona tu respuesta. \n " +
-
-                                        "\n2.-Cada vez que concluyas una página de la encuesta, el sistema te llevará a la siguiente página de manera automática. \n" +
-
-                                        "\n3.-Antes de finalizar la encuesta asegúrate de responder todas las preguntas. \n "+
-
-                                        "\n4.-Cuando hayas concluido la encuesta, da clic en Continuar. \n"
+                                        "Estas a punto de comenzar con la encuesta, lee cuidadosamente cada pregunta y selecciona tu respuesta dando clic a la carita, valor o texto que se te presenta enmarcado en la lista de respuestas."
                                     }</Text>
-                                    <Text style={[styles.modalTitle, {
-                                        color: 'white',
-                                        fontFamily: 'Poligon_Regular'
-
-                                    }]}>{
-                                        "Muchas gracias por tu valiosa participación."
-                                    }
-                                    </Text>
                                 </View>
                             </ScrollView>
 
@@ -87,7 +72,9 @@ const ModalInstructions = ({visible, setVisible,one,setOne, text}) => {
                                     style={{width:width/1.4,marginTop: 20,justifyContent:'center'}} onPress={() => {
 
                                 setVisible(false)
-                            }}>Continuar</Button>
+                                setOne(false)
+
+                            }}>COMENZAR</Button>
                         </View>
                     </View>
                 </View>
@@ -120,7 +107,7 @@ const styles = StyleSheet.create({
     modalView: {
         margin: 20,
         width: width/1.1,
-        height: height/1.3,
+        height: height/1.9,
         borderRadius: 20,
         padding: 20,
         alignItems: "center",
@@ -150,4 +137,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ModalInstructions;
+export default ModalInstructions2;

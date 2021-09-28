@@ -177,13 +177,14 @@ const AssessmentECO = (props) => {
                     backgroundColor: props.app.colorBaseEco,
                     flex: 1,
                 }}>
-                    <View style={{width: width,paddingLeft: 20,paddingTop:20}}>
+                    <View style={{width: width, paddingLeft: 20, paddingTop: 20,paddingRight:20}}>
                         <Text style={{fontFamily: 'Poligon_Regular',  fontSize: textSizeRender(4.5)}}>
                             Registra los siguientes datos.
                         </Text>
                     </View>
+                    <View style={{width: '100%', paddingLeft: 10, paddingTop: 20,paddingRight:10, flex: 1}}>
                     <ScrollView>
-                        <View style={{width:'100%',padding: 20, flex: 1}}>
+                        <View style={{paddingLeft: 10,paddingRight:10}}>
                             <Text style={{
                                 marginBottom: 10,
                                 textAlign: 'justify',
@@ -444,6 +445,7 @@ const AssessmentECO = (props) => {
 
                         </View>
                     </ScrollView>
+                    </View>
                     <View style={{flex: 0, padding: 20}}>
                         <Button size={'lg'}
                                 _light={{
