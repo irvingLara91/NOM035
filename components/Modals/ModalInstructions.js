@@ -38,7 +38,7 @@ const ModalInstructions = ({visible, setVisible,one,setOne, text}) => {
                                 }]}>INSTRUCCIONES</Text>
                             </View>
                             <ScrollView>
-                                <View>
+                                <View style={{marginHorizontal:20}}>
                                     <Text style={[styles.modalTitle, {
                                         color: 'white',
                                         textAlign: 'justify',

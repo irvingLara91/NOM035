@@ -136,7 +136,7 @@ const OpenQuestionsScreen = (props) => {
             {
                 dato < ECO_OPEN_QUESTIONS.preguntasabiertas.length &&
                 ECO_OPEN_QUESTIONS.preguntasabiertas[dato].titulo &&
-                <View style={{width: width, paddingLeft: 20, paddingTop: 20}}>
+                <View style={{width: width, paddingTop: 20}}>
                     <Text style={{fontFamily: 'Poligon_Regular', textAlign: 'center', fontSize: textSizeRender(4.5)}}>
                         Responde la siguiente pregunta.</Text>
                 </View>

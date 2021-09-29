@@ -426,7 +426,7 @@ export default function App({iconSettings}) {
                                                                          style={{top:-6,marginLeft: 15}}
                                                                          color={'#a5a5a5'}/>*/}
                                                           <Image resizeMode={'contain'}
-                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 15}}
+                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 20}}
                                                                  source={require('./assets/logo_eco.png')}/>
                                                       </View>
 
@@ -465,7 +465,7 @@ export default function App({iconSettings}) {
                                                                          style={{top:-6,marginLeft: 15}}
                                                                          color={'#a5a5a5'}/>*/}
                                                           <Image resizeMode={'contain'}
-                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 15}}
+                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 20}}
                                                                  source={require('./assets/logo_eco.png')}/>
 
                                                       </View>
@@ -503,7 +503,7 @@ export default function App({iconSettings}) {
                                                                          style={{top:-6,marginLeft: 15}}
                                                                          color={'#a5a5a5'}/>*/}
                                                           <Image resizeMode={'contain'}
-                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 15}}
+                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 20}}
                                                                  source={require('./assets/logo_eco.png')}/>
 
                                                       </View>
@@ -541,7 +541,7 @@ export default function App({iconSettings}) {
                                                                          style={{top:-6,marginLeft: 15}}
                                                                          color={'#a5a5a5'}/>*/}
                                                           <Image resizeMode={'contain'}
-                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 15}}
+                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 20}}
                                                                  source={require('./assets/logo_eco.png')}/>
 
                                                       </View>
@@ -580,7 +580,7 @@ export default function App({iconSettings}) {
                                                                          style={{top:-6,marginLeft: 15}}
                                                                          color={'#a5a5a5'}/>*/}
                                                           <Image resizeMode={'contain'}
-                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 15}}
+                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 20}}
                                                                  source={require('./assets/logo_eco.png')}/>
 
                                                       </View>
@@ -619,7 +619,7 @@ export default function App({iconSettings}) {
                                                                          style={{top:-6,marginLeft: 15}}
                                                                          color={'#a5a5a5'}/>*/}
                                                           <Image resizeMode={'contain'}
-                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 15}}
+                                                                 style={{top:-4,tintColor: '#5a5a5a', width: textSizeRender(10), marginLeft: 20}}
                                                                  source={require('./assets/logo_eco.png')}/>
 
                                                       </View>
