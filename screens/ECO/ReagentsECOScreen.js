@@ -162,10 +162,9 @@ const ReagentsECOScreen = (props) => {
                             dato < ECO_REACTIVOS.reactivos.length &&
                             ECO_REACTIVOS.reactivos[dato].tipo === '1a5' &&
                             <VStack style={{paddingLeft: 30, paddingRight: 30}}>
-
                                 <TouchableOpacity
                                     onPress={() => {
-                                        addResponse(1)
+                                        addResponse(5)
                                         setDato(dato + 1)
                                     }}
                                     style={{
@@ -175,21 +174,81 @@ const ReagentsECOScreen = (props) => {
                                         flexDirection: 'row',
                                         width: '100%',
                                         alignItems: 'center',
-                                        marginBottom: 8,
+                                        marginBottom: 8
                                     }}>
                                     <View style={{flex: .3}}>
                                         <View
                                             style={{alignItems: 'center'}}>
-                                            <MaterialCommunityIcons name="emoticon-sad-outline"
-                                                                    size={textSizeRender(10)}
-                                                                    color="red"/>
+
+                                            <MaterialCommunityIcons name="emoticon-outline" size={textSizeRender(10)}
+                                                                    color={"#1e9200"}/>
                                         </View>
                                     </View>
                                     <View style={{flex: .1}}>
-                                        <Text style={{fontSize: textSizeRender(4.1)}}>1</Text>
+                                        <Text style={{fontSize: textSizeRender(4.1)}}>5</Text>
                                     </View>
                                     <View style={{flex: 1}}>
-                                        <Text style={{fontSize: textSizeRender(4.2), color: '#000'}}>Totalmente en
+                                        <Text style={{fontSize: textSizeRender(4.2), color: '#000'}}>Totalmente de
+                                            acuerdo.</Text>
+                                    </View>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        addResponse(4)
+                                        setDato(dato + 1)
+                                    }}
+                                    style={{
+                                        borderColor: props.app.color,
+                                        borderWidth: 1,
+                                        borderRadius: 5,
+                                        flexDirection: 'row',
+                                        width: '100%',
+                                        alignItems: 'center',
+                                        marginBottom: 8
+                                    }}>
+                                    <View style={{flex: .3}}>
+                                        <View
+                                            style={{alignItems: 'center'}}>
+                                            <MaterialCommunityIcons name="emoticon-happy-outline"
+                                                                    size={textSizeRender(10)} color={"#2aea00"}/>
+                                        </View>
+                                    </View>
+                                    <View style={{flex: .1}}>
+                                        <Text style={{fontSize: textSizeRender(4.1)}}>4</Text>
+                                    </View>
+                                    <View style={{flex: 1}}>
+                                        <Text style={{fontSize: textSizeRender(4.2), color: '#000'}}>Parcialmente de
+                                            acuerdo.</Text>
+                                    </View>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        addResponse(3)
+                                        setDato(dato + 1)
+                                    }}
+                                    style={{
+                                        borderColor: props.app.color,
+                                        borderWidth: 1,
+                                        borderRadius: 5,
+                                        flexDirection: 'row',
+                                        width: '100%',
+                                        alignItems: 'center',
+                                        marginBottom: 8
+                                    }}>
+                                    <View style={{flex: .3}}>
+                                        <View
+                                            style={{alignItems: 'center'}}>
+                                            <MaterialCommunityIcons name="emoticon-neutral-outline"
+                                                                    size={textSizeRender(10)} color={"#ffde00"}/>
+                                        </View>
+                                    </View>
+                                    <View style={{flex: .1}}>
+                                        <Text style={{fontSize: textSizeRender(4.1)}}>3</Text>
+                                    </View>
+                                    <View style={{flex: 1}}>
+                                        <Text style={{fontSize: textSizeRender(4.2), color: '#000'}}>Ni de acuerdo ni en
                                             desacuerdo.</Text>
                                     </View>
                                 </TouchableOpacity>
@@ -226,7 +285,7 @@ const ReagentsECOScreen = (props) => {
 
                                 <TouchableOpacity
                                     onPress={() => {
-                                        addResponse(3)
+                                        addResponse(1)
                                         setDato(dato + 1)
                                     }}
                                     style={{
@@ -236,82 +295,22 @@ const ReagentsECOScreen = (props) => {
                                         flexDirection: 'row',
                                         width: '100%',
                                         alignItems: 'center',
-                                        marginBottom: 8
+                                        marginBottom: 8,
                                     }}>
                                     <View style={{flex: .3}}>
                                         <View
                                             style={{alignItems: 'center'}}>
-                                            <MaterialCommunityIcons name="emoticon-neutral-outline"
-                                                                    size={textSizeRender(10)} color={"#ffde00"}/>
+                                            <MaterialCommunityIcons name="emoticon-sad-outline"
+                                                                    size={textSizeRender(10)}
+                                                                    color="red"/>
                                         </View>
                                     </View>
                                     <View style={{flex: .1}}>
-                                        <Text style={{fontSize: textSizeRender(4.1)}}>3</Text>
+                                        <Text style={{fontSize: textSizeRender(4.1)}}>1</Text>
                                     </View>
                                     <View style={{flex: 1}}>
-                                        <Text style={{fontSize: textSizeRender(4.2), color: '#000'}}>Ni de acuerdo ni en
+                                        <Text style={{fontSize: textSizeRender(4.2), color: '#000'}}>Totalmente en
                                             desacuerdo.</Text>
-                                    </View>
-                                </TouchableOpacity>
-
-                                <TouchableOpacity
-                                    onPress={() => {
-                                        addResponse(4)
-                                        setDato(dato + 1)
-                                    }}
-                                    style={{
-                                        borderColor: props.app.color,
-                                        borderWidth: 1,
-                                        borderRadius: 5,
-                                        flexDirection: 'row',
-                                        width: '100%',
-                                        alignItems: 'center',
-                                        marginBottom: 8
-                                    }}>
-                                    <View style={{flex: .3}}>
-                                        <View
-                                            style={{alignItems: 'center'}}>
-                                            <MaterialCommunityIcons name="emoticon-happy-outline"
-                                                                    size={textSizeRender(10)} color={"#2aea00"}/>
-                                        </View>
-                                    </View>
-                                    <View style={{flex: .1}}>
-                                        <Text style={{fontSize: textSizeRender(4.1)}}>4</Text>
-                                    </View>
-                                    <View style={{flex: 1}}>
-                                        <Text style={{fontSize: textSizeRender(4.2), color: '#000'}}>Parcialmente de
-                                            acuerdo.</Text>
-                                    </View>
-                                </TouchableOpacity>
-
-                                <TouchableOpacity
-                                    onPress={() => {
-                                        addResponse(5)
-                                        setDato(dato + 1)
-                                    }}
-                                    style={{
-                                        borderColor: props.app.color,
-                                        borderWidth: 1,
-                                        borderRadius: 5,
-                                        flexDirection: 'row',
-                                        width: '100%',
-                                        alignItems: 'center',
-                                        marginBottom: 8
-                                    }}>
-                                    <View style={{flex: .3}}>
-                                        <View
-                                            style={{alignItems: 'center'}}>
-
-                                            <MaterialCommunityIcons name="emoticon-outline" size={textSizeRender(10)}
-                                                                    color={"#1e9200"}/>
-                                        </View>
-                                    </View>
-                                    <View style={{flex: .1}}>
-                                        <Text style={{fontSize: textSizeRender(4.1)}}>5</Text>
-                                    </View>
-                                    <View style={{flex: 1}}>
-                                        <Text style={{fontSize: textSizeRender(4.2), color: '#000'}}>Totalmente de
-                                            acuerdo.</Text>
                                     </View>
                                 </TouchableOpacity>
                             </VStack>
